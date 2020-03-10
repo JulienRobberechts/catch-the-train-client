@@ -8,16 +8,31 @@ const Time = ({ time, icon: iconName = "clock" }) => {
 
   return (
     <span>
-      <span>
-        <Icon width="5%" height="5%" />
-      </span>
-      <span>
+      <IconContainer>
+        <Icon />
+      </IconContainer>
+      <TimeText>
         <span>{time.hours()}</span>
         <span>h</span>
         <span>{time.minutes()}</span>
-      </span>
+      </TimeText>
     </span>
   );
 };
+
+const TimeText = styled.span`
+  font-size: 1.3em;
+  color: ${() => colors.color6};
+`;
+
+const IconContainer = styled.span`
+  vertical-align: text-bottom;
+  margin-right: 0.2rem;
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: ${() => colors.color6};
+  }
+`;
 
 export default Time;

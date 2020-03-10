@@ -6,7 +6,7 @@ import { colors } from "../../design/colors";
 const TimeSpan = ({
   timeSpan,
   icon: iconName = "none",
-  displaySign = true
+  displayPositiveSign = false
 }) => {
   const Icon = getIcon(iconName);
 
@@ -24,36 +24,52 @@ const TimeSpan = ({
   return (
     <span>
       {Icon && (
-        <ImageContainer>
+        <IconContainer>
           <Icon width="5%" height="5%" />
-        </ImageContainer>
+        </IconContainer>
       )}
-      <span>
-        {displaySign && negative && <Sign>-</Sign>}
-        {displaySign && positive && <Sign>+</Sign>}
+      <TimeText>
+        {negative && <Sign>-</Sign>}
+        {displayPositiveSign && positive && <Sign>+</Sign>}
         {minutes !== 0 && (
           <>
             <span>{minutes}</span>
             <span>:</span>
           </>
         )}
-        <span>{seconds}</span>
+        <span>
+          {seconds.toLocaleString("en-US", {
+            minimumIntegerDigits: 2,
+            useGrouping: false
+          })}
+        </span>
         {minutes === 0 && (
           <>
             <span> secondes</span>
           </>
         )}
-      </span>
+      </TimeText>
     </span>
   );
 };
 
-const Sign = styled.span`
-  font-weight: 900;
+const TimeText = styled.span`
+  font-size: 1.3em;
+  color: ${() => colors.color6};
 `;
 
-const ImageContainer = styled.span`
-  margin: 0.3rem;
+const IconContainer = styled.span`
+  vertical-align: text-bottom;
+  margin-right: 0.2rem;
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: ${() => colors.color6};
+  }
+`;
+
+const Sign = styled.span`
+  font-weight: 900;
 `;
 
 export default TimeSpan;

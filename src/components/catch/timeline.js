@@ -16,19 +16,16 @@ const Timeline = ({
 }) => {
   return (
     <Panel>
-      <div>
+      <TimeContainer>
         <Time time={nowTime} icon="clock" />
-        <TimeSpan
-          timeSpan={targetDuration}
-          icon="sandglass"
-          displaySign={false}
-        />
+        <TimeSpan timeSpan={targetDuration} icon="sandglass" />
         <Time time={targetTime} icon="traindark" />
-      </div>
-
-      <LineParent>
+      </TimeContainer>
+      <TimeContainer>
         <TimeSpan timeSpan={travelDuration} icon="walk" />
         <TimeSpan timeSpan={waitingDuration} icon="sandglass" />
+      </TimeContainer>
+      <LineParent>
         <DurationLine
           travelDurationPercentage={travelDurationPercentage}
           waitingDurationPercentage={waitingDurationPercentage}
@@ -37,6 +34,11 @@ const Timeline = ({
     </Panel>
   );
 };
+
+const TimeContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Panel = styled.div`
   background-color: ${() => colors.color1};

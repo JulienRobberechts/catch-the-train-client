@@ -7,7 +7,7 @@ const DelaySummary = ({ delayDuration, delayType }) => {
   return (
     <Panel>
       <DelayValue>
-        <TimeSpan timeSpan={delayDuration} />
+        <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
       <DelayType delayType={delayType} />
     </Panel>
@@ -74,15 +74,25 @@ const EarlyPanel = styled.div`
 `;
 
 const OnTimePanel = styled.div`
-  background-color: ${() => colors.color1};
+  background-color: ${() => colors.color2};
+  display: flex;
+  justify-content: center;
   padding: 0.3rem;
-  color: ${() => colors.color5};
+  color: ${() => colors.color6};
+  font-weight: bold;
+  font-size: 1.6em;
+  margin: 0.2rem;
 `;
 
 const LatePanel = styled.div`
-  background-color: ${() => colors.color1};
+  background-color: ${() => colors.color2};
+  display: flex;
+  justify-content: center;
   padding: 0.3rem;
-  color: ${() => colors.color5};
+  color: ${() => colors.color6};
+  font-weight: bold;
+  font-size: 1.6em;
+  margin: 0.2rem;
 `;
 
 const Panel = styled.div`

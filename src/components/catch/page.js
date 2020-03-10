@@ -43,6 +43,7 @@ const CatchPage = () => {
 
 const Page = styled.div`
   background-color: ${() => colors.color1};
+  height: 100vh;
 `;
 
 export default CatchPage;
