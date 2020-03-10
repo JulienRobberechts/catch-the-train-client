@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "catch-the-train",
+  "name": "Client for the application Catch the train",
   "icons": [
     {
       "src": "favicon.ico",
