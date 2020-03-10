@@ -6,4 +6,5 @@ export { ReactComponent as Bus } from "./assets/bus.svg";
 export { ReactComponent as BusDark } from "./assets/bus-dark.svg";
 export { ReactComponent as Train } from "./assets/train.svg";
 export { ReactComponent as TrainDark } from "./assets/train-dark.svg";
-export { ReactComponent as Walk } from "./assets/walk.svg";
+export { ReactComponent as Walk } from "./assets/walk3.svg";
+export { ReactComponent as Wait } from "./assets/wait.svg";

@@ -1,4 +1,4 @@
-import { Clock, TrainDark, Sandglass, Walk } from "../../design";
+import { Clock, TrainDark, Sandglass, Walk } from "../../design/icons";
 
 export default iconName => {
   switch (iconName.toLowerCase()) {

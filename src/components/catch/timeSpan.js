@@ -18,14 +18,12 @@ const TimeSpan = ({
 
   const minutes = Math.abs(timeSpan.minutes());
   const seconds = Math.abs(timeSpan.seconds());
-  // console.log("timeSpan minutes", minutes);
-  // console.log("timeSpan seconds", seconds);
 
   return (
-    <span>
+    <Panel>
       {Icon && (
         <IconContainer>
-          <Icon width="5%" height="5%" />
+          <Icon />
         </IconContainer>
       )}
       <TimeText>
@@ -33,25 +31,35 @@ const TimeSpan = ({
         {displayPositiveSign && positive && <Sign>+</Sign>}
         {minutes !== 0 && (
           <>
-            <span>{minutes}</span>
-            <span>:</span>
+            <NumberText>{minutes}</NumberText>
+            <SymbolText>min</SymbolText>
           </>
         )}
-        <span>
+        <NumberText>
           {seconds.toLocaleString("en-US", {
             minimumIntegerDigits: 2,
             useGrouping: false
           })}
-        </span>
-        {minutes === 0 && (
-          <>
-            <span> secondes</span>
-          </>
-        )}
+        </NumberText>
+        <SymbolText>s</SymbolText>
       </TimeText>
-    </span>
+    </Panel>
   );
 };
+
+const Panel = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const NumberText = styled.span`
+  margin: 0 0.1rem;
+`;
+
+const SymbolText = styled.span`
+  margin: 0 0.05rem;
+`;
 
 const TimeText = styled.span`
   font-size: 1.3em;
@@ -59,7 +67,6 @@ const TimeText = styled.span`
 `;
 
 const IconContainer = styled.span`
-  vertical-align: text-bottom;
   margin-right: 0.2rem;
   svg {
     width: 1rem;
