@@ -1,12 +1,16 @@
 import React from "react";
 import TimeSpan from "./timeSpan";
+import styled from "styled-components";
+import { colors } from "../../design/colors";
 
 const DelaySummary = ({ delayDuration, delayType }) => {
   return (
-    <div>
-      <TimeSpan timeSpan={delayDuration} />
+    <Panel>
+      <DelayValue>
+        <TimeSpan timeSpan={delayDuration} />
+      </DelayValue>
       <DelayType delayType={delayType} />
-    </div>
+    </Panel>
   );
 };
 
@@ -25,25 +29,66 @@ const DelayType = ({ delayType }) => {
 
 const Early = () => {
   return (
-    <div>
+    <EarlyPanel>
       <span>en avance</span>
-    </div>
+    </EarlyPanel>
   );
 };
 
 const OnTime = () => {
   return (
-    <div>
+    <OnTimePanel>
       <span>Vous êtes à l'heure</span>
-    </div>
+    </OnTimePanel>
   );
 };
 
 const Late = () => {
   return (
-    <div>
+    <LatePanel>
       <span>en retard</span>
-    </div>
+    </LatePanel>
   );
 };
+
+const DelayValue = styled.div`
+  background-color: ${() => colors.color2};
+  display: flex;
+  justify-content: center;
+  padding: 0.3rem;
+  color: ${() => colors.color5};
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0.2rem;
+`;
+
+const EarlyPanel = styled.div`
+  background-color: ${() => colors.color2};
+  display: flex;
+  justify-content: center;
+  padding: 0.3rem;
+  color: ${() => colors.color6};
+  font-weight: bold;
+  font-size: 1.6em;
+  margin: 0.2rem;
+`;
+
+const OnTimePanel = styled.div`
+  background-color: ${() => colors.color1};
+  padding: 0.3rem;
+  color: ${() => colors.color5};
+`;
+
+const LatePanel = styled.div`
+  background-color: ${() => colors.color1};
+  padding: 0.3rem;
+  color: ${() => colors.color5};
+`;
+
+const Panel = styled.div`
+  background-color: ${() => colors.color1};
+  padding: 0.3rem;
+  color: ${() => colors.color5};
+`;
+
 export default DelaySummary;

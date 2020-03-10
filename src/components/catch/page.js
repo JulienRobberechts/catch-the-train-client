@@ -1,9 +1,12 @@
 import React from "react";
+import styled from "styled-components";
+import { colors } from "../../design/colors";
 
 import { SelectData } from "./logic/catchSelector";
 import TrainRoute from "./trainRoute";
 import DelaySummary from "./delaySummary";
 import Timeline from "./timeline";
+import Title from "./title";
 
 const CatchPage = () => {
   const {
@@ -21,8 +24,8 @@ const CatchPage = () => {
   } = SelectData();
 
   return (
-    <div>
-      <div>Catch the train</div>
+    <Page>
+      <Title />
       <TrainRoute station={station} direction={direction} />
       <Timeline
         nowTime={nowTime}
@@ -34,8 +37,12 @@ const CatchPage = () => {
         travelDurationPercentage={travelDurationPercentage}
       />
       <DelaySummary delayDuration={delayDuration} delayType={delayType} />
-    </div>
+    </Page>
   );
 };
+
+const Page = styled.div`
+  background-color: ${() => colors.color1};
+`;
 
 export default CatchPage;

@@ -17,7 +17,7 @@ const DurationLine = ({
 };
 
 const TargetTime = styled.div`
-  background-color: ${() => colors.color1};
+  background-color: ${() => colors.color3};
   display: flex;
   align-items: stretch;
   width: 100%;

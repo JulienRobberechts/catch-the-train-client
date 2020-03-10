@@ -1,5 +1,7 @@
 import React from "react";
 import getIcon from "./timeIcons";
+import styled from "styled-components";
+import { colors } from "../../design/colors";
 
 const Time = ({ time, icon: iconName = "clock" }) => {
   const Icon = getIcon(iconName);
