@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-const DurationLine = ({ ratio }) => {
-  const percentage = ratio * 100;
+const DurationLine = ({
+  travelDurationPercentage,
+  inAdvanceDurationPercentage
+}) => {
+  console.log("travelDurationPercentage", travelDurationPercentage);
+  console.log("inAdvanceDurationPercentage", inAdvanceDurationPercentage);
   return (
-    <FullTime>
-      <TravelTime percentage={percentage} />
-    </FullTime>
+    <TargetTime>
+      <TravelTime percentage={travelDurationPercentage} />
+      <InAdvanceTime percentage={inAdvanceDurationPercentage} />
+    </TargetTime>
   );
 };
 
-const FullTime = styled.div`
-  background-color: lightgray;
+const TargetTime = styled.div`
+  background-color: #a3b1c2;
   display: flex;
   align-items: stretch;
   width: 100%;
@@ -19,7 +24,12 @@ const FullTime = styled.div`
 `;
 
 const TravelTime = styled.div`
-  background-color: darkgray;
+  background-color: #232b34;
+  width: ${props => props.percentage + "%"};
+`;
+
+const InAdvanceTime = styled.div`
+  background-color: #414e5d;
   width: ${props => props.percentage + "%"};
 `;
 

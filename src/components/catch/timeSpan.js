@@ -5,9 +5,10 @@ const TimeSpan = ({ timeSpan, icon: iconName = "none" }) => {
   const Icon = getIcon(iconName);
 
   // console.log("timeSpan", timeSpan);
-  // const totalMilliseconds = timeSpan.valueOf();
-
-  // const negative = totalMilliseconds < 0;
+  const totalMilliseconds = timeSpan.valueOf() * 1000;
+  console.log("totalMilliseconds", totalMilliseconds);
+  const negative = totalMilliseconds < 0;
+  const positive = totalMilliseconds > 0;
 
   const minutes = Math.abs(timeSpan.minutes());
   const seconds = Math.abs(timeSpan.seconds());
@@ -18,9 +19,20 @@ const TimeSpan = ({ timeSpan, icon: iconName = "none" }) => {
     <span>
       <span>{Icon && <Icon width="5%" height="5%" />}</span>
       <span>
-        <span>{minutes}</span>
-        <span>min</span>
+        {negative && <span>- </span>}
+        {positive && <span>+ </span>}
+        {minutes !== 0 && (
+          <>
+            <span>{minutes}</span>
+            <span>min</span>
+          </>
+        )}
         <span>{seconds}</span>
+        {minutes === 0 && (
+          <>
+            <span> secondes</span>
+          </>
+        )}
       </span>
     </span>
   );

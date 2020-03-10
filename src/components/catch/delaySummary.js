@@ -2,23 +2,31 @@ import React from "react";
 import TimeSpan from "./timeSpan";
 
 const DelaySummary = ({ delayDuration, delayType }) => {
+  return (
+    <div>
+      <TimeSpan timeSpan={delayDuration} />
+      <DelayType delayType={delayType} />
+    </div>
+  );
+};
+
+const DelayType = ({ delayType }) => {
   switch (delayType) {
     case "early":
-      return <Early delayDuration={delayDuration} />;
+      return <Early />;
     case "ontime":
       return <OnTime />;
     case "late":
-      return <Late delayDuration={delayDuration} />;
+      return <Late />;
     default:
       return <div>???</div>;
   }
 };
 
-const Early = ({ delayDuration }) => {
+const Early = () => {
   return (
     <div>
-      <TimeSpan timeSpan={delayDuration} />
-      <span> d'avance</span>
+      <span>en avance</span>
     </div>
   );
 };
@@ -26,16 +34,15 @@ const Early = ({ delayDuration }) => {
 const OnTime = () => {
   return (
     <div>
-      <span>A l'heure !</span>
+      <span>Vous êtes à l'heure</span>
     </div>
   );
 };
 
-const Late = ({ delayDuration }) => {
+const Late = () => {
   return (
     <div>
-      <TimeSpan timeSpan={delayDuration} />
-      <span> de retard</span>
+      <span>en retard</span>
     </div>
   );
 };

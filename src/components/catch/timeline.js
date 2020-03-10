@@ -6,23 +6,27 @@ import DurationLine from "./durationLine";
 
 const Timeline = ({
   now,
-  durationToTrain,
+  targetDuration,
   trainDeparture,
   travelDuration,
-  percentageTravelToRemainingTime
+  travelDurationPercentage,
+  inAdvanceDurationPercentage
 }) => {
   return (
     <div>
       <div>
         <Time time={now} icon="clock" />
-        <TimeSpan timeSpan={durationToTrain} icon="sandglass" />
+        <TimeSpan timeSpan={targetDuration} icon="sandglass" />
         <Time time={trainDeparture} icon="traindark" />
       </div>
 
       <div>
         <TimeSpan timeSpan={travelDuration} icon="walk" />
 
-        <DurationLine ratio={percentageTravelToRemainingTime} />
+        <DurationLine
+          travelDurationPercentage={travelDurationPercentage}
+          inAdvanceDurationPercentage={inAdvanceDurationPercentage}
+        />
       </div>
     </div>
   );
