@@ -42,7 +42,6 @@ const TimeContainer = styled.div`
 
 const Panel = styled.div`
   background-color: ${() => colors.color1};
-  padding: 0.3rem;
   color: ${() => colors.color5};
 `;
 const LineParent = styled.div``;

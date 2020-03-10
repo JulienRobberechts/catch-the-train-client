@@ -59,45 +59,38 @@ const DelayValue = styled.div`
   color: ${() => colors.color5};
   font-weight: bold;
   font-size: 1.2em;
-  margin: 0.2rem;
+  margin: 0.2rem 0;
 `;
 
 const EarlyPanel = styled.div`
   background-color: ${() => colors.color2};
   display: flex;
   justify-content: center;
-  padding: 0.3rem;
   color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
-  margin: 0.2rem;
 `;
 
 const OnTimePanel = styled.div`
   background-color: ${() => colors.color2};
   display: flex;
   justify-content: center;
-  padding: 0.3rem;
   color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
-  margin: 0.2rem;
 `;
 
 const LatePanel = styled.div`
   background-color: ${() => colors.color2};
   display: flex;
   justify-content: center;
-  padding: 0.3rem;
   color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
-  margin: 0.2rem;
 `;
 
 const Panel = styled.div`
   background-color: ${() => colors.color1};
-  padding: 0.3rem;
   color: ${() => colors.color5};
 `;
 
