@@ -1,11 +1,14 @@
-import React from 'react';
-import CatchPage from './components/catch';
+import React from "react";
+import CatchPage from "./components/catch/page";
+import Attributions from "./components/attributions/attribution";
+import ErrorBoundary from "./components/error-mgt/errorBoundary";
 
 function App() {
   return (
-    <div>
+    <ErrorBoundary>
       <CatchPage />
-    </div>
+      <Attributions />
+    </ErrorBoundary>
   );
 }
 
