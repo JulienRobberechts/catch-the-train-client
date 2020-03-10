@@ -20,8 +20,8 @@ const Timeline = ({
       <TimeContainer>
         <Time time={nowTime} icon="clock" />
         <div>
-          Prochain train:
-          <Time time={targetTime} icon="traindark" />
+          <PreText>prochain train à</PreText>
+          <Time time={targetTime} icon="train" />
         </div>
       </TimeContainer>
       <CaretLine>
@@ -52,6 +52,12 @@ const TimeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0.2rem 0;
+  font-size: 1.6rem;
+`;
+
+const PreText = styled.span`
+  margin-right: 0.3rem;
+  font-size: 1rem;
 `;
 
 const TimeText = styled.span`

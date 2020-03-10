@@ -24,9 +24,7 @@ const DurationLine = ({
             <Walk />
           </IconContainer>
         </TravelTime>
-        <WaitingTime percentage={waitingDurationPercentage}>
-          <TimeSpan timeSpan={waitingDuration} />
-        </WaitingTime>
+        <WaitingTime percentage={waitingDurationPercentage}></WaitingTime>
       </TargetTime>
       <TargetTime2>
         <TravelTime2 percentage={travelDurationPercentage}>
@@ -39,10 +37,9 @@ const DurationLine = ({
 };
 const DottedLine = styled.hr`
   border: none;
-  border-top: 6px dotted black;
+  border-top: 5px dotted black;
   color: #fff;
   height: 8px;
-  width: 98%;
   margin: 0.1rem 0.5rem;
 `;
 const TargetTime = styled.div`
@@ -50,7 +47,7 @@ const TargetTime = styled.div`
   display: flex;
   align-items: stretch;
   width: 100%;
-  height: 65px;
+  height: 48px;
   radius
 `;
 
@@ -85,10 +82,10 @@ const WaitingTime = styled.div`
 
 const IconContainer = styled.span`
   vertical-align: text-bottom;
-  margin-right: 0.2rem;
-  padding-top: 0.2rem;
+  margin-right: 0rem;
+  padding-top: 0rem;
   svg {
-    width: 3.6rem;
+    width: 2.4rem;
     height: 3.6rem;
     color: ${() => colors.color6};
   }

@@ -29,8 +29,8 @@ const IconContainer = styled.span`
   vertical-align: text-bottom;
   margin-right: 0.2rem;
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
     color: ${() => colors.color6};
   }
 `;
