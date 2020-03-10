@@ -8,14 +8,14 @@ const Time = ({ time, icon: iconName = "clock" }) => {
 
   return (
     <span>
-      <IconContainer>
-        <Icon />
-      </IconContainer>
       <TimeText>
         <span>{time.hours()}</span>
         <span>h</span>
         <span>{time.minutes()}</span>
-      </TimeText>
+      </TimeText>{" "}
+      <IconContainer>
+        <Icon />
+      </IconContainer>
     </span>
   );
 };
