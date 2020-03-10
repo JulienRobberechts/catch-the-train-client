@@ -1,13 +1,17 @@
-import React from 'react';
+import React from "react";
 
-const TrainRoute = () => {
-    return (
-        <div>
-            <span>Saint-Germain-en-Laye</span>
-            <span> > </span>
-            <span>Châtelet–Les Halles</span>
-        </div>
-    );
+const TrainRoute = ({ station, direction }) => {
+  return (
+    <div>
+      <span>{station}</span>
+      {direction && (
+        <>
+          <span> > </span>
+          <span>{direction}</span>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default TrainRoute;

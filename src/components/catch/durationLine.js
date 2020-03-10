@@ -19,7 +19,7 @@ const FullTime = styled.div`
 `;
 
 const TravelTime = styled.div`
-  background-color: green;
+  background-color: darkgray;
   width: ${props => props.percentage + "%"};
 `;
 

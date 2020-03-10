@@ -4,11 +4,11 @@ import getIcon from "./timeIcons";
 const TimeSpan = ({ timeSpan, icon: iconName = "sandglass" }) => {
   const Icon = getIcon(iconName);
 
-  console.log("timeSpan", timeSpan);
+  // console.log("timeSpan", timeSpan);
   const minutes = timeSpan.minutes();
   const seconds = timeSpan.seconds();
-  console.log("timeSpan minutes", minutes);
-  console.log("timeSpan seconds", seconds);
+  // console.log("timeSpan minutes", minutes);
+  // console.log("timeSpan seconds", seconds);
 
   return (
     <span>
