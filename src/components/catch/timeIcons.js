@@ -11,6 +11,6 @@ export default iconName => {
     case "walk":
       return Walk;
     default:
-      return Clock;
+      return null;
   }
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 import { SelectData } from "./logic/catchSelector";
 import TrainRoute from "./trainRoute";
-import LateSummary from "./lateSummary";
+import DelaySummary from "./delaySummary";
 import Timeline from "./timeline";
 
 const CatchPage = () => {
@@ -14,7 +14,8 @@ const CatchPage = () => {
     trainDeparture,
     travelDuration,
     percentageTravelToRemainingTime,
-    delay
+    delayDuration,
+    delayType
   } = SelectData();
 
   return (
@@ -28,7 +29,7 @@ const CatchPage = () => {
         travelDuration={travelDuration}
         percentageTravelToRemainingTime={percentageTravelToRemainingTime}
       />
-      <LateSummary delay={delay} />
+      <DelaySummary delayDuration={delayDuration} delayType={delayType} />
     </div>
   );
 };
