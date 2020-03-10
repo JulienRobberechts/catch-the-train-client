@@ -1,15 +1,8 @@
 import React from "react";
-import getIcon from "./timeIcons";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
-const TimeSpan = ({
-  timeSpan,
-  icon: iconName = "none",
-  displayPositiveSign = false
-}) => {
-  const Icon = getIcon(iconName);
-
+const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
   // console.log("timeSpan", timeSpan);
   const totalMilliseconds = timeSpan.valueOf() * 1000;
   console.log("totalMilliseconds", totalMilliseconds);
@@ -21,12 +14,7 @@ const TimeSpan = ({
 
   return (
     <Panel>
-      {Icon && (
-        <IconContainer>
-          <Icon />
-        </IconContainer>
-      )}
-      <TimeText>
+      <Panel2>
         {negative && <Sign>-</Sign>}
         {displayPositiveSign && positive && <Sign>+</Sign>}
         {minutes !== 0 && (
@@ -42,15 +30,23 @@ const TimeSpan = ({
           })}
         </NumberText>
         <SymbolText>s</SymbolText>
-      </TimeText>
+      </Panel2>
     </Panel>
   );
 };
+const Panel2 = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+`;
 
 const Panel = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: stretch;
+  font-size: 1.3em;
+  color: ${() => colors.color6};
 `;
 
 const NumberText = styled.span`
@@ -59,20 +55,6 @@ const NumberText = styled.span`
 
 const SymbolText = styled.span`
   margin: 0 0.05rem;
-`;
-
-const TimeText = styled.span`
-  font-size: 1.3em;
-  color: ${() => colors.color6};
-`;
-
-const IconContainer = styled.span`
-  margin-right: 0.2rem;
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: ${() => colors.color6};
-  }
 `;
 
 const Sign = styled.span`

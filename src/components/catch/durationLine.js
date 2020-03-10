@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import TimeSpan from "./timeSpan";
-import { Walk, Wait } from "../../design/icons";
+import { Walk } from "../../design/icons";
 
 const DurationLine = ({
   travelDuration,
