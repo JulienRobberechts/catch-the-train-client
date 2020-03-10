@@ -28,23 +28,21 @@ const Timeline = ({
         <IconContainer>
           <CaretDown />
         </IconContainer>
+        <TimeContainerCenter>
+          <TimeText>dans </TimeText>
+          <TimeSpan timeSpan={targetDuration} />
+        </TimeContainerCenter>
         <IconContainer>
           <CaretDown />
         </IconContainer>
       </CaretLine>
       <RestrictedTimeLine>
-        <TimeContainerCenter>
-          <TimeText>dans </TimeText>
-          <TimeSpan timeSpan={targetDuration} />
-        </TimeContainerCenter>
-        <LineParent>
-          <DurationLine
-            travelDuration={travelDuration}
-            travelDurationPercentage={travelDurationPercentage}
-            waitingDuration={waitingDuration}
-            waitingDurationPercentage={waitingDurationPercentage}
-          />
-        </LineParent>
+        <DurationLine
+          travelDuration={travelDuration}
+          travelDurationPercentage={travelDurationPercentage}
+          waitingDuration={waitingDuration}
+          waitingDurationPercentage={waitingDurationPercentage}
+        />
       </RestrictedTimeLine>
     </Panel>
   );
@@ -76,7 +74,6 @@ const Panel = styled.div`
   background-color: ${() => colors.color1};
   color: ${() => colors.color5};
 `;
-const LineParent = styled.div``;
 
 const CaretLine = styled.div`
   display: flex;
