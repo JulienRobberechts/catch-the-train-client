@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 const DurationLine = ({
   travelDurationPercentage,
-  inAdvanceDurationPercentage
+  waitingDurationPercentage
 }) => {
   console.log("travelDurationPercentage", travelDurationPercentage);
-  console.log("inAdvanceDurationPercentage", inAdvanceDurationPercentage);
+  console.log("waitingDurationPercentage", waitingDurationPercentage);
   return (
     <TargetTime>
       <TravelTime percentage={travelDurationPercentage} />
-      <InAdvanceTime percentage={inAdvanceDurationPercentage} />
+      <InAdvanceTime percentage={waitingDurationPercentage} />
     </TargetTime>
   );
 };

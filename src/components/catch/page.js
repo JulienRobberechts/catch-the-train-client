@@ -9,13 +9,14 @@ const CatchPage = () => {
   const {
     station,
     direction,
-    now,
+    nowTime,
     targetDuration,
-    trainDeparture,
+    targetTime,
     travelDuration,
     travelDurationPercentage,
     delayDuration,
-    inAdvanceDurationPercentage,
+    waitingDuration,
+    waitingDurationPercentage,
     delayType
   } = SelectData();
 
@@ -24,11 +25,12 @@ const CatchPage = () => {
       <div>Catch the train</div>
       <TrainRoute station={station} direction={direction} />
       <Timeline
-        now={now}
+        nowTime={nowTime}
+        targetTime={targetTime}
         targetDuration={targetDuration}
-        trainDeparture={trainDeparture}
         travelDuration={travelDuration}
-        inAdvanceDurationPercentage={inAdvanceDurationPercentage}
+        waitingDuration={waitingDuration}
+        waitingDurationPercentage={waitingDurationPercentage}
         travelDurationPercentage={travelDurationPercentage}
       />
       <DelaySummary delayDuration={delayDuration} delayType={delayType} />

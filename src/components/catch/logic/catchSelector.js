@@ -2,12 +2,12 @@ import moment from "moment";
 
 const DEPARTURE_STATION_NAME = "Saint-Germain-en-Laye";
 const DIRECTION_NAME = "Châtelet–Les Halles";
+const NOW_TIME_UTC_STR = "2020-03-10T09:22:56Z";
 
-const NOW_UTC_STR = "2020-03-10T09:22:56Z";
+// Next train departure time
+const TARGET_TIME_UTC_STR = "2020-03-10T09:32:00Z";
 const TRAVEL_DURATION_SEC = 7 * 60 + 25;
-const NEXT_DEPARTURE_UTC_STR = "2020-03-10T09:32:00Z";
-
-const OPTIMUM_DELAY_SEC = 100;
+const WAITING_DELAY_SEC = 100;
 const ONTIME_MARGIN_DELAY_SEC = 20;
 
 const SelectData = () => {
@@ -15,13 +15,13 @@ const SelectData = () => {
   const direction = DIRECTION_NAME;
 
   // UTC (Coordinated Universal Time)
-  const now = new moment.utc(new Date(NOW_UTC_STR));
-  console.log("now", now);
+  const nowTime = new moment.utc(new Date(NOW_TIME_UTC_STR));
+  console.log("now", nowTime);
 
-  const trainDeparture = new moment.utc(new Date(NEXT_DEPARTURE_UTC_STR)); // UTC (Coordinated Universal Time)
-  console.log("trainDeparture", trainDeparture);
+  const targetTime = new moment.utc(new Date(TARGET_TIME_UTC_STR)); // UTC (Coordinated Universal Time)
+  console.log("targetTime", targetTime);
 
-  const targetDuration = moment.duration(trainDeparture.diff(now));
+  const targetDuration = moment.duration(targetTime.diff(nowTime));
   console.log("targetDuration", targetDuration);
   // console.log("targetDuration minutes", targetDuration.minutes());
   // console.log("targetDuration seconds", targetDuration.seconds());
@@ -41,20 +41,17 @@ const SelectData = () => {
     (travelDuration.valueOf() / targetDuration.valueOf()) * 100;
   console.log("travelDurationPercentage", travelDurationPercentage);
 
-  const inAdvanceDuration = moment.duration({
-    seconds: OPTIMUM_DELAY_SEC
+  const waitingDuration = moment.duration({
+    seconds: WAITING_DELAY_SEC
   });
-  const inAdvanceDurationPercentage =
-    (inAdvanceDuration.valueOf() / targetDuration.valueOf()) * 100;
-  console.log("inAdvanceDurationPercentage", inAdvanceDurationPercentage);
+  const waitingDurationPercentage =
+    (waitingDuration.valueOf() / targetDuration.valueOf()) * 100;
+  console.log("waitingDurationPercentage", waitingDurationPercentage);
 
   // positive will be early and negative late
   const delayDuration = targetDuration.clone();
-  d("delayDuration 1", delayDuration);
   delayDuration.subtract(travelDuration);
-  d("delayDuration 2", delayDuration);
-  delayDuration.subtract(inAdvanceDuration);
-  d("delayDuration 3", delayDuration);
+  delayDuration.subtract(waitingDuration);
 
   console.log("delay", delayDuration);
   console.log("delay.valueOf()", delayDuration.valueOf());
@@ -66,33 +63,22 @@ const SelectData = () => {
   return {
     station,
     direction,
-    now,
+    nowTime,
     targetDuration,
-    trainDeparture,
+    targetTime,
     travelDuration,
     travelDurationPercentage,
+    waitingDuration,
+    waitingDurationPercentage,
     delayDuration,
-    delayType,
-    inAdvanceDuration,
-    inAdvanceDurationPercentage
+    delayType
   };
 };
 
-const d = (msg, duration) => {
-  console.log("duration " + msg, duration.valueOf() / 1000);
-};
-
 const getDelayType = (delayDuration, totalDuration) => {
-  d("delayDuration 4", delayDuration);
-  d("totalDuration 0", totalDuration);
-
   const delayDurationSeconds = delayDuration.valueOf() / 1000;
-  console.log("delayDurationSeconds", delayDurationSeconds);
-  console.log("ONTIME_MARGIN_DELAY_SEC", ONTIME_MARGIN_DELAY_SEC);
-
   if (delayDurationSeconds > ONTIME_MARGIN_DELAY_SEC) return "early";
   if (delayDurationSeconds < -ONTIME_MARGIN_DELAY_SEC) return "late";
-  console.log("ontime", "YES");
   return "ontime";
 };
 
