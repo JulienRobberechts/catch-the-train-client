@@ -4,6 +4,7 @@ import { colors } from "../../design/colors";
 import DurationLine from "./durationLine";
 import Time from "./time";
 import TimeSpan from "./timeSpan";
+import { CaretDown } from "../../design/icons";
 
 const Timeline = ({
   nowTime,
@@ -23,6 +24,14 @@ const Timeline = ({
           <Time time={targetTime} icon="traindark" />
         </div>
       </TimeContainer>
+      <CaretLine>
+        <IconContainer>
+          <CaretDown />
+        </IconContainer>
+        <IconContainer>
+          <CaretDown />
+        </IconContainer>
+      </CaretLine>
       <RestrictedTimeLine>
         <TimeContainerCenter>
           <TimeText>dans </TimeText>
@@ -68,5 +77,21 @@ const Panel = styled.div`
   color: ${() => colors.color5};
 `;
 const LineParent = styled.div``;
+
+const CaretLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const IconContainer = styled.span`
+  vertical-align: text-bottom;
+  margin: 0 1.5rem;
+  padding-top: 0.2rem;
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: ${() => colors.color6};
+  }
+`;
 
 export default Timeline;

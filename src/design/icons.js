@@ -8,3 +8,4 @@ export { ReactComponent as Train } from "./assets/train.svg";
 export { ReactComponent as TrainDark } from "./assets/train-dark.svg";
 export { ReactComponent as Walk } from "./assets/walk3.svg";
 export { ReactComponent as Wait } from "./assets/wait.svg";
+export { ReactComponent as CaretDown } from "./assets/caret-down.svg";
