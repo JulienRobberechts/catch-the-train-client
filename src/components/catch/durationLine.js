@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../../design/colors";
 
 const DurationLine = ({
   travelDurationPercentage,
@@ -16,7 +17,7 @@ const DurationLine = ({
 };
 
 const TargetTime = styled.div`
-  background-color: #a3b1c2;
+  background-color: ${() => colors.color1};
   display: flex;
   align-items: stretch;
   width: 100%;
@@ -24,12 +25,12 @@ const TargetTime = styled.div`
 `;
 
 const TravelTime = styled.div`
-  background-color: #232b34;
+  background-color: ${() => colors.color5};
   width: ${props => props.percentage + "%"};
 `;
 
 const InAdvanceTime = styled.div`
-  background-color: #414e5d;
+  background-color: ${() => colors.color4};
   width: ${props => props.percentage + "%"};
 `;
 
