@@ -6,6 +6,7 @@ import DelayBox from "./delayBox";
 import WaitingBox from "./waitingBox";
 import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
+import { CaretRight, Train } from "../../design/icons";
 
 const TimelineVertical = data => {
   return (
@@ -16,12 +17,28 @@ const TimelineVertical = data => {
           <NowBox {...data} />
         </TimeColumnLayout>
       </ColumnLeft>
-      <ColumnMargin></ColumnMargin>
+      <ColumnMargin>
+        <IconContainer>
+          <CaretRight />
+        </IconContainer>
+        <IconContainer>
+          <CaretRight />
+        </IconContainer>
+        <IconContainer>
+          <CaretRight />
+        </IconContainer>
+      </ColumnMargin>
       <ColumnRight>
         <DurationColumnLayout>
-          <DelayBox {...data} />
-          <WaitingBox {...data} />
-          <TravelBox {...data} />
+          <DelayBoxLayout>
+            <DelayBox {...data} />
+          </DelayBoxLayout>
+          <WaitingBoxLayout>
+            <WaitingBox {...data} />
+          </WaitingBoxLayout>
+          <TravelBoxLayout>
+            <TravelBox {...data} />
+          </TravelBoxLayout>
         </DurationColumnLayout>
       </ColumnRight>
     </TwoColumnLayout>
@@ -52,17 +69,15 @@ const TimeColumnLayout = styled.div`
 `;
 
 const ColumnMargin = styled.div`
-  background-color: purple;
-  width: 5px;
+  width: 20px;
   display: flex;
   flex-direction: column;
+  border-right: 5px dotted black;
 `;
 
 const ColumnRight = styled.div`
   flex-basis: 50%;
   background-color: ${() => colors.color2};
-  display: flex;
-  flex-direction: column;
 `;
 
 const DurationColumnLayout = styled.div`
@@ -71,6 +86,43 @@ const DurationColumnLayout = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+`;
+
+const IconContainer = styled.span`
+  margin-right: 0rem;
+  padding-top: 0rem;
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: ${() => colors.color6};
+  }
+`;
+
+const DelayBoxLayout = styled.div`
+  background-color: gray;
+  min-height: 3rem;
+  height: 0%;
+  * {
+    height: 100%;
+  }
+`;
+
+const WaitingBoxLayout = styled.div`
+  background-color: purple;
+  min-height: 3rem;
+  height: 0%;
+  * {
+    height: 100%;
+  }
+`;
+
+const TravelBoxLayout = styled.div`
+  background-color: purple;
+  min-height: 3rem;
+  height: 100%;
+  * {
+    height: 100%;
+  }
 `;
 
 export default TimelineVertical;

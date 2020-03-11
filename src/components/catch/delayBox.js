@@ -51,6 +51,11 @@ const Late = () => {
   );
 };
 
+const Panel = styled.div`
+  background-color: purple;
+  color: ${() => colors.color5};
+`;
+
 const DelayValue = styled.div`
   background-color: ${() => colors.color3};
   display: flex;
@@ -86,11 +91,6 @@ const LatePanel = styled.div`
   color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
-`;
-
-const Panel = styled.div`
-  background-color: ${() => colors.color1};
-  color: ${() => colors.color5};
 `;
 
 export default DelayBox;
