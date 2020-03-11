@@ -6,8 +6,7 @@ import { SelectData } from "./logic/catchSelector";
 import TrainRoute from "./trainRoute";
 import DelaySummary from "./delaySummary";
 import Timeline from "./timeline";
-import AppTitle from "./appTitle";
-import TrainSchedule from "./trainSchedule";
+import Title from "./appTitle";
 
 const CatchPage = () => {
   const {
@@ -21,15 +20,13 @@ const CatchPage = () => {
     delayDuration,
     waitingDuration,
     waitingDurationPercentage,
-    delayType,
-    schedule
+    delayType
   } = SelectData();
 
   return (
     <Page>
-      <AppTitle />
+      <Title />
       <TrainRoute station={station} direction={direction} />
-      <TrainSchedule schedule={schedule} />
       <Timeline
         nowTime={nowTime}
         targetTime={targetTime}

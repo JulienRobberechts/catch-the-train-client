@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
-const Title = () => {
+const AppTitle = () => {
   return (
     <Panel>
       <div>Attraper le train</div>
@@ -17,4 +17,4 @@ const Panel = styled.div`
   padding: 0.3rem;
 `;
 
-export default Title;
+export default AppTitle;
