@@ -31,7 +31,8 @@ const ScrollPanelItem = styled.div`
   :hover {
     cursor: pointer;
   }
-  flex-grow: 2;
+  border: none;
+  flex-basis: 20%;
 `;
 
 const Train = styled(ScrollPanelItem)`
