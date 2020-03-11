@@ -10,6 +10,20 @@ const TRAVEL_DURATION_SEC = 6 * 60 + 25;
 const WAITING_DELAY_SEC = 100;
 const ONTIME_MARGIN_DELAY_SEC = 20;
 
+const RAW_SCHEDULE = {
+  trains: [
+    {
+      departureTime: "2020-03-10T09:24:00Z"
+    },
+    {
+      departureTime: "2020-03-10T09:32:00Z"
+    },
+    {
+      departureTime: "2020-03-10T09:43:00Z"
+    }
+  ]
+};
+
 const SelectData = () => {
   const station = DEPARTURE_STATION_NAME;
   const direction = DIRECTION_NAME;
@@ -60,9 +74,14 @@ const SelectData = () => {
   const delayType = getDelayType(delayDuration, targetDuration);
   console.log("delayType", delayType);
 
+  const schedule = extendSchedule(RAW_SCHEDULE, nowTime);
+
+  console.log("schedule", schedule);
+
   return {
     station,
     direction,
+    schedule,
     nowTime,
     targetDuration,
     targetTime,
@@ -73,6 +92,18 @@ const SelectData = () => {
     delayDuration,
     delayType
   };
+};
+
+const extendSchedule = (schedule, nowTime) => {
+  return schedule.trains.map((t, index) => {
+    const departureTime = new moment.utc(new Date(t.departureTime));
+    const departureDuration = moment.duration(departureTime.diff(nowTime));
+    return {
+      index,
+      departureTime,
+      departureDuration
+    };
+  });
 };
 
 const getDelayType = (delayDuration, totalDuration) => {

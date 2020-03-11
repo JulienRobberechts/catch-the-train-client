@@ -5,7 +5,7 @@ import { colors } from "../../design/colors";
 const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
   // console.log("timeSpan", timeSpan);
   const totalMilliseconds = timeSpan.valueOf() * 1000;
-  console.log("totalMilliseconds", totalMilliseconds);
+  // console.log("totalMilliseconds", totalMilliseconds);
   const negative = totalMilliseconds < 0;
   const positive = totalMilliseconds > 0;
 
