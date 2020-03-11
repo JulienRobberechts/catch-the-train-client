@@ -4,7 +4,7 @@ import { colors } from "../../design/colors";
 
 import { SelectData } from "./logic/catchSelector";
 import TrainRoute from "./trainRoute";
-import DelaySummary from "./delaySummary";
+import DelayBox from "./delayBox";
 import Timeline from "./timeline";
 import Title from "./appTitle";
 
@@ -36,7 +36,7 @@ const CatchPage = () => {
         waitingDurationPercentage={waitingDurationPercentage}
         travelDurationPercentage={travelDurationPercentage}
       />
-      <DelaySummary delayDuration={delayDuration} delayType={delayType} />
+      <DelayBox delayDuration={delayDuration} delayType={delayType} />
     </Page>
   );
 };

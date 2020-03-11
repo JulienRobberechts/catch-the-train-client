@@ -3,7 +3,7 @@ import TimeSpan from "./timeSpan";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
-const DelaySummary = ({ delayDuration, delayType }) => {
+const DelayBox = ({ delayDuration, delayType }) => {
   return (
     <Panel>
       <DelayValue>
@@ -52,14 +52,13 @@ const Late = () => {
 };
 
 const DelayValue = styled.div`
-  background-color: ${() => colors.color2};
+  background-color: ${() => colors.color3};
   display: flex;
   justify-content: center;
   padding: 0.3rem;
   color: ${() => colors.color5};
   font-weight: bold;
   font-size: 1.2em;
-  margin: 0.2rem 0;
 `;
 
 const EarlyPanel = styled.div`
@@ -94,4 +93,4 @@ const Panel = styled.div`
   color: ${() => colors.color5};
 `;
 
-export default DelaySummary;
+export default DelayBox;

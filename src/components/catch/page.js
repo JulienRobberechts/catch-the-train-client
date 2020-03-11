@@ -4,50 +4,47 @@ import { colors } from "../../design/colors";
 
 import { SelectData } from "./logic/catchSelector";
 import TrainRoute from "./trainRoute";
-import DelaySummary from "./delaySummary";
-import Timeline from "./timeline";
+import TimelineVertical from "./timelineVertical";
 import AppTitle from "./appTitle";
 import TrainSchedule from "./trainSchedule";
 
 const CatchPage = () => {
-  const {
-    station,
-    direction,
-    nowTime,
-    targetDuration,
-    targetTime,
-    travelDuration,
-    travelDurationPercentage,
-    delayDuration,
-    waitingDuration,
-    waitingDurationPercentage,
-    delayType,
-    schedule
-  } = SelectData();
+  const data = SelectData();
 
   return (
     <Page>
-      <AppTitle />
-      <TrainRoute station={station} direction={direction} />
-      <TrainSchedule schedule={schedule} />
-      <Timeline
-        nowTime={nowTime}
-        targetTime={targetTime}
-        targetDuration={targetDuration}
-        travelDuration={travelDuration}
-        waitingDuration={waitingDuration}
-        waitingDurationPercentage={waitingDurationPercentage}
-        travelDurationPercentage={travelDurationPercentage}
-      />
-      <DelaySummary delayDuration={delayDuration} delayType={delayType} />
+      <Header>
+        <AppTitle />
+        <TrainRoute {...data} />
+        <TrainSchedule {...data} />
+      </Header>
+      <Body>
+        <TimelineVertical {...data} />
+      </Body>
     </Page>
   );
 };
 
 const Page = styled.div`
   background-color: ${() => colors.color1};
-  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled.div`
+  background-color: green;
   padding: 0.7rem;
+`;
+
+const Body = styled.div`
+  background-color: red;
+  flex-grow: 2;
+  padding: 0.7rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default CatchPage;
