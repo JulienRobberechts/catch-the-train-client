@@ -49,36 +49,17 @@ const Row1 = styled(Row)`
 const Row2 = styled(Row)`
   background: ${() => colors.color2};
 `;
-const Row3 = styled(Row)`
-  background: ${() => colors.color4};
-`;
 
 const TimeBigStyle = styled.span`
   color: ${() => colors.color6};
-  margin: 0 0.2rem;
-  font-size: 2.3rem;
+  margin-left: 0.3rem;
+  font-size: calc(1rem + 2vw);
 `;
 
 const IconContainer = styled.span`
-  vertical-align: text-bottom;
   svg {
-    width: 1.6rem;
-    height: 1.6rem;
-    color: ${() => colors.color6};
-  }
-`;
-
-const TimeSpanStyle = styled.span`
-  color: ${() => colors.color6};
-  margin: 0 0.2rem;
-  font-size: 1.6rem;
-`;
-
-const IconSandglassContainer = styled.span`
-  vertical-align: text-bottom;
-  svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: calc(0.6rem + 2vw);
+    height: calc(0.6rem + 2vw);
     color: ${() => colors.color6};
   }
 `;

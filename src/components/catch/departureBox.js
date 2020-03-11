@@ -13,9 +13,9 @@ const DepartureBox = data => {
         <TimeLegendText>Départ du train</TimeLegendText>
       </Row1>
       <Row2>
-        <IconContainer>
+        <IconTrainContainer>
           <Train />
-        </IconContainer>
+        </IconTrainContainer>
         <TimeBigStyle>
           <Time time={data.targetTime} />
         </TimeBigStyle>
@@ -65,14 +65,13 @@ const Row3 = styled(Row)`
 const TimeBigStyle = styled.span`
   color: ${() => colors.color6};
   margin: 0 0.2rem;
-  font-size: 2.3rem;
+  font-size: calc(1.5rem + 2vw);
 `;
 
-const IconContainer = styled.span`
-  vertical-align: text-bottom;
+const IconTrainContainer = styled.span`
   svg {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: calc(0.9rem + 2vw);
+    height: calc(0.9rem + 2vw);
     color: ${() => colors.color6};
   }
 `;
@@ -80,14 +79,13 @@ const IconContainer = styled.span`
 const TimeSpanStyle = styled.span`
   color: ${() => colors.color6};
   margin: 0 0.2rem;
-  font-size: 1.6rem;
+  font-size: calc(1.2rem + 2vw);
 `;
 
 const IconSandglassContainer = styled.span`
-  vertical-align: text-bottom;
   svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: calc(0.7rem + 2vw);
+    height: calc(0.7rem + 2vw);
     color: ${() => colors.color6};
   }
 `;
