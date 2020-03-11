@@ -6,7 +6,7 @@ import DelayBox from "./delayBox";
 import WaitingBox from "./waitingBox";
 import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
-import { CaretRight, Train } from "../../design/icons";
+import { CaretRight } from "../../design/icons";
 
 const TimelineVertical = data => {
   return (

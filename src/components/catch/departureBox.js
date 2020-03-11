@@ -25,7 +25,7 @@ const DepartureBox = data => {
           <Sandglass />
         </IconSandglassContainer>
         <TimeSpanStyle>
-          <TimeSpan timeSpan={data.delayDuration} />
+          <TimeSpan timeSpan={data.targetDuration} />
         </TimeSpanStyle>
       </Row3>
     </Box>
