@@ -33,14 +33,12 @@ const DepartureBox = data => {
 };
 
 const Box = styled.div`
+  background: ${() => colors.color4};
   color: ${() => colors.color6};
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
   padding: 4px;
-
-  background: ${() => colors.color3};
 `;
 
 const TimeLegendText = styled.span`
