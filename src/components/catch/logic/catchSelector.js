@@ -2,7 +2,7 @@ import moment from "moment";
 
 const DEPARTURE_STATION_NAME = "Saint-Germain-en-Laye";
 const DIRECTION_NAME = "Châtelet–Les Halles";
-const NOW_TIME_UTC_STR = "2020-03-10T09:00:56Z";
+const NOW_TIME_UTC_STR = "2020-03-10T09:25:56Z";
 
 // Next train departure time
 const TARGET_TIME_UTC_STR = "2020-03-10T09:32:00Z";
@@ -82,6 +82,10 @@ const SelectData = () => {
   delayDuration.subtract(travelDuration);
   delayDuration.subtract(waitingDuration);
 
+  const delayDurationPercentage =
+    (delayDuration.valueOf() / targetDuration.valueOf()) * 100;
+  console.log("delayDurationPercentage", delayDurationPercentage);
+
   console.log("delay", delayDuration);
   console.log("delay.valueOf()", delayDuration.valueOf());
 
@@ -105,6 +109,7 @@ const SelectData = () => {
     waitingDuration,
     waitingDurationPercentage,
     delayDuration,
+    delayDurationPercentage,
     delayType
   };
 };

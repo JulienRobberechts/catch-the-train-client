@@ -3,13 +3,18 @@ import TimeSpan from "./timeSpan";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
-const DelayBox = ({ delayDuration, delayType }) => {
+const DelayBox = data => {
+  console.log("data", data);
+  const { delayDuration, delayType, delayDurationPercentage } = data;
+
+  // const largeSpace = delayDurationPercentage > 25;
+
   return (
     <Panel>
+      <DelayType delayType={delayType} />
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
-      <DelayType delayType={delayType} />
     </Panel>
   );
 };

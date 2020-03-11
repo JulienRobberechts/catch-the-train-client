@@ -30,13 +30,13 @@ const TimelineVertical = data => {
       </ColumnMargin>
       <ColumnRight>
         <DurationColumnLayout>
-          <DelayBoxLayout>
+          <DelayBoxLayout percentage={data.delayDurationPercentage}>
             <DelayBox {...data} />
           </DelayBoxLayout>
-          <WaitingBoxLayout>
+          <WaitingBoxLayout percentage={data.waitingDurationPercentage}>
             <WaitingBox {...data} />
           </WaitingBoxLayout>
-          <TravelBoxLayout>
+          <TravelBoxLayout percentage={data.travelDurationPercentage}>
             <TravelBox {...data} />
           </TravelBoxLayout>
         </DurationColumnLayout>
@@ -100,18 +100,18 @@ const IconContainer = styled.span`
 
 const DelayBoxLayout = styled.div`
   background-color: gray;
-  min-height: 3rem;
-  height: 0%;
-  * {
+  min-height: 5rem;
+  flex-basis: ${props => props.percentage}%;
+  > * {
     height: 100%;
   }
 `;
 
 const WaitingBoxLayout = styled.div`
   background-color: purple;
-  min-height: 3rem;
-  height: 0%;
-  * {
+  min-height: 5rem;
+  flex-basis: ${props => props.percentage}%;
+  > * {
     height: 100%;
   }
 `;
@@ -119,8 +119,8 @@ const WaitingBoxLayout = styled.div`
 const TravelBoxLayout = styled.div`
   background-color: purple;
   min-height: 3rem;
-  height: 100%;
-  * {
+  flex-basis: ${props => props.percentage}%;
+  > * {
     height: 100%;
   }
 `;
