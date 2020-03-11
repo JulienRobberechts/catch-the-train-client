@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import TrainScheduleDeparture from "./trainScheduleDeparture";
+import { ArrowLeft, ArrowRight } from "../../design/icons";
 
 function TrainSchedule({ schedule }) {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -20,8 +21,9 @@ function TrainSchedule({ schedule }) {
               setCurrentIndex(index => index - 1);
             }}
           >
-            {" "}
-            {"<<"}
+            <IconContainer>
+              <ArrowLeft />
+            </IconContainer>
           </PreviousButton>
         ) : (
           <PreviousPlaceholder>premier train:</PreviousPlaceholder>
@@ -43,7 +45,9 @@ function TrainSchedule({ schedule }) {
               setCurrentIndex(index => index + 1);
             }}
           >
-            {">>"}
+            <IconContainer>
+              <ArrowRight />
+            </IconContainer>
           </NextButton>
         ) : (
           <PreviousPlaceholder>pas encore disponible...</PreviousPlaceholder>
@@ -52,6 +56,12 @@ function TrainSchedule({ schedule }) {
     </Panel>
   );
 }
+const IconContainer = styled.div`
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+`;
 
 const Panel = styled.div`
   background: ${() => colors.color5};
@@ -95,18 +105,17 @@ const NextButton = styled(ScrollPanelItem)``;
 const PreviousPlaceholder = styled.div`
   background: ${() => colors.color3};
   margin: 0.1rem;
-  padding: 0.4rem;
-  border-radius: 3px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: none;
   flex-basis: 20%;
+  text-align: center;
 
   background: ${() => colors.color5};
   color: ${() => colors.color2};
-  font-style: italic;
   font-size: 0.7rem;
 `;
 

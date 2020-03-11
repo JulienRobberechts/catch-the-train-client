@@ -8,3 +8,5 @@ export { ReactComponent as CaretDown } from "./assets/caret-down.svg";
 export { ReactComponent as CaretRight } from "./assets/caret-right.svg";
 export { ReactComponent as Break } from "./assets/break.svg";
 export { ReactComponent as Station } from "./assets/station.svg";
+export { ReactComponent as ArrowLeft } from "./assets/arrow-left.svg";
+export { ReactComponent as ArrowRight } from "./assets/arrow-right.svg";
