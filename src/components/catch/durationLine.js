@@ -43,7 +43,7 @@ const DottedLine = styled.hr`
   margin: 0.1rem 0.5rem;
 `;
 const TargetTime = styled.div`
-  background-color: ${() => colors.color3};
+  background: ${() => colors.color3};
   display: flex;
   align-items: stretch;
   width: 100%;
@@ -52,7 +52,7 @@ const TargetTime = styled.div`
 `;
 
 const TargetTime2 = styled.div`
-  background-color: ${() => colors.color3};
+  background: ${() => colors.color3};
   display: flex;
   align-items: stretch;
   width: 100%;
@@ -60,7 +60,7 @@ const TargetTime2 = styled.div`
 `;
 
 const TravelTime = styled.div`
-  background-color: ${() => colors.color5};
+  background: ${() => colors.color5};
   width: ${props => props.percentage + "%"};
   display: flex;
   justify-content: space-around;
@@ -68,12 +68,12 @@ const TravelTime = styled.div`
 `;
 
 const TravelTime2 = styled.div`
-  background-color: ${() => colors.color5};
+  background: ${() => colors.color5};
   width: ${props => props.percentage + "%"};
 `;
 
 const WaitingTime = styled.div`
-  background-color: ${() => colors.color4};
+  background: ${() => colors.color4};
   width: ${props => props.percentage + "%"};
   display: flex;
   justify-content: center;

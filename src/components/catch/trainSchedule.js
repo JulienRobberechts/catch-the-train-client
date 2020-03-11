@@ -54,7 +54,7 @@ function TrainSchedule({ schedule }) {
 }
 
 const Panel = styled.div`
-  background-color: ${() => colors.color5};
+  background: ${() => colors.color5};
   margin-top: 0.3rem;
 `;
 
@@ -65,7 +65,7 @@ const Title = styled.div`
 `;
 
 const ScrollPanel = styled.div`
-  background-color: ${() => colors.color5};
+  background: ${() => colors.color5};
   padding: 0.2rem;
   padding-top: 0;
   font-weight: bold;
@@ -74,7 +74,7 @@ const ScrollPanel = styled.div`
 `;
 
 const ScrollPanelItem = styled.button`
-  background-color: ${() => colors.color3};
+  background: ${() => colors.color3};
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -93,7 +93,7 @@ const PreviousButton = styled(ScrollPanelItem)``;
 const NextButton = styled(ScrollPanelItem)``;
 
 const PreviousPlaceholder = styled.div`
-  background-color: ${() => colors.color3};
+  background: ${() => colors.color3};
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -104,7 +104,7 @@ const PreviousPlaceholder = styled.div`
   border: none;
   flex-basis: 20%;
 
-  background-color: ${() => colors.color5};
+  background: ${() => colors.color5};
   color: ${() => colors.color2};
   font-style: italic;
   font-size: 0.7rem;

@@ -20,7 +20,7 @@ function TrainScheduleDeparture({
 }
 
 const ScrollPanelItem = styled.div`
-  background-color: ${() => colors.color3};
+  background: ${() => colors.color3};
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -35,8 +35,7 @@ const ScrollPanelItem = styled.div`
 
 const Train = styled(ScrollPanelItem)`
   font-size: 0.7rem;
-  background-color: ${props =>
-    props.selected ? colors.color1 : colors.color3};
+  background: ${props => (props.selected ? colors.color1 : colors.color3)};
 `;
 
 export default TrainScheduleDeparture;

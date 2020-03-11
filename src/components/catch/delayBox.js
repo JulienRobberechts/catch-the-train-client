@@ -85,7 +85,7 @@ const DelayValue = styled.div`
 `;
 
 const EarlyPanel = styled.div`
-  background-color: ${() => colors.color2};
+  background: ${() => colors.color2};
   display: flex;
   justify-content: center;
   color: ${() => colors.color6};
@@ -94,7 +94,7 @@ const EarlyPanel = styled.div`
 `;
 
 const OnTimePanel = styled.div`
-  background-color: ${() => colors.color2};
+  background: ${() => colors.color2};
   display: flex;
   justify-content: center;
   color: ${() => colors.color6};
@@ -103,7 +103,7 @@ const OnTimePanel = styled.div`
 `;
 
 const LatePanel = styled.div`
-  background-color: ${() => colors.color2};
+  background: ${() => colors.color2};
   display: flex;
   justify-content: center;
   color: ${() => colors.color6};

@@ -63,7 +63,7 @@ const Timeline = ({
 };
 
 const Panel = styled.div`
-  background-color: ${() => colors.color1};
+  background: ${() => colors.color1};
   color: ${() => colors.color5};
 `;
 
