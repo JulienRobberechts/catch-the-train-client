@@ -5,18 +5,22 @@ import TrainScheduleDeparture from "./trainScheduleDeparture";
 
 function TrainSchedule({ schedule }) {
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [minIndex, setMinCurrentIndex] = useState(0);
   console.log("currentIndex", currentIndex);
   return (
     <Panel>
       <Title>Prochains trains</Title>
       <ScrollPanel>
         <PreviousButton
-          disabled={currentIndex <= 0}
-          onClick={() => setCurrentIndex(index => index - 1)}
+          disabled={minIndex <= 0}
+          onClick={() => {
+            setMinCurrentIndex(minIndex => minIndex - 1);
+            setCurrentIndex(index => index - 1);
+          }}
         >
           {"<<"}
         </PreviousButton>
-        {schedule.map(item => (
+        {schedule.slice(minIndex, minIndex + 3).map(item => (
           <TrainScheduleDeparture
             key={item.index}
             selected={item.index === currentIndex}
@@ -25,8 +29,11 @@ function TrainSchedule({ schedule }) {
           />
         ))}
         <NextButton
-          disabled={currentIndex >= schedule.length - 1}
-          onClick={() => setCurrentIndex(index => index + 1)}
+          disabled={minIndex >= schedule.length - 4}
+          onClick={() => {
+            setMinCurrentIndex(minIndex => minIndex + 1);
+            setCurrentIndex(index => index + 1);
+          }}
         >
           {">>"}
         </NextButton>
@@ -57,8 +64,8 @@ const ScrollPanel = styled.div`
 
 const ScrollPanelItem = styled.button`
   background-color: ${() => colors.color3};
-  margin: 0.2rem;
-  padding: 0.3rem;
+  margin: 0.1rem;
+  padding: 0.4rem;
   border-radius: 3px;
   display: flex;
   flex-direction: column;

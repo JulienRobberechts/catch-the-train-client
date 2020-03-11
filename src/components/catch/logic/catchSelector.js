@@ -20,6 +20,15 @@ const RAW_SCHEDULE = {
     },
     {
       departureTime: "2020-03-10T09:43:00Z"
+    },
+    {
+      departureTime: "2020-03-10T09:55:00Z"
+    },
+    {
+      departureTime: "2020-03-10T10:05:00Z"
+    },
+    {
+      departureTime: "2020-03-10T10:21:00Z"
     }
   ]
 };

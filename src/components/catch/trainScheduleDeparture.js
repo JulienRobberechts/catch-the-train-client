@@ -21,8 +21,8 @@ function TrainScheduleDeparture({
 
 const ScrollPanelItem = styled.div`
   background-color: ${() => colors.color3};
-  margin: 0.2rem;
-  padding: 0.3rem;
+  margin: 0.1rem;
+  padding: 0.4rem;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -31,6 +31,7 @@ const ScrollPanelItem = styled.div`
   :hover {
     cursor: pointer;
   }
+  flex-grow: 2;
 `;
 
 const Train = styled(ScrollPanelItem)`
