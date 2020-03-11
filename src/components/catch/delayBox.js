@@ -3,19 +3,26 @@ import TimeSpan from "./timeSpan";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
+import { Break } from "../../design/icons";
+
 const DelayBox = data => {
   console.log("data", data);
   const { delayDuration, delayType, delayDurationPercentage } = data;
 
-  // const largeSpace = delayDurationPercentage > 25;
+  const largeSpace = delayDurationPercentage > 25;
 
   return (
-    <Panel>
+    <Box>
       <DelayType delayType={delayType} />
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
-    </Panel>
+      {largeSpace && (
+        <IconContainer>
+          <Break />
+        </IconContainer>
+      )}
+    </Box>
   );
 };
 
@@ -56,13 +63,16 @@ const Late = () => {
   );
 };
 
-const Panel = styled.div`
-  background-color: purple;
+const Box = styled.div`
+  background: ${() => colors.color2};
   color: ${() => colors.color5};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
 `;
 
 const DelayValue = styled.div`
-  background-color: ${() => colors.color3};
   display: flex;
   justify-content: center;
   padding: 0.3rem;
@@ -96,6 +106,17 @@ const LatePanel = styled.div`
   color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
+`;
+
+const IconContainer = styled.span`
+  vertical-align: text-bottom;
+  margin: 0 auto;
+  padding-top: 0rem;
+  svg {
+    width: 2.4rem;
+    height: 3.6rem;
+    color: ${() => colors.color6};
+  }
 `;
 
 export default DelayBox;

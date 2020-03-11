@@ -8,13 +8,12 @@ const TravelBox = ({ travelDuration, travelDurationPercentage }) => {
   const largeSpace = travelDurationPercentage > 25;
   return (
     <Box>
-      <div>
-        Travel... (
-        {largeSpace ? <span>largeSpace</span> : <span>small space</span>})
-      </div>
-      <IconContainer>
-        <Walk />
-      </IconContainer>
+      <Text>trajet</Text>
+      {largeSpace && (
+        <IconContainer>
+          <Walk />
+        </IconContainer>
+      )}
       <TimeSpanStyle>
         <TimeSpan timeSpan={travelDuration} />
       </TimeSpanStyle>
@@ -24,19 +23,24 @@ const TravelBox = ({ travelDuration, travelDurationPercentage }) => {
     </Box>
   );
 };
+
+const Box = styled.div`
+  background: ${() => colors.color4};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+const Text = styled.span`
+  color: ${() => colors.color6};
+  margin: 0 0.2rem;
+  font-size: 1rem;
+`;
 const TimeSpanStyle = styled.span`
   color: ${() => colors.color6};
   margin: 0 0.2rem;
   font-size: 1.6rem;
 `;
-const Box = styled.div`
-  background: ${() => colors.color4};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const IconContainer = styled.span`
   vertical-align: text-bottom;
   margin-right: 0rem;

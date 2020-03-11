@@ -2,11 +2,11 @@ import moment from "moment";
 
 const DEPARTURE_STATION_NAME = "Saint-Germain-en-Laye";
 const DIRECTION_NAME = "Châtelet–Les Halles";
-const NOW_TIME_UTC_STR = "2020-03-10T09:25:56Z";
+const NOW_TIME_UTC_STR = "2020-03-10T09:27:56Z";
 
 // Next train departure time
 const TARGET_TIME_UTC_STR = "2020-03-10T09:32:00Z";
-const TRAVEL_DURATION_SEC = 6 * 60 + 25;
+const TRAVEL_DURATION_SEC = 0 * 60 + 25;
 const WAITING_DELAY_SEC = 100;
 const ONTIME_MARGIN_DELAY_SEC = 20;
 

@@ -100,7 +100,6 @@ const IconContainer = styled.span`
 
 const DelayBoxLayout = styled.div`
   background-color: gray;
-  min-height: 5rem;
   flex-basis: ${props => props.percentage}%;
   > * {
     height: 100%;
@@ -109,7 +108,6 @@ const DelayBoxLayout = styled.div`
 
 const WaitingBoxLayout = styled.div`
   background-color: purple;
-  min-height: 5rem;
   flex-basis: ${props => props.percentage}%;
   > * {
     height: 100%;
@@ -118,7 +116,6 @@ const WaitingBoxLayout = styled.div`
 
 const TravelBoxLayout = styled.div`
   background-color: purple;
-  min-height: 3rem;
   flex-basis: ${props => props.percentage}%;
   > * {
     height: 100%;

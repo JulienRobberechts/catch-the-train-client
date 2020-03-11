@@ -17,7 +17,7 @@ const DepartureBox = data => {
           <Train />
         </IconContainer>
         <TimeBigStyle>
-          <Time time={data.nowTime} />
+          <Time time={data.targetTime} />
         </TimeBigStyle>
       </Row2>
       <Row3>
