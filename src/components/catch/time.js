@@ -1,11 +1,15 @@
 import React from "react";
 
-const Time = ({ time, icon: iconName = "clock" }) => {
+const Time = ({ time }) => {
+  const minutes = Math.abs(time.minutes()).toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  });
   return (
     <span>
       <span>{time.hours()}</span>
       <span>h</span>
-      <span>{time.minutes()}</span>
+      <span>{minutes}</span>
     </span>
   );
 };

@@ -31,13 +31,9 @@ const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
   );
 };
 
-const Panel = styled.div`
+const Panel = styled.span`
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
   color: ${() => colors.color6};
-  overflow: hidden;
 `;
 
 const NumberText = styled.span`

@@ -2,7 +2,7 @@ import moment from "moment";
 
 const DEPARTURE_STATION_NAME = "Saint-Germain-en-Laye";
 const DIRECTION_NAME = "Châtelet–Les Halles";
-const NOW_TIME_UTC_STR = "2020-03-10T09:22:56Z";
+const NOW_TIME_UTC_STR = "2020-03-10T09:00:56Z";
 
 // Next train departure time
 const TARGET_TIME_UTC_STR = "2020-03-10T09:32:00Z";
@@ -13,22 +13,28 @@ const ONTIME_MARGIN_DELAY_SEC = 20;
 const RAW_SCHEDULE = {
   trains: [
     {
-      departureTime: "2020-03-10T09:24:00Z"
+      departureTime: "2020-03-10T09:24:00Z",
+      platform: "2"
     },
     {
-      departureTime: "2020-03-10T09:32:00Z"
+      departureTime: "2020-03-10T09:32:00Z",
+      platform: "4"
     },
     {
-      departureTime: "2020-03-10T09:43:00Z"
+      departureTime: "2020-03-10T09:43:00Z",
+      platform: "2"
     },
     {
-      departureTime: "2020-03-10T09:55:00Z"
+      departureTime: "2020-03-10T09:55:00Z",
+      platform: "4"
     },
     {
-      departureTime: "2020-03-10T10:05:00Z"
+      departureTime: "2020-03-10T10:05:00Z",
+      platform: "4"
     },
     {
-      departureTime: "2020-03-10T10:21:00Z"
+      departureTime: "2020-03-10T10:21:00Z",
+      platform: "2"
     }
   ]
 };
