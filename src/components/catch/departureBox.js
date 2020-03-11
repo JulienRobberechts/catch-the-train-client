@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import Time from "./time";
 import TimeSpan from "./timeSpan";
-import { CaretDown, Train, Sandglass } from "../../design/icons";
+import { Train, Sandglass } from "../../design/icons";
 
 const DepartureBox = data => {
   console.log("data", data);
