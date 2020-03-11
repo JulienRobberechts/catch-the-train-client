@@ -31,7 +31,7 @@ const Box = styled.div`
   justify-content: space-around;
   align-items: center;
 
-  border-left: 3px dashed black;
+  border-left: 3px dashed ${() => colors.color6};
   margin-left: 1px;
 `;
 

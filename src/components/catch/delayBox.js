@@ -71,7 +71,7 @@ const Box = styled.div`
   justify-content: space-around;
   align-items: stretch;
 
-  border-left: 1px solid black;
+  border-left: 1px solid ${() => colors.color6};
   margin-left: 2px;
 `;
 
