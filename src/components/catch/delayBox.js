@@ -76,37 +76,37 @@ const Box = styled.div`
 `;
 
 const DelayValue = styled.div`
+  color: ${() => colors.color5};
   display: flex;
   justify-content: center;
   padding: 0.3rem;
-  color: ${() => colors.color5};
   font-weight: bold;
   font-size: 1.2em;
 `;
 
 const EarlyPanel = styled.div`
   background: ${() => colors.color2};
+  color: ${() => colors.color6};
   display: flex;
   justify-content: center;
-  color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
 `;
 
 const OnTimePanel = styled.div`
   background: ${() => colors.color2};
+  color: ${() => colors.color6};
   display: flex;
   justify-content: center;
-  color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
 `;
 
 const LatePanel = styled.div`
-  background: ${() => colors.color2};
+  background: ${() => colors.color5};
+  color: ${() => colors.color2};
   display: flex;
   justify-content: center;
-  color: ${() => colors.color6};
   font-weight: bold;
   font-size: 1.6em;
 `;

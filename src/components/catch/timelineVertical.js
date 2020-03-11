@@ -53,7 +53,6 @@ const TwoColumnLayout = styled.div`
 
 const ColumnLeft = styled.div`
   flex-basis: 50%;
-  background: ${() => colors.color2};
 `;
 
 const TimeColumnLayout = styled.div`
@@ -72,7 +71,6 @@ const ColumnMargin = styled.div`
 
 const ColumnRight = styled.div`
   flex-basis: 50%;
-  background: ${() => colors.color2};
 `;
 
 const DurationColumnLayout = styled.div`
