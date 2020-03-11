@@ -36,6 +36,7 @@ const TravelBox = ({ travelDuration, travelDurationPercentage }) => {
 const CaretParent = styled.div`
   position: absolute;
   margin-right: 3px;
+  height: 0% !important;
 `;
 const SubContainer = styled.div`
   position: relative;
