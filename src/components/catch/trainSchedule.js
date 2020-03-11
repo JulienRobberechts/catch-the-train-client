@@ -6,20 +6,27 @@ import TrainScheduleDeparture from "./trainScheduleDeparture";
 function TrainSchedule({ schedule }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [minIndex, setMinCurrentIndex] = useState(0);
-  console.log("currentIndex", currentIndex);
+  const previousVisible = minIndex > 0;
+  const nextVisible = minIndex < schedule.length - 4;
+
   return (
     <Panel>
       <Title>Prochains trains</Title>
       <ScrollPanel>
-        <PreviousButton
-          disabled={minIndex <= 0}
-          onClick={() => {
-            setMinCurrentIndex(minIndex => minIndex - 1);
-            setCurrentIndex(index => index - 1);
-          }}
-        >
-          {"<<"}
-        </PreviousButton>
+        {previousVisible ? (
+          <PreviousButton
+            onClick={() => {
+              setMinCurrentIndex(minIndex => minIndex - 1);
+              setCurrentIndex(index => index - 1);
+            }}
+          >
+            {" "}
+            {"<<"}
+          </PreviousButton>
+        ) : (
+          <PreviousPlaceholder>premier train:</PreviousPlaceholder>
+        )}
+
         {schedule.slice(minIndex, minIndex + 3).map(item => (
           <TrainScheduleDeparture
             key={item.index}
@@ -28,15 +35,19 @@ function TrainSchedule({ schedule }) {
             {...item}
           />
         ))}
-        <NextButton
-          disabled={minIndex >= schedule.length - 4}
-          onClick={() => {
-            setMinCurrentIndex(minIndex => minIndex + 1);
-            setCurrentIndex(index => index + 1);
-          }}
-        >
-          {">>"}
-        </NextButton>
+        {nextVisible ? (
+          <NextButton
+            disabled={minIndex >= schedule.length - 4}
+            onClick={() => {
+              setMinCurrentIndex(minIndex => minIndex + 1);
+              setCurrentIndex(index => index + 1);
+            }}
+          >
+            {">>"}
+          </NextButton>
+        ) : (
+          <PreviousPlaceholder>pas encore disponible...</PreviousPlaceholder>
+        )}
       </ScrollPanel>
     </Panel>
   );
@@ -75,18 +86,18 @@ const ScrollPanelItem = styled.button`
     cursor: pointer;
   }
   border: none;
+  flex-basis: 20%;
 `;
 
-const PreviousButton = styled(ScrollPanelItem)`
-  :disabled {
-    visibility: hidden;
-  }
-`;
+const PreviousButton = styled(ScrollPanelItem)``;
 
-const NextButton = styled(ScrollPanelItem)`
-  :disabled {
-    visibility: hidden;
-  }
+const NextButton = styled(ScrollPanelItem)``;
+
+const PreviousPlaceholder = styled(ScrollPanelItem)`
+  background-color: ${() => colors.color5};
+  color: ${() => colors.color2};
+  font-style: italic;
+  font-size: 0.7rem;
 `;
 
 export { TrainSchedule as default, ScrollPanelItem };
