@@ -47,7 +47,6 @@ const TimeLegendText = styled.span`
   margin: 0 auto;
 `;
 const Row = styled.div`
-  background: ${() => colors.color1};
   padding: 0 0.3rem;
 `;
 const Row1 = styled(Row)`
