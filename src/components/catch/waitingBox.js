@@ -30,6 +30,9 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  border-left: 3px dashed black;
+  margin-left: 1px;
 `;
 
 const IconContainer = styled.span`

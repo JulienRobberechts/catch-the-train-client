@@ -35,12 +35,10 @@ const Page = styled.div`
 `;
 
 const Header = styled.div`
-  background-color: green;
   padding: 0.7rem;
 `;
 
 const Body = styled.div`
-  background-color: red;
   flex-grow: 2;
   padding: 0.7rem;
   display: flex;

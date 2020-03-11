@@ -24,9 +24,6 @@ const TimelineVertical = data => {
         <IconContainer>
           <CaretRight />
         </IconContainer>
-        <IconContainer>
-          <CaretRight />
-        </IconContainer>
       </ColumnMargin>
       <ColumnRight>
         <DurationColumnLayout>
@@ -51,7 +48,6 @@ const TwoColumnLayout = styled.div`
   height: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: yellow;
   flex-grow: 2;
 `;
 
@@ -69,10 +65,9 @@ const TimeColumnLayout = styled.div`
 `;
 
 const ColumnMargin = styled.div`
-  width: 20px;
   display: flex;
   flex-direction: column;
-  border-right: 5px dotted black;
+  justify-content: space-between;
 `;
 
 const ColumnRight = styled.div`
@@ -99,7 +94,6 @@ const IconContainer = styled.span`
 `;
 
 const DelayBoxLayout = styled.div`
-  background-color: gray;
   flex-basis: ${props => props.percentage}%;
   > * {
     height: 100%;
@@ -107,7 +101,6 @@ const DelayBoxLayout = styled.div`
 `;
 
 const WaitingBoxLayout = styled.div`
-  background-color: purple;
   flex-basis: ${props => props.percentage}%;
   > * {
     height: 100%;
@@ -115,7 +108,6 @@ const WaitingBoxLayout = styled.div`
 `;
 
 const TravelBoxLayout = styled.div`
-  background-color: purple;
   flex-basis: ${props => props.percentage}%;
   > * {
     height: 100%;

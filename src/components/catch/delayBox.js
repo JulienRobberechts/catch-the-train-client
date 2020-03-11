@@ -70,6 +70,9 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: stretch;
+
+  border-left: 1px solid black;
+  margin-left: 2px;
 `;
 
 const DelayValue = styled.div`

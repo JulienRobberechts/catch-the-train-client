@@ -30,6 +30,8 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  border-left: 6px dotted black;
 `;
 const Text = styled.span`
   color: ${() => colors.color6};
