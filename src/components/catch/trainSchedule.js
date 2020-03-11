@@ -82,9 +82,8 @@ const ScrollPanelItem = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
+
   border: none;
   flex-basis: 20%;
 `;
@@ -93,7 +92,18 @@ const PreviousButton = styled(ScrollPanelItem)``;
 
 const NextButton = styled(ScrollPanelItem)``;
 
-const PreviousPlaceholder = styled(ScrollPanelItem)`
+const PreviousPlaceholder = styled.div`
+  background-color: ${() => colors.color3};
+  margin: 0.1rem;
+  padding: 0.4rem;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  flex-basis: 20%;
+
   background-color: ${() => colors.color5};
   color: ${() => colors.color2};
   font-style: italic;

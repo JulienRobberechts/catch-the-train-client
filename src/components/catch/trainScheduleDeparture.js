@@ -28,9 +28,7 @@ const ScrollPanelItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
   border: none;
   flex-basis: 20%;
 `;
