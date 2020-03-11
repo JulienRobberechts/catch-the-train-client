@@ -34,12 +34,12 @@ const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
     </Panel>
   );
 };
+
 const Panel = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  font-size: 1.3em;
   color: ${() => colors.color6};
   overflow: hidden;
 `;
