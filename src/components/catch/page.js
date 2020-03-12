@@ -4,9 +4,9 @@ import { colors } from "../../design/colors";
 
 import { SelectData } from "./logic/catchSelector";
 import TrainRoute from "./trainRoute";
-import TimelineVertical from "./timelineVertical";
+import TimelineVertical from "../timeline/timelineVertical";
 import AppTitle from "./appTitle";
-import TrainSchedule from "./trainSchedule";
+import TrainSchedule from "../trainSchedule/trainSchedule";
 
 const CatchPage = () => {
   const data = SelectData();
