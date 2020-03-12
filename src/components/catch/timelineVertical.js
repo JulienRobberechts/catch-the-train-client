@@ -84,10 +84,11 @@ const DurationColumnLayout = styled.div`
 const IconContainer = styled.span`
   margin-right: 0rem;
   padding-top: 0rem;
+
   svg {
     width: 1rem;
     height: 1rem;
-    color: ${() => colors.color6};
+    fill: ${() => colors.color6};
   }
 `;
 

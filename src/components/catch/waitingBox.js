@@ -42,7 +42,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    color: ${() => colors.color6};
+    fill: ${() => colors.color6};
   }
 `;
 

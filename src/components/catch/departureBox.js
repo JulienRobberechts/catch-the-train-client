@@ -69,7 +69,7 @@ const IconTrainContainer = styled.span`
   svg {
     width: calc(0.9rem + 2vw);
     height: calc(0.9rem + 2vw);
-    color: ${() => colors.color6};
+    fill: ${() => colors.color6};
   }
 `;
 
@@ -83,7 +83,7 @@ const IconSandglassContainer = styled.span`
   svg {
     width: calc(0.7rem + 2vw);
     height: calc(0.7rem + 2vw);
-    color: ${() => colors.color6};
+    fill: ${() => colors.color6};
   }
 `;
 

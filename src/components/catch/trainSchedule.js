@@ -60,6 +60,7 @@ const IconContainer = styled.div`
   svg {
     width: 1.3rem;
     height: 1.3rem;
+    fill: ${() => colors.color6};
   }
 `;
 
