@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import Time from "../time/time";
+import { Time } from "../time";
 import { Clock } from "../../design/icons";
 
 const NowBox = data => {

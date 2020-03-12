@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import Time from "../time/time";
-import TimeSpan from "../time/timeSpan";
+import { Time, TimeSpan } from "../time";
 import { Train, Sandglass } from "../../design/icons";
 
 const DepartureBox = data => {

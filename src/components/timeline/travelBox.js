@@ -1,6 +1,6 @@
 import React from "react";
-import TimeSpan from "../time/timeSpan";
 import styled from "styled-components";
+import { TimeSpan } from "../time";
 import { colors } from "../../design/colors";
 import { Walk, CaretUp } from "../../design/icons";
 
