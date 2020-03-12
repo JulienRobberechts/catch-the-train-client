@@ -9,7 +9,7 @@ import {
 
 const SelectTimeTable = ({ nowTime }) => {
   const timeTable = transformTimeTable(RAW_TIME_TABLE, nowTime);
-  console.log("timeTable", timeTable);
+  // console.log("timeTable", timeTable);
   return timeTable;
 };
 
@@ -75,13 +75,13 @@ const getDelayStatus = (delayDuration, totalDuration) => {
 const SelectData = ({ departureTimeCode }) => {
   // UTC (Coordinated Universal Time)
   const nowTime = new moment.utc(new Date(NOW_TIME_UTC_STR));
-  console.log("now", nowTime.format());
+  // console.log("now", nowTime.format());
 
   const timeTable = SelectTimeTable({ nowTime });
   const departure = timeTable.find(
     departure => departure.departureTimeCode === departureTimeCode
   );
-  console.log("departure", departure);
+  // console.log("departure", departure);
 
   const travelData = SelectTravelData({ nowTime, departure });
 

@@ -5,7 +5,7 @@ import CatchPage from "./page";
 const CatchTrainRoutes = () => {
   return (
     <Switch>
-      <Route path="/:station/:destination/:departureTime">
+      <Route path="/:station/:direction/:departureTimeCode">
         <CatchPage />
       </Route>
       <Redirect path="/settings" />
