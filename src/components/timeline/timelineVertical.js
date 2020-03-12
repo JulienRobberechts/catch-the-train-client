@@ -8,7 +8,7 @@ import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
 
-import { getDurationPercentage } from "../utils/time-utils";
+import { getDurationPercentage } from "../time/time-utils";
 
 const TimelineVertical = data => {
   const {

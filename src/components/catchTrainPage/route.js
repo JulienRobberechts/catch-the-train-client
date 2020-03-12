@@ -8,7 +8,7 @@ const CatchTrainRoutes = () => {
       <Route path="/:station/:direction/:departureTimeCode">
         <CatchPage />
       </Route>
-      <Redirect path="/settings" />
+      <Redirect to="/settings" />
     </Switch>
   );
 };
