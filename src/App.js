@@ -1,11 +1,11 @@
 import React from "react";
-import CatchPage from "./components/catch/page";
+import CatchTrainPage from "./components/catchTrainPage/index.js";
 import ErrorBoundary from "./components/error-mgt/errorBoundary";
 
 function App() {
   return (
     <ErrorBoundary>
-      <CatchPage />
+      <CatchTrainPage />
     </ErrorBoundary>
   );
 }
