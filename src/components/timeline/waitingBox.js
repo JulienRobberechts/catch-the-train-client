@@ -53,7 +53,7 @@ const IconCaretUpContainer = styled.div`
   padding-top: 0rem;
   svg {
     width: 1.2rem;
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.text.highlight};
   }
 `;
 

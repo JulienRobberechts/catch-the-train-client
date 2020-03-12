@@ -1,95 +1,81 @@
 export * from "./color-utils";
 
-const palette3 = {
-  color1: "#252149", // background
-  color2: "#E0AB19", // background
-  color3: "#FFFFFF", // background
-  color4: "#60A38E", // background
-  color5: "#60A38E", // title
-  color6: "#FFFFFF" // string
-};
-
-const palette4 = {
-  color1: "#252149", // background
-  color2: "#b1afac", // background
-  color3: "#FFFFFF", // panels
-  color4: "#60A38E", // text2
-  color5: "#E0AB19", // background
-  color6: "#E0AB19", // background
-
+const palette = {
   blue: "#252149",
   gray: "#b1afac",
   white: "#FFFFFF",
   green: "#60A38E",
   yellow: "#E0AB19",
-  red: "#E6716E",
+  red: "#E6716E"
+};
 
+const getColors = p => ({
   dark: {
-    background: "#252149",
+    background: p.blue,
     text: {
-      disabled: "#b1afac", // todo
-      normal: "#FFFFFF",
-      original: "#60A38E",
-      highlight: "#E0AB19",
-      warning: "#E6716E"
+      disabled: p.gray,
+      normal: p.white,
+      original: p.green,
+      highlight: p.yellow,
+      warning: p.red
     },
     panel: {
       one: {
-        background: "#FFFFFF",
+        background: p.white,
         text: {
-          disabled: "#b1afac", // todo
-          normal: "#252149",
-          original: "#60A38E",
-          highlight: "#E6716E",
-          warning: "#E6716E"
+          disabled: p.gray,
+          normal: p.blue,
+          original: p.green,
+          highlight: p.red,
+          warning: p.red
         },
         button: {
           one: {
-            background: "#60A38E",
+            background: p.green,
             text: {
-              normal: "#252149",
-              highlight: "#FFFFFF"
+              normal: p.blue,
+              highlight: p.white
             }
           },
           highlight: {
-            background: "#E0AB19",
+            background: p.yellow,
             text: {
-              normal: "#252149",
-              highlight: "#FFFFFF"
+              normal: p.blue,
+              highlight: p.white
             }
           }
         }
       },
       special: {
-        background: "#60A38E",
+        background: p.green,
         text: {
-          disabled: "#F3F0EC", // todo
-          normal: "#252149",
-          original: "#60A38E",
-          highlight: "#E6716E",
-          warning: "#E6716E"
+          disabled: p.gray,
+          normal: p.blue,
+          original: p.green,
+          highlight: p.red,
+          warning: p.red
         },
         button: {
           one: {
-            background: "#60A38E",
+            background: p.green,
             text: {
-              normal: "#252149",
-              highlight: "#FFFFFF"
+              normal: p.blue,
+              highlight: p.white
             }
           },
           highlight: {
-            background: "#E0AB19",
+            background: p.yellow,
             text: {
-              normal: "#252149",
-              highlight: "#FFFFFF"
+              normal: p.blue,
+              highlight: p.white
             }
           }
         }
       }
     }
   }
-};
+});
 
-const colors = palette4;
+const colors = getColors(palette);
 
-export { colors };
+export { colors, palette };

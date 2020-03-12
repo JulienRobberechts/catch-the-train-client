@@ -36,7 +36,7 @@ const TravelBox = ({ travelDuration, travelDurationPercentage }) => {
 };
 
 const LeftArrow = styled.div`
-  border-left: 6px dotted ${() => colors.color6};
+  border-left: 6px dotted ${() => colors.dark.text.highlight};
 `;
 
 const CaretParent = styled.div`
