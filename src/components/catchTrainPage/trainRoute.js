@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
-const TrainRoute = ({ station, direction }) => {
+const TrainRoute = ({ route }) => {
   return (
     <Panel>
-      <span>{station}</span>
-      {direction && (
+      <span>{route.station}</span>
+      {route.direction && (
         <>
           <span> > </span>
-          <span>{direction}</span>
+          <span>{route.direction}</span>
         </>
       )}
     </Panel>

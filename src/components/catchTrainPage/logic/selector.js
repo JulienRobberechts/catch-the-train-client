@@ -1,11 +1,11 @@
 import moment from "moment";
-import {
-  ONTIME_MARGIN_DELAY_SEC,
-  WAITING_DELAY_SEC,
-  TRAVEL_DURATION_SEC
-} from "../../../config";
+import { ONTIME_MARGIN_DELAY_SEC, WAITING_DELAY_SEC } from "../../../config";
 
-import { NOW_TIME_UTC_STR, RAW_SCHEDULE } from "../../../config/mock";
+import {
+  NOW_TIME_UTC_STR,
+  TRAVEL_DURATION_SEC,
+  RAW_SCHEDULE
+} from "../../../config/mock";
 
 const SelectTimeTable = ({ nowTime }) => {
   const timeTable = extendSchedule(RAW_SCHEDULE, nowTime);
@@ -14,9 +14,6 @@ const SelectTimeTable = ({ nowTime }) => {
 };
 
 const SelectTravelData = ({ nowTime, departure }) => {
-  const station = departure.route.station;
-  const direction = departure.route.direction;
-
   const targetTime = new moment.utc(new Date(departure.departureTime));
 
   const targetDuration = moment.duration(targetTime.diff(nowTime));
@@ -37,8 +34,7 @@ const SelectTravelData = ({ nowTime, departure }) => {
   const delayStatus = getDelayStatus(delayDuration, targetDuration);
 
   return {
-    station,
-    direction,
+    route: departure.route,
     nowTime,
     targetDuration,
     targetTime,
