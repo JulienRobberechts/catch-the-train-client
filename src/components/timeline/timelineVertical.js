@@ -18,12 +18,12 @@ const TimelineVertical = data => {
         </TimeColumnLayout>
       </ColumnLeft>
       <ColumnMargin>
-        <IconContainer>
+        <IconCaretContainer>
           <CaretRight />
-        </IconContainer>
-        <IconContainer>
+        </IconCaretContainer>
+        <IconCaretContainer>
           <CaretRight />
-        </IconContainer>
+        </IconCaretContainer>
       </ColumnMargin>
       <ColumnRight>
         <DurationColumnLayout>
@@ -81,14 +81,14 @@ const DurationColumnLayout = styled.div`
   align-items: stretch;
 `;
 
-const IconContainer = styled.span`
+const IconCaretContainer = styled.span`
   margin-right: 0rem;
   padding-top: 0rem;
 
   svg {
     width: 1rem;
     height: 1rem;
-    fill: ${() => colors.dark.text.highlight};
+    fill: ${() => colors.dark.text.normal};
   }
 `;
 
