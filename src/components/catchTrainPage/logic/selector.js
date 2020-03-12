@@ -76,14 +76,25 @@ const SelectData = ({ departureTimeCode }) => {
   // console.log("now", nowTime.format());
 
   const timeTable = SelectTimeTable({ nowTime });
-  const departure = timeTable.trains.find(
-    departure => departure.departureTimeCode === departureTimeCode
+
+  const departureIndex = Math.max(
+    timeTable.trains.findIndex(
+      departure => departure.departureTimeCode === departureTimeCode
+    ),
+    0
   );
-  // console.log("departure", departure);
+
+  // console.log("departureIndex", departureIndex);
+  const departure = timeTable.trains[departureIndex];
 
   const travelData = SelectTravelData({ nowTime, departure });
-
+  // console.log({ travelData });
   return { timeTable, ...travelData };
 };
 
-export { SelectData, SelectTimeTable, SelectTravelData };
+const invalidConfiguration = () => {
+  // console.log("invalidConfiguration", false);
+  return false;
+};
+
+export { SelectData, SelectTimeTable, SelectTravelData, invalidConfiguration };

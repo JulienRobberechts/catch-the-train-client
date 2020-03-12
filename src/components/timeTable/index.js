@@ -12,8 +12,11 @@ function TimeTable({ timeTable }) {
   // console.log({ station, direction, departureTimeCode });
   console.log({ timeTable });
 
-  const currentIndex = timeTable.trains.findIndex(
-    departure => departure.departureTimeCode === departureTimeCode
+  const currentIndex = Math.max(
+    0,
+    timeTable.trains.findIndex(
+      departure => departure.departureTimeCode === departureTimeCode
+    )
   );
 
   const minIndex = Math.max(
