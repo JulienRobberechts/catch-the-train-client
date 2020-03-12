@@ -2,7 +2,7 @@ import moment from "moment";
 
 const DEPARTURE_STATION_NAME = "Saint-Germain-en-Laye";
 const DIRECTION_NAME = "Châtelet–Les Halles";
-const NOW_TIME_UTC_STR = "2020-03-10T09:28:56Z";
+const NOW_TIME_UTC_STR = "2020-03-10T09:19:56Z";
 
 // Next train departure time
 const TARGET_TIME_UTC_STR = "2020-03-10T09:32:00Z";
@@ -118,7 +118,7 @@ const extendSchedule = (schedule, nowTime) => {
   return schedule.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
     const departureDuration = moment.duration(departureTime.diff(nowTime));
-    const delayStatus = "ontime";
+    const delayStatus = "early";
     return {
       index,
       departureTime,

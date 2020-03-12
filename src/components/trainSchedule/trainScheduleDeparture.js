@@ -1,32 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../design/colors";
 import { Time, TimeSpan } from "../time";
+import { fontColorForDelayStatus } from "../delayDesign";
 
 function TrainScheduleDeparture({
   index,
   selected,
   departureTime,
   departureDuration,
-  onSelect
+  onSelect,
+  delayStatus
 }) {
   return (
-    <Train selected={selected} onClick={onSelect}>
-      <Time time={departureTime} />
-      <TimeSpan timeSpan={departureDuration} />
+    <Train selected={selected} onClick={onSelect} delayStatus={delayStatus}>
+      <TimeStyle>
+        <Time time={departureTime} />
+      </TimeStyle>
+
+      <DurationStyle>
+        <TimeSpan timeSpan={departureDuration} displaySeconds={false} />
+      </DurationStyle>
     </Train>
   );
 }
 
+const TimeStyle = styled.span`
+  font-size: 1.3rem;
+`;
+
+const DurationStyle = styled.span`
+  font-size: 1rem;
+`;
+
 const Train = styled.div`
-  background: ${props =>
-    props.selected
-      ? colors.dark.panel.one.button.highlight.background
-      : colors.dark.panel.one.button.one.background};
-  color: ${props =>
-    props.selected
-      ? colors.dark.panel.one.button.highlight.text
-      : colors.dark.panel.one.button.one.text};
+  background: ${props => fontColorForDelayStatus(props.delayStatus)};
+  border: ${props => (props.selected ? 4 : 1)}px solid;
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -35,7 +43,6 @@ const Train = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: none;
   flex-basis: 20%;
   font-size: 0.7rem;
 `;

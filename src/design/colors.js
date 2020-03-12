@@ -11,14 +11,14 @@ const palette3 = {
 
 const palette4 = {
   color1: "#252149", // background
-  color2: "#F3F0EC", // background
+  color2: "#b1afac", // background
   color3: "#FFFFFF", // panels
   color4: "#60A38E", // text2
   color5: "#E0AB19", // background
   color6: "#E0AB19", // background
 
   blue: "#252149",
-  gray: "#F3F0EC",
+  gray: "#b1afac",
   white: "#FFFFFF",
   green: "#60A38E",
   yellow: "#E0AB19",
@@ -27,8 +27,8 @@ const palette4 = {
   dark: {
     background: "#252149",
     text: {
-      disabled: "#F3F0EC", // todo
-      normal: "#F3F0EC",
+      disabled: "#b1afac", // todo
+      normal: "#FFFFFF",
       original: "#60A38E",
       highlight: "#E0AB19",
       warning: "#E6716E"
@@ -37,7 +37,7 @@ const palette4 = {
       one: {
         background: "#FFFFFF",
         text: {
-          disabled: "#F3F0EC", // todo
+          disabled: "#b1afac", // todo
           normal: "#252149",
           original: "#60A38E",
           highlight: "#E6716E",

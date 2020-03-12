@@ -12,3 +12,5 @@ export { ReactComponent as Station } from "./assets/station.svg";
 export { ReactComponent as ArrowLeft } from "./assets/arrow-left.svg";
 export { ReactComponent as ArrowRight } from "./assets/arrow-right.svg";
 export { ReactComponent as More } from "./assets/more.svg";
+export { ReactComponent as Menu } from "./assets/menu.svg";
+export { ReactComponent as Dot } from "./assets/dot.svg";

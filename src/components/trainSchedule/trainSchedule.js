@@ -86,8 +86,7 @@ const ScrollPanel = styled.div`
 `;
 
 const ScrollPanelItem = styled.button`
-  background: ${() => colors.dark.panel.one.button.one.background};
-  color: ${() => colors.dark.panel.one.button.one.text.normal};
+  background: ${() => colors.dark.panel.one.background};
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -97,7 +96,7 @@ const ScrollPanelItem = styled.button`
   align-items: center;
   cursor: pointer;
 
-  border: none;
+  border: 1px solid;
   flex-basis: 20%;
 `;
 

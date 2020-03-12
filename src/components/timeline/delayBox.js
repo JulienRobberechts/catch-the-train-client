@@ -2,6 +2,7 @@ import React from "react";
 import { TimeSpan } from "../time";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
+import { fontColorForDelayStatus } from "../delayDesign";
 
 import { Break } from "../../design/icons";
 
@@ -10,10 +11,12 @@ const DelayBox = data => {
   const { delayDuration, delayStatus, delayDurationPercentage } = data;
 
   const largeSpace = delayDurationPercentage > 25;
+  const delayStatusText = textForDelayStatus(delayStatus);
 
   return (
     <Box delayStatus={delayStatus}>
-      <DelayStatusComponent delayStatus={delayStatus} />
+      <PreText>vous êtes</PreText>
+      <DelayStatusPanel>{delayStatusText}</DelayStatusPanel>
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
@@ -26,40 +29,17 @@ const DelayBox = data => {
   );
 };
 
-const DelayStatusComponent = ({ delayStatus }) => {
+const textForDelayStatus = delayStatus => {
   switch (delayStatus) {
     case "early":
-      return <Early />;
+      return "en avance";
     case "ontime":
-      return <OnTime />;
+      return "à l'heure";
     case "late":
-      return <Late />;
+      return "en retard";
     default:
-      return <div>???</div>;
+      return "...";
   }
-};
-
-const fontColorForDelayStatus = delayStatus => {
-  switch (delayStatus) {
-    case "early":
-      return colors.dark.text.original;
-    case "late":
-      return colors.dark.text.warning;
-    default:
-      return colors.dark.text.normal;
-  }
-};
-
-const Early = () => {
-  return <EarlyPanel>en avance</EarlyPanel>;
-};
-
-const OnTime = () => {
-  return <OnTimePanel>Vous êtes à l'heure</OnTimePanel>;
-};
-
-const Late = () => {
-  return <LatePanel>en retard</LatePanel>;
 };
 
 const Box = styled.div`
@@ -72,34 +52,25 @@ const Box = styled.div`
   margin-left: 2px;
 `;
 
+const PreText = styled.div`
+  text-align: center;
+  font-size: 0.7em;
+`;
+
+const DelayStatusPanel = styled.div`
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.6em;
+  text-align: center;
+`;
+
 const DelayValue = styled.div`
   display: flex;
   justify-content: center;
   padding: 0.3rem;
   font-weight: bold;
   font-size: 1.2em;
-`;
-
-const EarlyPanel = styled.div`
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.6em;
-`;
-
-const OnTimePanel = styled.div`
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1em;
-  text-align: center;
-`;
-
-const LatePanel = styled.div`
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.6em;
 `;
 
 const IconContainer = styled.span`

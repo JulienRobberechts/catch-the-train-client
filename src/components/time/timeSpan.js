@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
+const TimeSpan = ({
+  timeSpan,
+  displaySeconds = true,
+  displayPositiveSign = false
+}) => {
   const totalMilliseconds = timeSpan.valueOf() * 1000;
   const negative = totalMilliseconds < 0;
   const positive = totalMilliseconds > 0;
@@ -19,13 +23,17 @@ const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
           <SymbolText>min</SymbolText>
         </>
       )}
-      <NumberText>
-        {seconds.toLocaleString("en-US", {
-          minimumIntegerDigits: 2,
-          useGrouping: false
-        })}
-      </NumberText>
-      <SymbolText>s</SymbolText>
+      {displaySeconds && (
+        <>
+          <NumberText>
+            {seconds.toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false
+            })}
+          </NumberText>
+          <SymbolText>s</SymbolText>
+        </>
+      )}
     </Panel>
   );
 };
