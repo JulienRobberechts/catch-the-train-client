@@ -32,8 +32,9 @@ const DepartureBox = data => {
 };
 
 const Box = styled.div`
-  background: ${() => colors.color4};
-  color: ${() => colors.color6};
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text};
+  border-radius: 3px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -48,18 +49,11 @@ const TimeLegendText = styled.span`
 const Row = styled.div`
   padding: 0 0.3rem;
 `;
-const Row1 = styled(Row)`
-  background: ${() => colors.color1};
-`;
-const Row2 = styled(Row)`
-  background: ${() => colors.color2};
-`;
-const Row3 = styled(Row)`
-  background: ${() => colors.color4};
-`;
+const Row1 = styled(Row)``;
+const Row2 = styled(Row)``;
+const Row3 = styled(Row)``;
 
 const TimeBigStyle = styled.span`
-  color: ${() => colors.color6};
   margin: 0 0.2rem;
   font-size: calc(1.5rem + 2vw);
 `;
@@ -68,12 +62,11 @@ const IconTrainContainer = styled.span`
   svg {
     width: calc(0.9rem + 2vw);
     height: calc(0.9rem + 2vw);
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.panel.one.text};
   }
 `;
 
 const TimeSpanStyle = styled.span`
-  color: ${() => colors.color6};
   margin: 0 0.2rem;
   font-size: calc(1.2rem + 2vw);
 `;
@@ -82,7 +75,7 @@ const IconSandglassContainer = styled.span`
   svg {
     width: calc(0.7rem + 2vw);
     height: calc(0.7rem + 2vw);
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.panel.one.text};
   }
 `;
 

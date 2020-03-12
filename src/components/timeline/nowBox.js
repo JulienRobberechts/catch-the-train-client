@@ -24,8 +24,9 @@ const NowBox = data => {
 };
 
 const Box = styled.div`
-  background: ${() => colors.color4};
-  color: ${() => colors.color6};
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text};
+  border-radius: 3px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -38,18 +39,12 @@ const TimeLegendText = styled.span`
   margin: 0 auto;
 `;
 const Row = styled.div`
-  background: ${() => colors.color1};
   padding: 0 0.3rem;
 `;
-const Row1 = styled(Row)`
-  background: ${() => colors.color1};
-`;
-const Row2 = styled(Row)`
-  background: ${() => colors.color2};
-`;
+const Row1 = styled(Row)``;
+const Row2 = styled(Row)``;
 
 const TimeBigStyle = styled.span`
-  color: ${() => colors.color6};
   margin-left: 0.3rem;
   font-size: calc(1rem + 2vw);
 `;
@@ -58,7 +53,7 @@ const IconContainer = styled.span`
   svg {
     width: calc(0.6rem + 2vw);
     height: calc(0.6rem + 2vw);
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.panel.one.text};
   }
 `;
 

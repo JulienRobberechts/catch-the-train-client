@@ -15,23 +15,29 @@ const TravelBox = ({ travelDuration, travelDurationPercentage }) => {
           </IconCaretUpContainer>
         </SubContainer>
       </CaretParent>
-      <Box>
-        <Text>trajet</Text>
-        {largeSpace && (
+      <LeftArrow>
+        <Box>
+          <Text>trajet</Text>
+          {largeSpace && (
+            <IconContainer>
+              <Walk />
+            </IconContainer>
+          )}
+          <TimeSpanStyle>
+            <TimeSpan timeSpan={travelDuration} />
+          </TimeSpanStyle>
           <IconContainer>
             <Walk />
           </IconContainer>
-        )}
-        <TimeSpanStyle>
-          <TimeSpan timeSpan={travelDuration} />
-        </TimeSpanStyle>
-        <IconContainer>
-          <Walk />
-        </IconContainer>
-      </Box>
+        </Box>
+      </LeftArrow>
     </>
   );
 };
+
+const LeftArrow = styled.div`
+  border-left: 6px dotted ${() => colors.color6};
+`;
 
 const CaretParent = styled.div`
   position: absolute;
@@ -42,34 +48,39 @@ const SubContainer = styled.div`
   position: relative;
   left: 3px;
 `;
+
 const IconCaretUpContainer = styled.div`
   position: relative;
-  left: -0.6rem;
+  left: -10px;
+  top: -3px;
 
   margin-right: 3px;
   padding-top: 0rem;
   svg {
     width: 1.2rem;
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.text.highlight};
   }
 `;
 
 const Box = styled.div`
-  background: ${() => colors.color4};
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text};
   display: flex;
+  height: 100%;
+
+  margin-left: 10px;
+  border-radius: 0 0 3px 3px;
+
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-left: 6px dotted ${() => colors.color6};
 `;
 
 const Text = styled.span`
-  color: ${() => colors.color6};
   margin: 0 0.2rem;
   font-size: 1rem;
 `;
 const TimeSpanStyle = styled.span`
-  color: ${() => colors.color6};
   margin: 0 0.2rem;
   font-size: 1.6rem;
 `;
@@ -80,7 +91,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.panel.one.text};
   }
 `;
 

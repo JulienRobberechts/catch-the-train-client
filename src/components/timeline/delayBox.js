@@ -12,13 +12,13 @@ const DelayBox = data => {
   const largeSpace = delayDurationPercentage > 25;
 
   return (
-    <Box>
-      <DelayType delayType={delayType} />
+    <Box delayType={delayType}>
+      <DelayTypeComponent delayType={delayType} />
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
       {largeSpace && (
-        <IconContainer>
+        <IconContainer delayType={delayType}>
           <Break />
         </IconContainer>
       )}
@@ -26,7 +26,7 @@ const DelayBox = data => {
   );
 };
 
-const DelayType = ({ delayType }) => {
+const DelayTypeComponent = ({ delayType }) => {
   switch (delayType) {
     case "early":
       return <Early />;
@@ -39,44 +39,40 @@ const DelayType = ({ delayType }) => {
   }
 };
 
+const fontColorForDelayType = delayType => {
+  switch (delayType) {
+    case "early":
+      return colors.dark.text.original;
+    case "late":
+      return colors.dark.text.warning;
+    default:
+      return colors.dark.text.normal;
+  }
+};
+
 const Early = () => {
-  return (
-    <EarlyPanel>
-      <span>en avance</span>
-    </EarlyPanel>
-  );
+  return <EarlyPanel>en avance</EarlyPanel>;
 };
 
 const OnTime = () => {
-  return (
-    <OnTimePanel>
-      <span>Vous êtes à l'heure</span>
-    </OnTimePanel>
-  );
+  return <OnTimePanel>Vous êtes à l'heure</OnTimePanel>;
 };
 
 const Late = () => {
-  return (
-    <LatePanel>
-      <span>en retard</span>
-    </LatePanel>
-  );
+  return <LatePanel>en retard</LatePanel>;
 };
 
 const Box = styled.div`
-  background: ${() => colors.color2};
-  color: ${() => colors.color5};
+  background: ${() => colors.dark.background};
+  color: ${props => fontColorForDelayType(props.delayType)};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: stretch;
-
-  border-left: 1px solid ${() => colors.color6};
   margin-left: 2px;
 `;
 
 const DelayValue = styled.div`
-  color: ${() => colors.color5};
   display: flex;
   justify-content: center;
   padding: 0.3rem;
@@ -85,8 +81,6 @@ const DelayValue = styled.div`
 `;
 
 const EarlyPanel = styled.div`
-  background: ${() => colors.color2};
-  color: ${() => colors.color6};
   display: flex;
   justify-content: center;
   font-weight: bold;
@@ -94,17 +88,14 @@ const EarlyPanel = styled.div`
 `;
 
 const OnTimePanel = styled.div`
-  background: ${() => colors.color2};
-  color: ${() => colors.color6};
   display: flex;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.6em;
+  font-size: 1em;
+  text-align: center;
 `;
 
 const LatePanel = styled.div`
-  background: ${() => colors.color5};
-  color: ${() => colors.color2};
   display: flex;
   justify-content: center;
   font-weight: bold;
@@ -118,7 +109,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${() => colors.color6};
+    fill: ${props => fontColorForDelayType(props.delayType)};
   }
 `;
 

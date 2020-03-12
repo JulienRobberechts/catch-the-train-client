@@ -13,14 +13,16 @@ const CatchPage = () => {
 
   return (
     <Page>
-      <Header>
-        <AppTitle />
-        <TrainRoute {...data} />
+      <TopSection>
+        <header>
+          <AppTitle />
+          <TrainRoute {...data} />
+        </header>
         <TrainSchedule {...data} />
-      </Header>
-      <Body>
+      </TopSection>
+      <BodySection>
         <TimelineVertical {...data} />
-      </Body>
+      </BodySection>
     </Page>
   );
 };
@@ -34,11 +36,11 @@ const Page = styled.div`
   flex-direction: column;
 `;
 
-const Header = styled.div`
+const TopSection = styled.div`
   padding: 0.7rem;
 `;
 
-const Body = styled.div`
+const BodySection = styled.div`
   flex-grow: 2;
   padding: 0.7rem;
   display: flex;

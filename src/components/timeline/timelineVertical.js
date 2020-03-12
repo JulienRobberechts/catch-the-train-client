@@ -88,7 +88,7 @@ const IconContainer = styled.span`
   svg {
     width: 1rem;
     height: 1rem;
-    fill: ${() => colors.color6};
+    fill: ${() => colors.dark.text.highlight};
   }
 `;
 

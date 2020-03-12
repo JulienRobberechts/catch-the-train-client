@@ -59,6 +59,32 @@ const palette4 = {
             }
           }
         }
+      },
+      special: {
+        background: "#60A38E",
+        text: {
+          disabled: "#F3F0EC", // todo
+          normal: "#252149",
+          original: "#60A38E",
+          highlight: "#E6716E",
+          warning: "#E6716E"
+        },
+        button: {
+          one: {
+            background: "#60A38E",
+            text: {
+              normal: "#252149",
+              highlight: "#FFFFFF"
+            }
+          },
+          highlight: {
+            background: "#E0AB19",
+            text: {
+              normal: "#252149",
+              highlight: "#FFFFFF"
+            }
+          }
+        }
       }
     }
   }
