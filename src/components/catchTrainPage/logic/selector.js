@@ -4,11 +4,11 @@ import { ONTIME_MARGIN_DELAY_SEC, WAITING_DELAY_SEC } from "../../../config";
 import {
   NOW_TIME_UTC_STR,
   TRAVEL_DURATION_SEC,
-  RAW_SCHEDULE
+  RAW_TIME_TABLE
 } from "../../../config/mock";
 
 const SelectTimeTable = ({ nowTime }) => {
-  const timeTable = extendSchedule(RAW_SCHEDULE, nowTime);
+  const timeTable = transformTimeTable(RAW_TIME_TABLE, nowTime);
   console.log("timeTable", timeTable);
   return timeTable;
 };
@@ -45,8 +45,8 @@ const SelectTravelData = ({ nowTime, departure }) => {
   };
 };
 
-const extendSchedule = (schedule, nowTime) => {
-  return schedule.route.trains.map((t, index) => {
+const transformTimeTable = (timeTable, nowTime) => {
+  return timeTable.route.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
     const departureTimeCode = departureTime.format("hhmm");
     const departureDuration = moment.duration(departureTime.diff(nowTime));
@@ -58,8 +58,8 @@ const extendSchedule = (schedule, nowTime) => {
       departureDuration,
       delayStatus,
       route: {
-        station: schedule.route.station,
-        direction: schedule.route.direction
+        station: timeTable.route.station,
+        direction: timeTable.route.direction
       }
     };
   });
@@ -85,7 +85,7 @@ const SelectData = ({ departureTimeCode }) => {
 
   const travelData = SelectTravelData({ nowTime, departure });
 
-  return { schedule: timeTable, ...travelData };
+  return { timeTable, ...travelData };
 };
 
 export { SelectData, SelectTimeTable, SelectTravelData };
