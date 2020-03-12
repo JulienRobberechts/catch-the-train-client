@@ -5,7 +5,7 @@ import { SelectData } from "./logic/selector";
 import TrainRoute from "./trainRoute";
 import TimelineVertical from "../timeline/timelineVertical";
 
-import TrainSchedule from "../trainSchedule/trainSchedule";
+import TimeTable from "../timeTable";
 import { Helmet } from "react-helmet";
 
 import { useParams } from "react-router-dom";
@@ -26,7 +26,7 @@ const CatchPage = () => {
       </Helmet>
       <TopSection>
         <TrainRoute {...data} />
-        <TrainSchedule {...data} />
+        <TimeTable {...data} />
       </TopSection>
       <BodySection>
         <TimelineVertical {...data} />

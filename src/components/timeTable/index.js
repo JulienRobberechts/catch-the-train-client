@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import TrainScheduleDeparture from "./trainScheduleDeparture";
+import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory } from "react-router-dom";
 
-function TrainSchedule({ timeTable }) {
+function TimeTable({ timeTable }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [minIndex, setMinCurrentIndex] = useState(0);
   const previousVisible = minIndex > 0;
@@ -39,7 +39,7 @@ function TrainSchedule({ timeTable }) {
         )}
 
         {timeTable.slice(minIndex, minIndex + 3).map(item => (
-          <TrainScheduleDeparture
+          <Departure
             key={item.index}
             selected={item.index === currentIndex}
             onSelect={() => {
@@ -139,4 +139,4 @@ const IconContainer = styled.div`
   }
 `;
 
-export { TrainSchedule as default, ScrollPanelItem };
+export { TimeTable as default, ScrollPanelItem };

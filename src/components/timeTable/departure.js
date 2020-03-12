@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Time, TimeSpan } from "../time";
 import { fontColorForDelayStatus } from "../delayDesign";
 
-function TrainScheduleDeparture({
+function Departure({
   index,
   selected,
   departureTime,
@@ -47,4 +47,4 @@ const Train = styled.div`
   font-size: 0.7rem;
 `;
 
-export default TrainScheduleDeparture;
+export default Departure;
