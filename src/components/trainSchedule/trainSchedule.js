@@ -3,12 +3,15 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import TrainScheduleDeparture from "./trainScheduleDeparture";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
+import { useHistory } from "react-router-dom";
 
 function TrainSchedule({ schedule }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [minIndex, setMinCurrentIndex] = useState(0);
   const previousVisible = minIndex > 0;
   const nextVisible = minIndex < schedule.length - 4;
+
+  const { push } = useHistory();
 
   return (
     <Panel>
@@ -19,6 +22,8 @@ function TrainSchedule({ schedule }) {
             onClick={() => {
               setMinCurrentIndex(minIndex => minIndex - 1);
               setCurrentIndex(index => index - 1);
+              const item = schedule[currentIndex - 1];
+              push(`/sg/paris/${item.departureTimeCode}`);
             }}
           >
             <IconContainer>
@@ -37,7 +42,10 @@ function TrainSchedule({ schedule }) {
           <TrainScheduleDeparture
             key={item.index}
             selected={item.index === currentIndex}
-            onSelect={() => setCurrentIndex(item.index)}
+            onSelect={() => {
+              setCurrentIndex(item.index);
+              push(`/sg/paris/${item.departureTimeCode}`);
+            }}
             {...item}
           />
         ))}
@@ -47,6 +55,8 @@ function TrainSchedule({ schedule }) {
             onClick={() => {
               setMinCurrentIndex(minIndex => minIndex + 1);
               setCurrentIndex(index => index + 1);
+              const item = schedule[currentIndex + 1];
+              push(`/sg/paris/${item.departureTimeCode}`);
             }}
           >
             <IconContainer>

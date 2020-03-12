@@ -25,7 +25,7 @@ const NowBox = data => {
 
 const Box = styled.div`
   background: ${() => colors.dark.panel.one.background};
-  color: ${() => colors.dark.panel.one.text};
+  color: ${() => colors.dark.panel.one.text.normal};
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ const IconContainer = styled.span`
   svg {
     width: calc(0.6rem + 2vw);
     height: calc(0.6rem + 2vw);
-    fill: ${() => colors.dark.panel.one.text};
+    fill: ${() => colors.dark.panel.one.text.normal};
   }
 `;
 

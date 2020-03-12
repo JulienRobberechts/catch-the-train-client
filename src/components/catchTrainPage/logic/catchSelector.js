@@ -117,11 +117,13 @@ const SelectData = () => {
 const extendSchedule = (schedule, nowTime) => {
   return schedule.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
+    const departureTimeCode = departureTime.format("hhmm");
     const departureDuration = moment.duration(departureTime.diff(nowTime));
     const delayStatus = "early";
     return {
       index,
       departureTime,
+      departureTimeCode,
       departureDuration,
       delayStatus
     };

@@ -33,7 +33,7 @@ const DepartureBox = data => {
 
 const Box = styled.div`
   background: ${() => colors.dark.panel.one.background};
-  color: ${() => colors.dark.panel.one.text};
+  color: ${() => colors.dark.panel.one.text.normal};
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@ const IconTrainContainer = styled.span`
   svg {
     width: calc(0.9rem + 2vw);
     height: calc(0.9rem + 2vw);
-    fill: ${() => colors.dark.panel.one.text};
+    fill: ${() => colors.dark.panel.one.text.normal};
   }
 `;
 
@@ -75,7 +75,7 @@ const IconSandglassContainer = styled.span`
   svg {
     width: calc(0.7rem + 2vw);
     height: calc(0.7rem + 2vw);
-    fill: ${() => colors.dark.panel.one.text};
+    fill: ${() => colors.dark.panel.one.text.normal};
   }
 `;
 

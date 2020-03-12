@@ -64,7 +64,7 @@ const IconCaretUpContainer = styled.div`
 
 const Box = styled.div`
   background: ${() => colors.dark.panel.one.background};
-  color: ${() => colors.dark.panel.one.text};
+  color: ${() => colors.dark.panel.one.text.normal};
   display: flex;
   height: 100%;
 
@@ -91,7 +91,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${() => colors.dark.panel.one.text};
+    fill: ${() => colors.dark.panel.one.text.normal};
   }
 `;
 

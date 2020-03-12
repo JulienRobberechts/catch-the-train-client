@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import ErrorBoundary from "./components/error-mgt/errorBoundary";
-import { CatchTrainPage, SettingsPage, StartPage } from "./components/pages";
+import { CatchTrainRoutes, SettingsPage, StartPage } from "./components/pages";
 import AppTitle from "./components/appBar/appTitle";
 import { colors } from "./design/colors";
 
@@ -20,8 +20,8 @@ function App() {
             <Route path="/settings">
               <SettingsPage />
             </Route>
-            <Route path="/" exact>
-              <CatchTrainPage />
+            <Route path="/">
+              <CatchTrainRoutes />
             </Route>
           </Switch>
         </Page>
