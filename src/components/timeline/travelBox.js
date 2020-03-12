@@ -4,8 +4,7 @@ import { TimeSpan } from "../time";
 import { colors } from "../../design/colors";
 import { Walk, CaretUp } from "../../design/icons";
 
-const TravelBox = ({ travelDuration, travelDurationPercentage }) => {
-  const largeSpace = travelDurationPercentage > 25;
+const TravelBox = ({ travelDuration, largeSpace }) => {
   return (
     <>
       <CaretParent>

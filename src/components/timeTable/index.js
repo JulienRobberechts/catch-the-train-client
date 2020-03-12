@@ -10,7 +10,7 @@ const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 function TimeTable({ timeTable }) {
   const { station, direction, departureTimeCode } = useParams();
   // console.log({ station, direction, departureTimeCode });
-  console.log({ timeTable });
+  // console.log({ timeTable });
 
   const currentIndex = Math.max(
     0,

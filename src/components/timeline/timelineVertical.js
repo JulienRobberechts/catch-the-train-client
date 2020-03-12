@@ -29,6 +29,11 @@ const TimelineVertical = data => {
     delayDuration,
     targetDuration
   );
+  // console.log({
+  //   travelDurationPercentage,
+  //   waitingDurationPercentage,
+  //   delayDurationPercentage
+  // });
   return (
     <TwoColumnLayout>
       <ColumnLeft>
@@ -48,13 +53,13 @@ const TimelineVertical = data => {
       <ColumnRight>
         <DurationColumnLayout>
           <DelayBoxLayout percentage={delayDurationPercentage}>
-            <DelayBox {...data} />
+            <DelayBox {...data} largeSpace={delayDurationPercentage > 25} />
           </DelayBoxLayout>
           <WaitingBoxLayout percentage={waitingDurationPercentage}>
-            <WaitingBox {...data} />
+            <WaitingBox {...data} largeSpace={waitingDurationPercentage > 25} />
           </WaitingBoxLayout>
           <TravelBoxLayout percentage={travelDurationPercentage}>
-            <TravelBox {...data} />
+            <TravelBox {...data} largeSpace={travelDurationPercentage > 30} />
           </TravelBoxLayout>
         </DurationColumnLayout>
       </ColumnRight>

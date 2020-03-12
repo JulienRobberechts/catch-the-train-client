@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { Station, CaretUp } from "../../design/icons";
 
-const WaitingBox = ({ waitingDuration, waitingDurationPercentage }) => {
-  const largeSpace = waitingDurationPercentage > 25;
+const WaitingBox = ({ waitingDuration, largeSpace }) => {
   return (
     <>
       <CaretParent>

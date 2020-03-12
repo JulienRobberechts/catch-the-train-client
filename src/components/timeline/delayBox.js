@@ -8,15 +8,15 @@ import { Break } from "../../design/icons";
 
 const DelayBox = data => {
   // console.log("data", data);
-  const { delayDuration, delayStatus, delayDurationPercentage } = data;
-
-  const largeSpace = delayDurationPercentage > 25;
+  const { delayDuration, delayStatus, largeSpace } = data;
   const delayStatusText = textForDelayStatus(delayStatus);
 
   return (
     <Box delayStatus={delayStatus}>
-      <PreText>vous êtes</PreText>
-      <DelayStatusPanel>{delayStatusText}</DelayStatusPanel>
+      <div>
+        <PreText>vous êtes</PreText>
+        <DelayStatusPanel>{delayStatusText}</DelayStatusPanel>
+      </div>
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
