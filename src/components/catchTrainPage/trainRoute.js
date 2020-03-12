@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 
-const TrainRoute = ({ route }) => {
+const TrainRoute = ({ timeTable: { route } }) => {
   return (
     <Panel>
       <span>{route.station}</span>

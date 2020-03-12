@@ -14,7 +14,7 @@ const CatchPage = () => {
   const { station, direction, departureTimeCode } = useParams();
   // console.log({ station, direction, departureTimeCode });
   const data = SelectData({ departureTimeCode });
-  // console.log(" data", data);
+  console.log(" data", data);
   return (
     <>
       <Helmet>

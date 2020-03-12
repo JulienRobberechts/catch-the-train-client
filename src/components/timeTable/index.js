@@ -12,18 +12,21 @@ function TimeTable({ timeTable }) {
   // console.log({ station, direction, departureTimeCode });
   console.log({ timeTable });
 
-  const currentIndex = timeTable.findIndex(
+  const currentIndex = timeTable.trains.findIndex(
     departure => departure.departureTimeCode === departureTimeCode
   );
 
   const minIndex = Math.max(
     0,
-    Math.min(currentIndex - 1, timeTable.length - NUMBER_OF_DEPARTURE_VISIBLE)
+    Math.min(
+      currentIndex - 1,
+      timeTable.trains.length - NUMBER_OF_DEPARTURE_VISIBLE
+    )
   );
 
   const previousVisible = minIndex > 0;
   const nextVisible =
-    minIndex < timeTable.length - NUMBER_OF_DEPARTURE_VISIBLE - 1;
+    minIndex < timeTable.trains.length - NUMBER_OF_DEPARTURE_VISIBLE - 1;
 
   const { push } = useHistory();
 
@@ -34,7 +37,7 @@ function TimeTable({ timeTable }) {
         {previousVisible ? (
           <PreviousButton
             onClick={() => {
-              const item = timeTable[currentIndex - 1];
+              const item = timeTable.trains[currentIndex - 1];
               push(`/sg/paris/${item.departureTimeCode}`);
             }}
           >
@@ -50,7 +53,7 @@ function TimeTable({ timeTable }) {
           </PreviousPlaceholder>
         )}
 
-        {timeTable.slice(minIndex, minIndex + 3).map(departure => (
+        {timeTable.trains.slice(minIndex, minIndex + 3).map(departure => (
           <Departure
             key={departure.index}
             selected={departure.index === currentIndex}
@@ -62,9 +65,9 @@ function TimeTable({ timeTable }) {
         ))}
         {nextVisible ? (
           <NextButton
-            disabled={minIndex >= timeTable.length - 4}
+            disabled={minIndex >= timeTable.trains.length - 4}
             onClick={() => {
-              const item = timeTable[currentIndex + 1];
+              const item = timeTable.trains[currentIndex + 1];
               push(`/sg/paris/${item.departureTimeCode}`);
             }}
           >

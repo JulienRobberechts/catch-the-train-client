@@ -46,7 +46,7 @@ const SelectTravelData = ({ nowTime, departure }) => {
 };
 
 const transformTimeTable = (timeTable, nowTime) => {
-  return timeTable.route.trains.map((t, index) => {
+  const trains = timeTable.route.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
     const departureTimeCode = departureTime.format("hhmm");
     const departureDuration = moment.duration(departureTime.diff(nowTime));
@@ -56,13 +56,11 @@ const transformTimeTable = (timeTable, nowTime) => {
       departureTime,
       departureTimeCode,
       departureDuration,
-      delayStatus,
-      route: {
-        station: timeTable.route.station,
-        direction: timeTable.route.direction
-      }
+      delayStatus
     };
   });
+
+  return { route: timeTable.route, trains };
 };
 
 const getDelayStatus = (delayDuration, totalDuration) => {
@@ -78,7 +76,7 @@ const SelectData = ({ departureTimeCode }) => {
   // console.log("now", nowTime.format());
 
   const timeTable = SelectTimeTable({ nowTime });
-  const departure = timeTable.find(
+  const departure = timeTable.trains.find(
     departure => departure.departureTimeCode === departureTimeCode
   );
   // console.log("departure", departure);
