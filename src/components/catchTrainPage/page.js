@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { SelectData } from "./logic/catchSelector";
+import { SelectData } from "./logic/selector";
 import TrainRoute from "./trainRoute";
 import TimelineVertical from "../timeline/timelineVertical";
 

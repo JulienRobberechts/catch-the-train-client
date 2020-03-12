@@ -8,7 +8,27 @@ import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
 
+import { getDurationPercentage } from "../utils/time-utils";
+
 const TimelineVertical = data => {
+  const {
+    travelDuration,
+    waitingDuration,
+    delayDuration,
+    targetDuration
+  } = data;
+  const travelDurationPercentage = getDurationPercentage(
+    travelDuration,
+    targetDuration
+  );
+  const waitingDurationPercentage = getDurationPercentage(
+    waitingDuration,
+    targetDuration
+  );
+  const delayDurationPercentage = getDurationPercentage(
+    delayDuration,
+    targetDuration
+  );
   return (
     <TwoColumnLayout>
       <ColumnLeft>
@@ -27,13 +47,13 @@ const TimelineVertical = data => {
       </ColumnMargin>
       <ColumnRight>
         <DurationColumnLayout>
-          <DelayBoxLayout percentage={data.delayDurationPercentage}>
+          <DelayBoxLayout percentage={delayDurationPercentage}>
             <DelayBox {...data} />
           </DelayBoxLayout>
-          <WaitingBoxLayout percentage={data.waitingDurationPercentage}>
+          <WaitingBoxLayout percentage={waitingDurationPercentage}>
             <WaitingBox {...data} />
           </WaitingBoxLayout>
-          <TravelBoxLayout percentage={data.travelDurationPercentage}>
+          <TravelBoxLayout percentage={travelDurationPercentage}>
             <TravelBox {...data} />
           </TravelBoxLayout>
         </DurationColumnLayout>
