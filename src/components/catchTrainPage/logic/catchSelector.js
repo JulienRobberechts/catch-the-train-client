@@ -2,11 +2,11 @@ import moment from "moment";
 
 const DEPARTURE_STATION_NAME = "Saint-Germain-en-Laye";
 const DIRECTION_NAME = "Châtelet–Les Halles";
-const NOW_TIME_UTC_STR = "2020-03-10T09:29:56Z";
+const NOW_TIME_UTC_STR = "2020-03-10T09:28:56Z";
 
 // Next train departure time
 const TARGET_TIME_UTC_STR = "2020-03-10T09:32:00Z";
-const TRAVEL_DURATION_SEC = 0 * 60 + 25;
+const TRAVEL_DURATION_SEC = 10 * 60 + 25;
 const WAITING_DELAY_SEC = 100;
 const ONTIME_MARGIN_DELAY_SEC = 20;
 
@@ -90,8 +90,8 @@ const SelectData = () => {
   console.log("delay.valueOf()", delayDuration.valueOf());
 
   console.log("delayDurationMs", delayDuration);
-  const delayType = getDelayType(delayDuration, targetDuration);
-  console.log("delayType", delayType);
+  const delayStatus = getDelayStatus(delayDuration, targetDuration);
+  console.log("delayStatus", delayStatus);
 
   const schedule = extendSchedule(RAW_SCHEDULE, nowTime);
 
@@ -110,7 +110,7 @@ const SelectData = () => {
     waitingDurationPercentage,
     delayDuration,
     delayDurationPercentage,
-    delayType
+    delayStatus
   };
 };
 
@@ -118,15 +118,17 @@ const extendSchedule = (schedule, nowTime) => {
   return schedule.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
     const departureDuration = moment.duration(departureTime.diff(nowTime));
+    const delayStatus = "ontime";
     return {
       index,
       departureTime,
-      departureDuration
+      departureDuration,
+      delayStatus
     };
   });
 };
 
-const getDelayType = (delayDuration, totalDuration) => {
+const getDelayStatus = (delayDuration, totalDuration) => {
   const delayDurationSeconds = delayDuration.valueOf() / 1000;
   if (delayDurationSeconds > ONTIME_MARGIN_DELAY_SEC) return "early";
   if (delayDurationSeconds < -ONTIME_MARGIN_DELAY_SEC) return "late";

@@ -7,18 +7,18 @@ import { Break } from "../../design/icons";
 
 const DelayBox = data => {
   console.log("data", data);
-  const { delayDuration, delayType, delayDurationPercentage } = data;
+  const { delayDuration, delayStatus, delayDurationPercentage } = data;
 
   const largeSpace = delayDurationPercentage > 25;
 
   return (
-    <Box delayType={delayType}>
-      <DelayTypeComponent delayType={delayType} />
+    <Box delayStatus={delayStatus}>
+      <DelayStatusComponent delayStatus={delayStatus} />
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
       {largeSpace && (
-        <IconContainer delayType={delayType}>
+        <IconContainer delayStatus={delayStatus}>
           <Break />
         </IconContainer>
       )}
@@ -26,8 +26,8 @@ const DelayBox = data => {
   );
 };
 
-const DelayTypeComponent = ({ delayType }) => {
-  switch (delayType) {
+const DelayStatusComponent = ({ delayStatus }) => {
+  switch (delayStatus) {
     case "early":
       return <Early />;
     case "ontime":
@@ -39,8 +39,8 @@ const DelayTypeComponent = ({ delayType }) => {
   }
 };
 
-const fontColorForDelayType = delayType => {
-  switch (delayType) {
+const fontColorForDelayStatus = delayStatus => {
+  switch (delayStatus) {
     case "early":
       return colors.dark.text.original;
     case "late":
@@ -64,7 +64,7 @@ const Late = () => {
 
 const Box = styled.div`
   background: ${() => colors.dark.background};
-  color: ${props => fontColorForDelayType(props.delayType)};
+  color: ${props => fontColorForDelayStatus(props.delayStatus)};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -109,7 +109,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${props => fontColorForDelayType(props.delayType)};
+    fill: ${props => fontColorForDelayStatus(props.delayStatus)};
   }
 `;
 
