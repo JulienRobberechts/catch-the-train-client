@@ -8,13 +8,21 @@ import TimelineVertical from "../timeline/timelineVertical";
 import TrainSchedule from "../trainSchedule/trainSchedule";
 import { Helmet } from "react-helmet";
 
+import { useParams } from "react-router-dom";
+
 const CatchPage = () => {
-  const data = SelectData();
+  const {
+    station,
+    destination,
+    departureTime: departureTimeCode
+  } = useParams();
+  console.log({ station, destination, departureTimeCode });
+  const data = SelectData({ departureTimeCode });
   console.log(" data", data);
   return (
     <>
       <Helmet>
-        <title>Train à Saint Germain-en-Laye</title>
+        <title>Train à Saint-Germain-en-Laye</title>
       </Helmet>
       <TopSection>
         <TrainRoute {...data} />

@@ -7,7 +7,7 @@ import { fontColorForDelayStatus } from "../delayDesign";
 import { Break } from "../../design/icons";
 
 const DelayBox = data => {
-  console.log("data", data);
+  // console.log("data", data);
   const { delayDuration, delayStatus, delayDurationPercentage } = data;
 
   const largeSpace = delayDurationPercentage > 25;
