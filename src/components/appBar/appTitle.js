@@ -1,12 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
+import { Helmet } from "react-helmet";
 
 const AppTitle = () => {
   return (
-    <Panel>
-      <div>Attraper le train</div>
-    </Panel>
+    <>
+      <Helmet>
+        <title>Attraper le train</title>
+      </Helmet>
+      <Panel>
+        <div>Attraper le train</div>
+      </Panel>
+    </>
   );
 };
 

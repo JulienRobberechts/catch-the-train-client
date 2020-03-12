@@ -6,12 +6,16 @@ import TrainRoute from "./trainRoute";
 import TimelineVertical from "../timeline/timelineVertical";
 
 import TrainSchedule from "../trainSchedule/trainSchedule";
+import { Helmet } from "react-helmet";
 
 const CatchPage = () => {
   const data = SelectData();
 
   return (
     <>
+      <Helmet>
+        <title>Train à Saint Germain-en-Laye</title>
+      </Helmet>
       <TopSection>
         <TrainRoute {...data} />
         <TrainSchedule {...data} />

@@ -51,9 +51,9 @@ const getColors = p => ({
         text: {
           disabled: p.gray,
           normal: p.blue,
-          original: p.green,
-          highlight: p.red,
-          warning: p.red
+          original: p.red,
+          highlight: p.white,
+          warning: p.yellow
         },
         button: {
           one: {
