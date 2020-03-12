@@ -11,8 +11,7 @@ const AppTitle = () => {
 };
 
 const Panel = styled.div`
-  background: ${() => colors.color1};
-  color: ${() => colors.color6};
+  color: ${() => colors.dark.text.highlight};
   font-weight: bold;
   padding: 0.3rem;
 `;

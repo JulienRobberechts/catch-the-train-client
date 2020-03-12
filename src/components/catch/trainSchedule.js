@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import TrainScheduleDeparture from "./trainScheduleDeparture";
-import { ArrowLeft, ArrowRight } from "../../design/icons";
+import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 
 function TrainSchedule({ schedule }) {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -26,7 +26,11 @@ function TrainSchedule({ schedule }) {
             </IconContainer>
           </PreviousButton>
         ) : (
-          <PreviousPlaceholder>premier train:</PreviousPlaceholder>
+          <PreviousPlaceholder>
+            <IconContainer>
+              <Clock />
+            </IconContainer>
+          </PreviousPlaceholder>
         )}
 
         {schedule.slice(minIndex, minIndex + 3).map(item => (
@@ -50,33 +54,30 @@ function TrainSchedule({ schedule }) {
             </IconContainer>
           </NextButton>
         ) : (
-          <PreviousPlaceholder>pas encore disponible...</PreviousPlaceholder>
+          <PreviousPlaceholder>
+            <IconContainer>
+              <More />
+            </IconContainer>
+          </PreviousPlaceholder>
         )}
       </ScrollPanel>
     </Panel>
   );
 }
-const IconContainer = styled.div`
-  svg {
-    width: 1.3rem;
-    height: 1.3rem;
-    fill: ${() => colors.color6};
-  }
-`;
 
 const Panel = styled.div`
-  background: ${() => colors.color5};
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text.normal};
   margin-top: 0.3rem;
+  border-radius: 3px;
 `;
 
 const Title = styled.div`
-  color: ${() => colors.color2};
   font-size: 0.7rem;
   padding-left: 0.4rem;
 `;
 
 const ScrollPanel = styled.div`
-  background: ${() => colors.color5};
   padding: 0.2rem;
   padding-top: 0;
   font-weight: bold;
@@ -85,7 +86,8 @@ const ScrollPanel = styled.div`
 `;
 
 const ScrollPanelItem = styled.button`
-  background: ${() => colors.color3};
+  background: ${() => colors.dark.panel.one.button.one.background};
+  color: ${() => colors.dark.panel.one.button.one.text.normal};
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -104,9 +106,10 @@ const PreviousButton = styled(ScrollPanelItem)``;
 const NextButton = styled(ScrollPanelItem)``;
 
 const PreviousPlaceholder = styled.div`
-  background: ${() => colors.color3};
-  margin: 0.1rem;
-
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text.normal};
+  margin: 0.3rem;
+  border-radius: 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,9 +118,16 @@ const PreviousPlaceholder = styled.div`
   flex-basis: 20%;
   text-align: center;
 
-  background: ${() => colors.color5};
-  color: ${() => colors.color2};
-  font-size: 0.7rem;
+  font-weight: normal;
+  font-size: 0.6rem;
+`;
+
+const IconContainer = styled.div`
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: ${() => colors.dark.panel.one.button.one.text.normal};
+  }
 `;
 
 export { TrainSchedule as default, ScrollPanelItem };

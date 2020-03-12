@@ -1,5 +1,5 @@
 import React from "react";
-import TimeSpan from "./timeSpan";
+import TimeSpan from "../time/timeSpan";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 

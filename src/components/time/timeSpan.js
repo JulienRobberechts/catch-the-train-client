@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../design/colors";
 
 const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
   const totalMilliseconds = timeSpan.valueOf() * 1000;
@@ -33,7 +32,6 @@ const TimeSpan = ({ timeSpan, displayPositiveSign = false }) => {
 
 const Panel = styled.span`
   margin: 0 auto;
-  color: ${() => colors.color6};
 `;
 
 const NumberText = styled.span`

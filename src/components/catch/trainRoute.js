@@ -17,8 +17,8 @@ const TrainRoute = ({ station, direction }) => {
 };
 
 const Panel = styled.div`
-  background: ${() => colors.color2};
-  color: ${() => colors.color5};
+  background: ${() => colors.dark.background};
+  color: ${() => colors.dark.text.original};
   padding: 0.3rem;
   font-size: 0.8em;
 `;

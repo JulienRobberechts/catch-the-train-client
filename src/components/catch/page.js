@@ -26,7 +26,7 @@ const CatchPage = () => {
 };
 
 const Page = styled.div`
-  background: ${() => colors.color1};
+  background: ${() => colors.dark.background};
   min-height: 100vh;
   margin: 0;
   padding: 0;

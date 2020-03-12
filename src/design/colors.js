@@ -1,26 +1,4 @@
-const palette1 = {
-  color1: "#f3dcdb",
-  color2: "#e4c1c3",
-  color3: "#cfb5cb",
-  color4: "#97949e",
-  color5: "#747073",
-  color6: "#403e3f"
-};
-
-const palette2 = {
-  color1dark: "#f4f1de", // background
-  color1: "#f7f4e7", // background
-  color1light: "#faf8f0", // background
-  color2: "#9596a5", //
-  color3: "#eeb6a7", //
-
-  color4: "#e07a5f", // attention
-  color4light: "#eeb6a7",
-
-  color5: "#3d405b", //
-  color5light: "#9596a5", //
-  color6: "#383b53" // dark strings
-};
+export * from "./color-utils";
 
 const palette3 = {
   color1: "#252149", // background
@@ -37,7 +15,53 @@ const palette4 = {
   color3: "#FFFFFF", // panels
   color4: "#60A38E", // text2
   color5: "#E0AB19", // background
-  color6: "#E0AB19" // background
+  color6: "#E0AB19", // background
+
+  blue: "#252149",
+  gray: "#F3F0EC",
+  white: "#FFFFFF",
+  green: "#60A38E",
+  yellow: "#E0AB19",
+  red: "#E6716E",
+
+  dark: {
+    background: "#252149",
+    text: {
+      disabled: "#F3F0EC", // todo
+      normal: "#F3F0EC",
+      original: "#60A38E",
+      highlight: "#E0AB19",
+      warning: "#E6716E"
+    },
+    panel: {
+      one: {
+        background: "#FFFFFF",
+        text: {
+          disabled: "#F3F0EC", // todo
+          normal: "#252149",
+          original: "#60A38E",
+          highlight: "#E6716E",
+          warning: "#E6716E"
+        },
+        button: {
+          one: {
+            background: "#60A38E",
+            text: {
+              normal: "#252149",
+              highlight: "#FFFFFF"
+            }
+          },
+          highlight: {
+            background: "#E0AB19",
+            text: {
+              normal: "#252149",
+              highlight: "#FFFFFF"
+            }
+          }
+        }
+      }
+    }
+  }
 };
 
 const colors = palette4;

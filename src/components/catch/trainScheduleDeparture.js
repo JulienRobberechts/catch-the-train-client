@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import Time from "./time";
-import TimeSpan from "./timeSpan";
+import Time from "../time/time";
+import TimeSpan from "../time/timeSpan";
 
 function TrainScheduleDeparture({
   index,
@@ -19,8 +19,15 @@ function TrainScheduleDeparture({
   );
 }
 
-const ScrollPanelItem = styled.div`
-  background: ${() => colors.color3};
+const Train = styled.div`
+  background: ${props =>
+    props.selected
+      ? colors.dark.panel.one.button.highlight.background
+      : colors.dark.panel.one.button.one.background};
+  color: ${props =>
+    props.selected
+      ? colors.dark.panel.one.button.highlight.text
+      : colors.dark.panel.one.button.one.text};
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -31,11 +38,7 @@ const ScrollPanelItem = styled.div`
   cursor: pointer;
   border: none;
   flex-basis: 20%;
-`;
-
-const Train = styled(ScrollPanelItem)`
   font-size: 0.7rem;
-  background: ${props => (props.selected ? colors.color1 : colors.color3)};
 `;
 
 export default TrainScheduleDeparture;
