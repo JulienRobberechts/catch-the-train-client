@@ -16,12 +16,29 @@ const TimeSpan = ({
   const negative = totalMilliseconds < 0;
   const positive = totalMilliseconds > 0;
 
+  const days = timeSpan.as("days");
+  const moreThanOneDay = days >= 1 || days <= -1;
+
+  if (moreThanOneDay) {
+    return (
+      <Panel>
+        <>
+          <SymbolText>J</SymbolText>
+          <NumberText>
+            {negative && <Sign>-</Sign>}
+            {positive && <Sign>+</Sign>}1
+          </NumberText>
+        </>
+      </Panel>
+    );
+  }
+
   const hours = Math.abs(timeSpan.hours());
   const minutes = Math.abs(timeSpan.minutes());
   const seconds = Math.abs(timeSpan.seconds());
 
   const showHours = hours !== 0;
-  const showMinutes = minutes !== 0;
+  const showMinutes = minutes !== 0 || showHours;
   const showSeconds = !showHours && !!displaySeconds;
 
   const doubleDigitHours = false;
@@ -32,6 +49,10 @@ const TimeSpan = ({
   const minutesStr = doubleDigitMinutes ? twoDigits(minutes) : minutes;
   const secondsStr = doubleDigitSeconds ? twoDigits(seconds) : seconds;
 
+  const showHoursSign = true;
+  const showMinutesSign = !showHours;
+  const showSecondsSign = !showMinutes;
+
   return (
     <Panel>
       {negative && <Sign>-</Sign>}
@@ -39,19 +60,19 @@ const TimeSpan = ({
       {showHours && (
         <>
           <NumberText>{hoursStr}</NumberText>
-          <SymbolText>h</SymbolText>
+          {showHoursSign && <SymbolText>h</SymbolText>}
         </>
       )}
       {showMinutes && (
         <>
           <NumberText>{minutesStr}</NumberText>
-          <SymbolText>min</SymbolText>
+          {showMinutesSign && <SymbolText>min</SymbolText>}
         </>
       )}
       {showSeconds && (
         <>
           <NumberText>{secondsStr}</NumberText>
-          <SymbolText>s</SymbolText>
+          {showSecondsSign && <SymbolText>s</SymbolText>}
         </>
       )}
     </Panel>

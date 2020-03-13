@@ -31,6 +31,10 @@ export const mockedTimeTable = {
       {
         departureTime: "2020-03-10T10:21:00Z",
         platform: "2"
+      },
+      {
+        departureTime: "2020-03-11T12:12:00Z",
+        platform: "2"
       }
     ]
   }
