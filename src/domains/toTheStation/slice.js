@@ -93,16 +93,16 @@ export const selectEnhancedToTheStation = state => {
 const SelectTravelData = ({
   nowTime,
   departure,
-  TravelDurationSeconds,
+  travelDurationSeconds,
   waitingDelaySeconds,
-  OnTimeMarginDelaySeconds
+  onTimeMarginDelaySeconds
 }) => {
   const targetTime = new moment.utc(new Date(departure.departureTime));
 
   const targetDuration = moment.duration(targetTime.diff(nowTime));
 
   const travelDuration = moment.duration({
-    seconds: TravelDurationSeconds
+    seconds: travelDurationSeconds
   });
 
   const waitingDuration = moment.duration({
@@ -114,10 +114,7 @@ const SelectTravelData = ({
   delayDuration.subtract(travelDuration);
   delayDuration.subtract(waitingDuration);
 
-  const delayStatus = getDelayStatus({
-    delayDuration,
-    OnTimeMarginDelaySeconds
-  });
+  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
 
   return {
     route: departure.route,
@@ -131,10 +128,10 @@ const SelectTravelData = ({
   };
 };
 
-const getDelayStatus = ({ delayDuration, OnTimeMarginDelaySeconds }) => {
+const getDelayStatus = (delayDuration, onTimeMarginDelaySeconds) => {
   const delayDurationSeconds = delayDuration.valueOf() / 1000;
-  if (delayDurationSeconds > OnTimeMarginDelaySeconds) return "early";
-  if (delayDurationSeconds < -OnTimeMarginDelaySeconds) return "late";
+  if (delayDurationSeconds > onTimeMarginDelaySeconds) return "early";
+  if (delayDurationSeconds < -onTimeMarginDelaySeconds) return "late";
   return "ontime";
 };
 
