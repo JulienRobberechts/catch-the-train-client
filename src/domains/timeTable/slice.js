@@ -35,10 +35,10 @@ export const selectRoute = state => {
 
 // Be careful with change of references!!!
 export const selectEnhancedRoute = state => {
-  if (!state.timeTable.route) return null;
+  if (!state.timeTable.route || state.toTheStation.noData) return null;
 
   const { timeTable } = state;
-  const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
+  const nowTime = new moment.utc(new Date(state.toTheStation.currentTime));
 
   const trains = state.timeTable.route.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
