@@ -28,8 +28,9 @@ export const slice = createSlice({
         onTimeMarginDelaySeconds: 20
       };
       state.train = {
-        departureTime: "2020-03-10T09:32:00Z",
-        trainCode: "0955",
+        direction: direction.toUpperCase(),
+        departureTime: "2020-03-10T09:32:00Z", // redundant ?
+        trainCode: departureTimeCode,
         platform: "4"
       };
       state.noData = false;
