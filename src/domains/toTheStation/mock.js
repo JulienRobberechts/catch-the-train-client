@@ -24,6 +24,7 @@ export const mockConfig = {
     platform: "4"
   },
   configuration: {
-    waitingDelaySeconds: 100
+    waitingDelaySeconds: 100,
+    timezone: "+01:00"
   }
 };

@@ -2,5 +2,9 @@ import moment from "moment";
 
 export const convertToTrainCode = timeString => {
   const momentTime = new moment.utc(new Date(timeString));
-  return momentTime.isValid ? momentTime.format("hhmm") : null;
+  return timeToLocal(momentTime).format("kkmm");
+};
+
+export const timeToLocal = timeMoment => {
+  return timeMoment.clone().local();
 };
