@@ -9,14 +9,21 @@ import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
 
 import { getDurationPercentage } from "../time/time-utils";
+import { useSelector } from "react-redux";
+import { selectData } from "../../domains/toTheStation/slice";
 
-const TimelineVertical = data => {
+const TimelineVertical = () => {
+  const data = useSelector(selectData);
+  if (!data) {
+    return <div>...</div>;
+  }
   const {
     travelDuration,
     waitingDuration,
     delayDuration,
     targetDuration
   } = data;
+
   const travelDurationPercentage = getDurationPercentage(
     travelDuration,
     targetDuration

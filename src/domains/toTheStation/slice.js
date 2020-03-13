@@ -29,7 +29,10 @@ export const selectData = state => {
 
   // From the slice timeTable
   const { timeTable, toTheStation } = state;
-  const { trains } = timeTable;
+
+  if (!timeTable.route) return null;
+
+  const { trains } = timeTable.route;
 
   if (!trains) {
     return null;

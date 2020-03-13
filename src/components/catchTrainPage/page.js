@@ -34,23 +34,11 @@ const CatchPage = () => {
         <TrainRoute />
         <TimeTable />
       </TopSection>
+      <BodySection>
+        <TimelineVertical />
+      </BodySection>
     </>
   );
-
-  // return (
-  //   <>
-  //     <Helmet>
-  //       <title>Trains - {station}</title>
-  //     </Helmet>
-  //     <TopSection>
-  //       <TrainRoute />
-  //       <TimeTable />
-  //     </TopSection>
-  //     <BodySection>
-  //       <TimelineVertical />
-  //     </BodySection>
-  //   </>
-  // );
 };
 
 const TopSection = styled.div`
