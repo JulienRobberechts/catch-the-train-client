@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
-import { mockedRoute } from "./mock";
+import { mockedTimeTable } from "./mock";
 
 export const slice = createSlice({
   name: "timeTable",
@@ -10,10 +10,8 @@ export const slice = createSlice({
       state = {};
     },
     mock: state => {
-      state = {
-        lastUpdate: new moment.utc().format(),
-        route: mockedRoute
-      };
+      state.lastUpdate = new moment.utc().format();
+      state.route = mockedTimeTable.route;
     },
     update: (state, action) => {
       const { route } = action.payload;
@@ -28,7 +26,11 @@ export const selectConfigIsValid = state => {
 };
 
 export const selectStationCode = state => {
-  return state?.route?.station?.code;
+  return state?.timeTable.route?.station?.code;
+};
+
+export const selectRoute = state => {
+  return state?.timeTable?.route;
 };
 
 export const selectTimeTable = state => {
@@ -37,13 +39,13 @@ export const selectTimeTable = state => {
 
   const trains = state.timeTable.route.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
-    const departureTimeCode = departureTime.format("hhmm");
+    // const departureTimeCode = departureTime.format("hhmm");
     const departureDuration = moment.duration(departureTime.diff(nowTime));
     const delayStatus = "early";
     return {
       index,
       departureTime,
-      departureTimeCode,
+      // departureTimeCode,
       departureDuration,
       delayStatus
     };

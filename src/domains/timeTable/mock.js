@@ -1,5 +1,5 @@
 // change every 3 mins - Server Data
-export const mockedRoute = {
+export const mockedTimeTable = {
   route: {
     station: {
       code: "SGL",

@@ -1,57 +1,56 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-
-import { selectData } from "../../domains/toTheStation/slice";
-import TrainRoute from "./trainRoute";
-import TimelineVertical from "../timeline/timelineVertical";
-
-import TimeTable from "../timeTable";
 import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from "react-redux";
-import { selectStationCode, mock } from "../../domains/timeTable/slice";
 import { useParams } from "react-router-dom";
+
+import TrainRoute from "./trainRoute";
+import TimelineVertical from "../timeline/timelineVertical";
+import TimeTable from "../timeTable";
+import { mock as mockToTheStation } from "../../domains/toTheStation/slice";
+import {
+  selectStationCode,
+  mock as mockTimeTable
+} from "../../domains/timeTable/slice";
 
 const CatchPage = () => {
   const { station, direction, departureTimeCode } = useParams();
 
   const dispatch = useDispatch();
   useEffect(() => {
-    document.title = `XXX`;
-    console.log("useEffect before mock config");
-    // dispatch(mock());
-    dispatch(mock());
+    dispatch(mockToTheStation());
+    dispatch(mockTimeTable());
   });
 
   const stationAvailable = useSelector(selectStationCode);
-  console.log("stationAvailable", stationAvailable);
-
-  const data = useSelector(selectData);
-  console.log("data", data);
-
-  if (!data) {
-    return (
-      <div>
-        Loading
-        <button onClick={() => dispatch(mock())}>mock</button>
-      </div>
-    );
-  }
+  console.log("selectStationCode = ", stationAvailable);
 
   return (
     <>
       <Helmet>
         <title>Trains - {station}</title>
       </Helmet>
-      <button onClick={() => dispatch(mock())}>mock</button>
       <TopSection>
-        <TrainRoute {...data} />
-        <TimeTable {...data} />
+        <TrainRoute />
+        <TimeTable />
       </TopSection>
-      <BodySection>
-        <TimelineVertical {...data} />
-      </BodySection>
     </>
   );
+
+  // return (
+  //   <>
+  //     <Helmet>
+  //       <title>Trains - {station}</title>
+  //     </Helmet>
+  //     <TopSection>
+  //       <TrainRoute />
+  //       <TimeTable />
+  //     </TopSection>
+  //     <BodySection>
+  //       <TimelineVertical />
+  //     </BodySection>
+  //   </>
+  // );
 };
 
 const TopSection = styled.div`

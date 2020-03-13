@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { mockConfig } from "./mock";
+import { timeCode } from "../../domains/timeTable/helpers";
 
 export const slice = createSlice({
   name: "toTheStation",
@@ -10,8 +11,7 @@ export const slice = createSlice({
       state = {};
     },
     mock: state => {
-      console.log("mock config");
-      state = mockConfig;
+      Object.assign(state, mockConfig);
     },
     updateTime: (state, action) => {
       const { now } = action.payload;
@@ -37,7 +37,7 @@ export const selectData = state => {
 
   const departureIndex = Math.max(
     trains.findIndex(
-      departure => departure.departureTimeCode === departureTimeCode
+      departure => timeCode(departure.departureTime) === departureTimeCode
     ),
     0
   );

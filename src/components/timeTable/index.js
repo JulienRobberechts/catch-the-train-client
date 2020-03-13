@@ -4,34 +4,40 @@ import { colors } from "../../design/colors";
 import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectRoute } from "../../domains/timeTable/slice";
+import { timeCode } from "../../domains/timeTable/helpers";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
 function TimeTable({ timeTable }) {
   const { station, direction, departureTimeCode } = useParams();
+  const { push } = useHistory();
   // console.log({ station, direction, departureTimeCode });
-  // console.log({ timeTable });
+
+  const route = useSelector(selectRoute);
+
+  if (!route) {
+    return <Panel>...</Panel>;
+  }
+  console.log(route);
+  const { trains } = route;
 
   const currentIndex = Math.max(
     0,
-    timeTable.trains.findIndex(
-      departure => departure.departureTimeCode === departureTimeCode
+    trains.findIndex(
+      departure => timeCode(departure.departureTime) === departureTimeCode
     )
   );
 
   const minIndex = Math.max(
     0,
-    Math.min(
-      currentIndex - 1,
-      timeTable.trains.length - NUMBER_OF_DEPARTURE_VISIBLE
-    )
+    Math.min(currentIndex - 1, trains.length - NUMBER_OF_DEPARTURE_VISIBLE)
   );
 
   const previousVisible = minIndex > 0;
   const nextVisible =
-    minIndex < timeTable.trains.length - NUMBER_OF_DEPARTURE_VISIBLE - 1;
-
-  const { push } = useHistory();
+    minIndex < trains.length - NUMBER_OF_DEPARTURE_VISIBLE - 1;
 
   return (
     <Panel>
@@ -40,7 +46,7 @@ function TimeTable({ timeTable }) {
         {previousVisible ? (
           <PreviousButton
             onClick={() => {
-              const item = timeTable.trains[currentIndex - 1];
+              const item = trains[currentIndex - 1];
               push(`/sg/paris/${item.departureTimeCode}`);
             }}
           >
@@ -56,21 +62,21 @@ function TimeTable({ timeTable }) {
           </PreviousPlaceholder>
         )}
 
-        {timeTable.trains.slice(minIndex, minIndex + 3).map(departure => (
+        {trains.slice(minIndex, minIndex + 3).map(departure => (
           <Departure
             key={departure.index}
             selected={departure.index === currentIndex}
             onSelect={() => {
-              push(`/sg/paris/${departure.departureTimeCode}`);
+              push(`/sg/paris/${timeCode(departure.departureTime)}`);
             }}
             {...departure}
           />
         ))}
         {nextVisible ? (
           <NextButton
-            disabled={minIndex >= timeTable.trains.length - 4}
+            disabled={minIndex >= trains.length - 4}
             onClick={() => {
-              const item = timeTable.trains[currentIndex + 1];
+              const item = trains[currentIndex + 1];
               push(`/sg/paris/${item.departureTimeCode}`);
             }}
           >
