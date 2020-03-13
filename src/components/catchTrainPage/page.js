@@ -20,10 +20,10 @@ const CatchPage = () => {
   useEffect(() => {
     dispatch(mockToTheStation());
     dispatch(mockTimeTable());
-  });
+  }, []);
 
   const stationAvailable = useSelector(selectStationCode);
-  console.log("selectStationCode = ", stationAvailable);
+  // console.log("selectStationCode = ", stationAvailable);
 
   return (
     <>

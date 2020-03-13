@@ -20,7 +20,7 @@ function TimeTable({ timeTable }) {
   if (!route) {
     return <Panel>...</Panel>;
   }
-  console.log(route);
+  // console.log(route);
   const { trains } = route;
 
   const currentIndex = Math.max(

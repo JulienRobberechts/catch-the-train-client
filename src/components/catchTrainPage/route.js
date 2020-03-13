@@ -5,7 +5,7 @@ import { selectConfigIsValid } from "../../domains/timeTable/slice";
 import { useSelector } from "react-redux";
 const CatchTrainRoutes = () => {
   const configIsValid = useSelector(selectConfigIsValid);
-  console.log("configIsValid", configIsValid);
+  // console.log("configIsValid", configIsValid);
   return (
     <Switch>
       <Route path="/:station/:direction/:departureTimeCode">

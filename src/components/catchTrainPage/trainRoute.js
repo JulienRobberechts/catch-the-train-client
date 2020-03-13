@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectRoute } from "../../domains/timeTable/slice";
 const TrainRoute = () => {
   const route = useSelector(selectRoute);
-  console.log("route", route);
+  // console.log("route", route);
 
   if (!route) {
     return <Panel>...</Panel>;
