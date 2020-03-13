@@ -33,7 +33,10 @@ export const selectRoute = state => {
   return state?.timeTable?.route;
 };
 
-export const selectTimeTable = state => {
+// Be careful with change of references!!!
+export const selectEnhancedRoute = state => {
+  if (!state.timeTable.route) return null;
+
   const { timeTable } = state;
   const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
 

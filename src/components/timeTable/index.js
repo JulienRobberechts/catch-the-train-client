@@ -5,7 +5,7 @@ import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectRoute } from "../../domains/timeTable/slice";
+import { selectEnhancedRoute } from "../../domains/timeTable/slice";
 import { timeCode } from "../../domains/timeTable/helpers";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
@@ -15,7 +15,7 @@ function TimeTable({ timeTable }) {
   const { push } = useHistory();
   // console.log({ station, direction, departureTimeCode });
 
-  const route = useSelector(selectRoute);
+  const route = useSelector(selectEnhancedRoute);
 
   if (!route) {
     return <Panel>...</Panel>;
@@ -46,8 +46,8 @@ function TimeTable({ timeTable }) {
         {previousVisible ? (
           <PreviousButton
             onClick={() => {
-              const item = trains[currentIndex - 1];
-              push(`/sg/paris/${item.departureTimeCode}`);
+              const departure = trains[currentIndex - 1];
+              push(`/sg/paris/${timeCode(departure.departureTime)}`);
             }}
           >
             <IconContainer>
@@ -76,8 +76,8 @@ function TimeTable({ timeTable }) {
           <NextButton
             disabled={minIndex >= trains.length - 4}
             onClick={() => {
-              const item = trains[currentIndex + 1];
-              push(`/sg/paris/${item.departureTimeCode}`);
+              const departure = trains[currentIndex + 1];
+              push(`/sg/paris/${timeCode(departure.departureTime)}`);
             }}
           >
             <IconContainer>
