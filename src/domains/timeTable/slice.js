@@ -4,12 +4,12 @@ import { mockedTimeTable } from "./mock";
 
 export const slice = createSlice({
   name: "timeTable",
-  initialState: {},
+  initialState: { noData: true },
   reducers: {
     reset: state => {
       state = {};
     },
-    mock: state => {
+    mockTimeTable: state => {
       state.lastUpdate = new moment.utc().format();
       state.route = mockedTimeTable.route;
     },
@@ -57,6 +57,6 @@ export const selectEnhancedRoute = state => {
   return { route: timeTable.route, trains };
 };
 
-export const { reset, mock, update } = slice.actions;
+export const { reset, mockTimeTable, update } = slice.actions;
 
 export default slice.reducer;

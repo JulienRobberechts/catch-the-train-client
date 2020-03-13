@@ -5,27 +5,40 @@ import { timeCode } from "../../domains/timeTable/helpers";
 
 export const slice = createSlice({
   name: "toTheStation",
-  initialState: {},
+  initialState: { noData: true },
   reducers: {
     reset: state => {
       state = {};
     },
-    mock: state => {
+    mockToTheStation: state => {
       Object.assign(state, mockConfig);
+      state.noData = false;
+    },
+    chooseTrain: (state, action) => {
+      const { station, direction, departureTimeCode } = action.payload;
+      console.log({ station, direction, departureTimeCode });
+      // ...
+      state.noData = false;
     },
     updateTime: (state, action) => {
       const { now } = action.payload;
-      // state.currentDate = moment ( now )
+      // state.currentTime = moment ( now )
+      state.noData = false;
     }
   }
 });
 
-export const selectNow = state => state.currentDate;
+export const selectNow = state => state?.toTheStation?.currentTime;
 
-export const selectData = state => {
+export const selectToTheStation = state => state?.toTheStation;
+
+export const selectData = ({ nowTime, departureTimeCode }) => state => {
   // As parameter ??
-  const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
-  const departureTimeCode = "0924";
+  // const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
+
+  // console.log("departureTimeCode", departureTimeCode);
+
+  if (!departureTimeCode || !nowTime) return null;
 
   // From the slice timeTable
   const { timeTable, toTheStation } = state;
@@ -52,27 +65,26 @@ export const selectData = state => {
   // From the slice toTheStation
 
   const {
-    TravelDurationSeconds,
-    WaitingDelaySeconds,
-    OnTimeMarginDelaySeconds
+    configuration: { waitingDelaySeconds },
+    station: { travelDurationSeconds, onTimeMarginDelaySeconds }
   } = toTheStation;
 
   const travelData = SelectTravelData({
     nowTime,
     departure,
-    TravelDurationSeconds,
-    WaitingDelaySeconds,
-    OnTimeMarginDelaySeconds
+    waitingDelaySeconds,
+    travelDurationSeconds,
+    onTimeMarginDelaySeconds
   });
   // console.log({ travelData });
-  return { timeTable, ...travelData };
+  return { ...travelData };
 };
 
 const SelectTravelData = ({
   nowTime,
   departure,
   TravelDurationSeconds,
-  WaitingDelaySeconds,
+  waitingDelaySeconds,
   OnTimeMarginDelaySeconds
 }) => {
   const targetTime = new moment.utc(new Date(departure.departureTime));
@@ -84,7 +96,7 @@ const SelectTravelData = ({
   });
 
   const waitingDuration = moment.duration({
-    seconds: WaitingDelaySeconds
+    seconds: waitingDelaySeconds
   });
 
   // positive will be early and negative late
@@ -116,6 +128,11 @@ const getDelayStatus = ({ delayDuration, OnTimeMarginDelaySeconds }) => {
   return "ontime";
 };
 
-export const { reset, mock, updateTime } = slice.actions;
+export const {
+  reset,
+  mockToTheStation,
+  chooseTrain,
+  updateTime
+} = slice.actions;
 
 export default slice.reducer;

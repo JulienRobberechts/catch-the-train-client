@@ -1,26 +1,30 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { mock as mockToTheStation } from "../../domains/toTheStation/slice";
+import { mockTimeTable } from "../../domains/timeTable/slice";
 import {
-  selectStationCode,
-  mock as mockTimeTable
-} from "../../domains/timeTable/slice";
+  selectToTheStation,
+  mockToTheStation,
+  chooseTrain
+} from "../../domains/toTheStation/slice";
 
 import CatchPage from "./page";
 
 const CatchPageContainer = () => {
-  const { station, direction, departureTimeCode } = useParams();
+  const urlParameters = useParams();
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(mockToTheStation());
     dispatch(mockTimeTable());
-  }, [dispatch]);
+    dispatch(mockToTheStation());
+    dispatch(chooseTrain(urlParameters));
+  }, [dispatch, urlParameters]);
 
-  const stationAvailable = useSelector(selectStationCode);
+  const toTheStation = useSelector(selectToTheStation);
+  console.log("toTheStation", toTheStation);
 
-  return <CatchPage station={station} />;
+  if (toTheStation.noData) return <div>...</div>;
+  return <CatchPage station={toTheStation?.station.name} />;
 };
 
 export default CatchPageContainer;

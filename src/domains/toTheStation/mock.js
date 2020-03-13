@@ -11,8 +11,19 @@
 // export const WAITING_DELAY_SEC = 100;
 
 export const mockConfig = {
-  currentDate: "2020-03-10T09:19:56Z",
-  TravelDurationSeconds: 10 * 60 + 25,
-  OnTimeMarginDelaySeconds: 20,
-  WaitingDelaySeconds: 100
+  currentTime: "2020-03-10T09:19:56Z",
+  station: {
+    code: "SGL",
+    name: "Saint-Germain-en-Laye",
+    travelDurationSeconds: 10 * 60 + 25,
+    onTimeMarginDelaySeconds: 20
+  },
+  train: {
+    departureTime: "2020-03-10T09:32:00Z",
+    trainCode: "0932",
+    platform: "4"
+  },
+  configuration: {
+    waitingDelaySeconds: 100
+  }
 };

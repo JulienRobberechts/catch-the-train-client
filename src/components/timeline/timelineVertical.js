@@ -10,10 +10,21 @@ import { CaretRight } from "../../design/icons";
 
 import { getDurationPercentage } from "../time/time-utils";
 import { useSelector } from "react-redux";
-import { selectData } from "../../domains/toTheStation/slice";
+import {
+  selectData,
+  selectToTheStation
+} from "../../domains/toTheStation/slice";
+import moment from "moment";
 
 const TimelineVertical = () => {
-  const data = useSelector(selectData);
+  const toTheStation = useSelector(selectToTheStation);
+
+  // parameters
+  const departureTimeCode = toTheStation?.train.trainCode;
+  const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
+
+  const data = useSelector(selectData({ nowTime, departureTimeCode }));
+
   if (!data) {
     return <div>...</div>;
   }
