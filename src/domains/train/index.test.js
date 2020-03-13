@@ -89,5 +89,14 @@ describe("train helpers", () => {
       );
       expect(delayStatus).toBe("ontime");
     });
+    test("should identify an invalid delay", () => {
+      const delayDuration = "invalid delay";
+      const onTimeMarginDelaySeconds = 20;
+      const delayStatus = getDelayStatus(
+        delayDuration,
+        onTimeMarginDelaySeconds
+      );
+      expect(delayStatus).toBe("invalid");
+    });
   });
 });
