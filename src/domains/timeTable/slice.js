@@ -34,7 +34,7 @@ export const selectRoute = state => {
 };
 
 // Be careful with change of references!!!
-export const selectEnhancedRoute = state => {
+export const selectEnhancedTimeTable = state => {
   if (!state.timeTable.route || state.toTheStation.noData) return null;
 
   const { timeTable } = state;

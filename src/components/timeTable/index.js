@@ -5,7 +5,7 @@ import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectEnhancedRoute } from "../../domains/timeTable/slice";
+import { selectEnhancedTimeTable } from "../../domains/timeTable/slice";
 import { timeCode } from "../../domains/timeTable/helpers";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
@@ -15,7 +15,7 @@ function TimeTable({ timeTable }) {
   const { push } = useHistory();
   // console.log({ station, direction, departureTimeCode });
 
-  const route = useSelector(selectEnhancedRoute);
+  const route = useSelector(selectEnhancedTimeTable);
 
   if (!route) {
     return <Panel>...</Panel>;
