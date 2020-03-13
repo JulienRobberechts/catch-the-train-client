@@ -11,9 +11,9 @@ import { timeCode } from "../../domains/timeTable/helpers";
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
 function TimeTable({ timeTable }) {
-  const { station, direction, departureTimeCode } = useParams();
+  const { station, direction, trainCode } = useParams();
   const { push } = useHistory();
-  // console.log({ station, direction, departureTimeCode });
+  // console.log({ station, direction, trainCode });
 
   const route = useSelector(selectEnhancedTimeTable);
 
@@ -26,7 +26,7 @@ function TimeTable({ timeTable }) {
   const currentIndex = Math.max(
     0,
     trains.findIndex(
-      departure => timeCode(departure.departureTime) === departureTimeCode
+      departure => timeCode(departure.departureTime) === trainCode
     )
   );
 

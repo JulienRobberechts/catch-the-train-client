@@ -20,7 +20,7 @@ const TimelineVertical = () => {
   const toTheStation = useSelector(selectToTheStation);
 
   // parameters
-  const departureTimeCode = toTheStation?.train.trainCode;
+  const trainCode = toTheStation?.train.trainCode;
   const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
 
   const data = useSelector(selectEnhancedToTheStation);

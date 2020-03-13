@@ -15,12 +15,8 @@ export const slice = createSlice({
       state.noData = false;
     },
     chooseTrain: (state, action) => {
-      const {
-        station: stationCode,
-        direction,
-        departureTimeCode
-      } = action.payload;
-      console.log({ stationCode, direction, departureTimeCode });
+      const { station: stationCode, direction, trainCode } = action.payload;
+      console.log({ stationCode, direction, trainCode });
       state.station = {
         code: stationCode.toUpperCase(),
         name: "Saint-Germain-en-Laye",
@@ -30,7 +26,7 @@ export const slice = createSlice({
       state.train = {
         direction: direction.toUpperCase(),
         departureTime: "2020-03-10T09:32:00Z", // redundant ?
-        trainCode: departureTimeCode,
+        trainCode: trainCode,
         platform: "4"
       };
       state.noData = false;
@@ -53,7 +49,7 @@ export const selectEnhancedToTheStation = state => {
   if (!state.timeTable.route || state.toTheStation.noData) return null;
 
   const nowTime = new moment.utc(new Date(state.toTheStation.currentTime));
-  const departureTimeCode = state.toTheStation.train.trainCode;
+  const trainCode = state.toTheStation.train.trainCode;
 
   const { trains } = timeTable.route;
 
@@ -63,7 +59,7 @@ export const selectEnhancedToTheStation = state => {
 
   const departureIndex = Math.max(
     trains.findIndex(
-      departure => timeCode(departure.departureTime) === departureTimeCode
+      departure => timeCode(departure.departureTime) === trainCode
     ),
     0
   );

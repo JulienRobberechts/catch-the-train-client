@@ -8,7 +8,7 @@ const CatchTrainRoutes = () => {
   // console.log("configIsValid", configIsValid);
   return (
     <Switch>
-      <Route path="/:station/:direction/:departureTimeCode">
+      <Route path="/:station/:direction/:trainCode">
         <CatchPageContainer />
       </Route>
       {!configIsValid && <Redirect to="/settings" />}
