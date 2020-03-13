@@ -4,8 +4,7 @@ import App from "./App";
 
 describe("App", () => {
   test("smoke test", () => {
-    const { getByText } = render(<App />);
-    const titleElement = getByText(/Attraper le train/i);
-    expect(titleElement).toBeInTheDocument();
+    const { getAllByText } = render(<App />);
+    getAllByText(/Attraper le train/i);
   });
 });
