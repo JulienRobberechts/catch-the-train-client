@@ -33,13 +33,15 @@ const TimeSpan = ({
     );
   }
 
+  const isZero = Math.abs(timeSpan.as("seconds")) < 1;
+
   const hours = Math.abs(timeSpan.hours());
   const minutes = Math.abs(timeSpan.minutes());
   const seconds = Math.abs(timeSpan.seconds());
 
   const showHours = hours !== 0;
   const showMinutes = minutes !== 0 || showHours;
-  const showSeconds = !showHours && !!displaySeconds;
+  const showSeconds = isZero || (seconds !== 0 && !showHours && displaySeconds);
 
   const doubleDigitHours = false;
   const doubleDigitMinutes = showHours;
