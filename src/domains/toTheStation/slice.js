@@ -15,9 +15,23 @@ export const slice = createSlice({
       state.noData = false;
     },
     chooseTrain: (state, action) => {
-      const { station, direction, departureTimeCode } = action.payload;
-      console.log({ station, direction, departureTimeCode });
-      // ...
+      const {
+        station: stationCode,
+        direction,
+        departureTimeCode
+      } = action.payload;
+      console.log({ stationCode, direction, departureTimeCode });
+      state.station = {
+        code: stationCode.toUpperCase(),
+        name: "Saint-Germain-en-Laye",
+        travelDurationSeconds: 625,
+        onTimeMarginDelaySeconds: 20
+      };
+      state.train = {
+        departureTime: "2020-03-10T09:32:00Z",
+        trainCode: "0955",
+        platform: "4"
+      };
       state.noData = false;
     },
     updateTime: (state, action) => {
@@ -32,18 +46,13 @@ export const selectNow = state => state?.toTheStation?.currentTime;
 
 export const selectToTheStation = state => state?.toTheStation;
 
-export const selectData = ({ nowTime, departureTimeCode }) => state => {
-  // As parameter ??
-  // const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
-
-  // console.log("departureTimeCode", departureTimeCode);
-
-  if (!departureTimeCode || !nowTime) return null;
-
-  // From the slice timeTable
+export const selectEnhancedToTheStation = state => {
   const { timeTable, toTheStation } = state;
 
-  if (!timeTable.route) return null;
+  if (!state.timeTable.route || state.toTheStation.noData) return null;
+
+  const nowTime = new moment.utc(new Date(state.toTheStation.currentTime));
+  const departureTimeCode = state.toTheStation.train.trainCode;
 
   const { trains } = timeTable.route;
 

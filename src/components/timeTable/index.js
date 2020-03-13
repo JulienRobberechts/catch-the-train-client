@@ -47,7 +47,7 @@ function TimeTable({ timeTable }) {
           <PreviousButton
             onClick={() => {
               const departure = trains[currentIndex - 1];
-              push(`/sg/paris/${timeCode(departure.departureTime)}`);
+              push(`/SLG/PARIS/${timeCode(departure.departureTime)}`);
             }}
           >
             <IconContainer>
@@ -67,7 +67,7 @@ function TimeTable({ timeTable }) {
             key={departure.index}
             selected={departure.index === currentIndex}
             onSelect={() => {
-              push(`/sg/paris/${timeCode(departure.departureTime)}`);
+              push(`/SGL/PARIS/${timeCode(departure.departureTime)}`);
             }}
             {...departure}
           />
@@ -77,7 +77,7 @@ function TimeTable({ timeTable }) {
             disabled={minIndex >= trains.length - 4}
             onClick={() => {
               const departure = trains[currentIndex + 1];
-              push(`/sg/paris/${timeCode(departure.departureTime)}`);
+              push(`/SGL/PARIS/${timeCode(departure.departureTime)}`);
             }}
           >
             <IconContainer>
