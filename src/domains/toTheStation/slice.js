@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { mockConfig } from "./mock";
-import { timeCode } from "../../domains/timeTable/helpers";
+import { convertToTrainCode } from "../train";
 
 export const slice = createSlice({
   name: "toTheStation",
@@ -59,7 +59,7 @@ export const selectEnhancedToTheStation = state => {
 
   const departureIndex = Math.max(
     trains.findIndex(
-      departure => timeCode(departure.departureTime) === trainCode
+      departure => convertToTrainCode(departure.departureTime) === trainCode
     ),
     0
   );

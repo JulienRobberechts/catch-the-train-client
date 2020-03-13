@@ -1,6 +1,6 @@
 import moment from "moment";
 
-export const timeCode = time => {
+export const convertToTrainCode = time => {
   // console.log("timeCode TIME ", time);
   const momentTime = new moment.utc(new Date(time));
   // console.log("timeCode", momentTime);
