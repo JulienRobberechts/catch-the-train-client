@@ -15,7 +15,7 @@ const CatchTrainRoutes = () => {
       <Route path="/:station/:direction">
         <CatchPage />
       </Route>
-      <Redirect to="/settings" />
+      <Redirect to="/start" />
     </Switch>
   );
 };

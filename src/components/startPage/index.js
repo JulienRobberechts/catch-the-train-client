@@ -20,6 +20,12 @@ const StartPage = () => {
         <AppName>'Attraper le train'</AppName>
         <RestOfPhrase>vous aide pour cela</RestOfPhrase>
       </PropositionValue>
+      <Link to="/sgl/paris">
+        <ExampleButton>
+          voir un exemple des train pour{" "}
+          <div>Saint-Germain-en-Laye > Paris</div>
+        </ExampleButton>
+      </Link>
       <Link to="/settings">
         <GoButton>Selectionnez votre train</GoButton>
       </Link>
@@ -66,6 +72,17 @@ const PropositionValue = styled.div`
   border: none;
 `;
 
+const ExampleButton = styled.button`
+  margin: 0.3rem 2rem;
+  padding: 0.7rem 1rem;
+  border-radius: 1rem;
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text.normal};
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+`;
+
 const GoButton = styled.button`
   margin: 1.3rem;
   padding: 2rem;
@@ -75,6 +92,7 @@ const GoButton = styled.button`
   font-size: 1.6rem;
   font-weight: bold;
   border: none;
+  cursor: pointer;
 `;
 
 const AppName = styled.div`
