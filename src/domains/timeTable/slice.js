@@ -42,7 +42,6 @@ export const selectEnhancedTimeTable = state => {
 
   const trains = state.timeTable.route.trains.map((t, index) => {
     const departureTime = new moment.utc(new Date(t.departureTime));
-    // const trainCode = departureTime.format("hhmm");
     const departureDuration = moment.duration(departureTime.diff(nowTime));
     const delayStatus = "early";
     return {

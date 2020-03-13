@@ -25,7 +25,7 @@ describe("train helpers", () => {
       const time = new moment.utc(new Date("2020-03-10T15:19:00Z"));
       const localTime = timeToLocal(time);
       expect(localTime.isValid()).toBeTruthy();
-      expect(localTime.creationData().isUTC).toBeFalsy();
+      expect(localTime.isUTC()).toBeFalsy();
     });
     test("should not convert an invalid time", () => {
       const time = new moment.utc(new Date("2525-25-25T25:25:25Z"));
