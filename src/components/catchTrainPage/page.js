@@ -1,25 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import { SelectData } from "./logic/selector";
+import { selectData } from "../../domains/toTheStation/slice";
 import TrainRoute from "./trainRoute";
 import TimelineVertical from "../timeline/timelineVertical";
 
 import TimeTable from "../timeTable";
 import { Helmet } from "react-helmet";
-
+import { useSelector, useDispatch } from "react-redux";
+import { selectStationCode, mock } from "../../domains/timeTable/slice";
 import { useParams } from "react-router-dom";
 
 const CatchPage = () => {
   const { station, direction, departureTimeCode } = useParams();
-  // console.log({ station, direction, departureTimeCode });
-  const data = SelectData({ departureTimeCode });
-  console.log(" data", data);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    document.title = `XXX`;
+    console.log("useEffect before mock config");
+    // dispatch(mock());
+    dispatch(mock());
+  });
+
+  const stationAvailable = useSelector(selectStationCode);
+  console.log("stationAvailable", stationAvailable);
+
+  const data = useSelector(selectData);
+  console.log("data", data);
+
+  if (!data) {
+    return (
+      <div>
+        Loading
+        <button onClick={() => dispatch(mock())}>mock</button>
+      </div>
+    );
+  }
+
   return (
     <>
       <Helmet>
-        <title>Train à Saint-Germain-en-Laye</title>
+        <title>Trains - {station}</title>
       </Helmet>
+      <button onClick={() => dispatch(mock())}>mock</button>
       <TopSection>
         <TrainRoute {...data} />
         <TimeTable {...data} />

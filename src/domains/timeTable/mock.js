@@ -1,13 +1,10 @@
-// change every 1s ===> Generated
-export const NOW_TIME_UTC_STR = "2020-03-10T09:19:56Z";
-
-// change on location - config data
-export const TRAVEL_DURATION_SEC = 10 * 60 + 25;
-
 // change every 3 mins - Server Data
-export const RAW_TIME_TABLE = {
+export const mockedRoute = {
   route: {
-    station: "Saint-Germain-en-Laye",
+    station: {
+      code: "SGL",
+      name: "Saint-Germain-en-Laye"
+    },
     direction: "Paris",
     directionsAliases: ["Paris", "Châtelet–Les Halles"],
     trains: [
