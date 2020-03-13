@@ -1,5 +1,5 @@
-import { convertToTrainCode, timeToLocal } from "./index";
 import moment from "moment";
+import { convertToTrainCode, timeToLocal, getDelayStatus } from "./index";
 
 describe("train helpers", () => {
   describe("convertToTrainCode", () => {
@@ -38,6 +38,56 @@ describe("train helpers", () => {
       timeToLocal(time);
       const formatAfter = time.format();
       expect(formatBefore).toBe(formatAfter);
+    });
+  });
+  describe("getDelayStatus", () => {
+    test("should identify an early delay", () => {
+      const delayDuration = moment.duration({
+        minutes: 2,
+        seconds: 30
+      });
+      const onTimeMarginDelaySeconds = 20;
+      const delayStatus = getDelayStatus(
+        delayDuration,
+        onTimeMarginDelaySeconds
+      );
+      expect(delayStatus).toBe("early");
+    });
+    test("should identify an late delay", () => {
+      const delayDuration = moment.duration({
+        minutes: -2,
+        seconds: 30
+      });
+      const onTimeMarginDelaySeconds = 20;
+      const delayStatus = getDelayStatus(
+        delayDuration,
+        onTimeMarginDelaySeconds
+      );
+      expect(delayStatus).toBe("late");
+    });
+    test("should identify an ontime delay of +15s", () => {
+      const delayDuration = moment.duration({
+        minutes: 0,
+        seconds: 15
+      });
+      const onTimeMarginDelaySeconds = 20;
+      const delayStatus = getDelayStatus(
+        delayDuration,
+        onTimeMarginDelaySeconds
+      );
+      expect(delayStatus).toBe("ontime");
+    });
+    test("should identify an ontime delay of -15s", () => {
+      const delayDuration = moment.duration({
+        minutes: 0,
+        seconds: -15
+      });
+      const onTimeMarginDelaySeconds = 20;
+      const delayStatus = getDelayStatus(
+        delayDuration,
+        onTimeMarginDelaySeconds
+      );
+      expect(delayStatus).toBe("ontime");
     });
   });
 });

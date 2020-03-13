@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { mockConfig } from "./mock";
 import { convertToTrainCode } from "../train";
+import { getDelayStatus } from "../train";
 
 export const slice = createSlice({
   name: "toTheStation",
@@ -122,13 +123,6 @@ const SelectTravelData = ({
     delayDuration,
     delayStatus
   };
-};
-
-const getDelayStatus = (delayDuration, onTimeMarginDelaySeconds) => {
-  const delayDurationSeconds = delayDuration.valueOf() / 1000;
-  if (delayDurationSeconds > onTimeMarginDelaySeconds) return "early";
-  if (delayDurationSeconds < -onTimeMarginDelaySeconds) return "late";
-  return "ontime";
 };
 
 export const {
