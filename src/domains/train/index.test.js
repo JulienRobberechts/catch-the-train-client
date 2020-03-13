@@ -41,14 +41,15 @@ describe("train helpers", () => {
     });
   });
   describe("getDelayStatus", () => {
+    const durationPlus2m30 = moment.duration({
+      minutes: 2,
+      seconds: 30
+    });
+
     test("should identify an early delay", () => {
-      const delayDuration = moment.duration({
-        minutes: 2,
-        seconds: 30
-      });
       const onTimeMarginDelaySeconds = 20;
       const delayStatus = getDelayStatus(
-        delayDuration,
+        durationPlus2m30,
         onTimeMarginDelaySeconds
       );
       expect(delayStatus).toBe("early");
