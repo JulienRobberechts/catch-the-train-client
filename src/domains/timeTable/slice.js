@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { mockedTimeTable } from "./mock";
+import { calculateTravelData } from "../toTheStation/slice"; // TO avoid ...
 
 export const slice = createSlice({
   name: "timeTable",
@@ -40,10 +41,25 @@ export const selectEnhancedTimeTable = state => {
   const { timeTable } = state;
   const nowTime = new moment.utc(new Date(state.toTheStation.currentTime));
 
-  const trains = state.timeTable.route.trains.map((t, index) => {
-    const departureTime = new moment.utc(new Date(t.departureTime));
+  const {
+    configuration: { waitingDelaySeconds },
+    station: { travelDurationSeconds, onTimeMarginDelaySeconds }
+  } = state.toTheStation;
+
+  const trains = state.timeTable.route.trains.map((departure, index) => {
+    const departureTime = new moment.utc(new Date(departure.departureTime));
     const departureDuration = moment.duration(departureTime.diff(nowTime));
-    const delayStatus = "early";
+
+    const { delayStatus } = calculateTravelData({
+      nowTime,
+      departure,
+      travelDurationSeconds,
+      waitingDelaySeconds,
+      onTimeMarginDelaySeconds
+    });
+
+    // const delayStatus = "ontime";
+    // getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
     return {
       index,
       departureTime,

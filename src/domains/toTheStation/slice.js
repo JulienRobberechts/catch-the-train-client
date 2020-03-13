@@ -76,7 +76,7 @@ export const selectEnhancedToTheStation = state => {
     station: { travelDurationSeconds, onTimeMarginDelaySeconds }
   } = toTheStation;
 
-  const travelData = SelectTravelData({
+  const travelData = calculateTravelData({
     nowTime,
     departure,
     waitingDelaySeconds,
@@ -87,7 +87,7 @@ export const selectEnhancedToTheStation = state => {
   return { ...travelData };
 };
 
-const SelectTravelData = ({
+export const calculateTravelData = ({
   nowTime,
   departure,
   travelDurationSeconds,
