@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+const twoDigits = number =>
+  number.toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  });
+
 const TimeSpan = ({
   timeSpan,
   displaySeconds = true,
@@ -10,27 +16,41 @@ const TimeSpan = ({
   const negative = totalMilliseconds < 0;
   const positive = totalMilliseconds > 0;
 
+  const hours = Math.abs(timeSpan.hours());
   const minutes = Math.abs(timeSpan.minutes());
   const seconds = Math.abs(timeSpan.seconds());
+
+  const showHours = hours !== 0;
+  const showMinutes = minutes !== 0;
+  const showSeconds = !showHours && !!displaySeconds;
+
+  const doubleDigitHours = false;
+  const doubleDigitMinutes = showHours;
+  const doubleDigitSeconds = showMinutes;
+
+  const hoursStr = doubleDigitHours ? twoDigits(hours) : hours;
+  const minutesStr = doubleDigitMinutes ? twoDigits(minutes) : minutes;
+  const secondsStr = doubleDigitSeconds ? twoDigits(seconds) : seconds;
 
   return (
     <Panel>
       {negative && <Sign>-</Sign>}
       {displayPositiveSign && positive && <Sign>+</Sign>}
-      {minutes !== 0 && (
+      {showHours && (
         <>
-          <NumberText>{minutes}</NumberText>
+          <NumberText>{hoursStr}</NumberText>
+          <SymbolText>h</SymbolText>
+        </>
+      )}
+      {showMinutes && (
+        <>
+          <NumberText>{minutesStr}</NumberText>
           <SymbolText>min</SymbolText>
         </>
       )}
-      {displaySeconds && (
+      {showSeconds && (
         <>
-          <NumberText>
-            {seconds.toLocaleString("en-US", {
-              minimumIntegerDigits: 2,
-              useGrouping: false
-            })}
-          </NumberText>
+          <NumberText>{secondsStr}</NumberText>
           <SymbolText>s</SymbolText>
         </>
       )}
@@ -48,6 +68,7 @@ const NumberText = styled.span`
 
 const SymbolText = styled.span`
   margin: 0 0.05rem;
+  font-weight: 500;
 `;
 
 const Sign = styled.span`
