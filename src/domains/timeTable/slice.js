@@ -10,11 +10,12 @@ export const slice = createSlice({
   initialState,
   reducers: {
     reset: state => {
-      state = initialState;
+      Object.assign(state, initialState);
     },
     mockTimeTable: state => {
       state.lastUpdate = moment.parseZone().format();
       state.route = mockedTimeTable.route;
+      state.noData = false;
     },
     update: (state, action) => {
       const { route } = action.payload;

@@ -4,12 +4,14 @@ import { mockConfig } from "./mock";
 import { convertToTrainCode } from "../train";
 import { getDelayStatus } from "../train";
 
+export const initialState = { noData: true };
+
 export const slice = createSlice({
   name: "toTheStation",
-  initialState: { noData: true },
+  initialState,
   reducers: {
     reset: state => {
-      state = {};
+      Object.assign(state, initialState);
     },
     mockToTheStation: state => {
       Object.assign(state, mockConfig);

@@ -29,7 +29,7 @@ describe("slice timeTable", () => {
       const timeTable = reducer(initialState, mockTimeTable());
       rootState = { timeTable };
     });
-    it("selectConfigIsValid should return 'true'", () => {
+    it("'selectConfigIsValid' should return 'true'", () => {
       expect(selectConfigIsValid(rootState)).toEqual(true);
     });
     it("'selectStationCode' should return '0924'", () => {
