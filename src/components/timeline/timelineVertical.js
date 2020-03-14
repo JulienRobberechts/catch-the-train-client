@@ -14,14 +14,9 @@ import {
   selectEnhancedToTheStation,
   selectToTheStation
 } from "../../domains/toTheStation/slice";
-import moment from "moment";
 
 const TimelineVertical = () => {
-  const toTheStation = useSelector(selectToTheStation);
-
-  // parameters
-  const trainCode = toTheStation?.train.trainCode;
-  const nowTime = new moment.utc(new Date("2020-03-10T09:19:56Z"));
+  // const toTheStation = useSelector(selectToTheStation);
 
   const data = useSelector(selectEnhancedToTheStation);
 

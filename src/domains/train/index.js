@@ -1,12 +1,8 @@
 import moment from "moment";
 
 export const convertToTrainCode = timeString => {
-  const momentTime = new moment.utc(new Date(timeString));
-  return timeToLocal(momentTime).format("kkmm");
-};
-
-export const timeToLocal = timeMoment => {
-  return timeMoment.clone().local("fr");
+  const momentTime = moment.parseZone(timeString);
+  return momentTime.format("kkmm");
 };
 
 export const getDelayStatus = (delayDuration, onTimeMarginDelaySeconds) => {

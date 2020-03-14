@@ -26,7 +26,7 @@ export const slice = createSlice({
       };
       state.train = {
         direction: direction.toUpperCase(),
-        departureTime: "2020-03-10T09:32:00Z", // redundant ?
+        departureTime: "2020-03-10T09:32:00+01:00",
         trainCode: trainCode,
         platform: "4"
       };
@@ -49,7 +49,7 @@ export const selectEnhancedToTheStation = state => {
 
   if (!state.timeTable.route || state.toTheStation.noData) return null;
 
-  const nowTime = new moment.utc(new Date(state.toTheStation.currentTime));
+  const nowTime = moment.parseZone(state.toTheStation.currentTime);
   const trainCode = state.toTheStation.train.trainCode;
 
   const { trains } = timeTable.route;
@@ -94,7 +94,7 @@ export const calculateTravelData = ({
   waitingDelaySeconds,
   onTimeMarginDelaySeconds
 }) => {
-  const targetTime = new moment.utc(new Date(departure.departureTime));
+  const targetTime = moment.parseZone(departure.departureTime);
 
   const targetDuration = moment.duration(targetTime.diff(nowTime));
 

@@ -11,12 +11,12 @@ export const slice = createSlice({
       state = {};
     },
     mockTimeTable: state => {
-      state.lastUpdate = new moment.utc().format();
+      state.lastUpdate = moment.parseZone().format();
       state.route = mockedTimeTable.route;
     },
     update: (state, action) => {
       const { route } = action.payload;
-      state.lastUpdate = new moment.utc();
+      state.lastUpdate = moment.parseZone();
       state.route = route;
     }
   }
@@ -39,7 +39,7 @@ export const selectEnhancedTimeTable = state => {
   if (!state.timeTable.route || state.toTheStation.noData) return null;
 
   const { timeTable } = state;
-  const nowTime = new moment.utc(new Date(state.toTheStation.currentTime));
+  const nowTime = moment.parseZone(state.toTheStation.currentTime);
 
   const {
     configuration: { waitingDelaySeconds },
@@ -47,7 +47,7 @@ export const selectEnhancedTimeTable = state => {
   } = state.toTheStation;
 
   const trains = state.timeTable.route.trains.map((departure, index) => {
-    const departureTime = new moment.utc(new Date(departure.departureTime));
+    const departureTime = moment.parseZone(departure.departureTime);
     const departureDuration = moment.duration(departureTime.diff(nowTime));
 
     const { delayStatus } = calculateTravelData({
