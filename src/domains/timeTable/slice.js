@@ -3,12 +3,14 @@ import moment from "moment";
 import { mockedTimeTable } from "./mock";
 import { calculateTravelData } from "../toTheStation/slice"; // TO avoid ...
 
+export const initialState = { noData: true };
+
 export const slice = createSlice({
   name: "timeTable",
-  initialState: { noData: true },
+  initialState,
   reducers: {
     reset: state => {
-      state = {};
+      state = initialState;
     },
     mockTimeTable: state => {
       state.lastUpdate = moment.parseZone().format();
@@ -23,7 +25,7 @@ export const slice = createSlice({
 });
 
 export const selectConfigIsValid = state => {
-  return true;
+  return !!state?.timeTable.route?.station?.code;
 };
 
 export const selectStationCode = state => {
