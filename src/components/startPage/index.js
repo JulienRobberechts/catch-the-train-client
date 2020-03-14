@@ -38,10 +38,13 @@ const Panel = styled.div`
   text-align: center;
 
   font-family: azo-sans-web, Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const Need = styled.div`
-  margin: 1rem 0;
+  margin: 0.8rem 0;
   font-size: 1.2rem;
 `;
 
@@ -63,8 +66,8 @@ const Verb3 = styled(Verb)`
 `;
 
 const PropositionValue = styled.div`
-  margin: 1.3rem;
-  padding: 2rem;
+  margin: 1rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   color: ${() => colors.dark.text.highlight};
   font-size: 1.6rem;
