@@ -1,24 +1,25 @@
 import moment from "moment";
 import { convertToTrainCode, timeToLocal, getDelayStatus } from "./index";
+import each from "jest-each";
 
 describe("train helpers", () => {
   describe("convertToTrainCode", () => {
-    test("should convert valid string", () => {
-      const trainCode = convertToTrainCode("2020-03-10T09:19:56Z");
-      expect(trainCode).toBe("1019");
-    });
-    test("should convert valid string", () => {
-      const trainCode = convertToTrainCode("2020-03-10T15:00:00Z");
-      expect(trainCode).toBe("1600");
-    });
-    test("should convert valid string GMT+1", () => {
-      const trainCode = convertToTrainCode("2020-03-10T15:00:00+01:00");
-      expect(trainCode).toBe("1500");
-    });
-    test("should not convert invalid string", () => {
-      const trainCode = convertToTrainCode("XXX");
-      expect(trainCode).toBe("Invalid date");
-    });
+    each([
+      ["-29:00:01", "J-1"],
+      ["2020-03-10T09:19:56Z", "0919"],
+      ["2020-03-10T15:20:00Z", "1520"],
+      ["2020-03-10T00:00:00Z", "2400"],
+      ["2020-03-10T12:00:00Z", "1200"],
+      ["2020-03-10T15:00:00+01:00", "1400"],
+      ["2020-25-25", "Invalid date"],
+      ["XXX", "Invalid date"]
+    ]).test(
+      "should convert valid string '%s' into '%s'",
+      (time, expectedTrainCode) => {
+        const trainCode = convertToTrainCode(time);
+        expect(trainCode).toBe(expectedTrainCode);
+      }
+    );
   });
   describe("timeToLocal", () => {
     test("should convert a valid time", () => {

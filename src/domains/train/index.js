@@ -6,7 +6,7 @@ export const convertToTrainCode = timeString => {
 };
 
 export const timeToLocal = timeMoment => {
-  return timeMoment.clone().local();
+  return timeMoment.clone().local("fr");
 };
 
 export const getDelayStatus = (delayDuration, onTimeMarginDelaySeconds) => {
