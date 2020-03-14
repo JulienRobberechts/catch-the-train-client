@@ -9,35 +9,34 @@ import reducer, {
 
 describe("slice timeTable", () => {
   describe("initial state", () => {
+    const rootState = { timeTable: initialState };
     it("'selectConfigIsValid' should return falsy", () => {
-      const rootState = { timeTable: initialState };
       expect(selectConfigIsValid(rootState)).toBeFalsy();
     });
     it("'selectStationCode' should return falsy", () => {
-      const rootState = { timeTable: initialState };
       expect(selectStationCode(rootState)).toBeFalsy();
     });
     it("'selectRoute' should return falsy", () => {
-      const rootState = { timeTable: initialState };
       expect(selectRoute(rootState)).toBeFalsy();
     });
     it("'selectEnhancedTimeTable' should return falsy", () => {
-      const rootState = { timeTable: initialState };
       expect(selectEnhancedTimeTable(rootState)).toBeFalsy();
     });
   });
   describe("after 'mockTimeTable' action, state", () => {
-    it("selectConfigIsValid should return 'true'", () => {
+    let rootState;
+    beforeEach(() => {
       const timeTable = reducer(initialState, mockTimeTable());
-      expect(selectConfigIsValid({ timeTable })).toEqual(true);
+      rootState = { timeTable };
+    });
+    it("selectConfigIsValid should return 'true'", () => {
+      expect(selectConfigIsValid(rootState)).toEqual(true);
     });
     it("'selectStationCode' should return '0924'", () => {
-      const timeTable = reducer(initialState, mockTimeTable());
-      expect(selectStationCode({ timeTable })).toEqual("SGL");
+      expect(selectStationCode(rootState)).toEqual("SGL");
     });
     it("'selectRoute' should return data", () => {
-      const timeTable = reducer(initialState, mockTimeTable());
-      const result = selectRoute({ timeTable });
+      const result = selectRoute(rootState);
       expect(result).toEqual(expect.anything());
       expect(result).toEqual(
         expect.objectContaining({
@@ -62,10 +61,10 @@ describe("slice timeTable", () => {
         ])
       );
     });
-    it("'selectEnhancedTimeTable' should return data", () => {
-      const timeTable = reducer(initialState, mockTimeTable());
-      // it depends on the other slice as well!
-      // expect(selectEnhancedTimeTable({ timeTable })).toBeFalsy();
-    });
+    // it("'selectEnhancedTimeTable' should return data", () => {
+    //   const timeTable = reducer(initialState, mockTimeTable());
+    //   // it depends on the other slice as well!
+    //   expect(selectEnhancedTimeTable(rootState)).toBeFalsy();
+    // });
   });
 });
