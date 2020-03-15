@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import {
   selectEnhancedToTheStation,
   selectToTheStation
-} from "../../domains/toTheStation/slice";
+} from "../../domains/toTheStation/selectors";
 
 const TimelineVertical = () => {
   // const toTheStation = useSelector(selectToTheStation);

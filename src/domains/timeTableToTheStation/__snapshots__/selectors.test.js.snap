@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`slice timeTable after 'mockTimeTable' action, state 'selectEnhancedTimeTable' should return data 1`] = `
+Object {
+  "route": Object {
+    "direction": "Paris",
+    "directionsAliases": Array [
+      "Paris",
+      "Châtelet–Les Halles",
+    ],
+    "station": Object {
+      "code": "SGL",
+      "name": "Saint-Germain-en-Laye",
+    },
+    "trains": Array [
+      Object {
+        "departureTime": "2020-03-10T09:24:00+01:00",
+        "platform": "2",
+      },
+      Object {
+        "departureTime": "2020-03-10T09:32:00+01:00",
+        "platform": "4",
+      },
+      Object {
+        "departureTime": "2020-03-10T09:43:00+01:00",
+        "platform": "2",
+      },
+      Object {
+        "departureTime": "2020-03-10T09:55:00+01:00",
+        "platform": "4",
+      },
+      Object {
+        "departureTime": "2020-03-10T10:05:00+01:00",
+        "platform": "4",
+      },
+      Object {
+        "departureTime": "2020-03-10T10:21:00+01:00",
+        "platform": "2",
+      },
+      Object {
+        "departureTime": "2020-03-11T12:12:00+01:00",
+        "platform": "2",
+      },
+    ],
+  },
+  "trains": Array [
+    Object {
+      "delayStatus": "late",
+      "departureDuration": "PT4M4S",
+      "departureTime": "2020-03-10T08:24:00.000Z",
+      "index": 0,
+    },
+    Object {
+      "delayStatus": "ontime",
+      "departureDuration": "PT12M4S",
+      "departureTime": "2020-03-10T08:32:00.000Z",
+      "index": 1,
+    },
+    Object {
+      "delayStatus": "early",
+      "departureDuration": "PT23M4S",
+      "departureTime": "2020-03-10T08:43:00.000Z",
+      "index": 2,
+    },
+    Object {
+      "delayStatus": "early",
+      "departureDuration": "PT35M4S",
+      "departureTime": "2020-03-10T08:55:00.000Z",
+      "index": 3,
+    },
+    Object {
+      "delayStatus": "early",
+      "departureDuration": "PT45M4S",
+      "departureTime": "2020-03-10T09:05:00.000Z",
+      "index": 4,
+    },
+    Object {
+      "delayStatus": "early",
+      "departureDuration": "PT1H1M4S",
+      "departureTime": "2020-03-10T09:21:00.000Z",
+      "index": 5,
+    },
+    Object {
+      "delayStatus": "early",
+      "departureDuration": "PT26H52M4S",
+      "departureTime": "2020-03-11T11:12:00.000Z",
+      "index": 6,
+    },
+  ],
+}
+`;

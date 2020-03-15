@@ -3,8 +3,7 @@ import reducer, {
   mockTimeTable,
   selectConfigIsValid,
   selectStationCode,
-  selectRoute,
-  selectEnhancedTimeTable
+  selectRoute
 } from "./slice";
 
 describe("slice timeTable", () => {
@@ -18,9 +17,6 @@ describe("slice timeTable", () => {
     });
     it("'selectRoute' should return falsy", () => {
       expect(selectRoute(rootState)).toBeFalsy();
-    });
-    it("'selectEnhancedTimeTable' should return falsy", () => {
-      expect(selectEnhancedTimeTable(rootState)).toBeFalsy();
     });
   });
   describe("after 'mockTimeTable' action, state", () => {
@@ -61,10 +57,5 @@ describe("slice timeTable", () => {
         ])
       );
     });
-    // it("'selectEnhancedTimeTable' should return data", () => {
-    //   const timeTable = reducer(initialState, mockTimeTable());
-    //   // it depends on the other slice as well!
-    //   expect(selectEnhancedTimeTable(rootState)).toBeFalsy();
-    // });
   });
 });

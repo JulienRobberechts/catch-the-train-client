@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { mockedTimeTable } from "./mock";
-import { calculateTravelData } from "../toTheStation/slice"; // TO avoid ...
 
 export const initialState = { noData: true };
 
@@ -35,44 +34,6 @@ export const selectStationCode = state => {
 
 export const selectRoute = state => {
   return state?.timeTable?.route;
-};
-
-// Be careful with change of references!!!
-export const selectEnhancedTimeTable = state => {
-  if (!state.timeTable.route || state.toTheStation.noData) return null;
-
-  const { timeTable } = state;
-  const nowTime = moment.parseZone(state.toTheStation.currentTime);
-
-  const {
-    configuration: { waitingDelaySeconds },
-    station: { travelDurationSeconds, onTimeMarginDelaySeconds }
-  } = state.toTheStation;
-
-  const trains = state.timeTable.route.trains.map((departure, index) => {
-    const departureTime = moment.parseZone(departure.departureTime);
-    const departureDuration = moment.duration(departureTime.diff(nowTime));
-
-    const { delayStatus } = calculateTravelData({
-      nowTime,
-      departure,
-      travelDurationSeconds,
-      waitingDelaySeconds,
-      onTimeMarginDelaySeconds
-    });
-
-    // const delayStatus = "ontime";
-    // getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
-    return {
-      index,
-      departureTime,
-      // trainCode,
-      departureDuration,
-      delayStatus
-    };
-  });
-
-  return { route: timeTable.route, trains };
 };
 
 export const { reset, mockTimeTable, update } = slice.actions;

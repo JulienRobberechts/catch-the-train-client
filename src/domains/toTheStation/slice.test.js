@@ -1,9 +1,6 @@
-import reducer, {
-  initialState,
-  mockToTheStation,
-  selectNow,
-  selectToTheStation
-} from "./slice";
+import reducer, { initialState, mockToTheStation } from "./slice";
+
+import { selectNow, selectToTheStation } from "./selectors";
 
 describe("slice toTheStation", () => {
   describe("initial state", () => {
