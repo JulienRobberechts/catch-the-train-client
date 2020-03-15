@@ -18,11 +18,17 @@ describe("time helpers", () => {
       }
     );
 
-    test("should detect invalid time duration", () => {
-      const durationA = moment.duration("00:02:00");
-      const durationB = moment.duration("10 minutes environ");
-      const actualPercentage = getDurationPercentage(durationA, durationB);
-      // TO CHECK ...
-    });
+    each([
+      [moment.duration("00:02:00"), "10 minutes", Number.NaN],
+      [null, moment.duration("00:02:00"), Number.NaN],
+      [moment.duration("00:00:00"), moment.duration("00:00:00"), Number.NaN],
+      [moment.duration("00:05:00"), moment.duration("00:00:00"), Infinity]
+    ]).test(
+      "should handle edge cases '%s' / '%s' = %s%",
+      (durationA, durationB, expectedResult) => {
+        const actualPercentage = getDurationPercentage(durationA, durationB);
+        expect(actualPercentage).toBe(expectedResult);
+      }
+    );
   });
 });
