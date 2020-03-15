@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`train helpers getDelay should identify an late delay 1`] = `
-Object {
-  "delayDuration": "PT1M",
-  "targetDuration": "PT11M",
-}
-`;
