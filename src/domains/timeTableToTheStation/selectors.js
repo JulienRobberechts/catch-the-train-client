@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getDelay } from "../toTheStation/pure";
+import { getDelay, getDelayStatus } from "../toTheStation/pure";
 
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
@@ -27,13 +27,13 @@ export const selectEnhancedTimeTable = state => {
       seconds: waitingDelaySeconds
     });
 
-    const { targetDuration, delayDuration, delayStatus } = getDelay({
+    const { targetDuration, delayDuration } = getDelay({
       nowTime,
       targetTime,
       travelDuration,
-      waitingDuration,
-      onTimeMarginDelaySeconds
+      waitingDuration
     });
+    const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
 
     return {
       index,

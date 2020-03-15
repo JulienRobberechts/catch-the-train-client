@@ -5,8 +5,7 @@ export default function getDelay({
   nowTime,
   targetTime,
   travelDuration,
-  waitingDuration,
-  onTimeMarginDelaySeconds
+  waitingDuration
 }) {
   const targetDuration = moment.duration(targetTime.diff(nowTime));
 
@@ -15,11 +14,8 @@ export default function getDelay({
   delayDuration.subtract(travelDuration);
   delayDuration.subtract(waitingDuration);
 
-  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
-
   return {
     targetDuration,
-    delayDuration,
-    delayStatus
+    delayDuration
   };
 }
