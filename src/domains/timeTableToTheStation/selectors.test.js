@@ -3,19 +3,12 @@ import timeTableReducer, {
   mockTimeTable
 } from "../timeTable/slice";
 
-import {
-  selectConfigIsValid,
-  selectStationCode,
-  selectRoute,
-  selectEnhancedTimeTable
-} from "../timeTable/selectors";
-
 import toTheStationReducer, {
   initialState as toTheStationInitialState,
   mockToTheStation
 } from "../toTheStation/slice";
 
-import { selectNow, selectToTheStation } from "../toTheStation/selectors";
+import { selectEnhancedTimeTable } from "./selectors";
 
 describe("slice timeTable", () => {
   describe("initial state", () => {

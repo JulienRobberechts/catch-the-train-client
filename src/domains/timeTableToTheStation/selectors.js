@@ -1,21 +1,43 @@
-import timeTableReducer, {
-  initialState as timeTableInitialState,
-  mockTimeTable
-} from "../timeTable/slice";
+import moment from "moment";
+import { calculateTravelData } from "../toTheStation/pure";
 
-import {
-  selectConfigIsValid,
-  selectStationCode,
-  selectRoute,
-  selectEnhancedTimeTable
-} from "../timeTable/selectors";
+// Be careful with change of references!!!
+export const selectEnhancedTimeTable = state => {
+  if (!state.timeTable.route || state.toTheStation.noData) return null;
 
-import toTheStationReducer, {
-  initialState as toTheStationInitialState,
-  mockToTheStation
-} from "../toTheStation/slice";
+  const { timeTable } = state;
+  const nowTime = moment.parseZone(state.toTheStation.currentTime);
 
-import { selectNow, selectToTheStation } from "../toTheStation/selectors";
+  const {
+    configuration: { waitingDelaySeconds },
+    station: { travelDurationSeconds, onTimeMarginDelaySeconds }
+  } = state.toTheStation;
+
+  const trains = state.timeTable.route.trains.map((departure, index) => {
+    const departureTime = moment.parseZone(departure.departureTime);
+    const departureDuration = moment.duration(departureTime.diff(nowTime));
+
+    const { delayStatus } = calculateTravelData({
+      nowTime,
+      departure,
+      travelDurationSeconds,
+      waitingDelaySeconds,
+      onTimeMarginDelaySeconds
+    });
+
+    // const delayStatus = "ontime";
+    // getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
+    return {
+      index,
+      departureTime,
+      // trainCode,
+      departureDuration,
+      delayStatus
+    };
+  });
+
+  return { route: timeTable.route, trains };
+};
 
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
