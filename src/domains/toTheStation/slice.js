@@ -16,7 +16,7 @@ export const slice = createSlice({
     },
     chooseTrain: (state, action) => {
       const { stationCode, direction, trainCode } = action.payload;
-      console.log({ stationCode, direction, trainCode });
+      // console.log({ stationCode, direction, trainCode });
       state.station = {
         code: stationCode.toUpperCase(),
         name: "Saint-Germain-en-Laye",
@@ -24,10 +24,7 @@ export const slice = createSlice({
         onTimeMarginDelaySeconds: 20
       };
       state.train = {
-        direction: direction.toUpperCase(),
-        departureTime: "2020-03-10T09:32:00+01:00",
-        trainCode: trainCode,
-        platform: "4"
+        trainCode
       };
       state.noData = false;
     },

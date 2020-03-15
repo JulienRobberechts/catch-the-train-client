@@ -6,9 +6,7 @@ import { fontColorForDelayStatus } from "../delayDesign";
 
 import { Break } from "../../design/icons";
 
-const DelayBox = data => {
-  // console.log("data", data);
-  const { delayDuration, delayStatus, largeSpace } = data;
+const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
   const delayStatusText = textForDelayStatus(delayStatus);
 
   return (

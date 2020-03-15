@@ -7,9 +7,7 @@ export const mockConfig = {
     onTimeMarginDelaySeconds: 20
   },
   train: {
-    departureTime: "2020-03-10T09:32:00+01:00",
-    trainCode: "0932",
-    platform: "4"
+    trainCode: "0932"
   },
   configuration: {
     waitingDelaySeconds: 100,

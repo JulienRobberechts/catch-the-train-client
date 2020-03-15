@@ -4,7 +4,7 @@ import { colors } from "../../design/colors";
 import { Time } from "../time";
 import { Clock } from "../../design/icons";
 
-const NowBox = data => {
+const NowBox = ({ nowTime }) => {
   // console.log("data", data);
   return (
     <Box>
@@ -16,7 +16,7 @@ const NowBox = data => {
           <Clock />
         </IconContainer>
         <TimeBigStyle>
-          <Time time={data.nowTime} displaySeconds />
+          <Time time={nowTime} displaySeconds />
         </TimeBigStyle>
       </Row2>
     </Box>

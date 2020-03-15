@@ -16,18 +16,19 @@ import {
 } from "../../domains/toTheStation/selectors";
 
 const TimelineVertical = () => {
-  // const toTheStation = useSelector(selectToTheStation);
-
   const data = useSelector(selectEnhancedToTheStation);
 
   if (!data) {
     return <div>...</div>;
   }
+
   const {
     travelDuration,
     waitingDuration,
     delayDuration,
-    targetDuration
+    targetDuration,
+    targetTime,
+    delayStatus
   } = data;
 
   const getSizeRatio = getSizeRatioFor(targetDuration);
@@ -39,7 +40,10 @@ const TimelineVertical = () => {
     <TwoColumnLayout>
       <ColumnLeft>
         <TimeColumnLayout>
-          <DepartureBox {...data} />
+          <DepartureBox
+            targetTime={targetTime}
+            targetDuration={targetDuration}
+          />
           <NowBox {...data} />
         </TimeColumnLayout>
       </ColumnLeft>
@@ -54,13 +58,23 @@ const TimelineVertical = () => {
       <ColumnRight>
         <DurationColumnLayout>
           <DelayBoxLayout percentage={delayDurationPercentage}>
-            <DelayBox {...data} largeSpace={delayDurationPercentage > 25} />
+            <DelayBox
+              delayDuration={delayDuration}
+              delayStatus={delayStatus}
+              largeSpace={delayDurationPercentage > 25}
+            />
           </DelayBoxLayout>
           <WaitingBoxLayout percentage={waitingDurationPercentage}>
-            <WaitingBox {...data} largeSpace={waitingDurationPercentage > 25} />
+            <WaitingBox
+              waitingDuration={waitingDuration}
+              largeSpace={waitingDurationPercentage > 25}
+            />
           </WaitingBoxLayout>
           <TravelBoxLayout percentage={travelDurationPercentage}>
-            <TravelBox {...data} largeSpace={travelDurationPercentage > 30} />
+            <TravelBox
+              travelDuration={travelDuration}
+              largeSpace={travelDurationPercentage > 30}
+            />
           </TravelBoxLayout>
         </DurationColumnLayout>
       </ColumnRight>
