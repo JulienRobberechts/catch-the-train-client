@@ -39,13 +39,30 @@ export const selectEnhancedToTheStation = state => {
     station: { travelDurationSeconds, onTimeMarginDelaySeconds }
   } = toTheStation;
 
-  const travelData = calculateTravelData({
+  const travelDuration = moment.duration({
+    seconds: travelDurationSeconds
+  });
+  const waitingDuration = moment.duration({
+    seconds: waitingDelaySeconds
+  });
+  const targetTime = moment.parseZone(departure.departureTime);
+
+  const { targetDuration, delayDuration, delayStatus } = calculateTravelData({
     nowTime,
-    departure,
-    waitingDelaySeconds,
-    travelDurationSeconds,
+    targetTime,
+    travelDuration,
+    waitingDuration,
     onTimeMarginDelaySeconds
   });
   // console.log({ travelData });
-  return { ...travelData };
+  return {
+    route: departure.route,
+    nowTime,
+    targetDuration,
+    targetTime,
+    travelDuration,
+    waitingDuration,
+    delayDuration,
+    delayStatus
+  };
 };

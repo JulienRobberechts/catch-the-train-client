@@ -6,23 +6,25 @@ describe("train helpers", () => {
   describe("calculateTravelData", () => {
     test("should identify an late delay", () => {
       const nowTime = moment.parseZone("2020-03-10T09:00:00+01:00");
-      const departure = { departureTime: "2020-03-10T09:11:00+01:00" };
-      const travelDurationSeconds = 8 * 60;
-      const waitingDelaySeconds = 120;
+      const targetTime = moment.parseZone("2020-03-10T09:11:00+01:00");
+      const travelDuration = moment.duration("00:08:00");
+      const waitingDuration = moment.duration("00:02:00");
       const onTimeMarginDelaySeconds = 30;
 
       const result = calculateTravelData({
         nowTime,
-        departure,
-        travelDurationSeconds,
-        waitingDelaySeconds,
+        targetTime,
+        travelDuration,
+        waitingDuration,
         onTimeMarginDelaySeconds
       });
 
       expect(result).toEqual(expect.anything());
-      expect(result).toMatchSnapshot();
-
-      expect(result.delayDuration.asSeconds()).toEqual(60);
+      // expect(result).toMatchSnapshot();
+      const { targetDuration, delayDuration, delayStatus } = result;
+      expect(targetDuration.asSeconds()).toEqual(60 * 11);
+      expect(delayDuration.asSeconds()).toEqual(60 * 1);
+      expect(delayStatus).toEqual("early");
     });
   });
 });

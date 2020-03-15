@@ -3,22 +3,12 @@ import getDelayStatus from "./getDelayStatus";
 
 export default function calculateTravelData({
   nowTime,
-  departure,
-  travelDurationSeconds,
-  waitingDelaySeconds,
+  targetTime,
+  travelDuration,
+  waitingDuration,
   onTimeMarginDelaySeconds
 }) {
-  const targetTime = moment.parseZone(departure.departureTime);
-
   const targetDuration = moment.duration(targetTime.diff(nowTime));
-
-  const travelDuration = moment.duration({
-    seconds: travelDurationSeconds
-  });
-
-  const waitingDuration = moment.duration({
-    seconds: waitingDelaySeconds
-  });
 
   // positive will be early and negative late
   const delayDuration = targetDuration.clone();
@@ -28,12 +18,7 @@ export default function calculateTravelData({
   const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
 
   return {
-    route: departure.route,
-    nowTime,
     targetDuration,
-    targetTime,
-    travelDuration,
-    waitingDuration,
     delayDuration,
     delayStatus
   };

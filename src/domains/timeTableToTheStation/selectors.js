@@ -1,6 +1,9 @@
 import moment from "moment";
 import { calculateTravelData } from "../toTheStation/pure";
 
+// those selectors are a mashup of timeTable and toTheStation
+// in order to provide a ready to use selectors for the timeLine component.
+
 // Be careful with change of references!!!
 export const selectEnhancedTimeTable = state => {
   if (!state.timeTable.route || state.toTheStation.noData) return null;
@@ -16,28 +19,31 @@ export const selectEnhancedTimeTable = state => {
   const trains = state.timeTable.route.trains.map((departure, index) => {
     const departureTime = moment.parseZone(departure.departureTime);
     const departureDuration = moment.duration(departureTime.diff(nowTime));
+    const targetTime = moment.parseZone(departure.departureTime);
+    const travelDuration = moment.duration({
+      seconds: travelDurationSeconds
+    });
+    const waitingDuration = moment.duration({
+      seconds: waitingDelaySeconds
+    });
 
-    const { delayStatus } = calculateTravelData({
+    const { targetDuration, delayDuration, delayStatus } = calculateTravelData({
       nowTime,
-      departure,
-      travelDurationSeconds,
-      waitingDelaySeconds,
+      targetTime,
+      travelDuration,
+      waitingDuration,
       onTimeMarginDelaySeconds
     });
 
-    // const delayStatus = "ontime";
-    // getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
     return {
       index,
       departureTime,
-      // trainCode,
       departureDuration,
+      targetDuration,
+      delayDuration,
       delayStatus
     };
   });
 
   return { route: timeTable.route, trains };
 };
-
-// those selectors are a mashup of timeTable and toTheStation
-// in order to provide a ready to use selectors for the timeLine component.
