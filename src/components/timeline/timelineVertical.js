@@ -7,8 +7,8 @@ import WaitingBox from "./waitingBox";
 import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
+import { getSizeRatioFor } from "./pure";
 
-import { getDurationPercentage } from "../../domains/toTheStation/pure";
 import { useSelector } from "react-redux";
 import {
   selectEnhancedToTheStation,
@@ -30,24 +30,11 @@ const TimelineVertical = () => {
     targetDuration
   } = data;
 
-  const getSizePercentage = duration => {
-    const sizePercentage = getDurationPercentage(duration, targetDuration);
+  const getSizeRatio = getSizeRatioFor(targetDuration);
+  const travelDurationPercentage = getSizeRatio(travelDuration);
+  const waitingDurationPercentage = getSizeRatio(waitingDuration);
+  const delayDurationPercentage = getSizeRatio(delayDuration);
 
-    if (isNaN(sizePercentage)) {
-      return 0;
-    }
-    if (sizePercentage < 0) {
-      return 0;
-    }
-    if (isFinite(sizePercentage)) {
-      return sizePercentage;
-    }
-    return 100;
-  };
-
-  const travelDurationPercentage = getSizePercentage(travelDuration);
-  const waitingDurationPercentage = getSizePercentage(waitingDuration);
-  const delayDurationPercentage = getSizePercentage(delayDuration);
   return (
     <TwoColumnLayout>
       <ColumnLeft>
