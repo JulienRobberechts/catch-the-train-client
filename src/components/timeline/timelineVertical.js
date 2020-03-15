@@ -30,23 +30,24 @@ const TimelineVertical = () => {
     targetDuration
   } = data;
 
-  const travelDurationPercentage = getDurationPercentage(
-    travelDuration,
-    targetDuration
-  );
-  const waitingDurationPercentage = getDurationPercentage(
-    waitingDuration,
-    targetDuration
-  );
-  const delayDurationPercentage = getDurationPercentage(
-    delayDuration,
-    targetDuration
-  );
-  // console.log({
-  //   travelDurationPercentage,
-  //   waitingDurationPercentage,
-  //   delayDurationPercentage
-  // });
+  const getSizePercentage = duration => {
+    const sizePercentage = getDurationPercentage(duration, targetDuration);
+
+    if (isNaN(sizePercentage)) {
+      return 0;
+    }
+    if (sizePercentage < 0) {
+      return 0;
+    }
+    if (isFinite(sizePercentage)) {
+      return sizePercentage;
+    }
+    return 100;
+  };
+
+  const travelDurationPercentage = getSizePercentage(travelDuration);
+  const waitingDurationPercentage = getSizePercentage(waitingDuration);
+  const delayDurationPercentage = getSizePercentage(delayDuration);
   return (
     <TwoColumnLayout>
       <ColumnLeft>
