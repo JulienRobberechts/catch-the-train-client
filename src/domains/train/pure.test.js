@@ -1,5 +1,5 @@
 import moment from "moment";
-import { convertToTrainCode, getDelayStatus } from "./index";
+import { convertToTrainCode, getDelayStatus } from "./pure";
 import each from "jest-each";
 
 describe("train helpers", () => {

@@ -1,6 +1,6 @@
 import moment from "moment";
-import { convertToTrainCode } from "../train";
-import { calculateTravelData } from ".";
+import { convertToTrainCode } from "../train/pure";
+import { calculateTravelData } from "./pure";
 
 export const selectNow = state => state?.toTheStation?.currentTime;
 

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getDurationPercentage } from "./index";
+import { getDurationPercentage } from "./pure";
 import each from "jest-each";
 
 describe("time helpers", () => {

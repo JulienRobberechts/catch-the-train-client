@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getDelayStatus } from "../train";
+import { getDelayStatus } from "../train/pure";
 
 export const calculateTravelData = ({
   nowTime,
