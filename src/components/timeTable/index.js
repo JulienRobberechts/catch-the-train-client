@@ -40,8 +40,7 @@ function TimeTable() {
   );
 
   const previousVisible = minIndex > 0;
-  const nextVisible =
-    minIndex < trains.length - NUMBER_OF_DEPARTURE_VISIBLE - 1;
+  const nextVisible = minIndex < trains.length - NUMBER_OF_DEPARTURE_VISIBLE;
 
   return (
     <Panel>
@@ -78,7 +77,7 @@ function TimeTable() {
         ))}
         {nextVisible ? (
           <NextButton
-            disabled={minIndex >= trains.length - 4}
+            disabled={minIndex >= trains.length - NUMBER_OF_DEPARTURE_VISIBLE}
             onClick={() => {
               const departure = trains[currentIndex + 1];
               push(`/SGL/PARIS/${convertToTrainCode(departure.departureTime)}`);
