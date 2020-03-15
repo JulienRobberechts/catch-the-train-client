@@ -8,13 +8,7 @@ export default function getSizeRatioFor(targetDuration) {
 }
 
 export function convertToSizeRatio(percentage) {
-  if (!percentage) {
-    return 0;
-  }
-  if (isNaN(percentage)) {
-    return 0;
-  }
-  if (percentage < 0) {
+  if (!percentage || isNaN(percentage) || percentage < 0) {
     return 0;
   }
   if (isFinite(percentage)) {
