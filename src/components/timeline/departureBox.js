@@ -5,7 +5,6 @@ import { Time, TimeSpan } from "../time";
 import { Train, Sandglass } from "../../design/icons";
 
 const DepartureBox = ({ targetTime, targetDuration }) => {
-  // console.log("data", data);
   return (
     <Box>
       <Row1>

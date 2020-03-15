@@ -28,7 +28,6 @@ export const selectEnhancedToTheStation = state => {
     0
   );
 
-  // console.log("departureIndex", departureIndex);
   const departure = trains[departureIndex];
 
   // second part

@@ -6,8 +6,6 @@ const Time = ({ time, displaySeconds = false }) => {
     useGrouping: false
   });
 
-  console.log("time.isUTC", time.isUTC());
-
   return (
     <span>
       <span>{time.hours()}</span>

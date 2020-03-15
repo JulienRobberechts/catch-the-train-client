@@ -30,7 +30,7 @@ const CatchPageContainer = () => {
   }, [dispatch, selectedRoute]);
 
   const toTheStation = useSelector(selectToTheStation);
-  console.log("toTheStation", toTheStation);
+  // console.log("toTheStation", toTheStation);
 
   if (toTheStation.noData) return <div>...</div>;
   return <CatchPage station={toTheStation?.station.name} />;

@@ -5,7 +5,6 @@ import { Time } from "../time";
 import { Clock } from "../../design/icons";
 
 const NowBox = ({ nowTime }) => {
-  // console.log("data", data);
   return (
     <Box>
       <Row1>

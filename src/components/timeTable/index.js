@@ -24,7 +24,7 @@ function TimeTable() {
     return <Panel>...</Panel>;
   }
   const trainCode = toTheStation.train.trainCode;
-  // console.log(route);
+
   const { trains } = route;
 
   const currentIndex = Math.max(
