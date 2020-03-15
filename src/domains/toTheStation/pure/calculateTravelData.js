@@ -1,13 +1,13 @@
 import moment from "moment";
-import { getDelayStatus } from "../train/pure";
+import getDelayStatus from "./getDelayStatus";
 
-export const calculateTravelData = ({
+export default function calculateTravelData({
   nowTime,
   departure,
   travelDurationSeconds,
   waitingDelaySeconds,
   onTimeMarginDelaySeconds
-}) => {
+}) {
   const targetTime = moment.parseZone(departure.departureTime);
 
   const targetDuration = moment.duration(targetTime.diff(nowTime));
@@ -37,4 +37,4 @@ export const calculateTravelData = ({
     delayDuration,
     delayStatus
   };
-};
+}

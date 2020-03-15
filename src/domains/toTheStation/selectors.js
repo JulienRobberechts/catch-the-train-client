@@ -1,11 +1,12 @@
 import moment from "moment";
-import { convertToTrainCode } from "../train/pure";
+import { convertToTrainCode } from "../timeTable/pure";
 import { calculateTravelData } from "./pure";
 
 export const selectNow = state => state?.toTheStation?.currentTime;
 
 export const selectToTheStation = state => state?.toTheStation;
 
+// TO MOVE ??
 export const selectEnhancedToTheStation = state => {
   const { timeTable, toTheStation } = state;
 

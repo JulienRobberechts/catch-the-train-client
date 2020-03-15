@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`train helpers calculateTravelData should identify an late delay 1`] = `
+Object {
+  "delayDuration": "PT1M",
+  "delayStatus": "early",
+  "nowTime": "2020-03-10T08:00:00.000Z",
+  "route": undefined,
+  "targetDuration": "PT11M",
+  "targetTime": "2020-03-10T08:11:00.000Z",
+  "travelDuration": "PT8M",
+  "waitingDuration": "PT2M",
+}
+`;

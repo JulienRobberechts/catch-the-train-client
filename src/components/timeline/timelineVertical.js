@@ -8,7 +8,7 @@ import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
 
-import { getDurationPercentage } from "../../domains/time/pure";
+import { getDurationPercentage } from "../../domains/toTheStation/pure";
 import { useSelector } from "react-redux";
 import {
   selectEnhancedToTheStation,
