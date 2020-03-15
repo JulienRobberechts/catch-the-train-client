@@ -11,14 +11,14 @@ import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import CatchPage from "./page";
 
 const CatchPageContainer = () => {
-  const urlParameters = useParams();
+  const { station: stationCode, direction, trainCode } = useParams();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(mockTimeTable());
     dispatch(mockToTheStation());
-    dispatch(chooseTrain(urlParameters));
-  }, [dispatch, urlParameters]);
+    dispatch(chooseTrain({ stationCode, direction, trainCode }));
+  }, [dispatch, stationCode, direction, trainCode]);
 
   const toTheStation = useSelector(selectToTheStation);
   console.log("toTheStation", toTheStation);

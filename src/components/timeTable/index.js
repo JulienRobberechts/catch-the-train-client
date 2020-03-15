@@ -5,21 +5,26 @@ import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 import { convertToTrainCode } from "../../domains/timeTable/pure";
+import { selectToTheStation } from "../../domains/toTheStation/selectors";
+import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
 function TimeTable({ timeTable }) {
-  const { station, direction, trainCode } = useParams();
   const { push } = useHistory();
-  // console.log({ station, direction, trainCode });
 
+  // the goal is to put everything here
   const route = useSelector(selectEnhancedTimeTable);
 
-  if (!route) {
+  // and nothing here...
+  const toTheStation = useSelector(selectToTheStation);
+
+  if (!route || !toTheStation.station) {
     return <Panel>...</Panel>;
   }
+  const trainCode = toTheStation.station.code;
+
   // console.log(route);
   const { trains } = route;
 

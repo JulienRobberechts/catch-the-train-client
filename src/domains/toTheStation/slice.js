@@ -15,7 +15,7 @@ export const slice = createSlice({
       state.noData = false;
     },
     chooseTrain: (state, action) => {
-      const { station: stationCode, direction, trainCode } = action.payload;
+      const { stationCode, direction, trainCode } = action.payload;
       console.log({ stationCode, direction, trainCode });
       state.station = {
         code: stationCode.toUpperCase(),

@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
 import { selectRoute } from "../../domains/timeTable/selectors";
+
 const TrainRoute = () => {
   const route = useSelector(selectRoute);
-  // console.log("route", route);
 
   if (!route) {
     return <Panel>...</Panel>;
@@ -18,7 +18,7 @@ const TrainRoute = () => {
       </span>
       {route.direction && (
         <>
-          <span> > </span>
+          <span> {">"} </span>
           <span>{route.direction}</span>
         </>
       )}
