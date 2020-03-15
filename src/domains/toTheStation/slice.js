@@ -15,16 +15,26 @@ export const slice = createSlice({
       state.noData = false;
     },
     chooseTrain: (state, action) => {
-      const { stationCode, direction, trainCode } = action.payload;
-      // console.log({ stationCode, direction, trainCode });
+      const { trainDeparture } = action.payload;
+      console.log("trainDeparture", trainDeparture);
+
+      if (!trainDeparture) {
+        state.station = null;
+        state.train = null;
+        state.noData = true;
+        return;
+      }
+
       state.station = {
-        code: stationCode.toUpperCase(),
+        code: "SGL",
         name: "Saint-Germain-en-Laye",
         travelDurationSeconds: 625,
         onTimeMarginDelaySeconds: 20
       };
       state.train = {
-        trainCode
+        trainCode: trainDeparture.trainCode,
+        departureTime: trainDeparture.departureTime,
+        platform: trainDeparture.platform
       };
       state.noData = false;
     },

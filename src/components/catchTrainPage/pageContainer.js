@@ -7,6 +7,7 @@ import {
   chooseTrain
 } from "../../domains/toTheStation/slice";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
+import { selectTrainDeparture } from "../../domains/timeTable/selectors";
 
 import CatchPage from "./page";
 
@@ -19,15 +20,18 @@ const CatchPageContainer = () => {
     dispatch(mockToTheStation());
   }, [dispatch]);
 
+  const trainDeparture = useSelector(selectTrainDeparture(selectedRoute));
+
   useEffect(() => {
     dispatch(
       chooseTrain({
+        trainDeparture,
         stationCode: selectedRoute.station,
         direction: selectedRoute.direction,
         trainCode: selectedRoute.trainCode
       })
     );
-  }, [dispatch, selectedRoute]);
+  }, [dispatch, trainDeparture, selectedRoute]);
 
   const toTheStation = useSelector(selectToTheStation);
   // console.log("toTheStation", toTheStation);
