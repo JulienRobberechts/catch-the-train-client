@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
-import { selectRoute } from "../../domains/timeTable/slice";
+import { selectRoute } from "../../domains/timeTable/selectors";
 const TrainRoute = () => {
   const route = useSelector(selectRoute);
   // console.log("route", route);

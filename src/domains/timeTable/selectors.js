@@ -1,6 +1,19 @@
 import { calculateTravelData } from "../toTheStation/pure"; // to move...
 import moment from "moment";
 
+export const selectConfigIsValid = state => {
+  return true;
+  // return !!state?.timeTable.route?.station?.code;
+};
+
+export const selectStationCode = state => {
+  return state?.timeTable.route?.station?.code;
+};
+
+export const selectRoute = state => {
+  return state?.timeTable?.route;
+};
+
 // Be careful with change of references!!!
 export const selectEnhancedTimeTable = state => {
   if (!state.timeTable.route || state.toTheStation.noData) return null;

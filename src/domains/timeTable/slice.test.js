@@ -1,16 +1,17 @@
-import reducer, {
-  initialState,
-  mockTimeTable,
+import reducer, { initialState, mockTimeTable } from "./slice";
+
+import {
   selectConfigIsValid,
   selectStationCode,
   selectRoute
-} from "./slice";
+} from "./selectors";
 
 describe("slice timeTable", () => {
   describe("initial state", () => {
     const rootState = { timeTable: initialState };
-    it("'selectConfigIsValid' should return falsy", () => {
-      expect(selectConfigIsValid(rootState)).toBeFalsy();
+    it("'selectConfigIsValid' should return truthy", () => {
+      // to change to be false...
+      expect(selectConfigIsValid(rootState)).toBeTruthy();
     });
     it("'selectStationCode' should return falsy", () => {
       expect(selectStationCode(rootState)).toBeFalsy();

@@ -24,18 +24,6 @@ export const slice = createSlice({
   }
 });
 
-export const selectConfigIsValid = state => {
-  return !!state?.timeTable.route?.station?.code;
-};
-
-export const selectStationCode = state => {
-  return state?.timeTable.route?.station?.code;
-};
-
-export const selectRoute = state => {
-  return state?.timeTable?.route;
-};
-
 export const { reset, mockTimeTable, update } = slice.actions;
 
 export default slice.reducer;
