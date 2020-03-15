@@ -49,11 +49,13 @@ describe("slice timeTable", () => {
         expect.arrayContaining([
           {
             departureTime: "2020-03-10T09:24:00+01:00",
-            platform: "2"
+            platform: "2",
+            trainCode: "0924"
           },
           {
             departureTime: "2020-03-10T09:32:00+01:00",
-            platform: "4"
+            platform: "4",
+            trainCode: "0932"
           }
         ])
       );
