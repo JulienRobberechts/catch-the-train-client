@@ -8,7 +8,7 @@ export const selectToTheStation = state => state?.toTheStation;
 
 // TO MOVE ??
 export const selectEnhancedToTheStation = state => {
-  const { timeTable, toTheStation } = state;
+  const { timeTable, toTheStation } = state; // MASHUP !!!!!!
 
   if (!state.timeTable.route || state.toTheStation.noData) return null;
 
