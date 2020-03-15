@@ -1,9 +1,9 @@
 import moment from "moment";
-import calculateTravelData from "./calculateTravelData";
+import getDelay from "./getDelay";
 import each from "jest-each";
 
 describe("train helpers", () => {
-  describe("calculateTravelData", () => {
+  describe("getDelay", () => {
     test("should identify an late delay", () => {
       const nowTime = moment.parseZone("2020-03-10T09:00:00+01:00");
       const targetTime = moment.parseZone("2020-03-10T09:11:00+01:00");
@@ -11,7 +11,7 @@ describe("train helpers", () => {
       const waitingDuration = moment.duration("00:02:00");
       const onTimeMarginDelaySeconds = 30;
 
-      const result = calculateTravelData({
+      const result = getDelay({
         nowTime,
         targetTime,
         travelDuration,

@@ -1,7 +1,7 @@
 import moment from "moment";
 import getDelayStatus from "./getDelayStatus";
 
-export default function calculateTravelData({
+export default function getDelay({
   nowTime,
   targetTime,
   travelDuration,

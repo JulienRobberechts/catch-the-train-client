@@ -1,5 +1,5 @@
 import moment from "moment";
-import { calculateTravelData } from "../toTheStation/pure";
+import { getDelay } from "../toTheStation/pure";
 
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
@@ -27,7 +27,7 @@ export const selectEnhancedTimeTable = state => {
       seconds: waitingDelaySeconds
     });
 
-    const { targetDuration, delayDuration, delayStatus } = calculateTravelData({
+    const { targetDuration, delayDuration, delayStatus } = getDelay({
       nowTime,
       targetTime,
       travelDuration,

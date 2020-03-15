@@ -1,6 +1,6 @@
 import moment from "moment";
 import { convertToTrainCode } from "../timeTable/pure";
-import { calculateTravelData } from "./pure";
+import { getDelay } from "./pure";
 
 export const selectNow = state => state?.toTheStation?.currentTime;
 
@@ -47,7 +47,7 @@ export const selectEnhancedToTheStation = state => {
   });
   const targetTime = moment.parseZone(departure.departureTime);
 
-  const { targetDuration, delayDuration, delayStatus } = calculateTravelData({
+  const { targetDuration, delayDuration, delayStatus } = getDelay({
     nowTime,
     targetTime,
     travelDuration,
