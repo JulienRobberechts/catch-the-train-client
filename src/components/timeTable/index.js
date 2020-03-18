@@ -5,7 +5,6 @@ import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { convertToTrainCode } from "../../domains/timeTable/pure";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 
@@ -29,9 +28,7 @@ function TimeTable() {
 
   const currentIndex = Math.max(
     0,
-    trains.findIndex(
-      departure => convertToTrainCode(departure.departureTime) === trainCode
-    )
+    trains.findIndex(departure => departure.trainCode === trainCode)
   );
 
   const minIndex = Math.max(
@@ -50,7 +47,7 @@ function TimeTable() {
           <PreviousButton
             onClick={() => {
               const departure = trains[currentIndex - 1];
-              push(`/SLG/PARIS/${convertToTrainCode(departure.departureTime)}`);
+              push(`/SLG/PARIS/${departure.trainCode}`);
             }}
           >
             <IconContainer>
@@ -70,7 +67,7 @@ function TimeTable() {
             key={departure.index}
             selected={departure.index === currentIndex}
             onSelect={() => {
-              push(`/SGL/PARIS/${convertToTrainCode(departure.departureTime)}`);
+              push(`/SGL/PARIS/${departure.trainCode}`);
             }}
             {...departure}
           />
@@ -80,7 +77,7 @@ function TimeTable() {
             disabled={minIndex >= trains.length - NUMBER_OF_DEPARTURE_VISIBLE}
             onClick={() => {
               const departure = trains[currentIndex + 1];
-              push(`/SGL/PARIS/${convertToTrainCode(departure.departureTime)}`);
+              push(`/SGL/PARIS/${departure.trainCode}`);
             }}
           >
             <IconContainer>

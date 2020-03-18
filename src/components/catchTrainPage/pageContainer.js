@@ -24,13 +24,12 @@ const CatchPageContainer = () => {
   }, [dispatch]);
 
   const trainDeparture = useSelector(selectTrainDeparture(selectedRoute));
-  console.log("trainDeparture ====0====", trainDeparture);
+
   useEffect(() => {
     dispatch(chooseTrain({ trainDeparture }));
   }, [dispatch, trainDeparture, selectedRoute]);
 
   const toTheStation = useSelector(selectToTheStation);
-  // console.log("toTheStation", toTheStation);
 
   if (toTheStation.noData) return <div>...</div>;
   return <CatchPage station={toTheStation?.station.name} />;

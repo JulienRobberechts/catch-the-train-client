@@ -1,5 +1,4 @@
 import moment from "moment";
-import { convertToTrainCode } from "../timeTable/pure";
 import { getDelay, getDelayStatus } from "./pure";
 
 export const selectNow = state => state?.toTheStation?.currentTime;
@@ -22,9 +21,7 @@ export const selectEnhancedToTheStation = state => {
   }
 
   const departureIndex = Math.max(
-    trains.findIndex(
-      departure => convertToTrainCode(departure.departureTime) === trainCode
-    ),
+    trains.findIndex(departure => departure.trainCode === trainCode),
     0
   );
 

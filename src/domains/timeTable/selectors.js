@@ -30,7 +30,7 @@ export const selectTrainDeparture = ({
     0,
     trains.findIndex(departure => departure.trainCode === trainCode)
   );
-  console.log("trainDeparture currentIndex ========", currentIndex);
+
   return trains[currentIndex];
 
   // if found:

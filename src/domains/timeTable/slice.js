@@ -17,12 +17,10 @@ export const slice = createSlice({
       state.noData = false;
     },
     fetch: state => {
-      // console.log("fetchRequested...");
       state.loading = true;
       state.error = null;
     },
     fetchError: state => {
-      console.log("fetchError");
       state.loading = false;
       state.error = "Error on fetch";
     },

@@ -27,6 +27,8 @@ export const selectEnhancedTimeTable = state => {
       seconds: waitingDelaySeconds
     });
 
+    const trainCode = departure.trainCode;
+
     const { targetDuration, delayDuration } = getDelay({
       nowTime,
       targetTime,
@@ -41,7 +43,8 @@ export const selectEnhancedTimeTable = state => {
       departureDuration,
       targetDuration,
       delayDuration,
-      delayStatus
+      delayStatus,
+      trainCode
     };
   });
 
