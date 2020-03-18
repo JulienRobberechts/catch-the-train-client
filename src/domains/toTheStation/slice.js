@@ -16,7 +16,6 @@ export const slice = createSlice({
     },
     chooseTrain: (state, action) => {
       const { trainDeparture } = action.payload;
-      console.log("trainDeparture", trainDeparture);
 
       if (!trainDeparture) {
         state.station = null;

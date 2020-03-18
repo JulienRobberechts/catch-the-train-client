@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { mockTimeTable } from "../../domains/timeTable/slice";
+// import { mockTimeTable } from "../../domains/timeTable/slice";
+import { fetch } from "../../domains/timeTable/slice";
 import {
   mockToTheStation,
   chooseTrain
@@ -16,21 +17,16 @@ const CatchPageContainer = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(mockTimeTable());
+    dispatch(fetch());
+
+    // dispatch(mockTimeTable());
     dispatch(mockToTheStation());
   }, [dispatch]);
 
   const trainDeparture = useSelector(selectTrainDeparture(selectedRoute));
-
+  console.log("trainDeparture ====0====", trainDeparture);
   useEffect(() => {
-    dispatch(
-      chooseTrain({
-        trainDeparture,
-        stationCode: selectedRoute.station,
-        direction: selectedRoute.direction,
-        trainCode: selectedRoute.trainCode
-      })
-    );
+    dispatch(chooseTrain({ trainDeparture }));
   }, [dispatch, trainDeparture, selectedRoute]);
 
   const toTheStation = useSelector(selectToTheStation);
