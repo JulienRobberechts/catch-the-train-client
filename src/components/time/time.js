@@ -1,20 +1,28 @@
 import React from "react";
 
-const Time = ({ time, displaySeconds = false }) => {
-  const minutes = Math.abs(time.minutes()).toLocaleString("en-US", {
+const twoDigits = number =>
+  number.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false
   });
+
+const Time = ({ time, displaySeconds = false }) => {
+  const minutes = time.minutes();
+  const minutesStr = twoDigits(minutes);
+
+  const showSeconds = displaySeconds;
+  const seconds = time.seconds();
+  const secondsStr = twoDigits(seconds);
 
   return (
     <span>
       <span>{time.hours()}</span>
       <span>h</span>
-      <span>{minutes}</span>
-      {displaySeconds && (
+      <span>{minutesStr}</span>
+      {showSeconds && (
         <>
           <span>:</span>
-          <span>{time.seconds()}</span>
+          <span>{secondsStr}</span>
         </>
       )}
     </span>
