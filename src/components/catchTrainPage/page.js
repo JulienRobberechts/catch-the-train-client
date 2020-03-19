@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import TrainRoute from "./trainRoute";
 import TimelineVertical from "../timeline/timelineVertical";
 import TimeTable from "../timeTable";
+import PageRefresher from "./pageRefresher";
 
 const CatchPage = ({ station }) => {
   return (
@@ -11,6 +12,7 @@ const CatchPage = ({ station }) => {
       <Helmet>
         <title>Trains - {station ?? "..."}</title>
       </Helmet>
+      <PageRefresher refreshInterval={1000} />
       <TopSection>
         <TrainRoute />
         <TimeTable />
