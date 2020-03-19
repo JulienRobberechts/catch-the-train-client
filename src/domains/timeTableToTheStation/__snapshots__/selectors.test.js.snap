@@ -58,6 +58,7 @@ Object {
       "departureTime": "2020-03-10T08:24:00.000Z",
       "index": 0,
       "targetDuration": "PT4M4S",
+      "trainCode": "0924",
     },
     Object {
       "delayDuration": "-PT1S",
@@ -66,6 +67,7 @@ Object {
       "departureTime": "2020-03-10T08:32:00.000Z",
       "index": 1,
       "targetDuration": "PT12M4S",
+      "trainCode": "0932",
     },
     Object {
       "delayDuration": "PT10M59S",
@@ -74,6 +76,7 @@ Object {
       "departureTime": "2020-03-10T08:43:00.000Z",
       "index": 2,
       "targetDuration": "PT23M4S",
+      "trainCode": "0943",
     },
     Object {
       "delayDuration": "PT22M59S",
@@ -82,6 +85,7 @@ Object {
       "departureTime": "2020-03-10T08:55:00.000Z",
       "index": 3,
       "targetDuration": "PT35M4S",
+      "trainCode": "0955",
     },
     Object {
       "delayDuration": "PT32M59S",
@@ -90,6 +94,7 @@ Object {
       "departureTime": "2020-03-10T09:05:00.000Z",
       "index": 4,
       "targetDuration": "PT45M4S",
+      "trainCode": "1005",
     },
     Object {
       "delayDuration": "PT48M59S",
@@ -98,6 +103,7 @@ Object {
       "departureTime": "2020-03-10T09:21:00.000Z",
       "index": 5,
       "targetDuration": "PT1H1M4S",
+      "trainCode": "1021",
     },
     Object {
       "delayDuration": "PT26H39M59S",
@@ -106,6 +112,7 @@ Object {
       "departureTime": "2020-03-11T11:12:00.000Z",
       "index": 6,
       "targetDuration": "PT26H52M4S",
+      "trainCode": "1212",
     },
   ],
 }
