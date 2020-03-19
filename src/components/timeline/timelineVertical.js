@@ -10,10 +10,7 @@ import { CaretRight } from "../../design/icons";
 import { getSizeRatioFor } from "./pure";
 
 import { useSelector } from "react-redux";
-import {
-  selectEnhancedToTheStation,
-  selectToTheStation
-} from "../../domains/toTheStation/selectors";
+import { selectEnhancedToTheStation } from "../../domains/toTheStation/selectors";
 
 const TimelineVertical = () => {
   const data = useSelector(selectEnhancedToTheStation);

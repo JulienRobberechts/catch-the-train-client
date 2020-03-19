@@ -29,7 +29,7 @@ const CatchPageContainer = () => {
   useEffect(() => {
     dispatch(chooseTrain({ trainDeparture }));
     dispatch(updateTime());
-  }, [dispatch, trainDeparture, selectedRoute, updateTime]);
+  }, [dispatch, trainDeparture, selectedRoute]);
 
   const toTheStation = useSelector(selectToTheStation);
 

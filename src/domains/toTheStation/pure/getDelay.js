@@ -1,5 +1,4 @@
 import moment from "moment";
-import getDelayStatus from "./getDelayStatus";
 
 export default function getDelay({
   nowTime,
