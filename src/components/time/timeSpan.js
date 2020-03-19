@@ -91,7 +91,9 @@ const NumberText = styled.span`
 
 const SymbolText = styled.span`
   margin: 0 0.05rem;
-  font-weight: 500;
+  font-size: 80%;
+  position: relative;
+  top: -0.1rem;
 `;
 
 const Sign = styled.span`

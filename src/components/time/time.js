@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const twoDigits = number =>
   number.toLocaleString("en-US", {
@@ -21,12 +22,18 @@ const Time = ({ time, displaySeconds = false }) => {
       <span>{minutesStr}</span>
       {showSeconds && (
         <>
-          <span>:</span>
-          <span>{secondsStr}</span>
+          <Seconds>{secondsStr}</Seconds>
         </>
       )}
     </span>
   );
 };
+
+const Seconds = styled.span`
+  font-size: 70%;
+  position: relative;
+  top: -0.3rem;
+  margin-left: 0.1rem;
+`;
 
 export default Time;
