@@ -9,7 +9,7 @@ const CatchPage = ({ station }) => {
   return (
     <>
       <Helmet>
-        <title>Trains - {station}</title>
+        <title>Trains - {station ?? "..."}</title>
       </Helmet>
       <TopSection>
         <TrainRoute />

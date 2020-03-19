@@ -19,9 +19,10 @@ function TimeTable() {
   // and nothing here...
   const toTheStation = useSelector(selectToTheStation);
 
-  if (!route || !toTheStation.station) {
+  if (!route || !toTheStation.station || !toTheStation.train) {
     return <Panel>...</Panel>;
   }
+
   const trainCode = toTheStation.train.trainCode;
 
   const { trains } = route;
@@ -38,6 +39,8 @@ function TimeTable() {
 
   const previousVisible = minIndex > 0;
   const nextVisible = minIndex < trains.length - NUMBER_OF_DEPARTURE_VISIBLE;
+
+  console.log({ minIndex, currentIndex });
 
   return (
     <Panel>

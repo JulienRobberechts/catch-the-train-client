@@ -1,5 +1,4 @@
 export const mockConfig = {
-  currentTime: "2020-03-10T09:19:56+01:00",
   station: {
     code: "SGL",
     name: "Saint-Germain-en-Laye",

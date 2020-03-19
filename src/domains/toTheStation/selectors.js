@@ -11,12 +11,15 @@ export const selectEnhancedToTheStation = state => {
 
   if (!state.timeTable.route || state.toTheStation.noData) return null;
 
-  const nowTime = moment.parseZone(state.toTheStation.currentTime);
-  const trainCode = state.toTheStation.train.trainCode;
-
   const { trains } = timeTable.route;
 
   if (!trains) {
+    return null;
+  }
+
+  const trainCode = state?.toTheStation?.train?.trainCode;
+
+  if (!trainCode) {
     return null;
   }
 
@@ -42,6 +45,10 @@ export const selectEnhancedToTheStation = state => {
     seconds: waitingDelaySeconds
   });
   const targetTime = moment.parseZone(departure.departureTime);
+
+  const nowTime = state.toTheStation.currentTime
+    ? moment.parseZone(state.toTheStation.currentTime)
+    : null;
 
   const { targetDuration, delayDuration } = getDelay({
     nowTime,

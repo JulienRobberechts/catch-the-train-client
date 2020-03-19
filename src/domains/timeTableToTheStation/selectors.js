@@ -11,6 +11,10 @@ export const selectEnhancedTimeTable = state => {
   const { timeTable } = state;
   const nowTime = moment.parseZone(state.toTheStation.currentTime);
 
+  if (!state.toTheStation.station) {
+    return null;
+  }
+
   const {
     configuration: { waitingDelaySeconds },
     station: { travelDurationSeconds, onTimeMarginDelaySeconds }

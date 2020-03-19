@@ -1,7 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAction } from "@reduxjs/toolkit";
 import { mockConfig } from "./mock";
 
 export const initialState = { noData: true };
+
+export const updateTime = createAction("toTheStation/updateTime", payload => ({
+  payload: {
+    ...payload,
+    currentTime: "2020-03-10T09:19:56+01:00" // new Date().toISOString()
+  }
+}));
 
 export const slice = createSlice({
   name: "toTheStation",
@@ -23,7 +30,7 @@ export const slice = createSlice({
         state.noData = true;
         return;
       }
-
+      state.currentTime = "2020-03-10T09:19:56+01:00"; // to move...
       state.station = {
         code: "SGL",
         name: "Saint-Germain-en-Laye",
@@ -38,18 +45,14 @@ export const slice = createSlice({
       state.noData = false;
     },
     updateTime: (state, action) => {
-      const { now } = action.payload;
-      // state.currentTime = moment ( now )
+      const { currentTime } = action.payload;
+      console.log("currentTime in updateTime", currentTime);
+      state.currentTime = currentTime;
       state.noData = false;
     }
   }
 });
 
-export const {
-  reset,
-  mockToTheStation,
-  chooseTrain,
-  updateTime
-} = slice.actions;
+export const { reset, mockToTheStation, chooseTrain } = slice.actions;
 
 export default slice.reducer;
