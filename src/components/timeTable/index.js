@@ -40,8 +40,6 @@ function TimeTable() {
   const previousVisible = minIndex > 0;
   const nextVisible = minIndex < trains.length - NUMBER_OF_DEPARTURE_VISIBLE;
 
-  console.log({ minIndex, currentIndex });
-
   return (
     <Panel>
       <Title>Prochains trains</Title>

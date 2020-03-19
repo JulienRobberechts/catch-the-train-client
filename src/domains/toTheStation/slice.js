@@ -1,19 +1,31 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
+import moment from "moment";
 
 export const initialState = {
   noData: true,
+  currentTime: "2020-03-10T09:19:56+01:00",
   userConfiguration: {
     onTimeMarginDelaySeconds: 20,
     timezone: "+01:00"
   }
 };
 
-export const updateTime = createAction("toTheStation/updateTime", payload => ({
-  payload: {
-    ...payload,
-    currentTime: "2020-03-10T09:19:56+01:00" // new Date().toISOString()
-  }
-}));
+export const updateTime = createAction("toTheStation/updateTime", payload => {
+  // console.log("payload", payload);
+  const lastTime = moment(payload.lastTime);
+  const duration = moment.duration({ milliseconds: payload.incrementMs });
+  const nextTime = lastTime.add(duration);
+  const currentTime = nextTime.format();
+
+  console.log("currentTime", currentTime);
+
+  return {
+    payload: {
+      ...payload,
+      currentTime
+    }
+  };
+});
 
 export const slice = createSlice({
   name: "toTheStation",
@@ -21,6 +33,7 @@ export const slice = createSlice({
   reducers: {
     reset: state => {
       Object.assign(state, initialState);
+      state.currentTime = "2020-03-10T09:19:56+01:00";
     },
     chooseTrain: (state, action) => {
       const { trainDeparture } = action.payload;
@@ -31,7 +44,7 @@ export const slice = createSlice({
         state.noData = true;
         return;
       }
-      state.currentTime = "2020-03-10T09:19:56+01:00"; // to move...
+
       state.station = {
         code: "SGL",
         name: "Saint-Germain-en-Laye"
