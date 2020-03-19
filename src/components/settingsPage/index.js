@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
-import { mockToTheStation } from "../../domains/toTheStation/slice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const SettingsPage = () => {
   const {
@@ -14,10 +13,6 @@ const SettingsPage = () => {
     stationConfiguration,
     userConfiguration
   } = useSelector(selectToTheStation);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(mockToTheStation());
-  }, [dispatch]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import reducer, { initialState, mockToTheStation } from "./slice";
+import { initialState } from "./slice";
 
 import { selectNow, selectToTheStation } from "./selectors";
 
@@ -12,17 +12,17 @@ describe("slice toTheStation", () => {
       expect(selectToTheStation(rootState).noData).toBeTruthy();
     });
   });
-  describe("after 'mockToTheStation' action, state", () => {
-    let rootState;
-    beforeEach(() => {
-      const toTheStation = reducer(initialState, mockToTheStation());
-      rootState = { toTheStation };
-    });
-    it("'selectNow' should return data", () => {
-      expect(selectNow(rootState)).toEqual("2020-03-10T09:19:56+01:00");
-    });
-    it("'selectToTheStation' should return data", () => {
-      expect(selectToTheStation(rootState)).toEqual(expect.anything());
-    });
-  });
+  // describe("after 'mockToTheStation' action, state", () => {
+  //   let rootState;
+  //   beforeEach(() => {
+  //     const toTheStation = reducer(initialState, mockToTheStation());
+  //     rootState = { toTheStation };
+  //   });
+  //   it("'selectNow' should return data", () => {
+  //     expect(selectNow(rootState)).toEqual("2020-03-10T09:19:56+01:00");
+  //   });
+  //   it("'selectToTheStation' should return data", () => {
+  //     expect(selectToTheStation(rootState)).toEqual(expect.anything());
+  //   });
+  // });
 });

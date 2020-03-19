@@ -1,8 +1,12 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
-import { mockConfig } from "./mock";
-import { defaultConfig } from "./defaultConfig";
 
-export const initialState = { noData: true };
+export const initialState = {
+  noData: true,
+  userConfiguration: {
+    onTimeMarginDelaySeconds: 20,
+    timezone: "+01:00"
+  }
+};
 
 export const updateTime = createAction("toTheStation/updateTime", payload => ({
   payload: {
@@ -17,10 +21,6 @@ export const slice = createSlice({
   reducers: {
     reset: state => {
       Object.assign(state, initialState);
-    },
-    mockToTheStation: state => {
-      Object.assign(state, defaultConfig, mockConfig);
-      state.noData = false;
     },
     chooseTrain: (state, action) => {
       const { trainDeparture } = action.payload;
@@ -56,6 +56,6 @@ export const slice = createSlice({
   }
 });
 
-export const { reset, mockToTheStation, chooseTrain } = slice.actions;
+export const { reset, chooseTrain } = slice.actions;
 
 export default slice.reducer;
