@@ -16,8 +16,8 @@ export const selectEnhancedTimeTable = state => {
   }
 
   const {
-    configuration: { waitingDelaySeconds },
-    station: { travelDurationSeconds, onTimeMarginDelaySeconds }
+    userConfiguration: { onTimeMarginDelaySeconds },
+    stationConfiguration: { travelDurationSeconds, waitingDelaySeconds }
   } = state.toTheStation;
 
   const trains = state.timeTable.route.trains.map((departure, index) => {

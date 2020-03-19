@@ -3,33 +3,66 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
-import { selectConfig } from "../../domains/toTheStation/selectors";
+import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import { mockToTheStation } from "../../domains/toTheStation/slice";
 import { useSelector, useDispatch } from "react-redux";
 
 const SettingsPage = () => {
-  const userConfig = useSelector(selectConfig);
+  const {
+    noData,
+    station,
+    stationConfiguration,
+    userConfiguration
+  } = useSelector(selectToTheStation);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(mockToTheStation());
   }, [dispatch]);
+
   return (
     <>
       <Helmet>
         <title>Paramètres</title>
       </Helmet>
       <Title>Paramètres</Title>
-      <SectionTitle>Votre trajet</SectionTitle>
+      {!noData && (
+        <>
+          <SectionTitle>
+            pour la station de <StationName>'{station?.name}'</StationName>
+          </SectionTitle>
+          <Section>
+            <KeyValue>
+              <Key>Temps de trajet vers la station (en secondes)</Key>
+              <EqualSign>:</EqualSign>
+              <Value>
+                {stationConfiguration &&
+                  stationConfiguration.travelDurationSeconds}
+              </Value>
+            </KeyValue>
+            <KeyValue>
+              <Key>Temps de trajet dans la station (en secondes)</Key>
+              <EqualSign>:</EqualSign>
+              <Value>
+                {stationConfiguration &&
+                  stationConfiguration.waitingDelaySeconds}
+              </Value>
+            </KeyValue>
+          </Section>
+        </>
+      )}
+      <SectionTitle>Vos préférences</SectionTitle>
       <Section>
         <KeyValue>
-          <Key>Temps d'attente en station (en secondes)</Key>
+          <Key>Marge pour considérer que vous êtes à l'heure (en secondes)</Key>
           <EqualSign>:</EqualSign>
-          <Value>{userConfig && userConfig.waitingDelaySeconds}</Value>
+          <Value>
+            {userConfiguration && userConfiguration.onTimeMarginDelaySeconds}
+          </Value>
         </KeyValue>
         <KeyValue>
           <Key>Fuseau horaire</Key>
           <EqualSign>:</EqualSign>
-          <Value>{userConfig && userConfig.timezone}</Value>
+          <Value>{userConfiguration && userConfiguration.timezone}</Value>
         </KeyValue>
       </Section>
       <SectionTitle>Technique</SectionTitle>
@@ -77,4 +110,7 @@ const EqualSign = styled.span`
   margin-right: 0.6rem;
 `;
 const Value = styled.span``;
+const StationName = styled.span`
+  font-style: italic;
+`;
 export default SettingsPage;

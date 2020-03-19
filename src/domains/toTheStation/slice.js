@@ -1,5 +1,6 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import { mockConfig } from "./mock";
+import { defaultConfig } from "./defaultConfig";
 
 export const initialState = { noData: true };
 
@@ -18,7 +19,7 @@ export const slice = createSlice({
       Object.assign(state, initialState);
     },
     mockToTheStation: state => {
-      Object.assign(state, mockConfig);
+      Object.assign(state, defaultConfig, mockConfig);
       state.noData = false;
     },
     chooseTrain: (state, action) => {
@@ -33,9 +34,11 @@ export const slice = createSlice({
       state.currentTime = "2020-03-10T09:19:56+01:00"; // to move...
       state.station = {
         code: "SGL",
-        name: "Saint-Germain-en-Laye",
-        travelDurationSeconds: 625,
-        onTimeMarginDelaySeconds: 20
+        name: "Saint-Germain-en-Laye"
+      };
+      state.stationConfiguration = {
+        travelDurationSeconds: 10 * 60 + 25,
+        waitingDelaySeconds: 100
       };
       state.train = {
         trainCode: trainDeparture.trainCode,
