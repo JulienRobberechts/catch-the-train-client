@@ -5,6 +5,8 @@ export const selectNow = state => state?.toTheStation?.currentTime;
 
 export const selectToTheStation = state => state?.toTheStation;
 
+export const selectConfig = state => state?.toTheStation?.configuration;
+
 // TO MOVE ??
 export const selectEnhancedToTheStation = state => {
   const { timeTable, toTheStation } = state; // MASHUP !!!!!!
