@@ -16,8 +16,6 @@ const SettingsPage = () => {
     userConfiguration
   } = useSelector(selectToTheStation);
 
-  const clientUrl = window.location.href;
-
   return (
     <>
       <Helmet>
@@ -94,9 +92,7 @@ const SettingsPage = () => {
         <KeyValue>
           <Key>Url du client</Key>
           <EqualSign>:</EqualSign>
-          <Value>
-            {clientUrl} / {techConfig.CLIENT_URL}
-          </Value>
+          <Value>{techConfig.CLIENT_URL}</Value>
         </KeyValue>
         <KeyValue>
           <Key>Langue</Key>
