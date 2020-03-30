@@ -63,12 +63,27 @@ const SettingsPage = () => {
       <SectionTitle>Technique</SectionTitle>
       <Section>
         <KeyValue>
-          <Key>PORT</Key>
+          <Key>Nom de l'application</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{techConfig.APPLICATION_NAME}</Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Version de l'application</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{techConfig.APPLICATION_VERSION}</Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Environement</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{techConfig.ENVIRONMENT}</Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Port</Key>
           <EqualSign>:</EqualSign>
           <Value>{techConfig.PORT}</Value>
         </KeyValue>
         <KeyValue>
-          <Key>SERVER_ROOT_URL</Key>
+          <Key>Url du serveur</Key>
           <EqualSign>:</EqualSign>
           <Value>{techConfig.SERVER_ROOT_URL}</Value>
         </KeyValue>
