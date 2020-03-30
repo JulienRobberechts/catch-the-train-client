@@ -6,7 +6,8 @@ const config = {
   ENVIRONMENT: process.env.NODE_ENV,
   SERVER_ROOT_URL:
     process.env.REACT_APP_SERVER_ROOT_URL || "http://localhost:3000",
-  PORT: process.env.PORT || "3025"
+  PORT: process.env.PORT || "3025",
+  CLIENT_URL: window.location.href
 };
 
 module.exports = config;

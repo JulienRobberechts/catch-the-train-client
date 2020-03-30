@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
+
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
-import { useSelector } from "react-redux";
+import getLanguage from "../../domains/config/getLanguage";
 
 const SettingsPage = () => {
   const {
@@ -13,6 +15,8 @@ const SettingsPage = () => {
     stationConfiguration,
     userConfiguration
   } = useSelector(selectToTheStation);
+
+  const clientUrl = window.location.href;
 
   return (
     <>
@@ -86,6 +90,18 @@ const SettingsPage = () => {
           <Key>Url du serveur</Key>
           <EqualSign>:</EqualSign>
           <Value>{techConfig.SERVER_ROOT_URL}</Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Url du client</Key>
+          <EqualSign>:</EqualSign>
+          <Value>
+            {clientUrl} / {techConfig.CLIENT_URL}
+          </Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Langue</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{getLanguage(techConfig.CLIENT_URL)}</Value>
         </KeyValue>
       </Section>
     </>
