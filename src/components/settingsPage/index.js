@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -6,8 +6,11 @@ import { useSelector } from "react-redux";
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
-import getLanguage from "../../domains/config/getLanguage";
-import { getServerParameters } from "../../adapters/ping";
+
+import ServerSettings from "./serverSettings";
+import ClientSettings from "./clientSettings";
+import UserSettings from "./userSettings";
+import KeyValueComponent from "./keyValue";
 
 const SettingsPage = () => {
   const {
@@ -16,12 +19,6 @@ const SettingsPage = () => {
     stationConfiguration,
     userConfiguration
   } = useSelector(selectToTheStation);
-
-  const [serverData, setServerData] = useState({ loading: true });
-
-  useEffect(() => {
-    (async () => setServerData(await getServerParameters()))();
-  }, [setServerData]);
 
   return (
     <>
@@ -35,103 +32,35 @@ const SettingsPage = () => {
             pour la station de <StationName>'{station?.name}'</StationName>
           </SectionTitle>
           <Section>
-            <KeyValue>
-              <Key>Temps de trajet vers la station (en secondes)</Key>
-              <EqualSign>:</EqualSign>
-              <Value>
-                {stationConfiguration &&
-                  stationConfiguration.travelDurationSeconds}
-              </Value>
-            </KeyValue>
-            <KeyValue>
-              <Key>Temps de trajet dans la station (en secondes)</Key>
-              <EqualSign>:</EqualSign>
-              <Value>
-                {stationConfiguration &&
-                  stationConfiguration.waitingDelaySeconds}
-              </Value>
-            </KeyValue>
+            <KeyValueComponent
+              keyName="Temps de trajet vers la station (en secondes)"
+              value={
+                stationConfiguration &&
+                stationConfiguration.travelDurationSeconds
+              }
+            />
+            <KeyValueComponent
+              keyName="Temps de trajet dans la station (en secondes)"
+              value={
+                stationConfiguration && stationConfiguration.waitingDelaySeconds
+              }
+            />
           </Section>
         </>
       )}
       <SectionTitle>Vos préférences</SectionTitle>
       <Section>
-        <KeyValue>
-          <Key>Marge pour considérer que vous êtes à l'heure (en secondes)</Key>
-          <EqualSign>:</EqualSign>
-          <Value>
-            {userConfiguration && userConfiguration.onTimeMarginDelaySeconds}
-          </Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Fuseau horaire</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{userConfiguration && userConfiguration.timezone}</Value>
-        </KeyValue>
+        <UserSettings config={userConfiguration} />
       </Section>
+
       <SectionTitle>Client</SectionTitle>
       <Section>
-        <KeyValue>
-          <Key>Nom de l'application</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.APPLICATION_NAME}</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Version de l'application</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.APPLICATION_VERSION}</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Environement</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.ENVIRONMENT}</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Port</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.PORT}</Value>
-        </KeyValue>
-
-        <KeyValue>
-          <Key>Url du client</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.CLIENT_URL}</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Langue</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{getLanguage(techConfig.CLIENT_URL)}</Value>
-        </KeyValue>
+        <ClientSettings config={techConfig} />
       </Section>
-      <SectionTitle>Serveur</SectionTitle>
 
+      <SectionTitle>Serveur</SectionTitle>
       <Section>
-        <KeyValue>
-          <Key>Url du serveur</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.SERVER_ROOT_URL}</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Statut</Key>
-          <EqualSign>:</EqualSign>
-          <Value>
-            {serverData.error
-              ? serverData.error.toString()
-              : serverData.loading
-              ? "chargement en cours..."
-              : serverData.status}
-          </Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Ip publique du serveur</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{serverData?.serverPublicIp ?? "-"}</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>Version du serveur</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{serverData?.version ?? "-"}</Value>
-        </KeyValue>
+        <ServerSettings serverUrl={techConfig.SERVER_ROOT_URL} />
       </Section>
     </>
   );
@@ -155,17 +84,8 @@ const Section = styled.div`
   margin: 0.1rem 2rem;
 `;
 
-const KeyValue = styled.div``;
-
-const Key = styled.span`
-  color: ${() => colors.dark.text.disabled};
-`;
-const EqualSign = styled.span`
-  color: ${() => colors.dark.text.disabled};
-  margin-right: 0.6rem;
-`;
-const Value = styled.span``;
 const StationName = styled.span`
   font-style: italic;
 `;
+
 export default SettingsPage;

@@ -1,9 +1,8 @@
 import axios from "axios";
-import { SERVER_ROOT_URL } from "../config";
 
-export async function getServerParameters() {
+export async function getServerParameters(serverUrl) {
   try {
-    const url = SERVER_ROOT_URL + "/parameters";
+    const url = serverUrl + "/parameters";
     const response = await axios.request(url);
     return response.data;
   } catch (error) {
