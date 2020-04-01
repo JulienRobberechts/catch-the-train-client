@@ -1,20 +1,10 @@
 import { put, call, takeLatest } from "redux-saga/effects";
-import axios from "axios";
+import { getTimeTablePromise } from "../../adapters/timetable";
 import { fetch } from "./slice";
-import { SERVER_ROOT_URL } from "../../config";
-
-// const delay = ms => new Promise(res => setTimeout(res, ms));
-
-/** function that returns an axios call */
-export function getTimeTable() {
-  // console.log("getTimeTable start *********************************");
-  const url = SERVER_ROOT_URL + "/schedules";
-  return axios.request(url);
-}
 
 export function* getTimeTableEffectSaga(action) {
   try {
-    const result = yield call(getTimeTable);
+    const result = yield call(getTimeTablePromise);
     // console.log("RESULT----------------------------", result);
     if (!result) {
       throw Error("no data from the server");

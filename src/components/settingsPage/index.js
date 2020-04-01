@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { colors } from "../../design/colors";
 import techConfig from "../../config";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import getLanguage from "../../domains/config/getLanguage";
+import { getServerParameters } from "../../adapters/ping";
 
 const SettingsPage = () => {
   const {
@@ -15,6 +16,17 @@ const SettingsPage = () => {
     stationConfiguration,
     userConfiguration
   } = useSelector(selectToTheStation);
+
+  const [serverData, setServerData] = useState({ loading: true });
+
+  useEffect(() => {
+    async function anyNameFunction() {
+      const data = await getServerParameters();
+      console.log({ data });
+      setServerData(data);
+    }
+    anyNameFunction();
+  }, []);
 
   return (
     <>
@@ -62,7 +74,7 @@ const SettingsPage = () => {
           <Value>{userConfiguration && userConfiguration.timezone}</Value>
         </KeyValue>
       </Section>
-      <SectionTitle>Technique</SectionTitle>
+      <SectionTitle>Client</SectionTitle>
       <Section>
         <KeyValue>
           <Key>Nom de l'application</Key>
@@ -84,11 +96,7 @@ const SettingsPage = () => {
           <EqualSign>:</EqualSign>
           <Value>{techConfig.PORT}</Value>
         </KeyValue>
-        <KeyValue>
-          <Key>Url du serveur</Key>
-          <EqualSign>:</EqualSign>
-          <Value>{techConfig.SERVER_ROOT_URL}</Value>
-        </KeyValue>
+
         <KeyValue>
           <Key>Url du client</Key>
           <EqualSign>:</EqualSign>
@@ -98,6 +106,36 @@ const SettingsPage = () => {
           <Key>Langue</Key>
           <EqualSign>:</EqualSign>
           <Value>{getLanguage(techConfig.CLIENT_URL)}</Value>
+        </KeyValue>
+      </Section>
+      <SectionTitle>Serveur</SectionTitle>
+
+      <Section>
+        <KeyValue>
+          <Key>Url du serveur</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{techConfig.SERVER_ROOT_URL}</Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Statut</Key>
+          <EqualSign>:</EqualSign>
+          <Value>
+            {serverData.error
+              ? serverData.error.toString()
+              : serverData.loading
+              ? "chargement en cours..."
+              : serverData.status}
+          </Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Ip publique du serveur</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{serverData?.serverPublicIp ?? "-"}</Value>
+        </KeyValue>
+        <KeyValue>
+          <Key>Version du serveur</Key>
+          <EqualSign>:</EqualSign>
+          <Value>{serverData?.version ?? "-"}</Value>
         </KeyValue>
       </Section>
     </>
