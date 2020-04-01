@@ -20,13 +20,8 @@ const SettingsPage = () => {
   const [serverData, setServerData] = useState({ loading: true });
 
   useEffect(() => {
-    async function anyNameFunction() {
-      const data = await getServerParameters();
-      console.log({ data });
-      setServerData(data);
-    }
-    anyNameFunction();
-  }, []);
+    (async () => setServerData(await getServerParameters()))();
+  }, [setServerData]);
 
   return (
     <>
