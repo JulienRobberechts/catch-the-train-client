@@ -10,6 +10,12 @@ import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/sel
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
+// sample links: TO CHANGE
+const missions = "UPAC,TEDI";
+const transport = "rers";
+const line = "a";
+const station = "chatelet+les+halles";
+
 function TimeTable() {
   const { push } = useHistory();
 
@@ -49,7 +55,7 @@ function TimeTable() {
             onClick={() => {
               const departure = trains[currentIndex - 1];
               push(
-                `/rers/a/chatelet+les+halles/${departure.trainCode}?missions=ZEBU`
+                `/${transport}/${line}/${station}/${departure.trainCode}?missions=${missions}`
               );
             }}
           >
@@ -71,7 +77,7 @@ function TimeTable() {
             selected={departure.index === currentIndex}
             onSelect={() => {
               push(
-                `/rers/a/chatelet+les+halles/${departure.trainCode}?missions=ZEBU`
+                `/${transport}/${line}/${station}/${departure.trainCode}?missions=${missions}`
               );
             }}
             {...departure}
@@ -83,7 +89,7 @@ function TimeTable() {
             onClick={() => {
               const departure = trains[currentIndex + 1];
               push(
-                `/rers/a/chatelet+les+halles/${departure.trainCode}?missions=ZEBU`
+                `/${transport}/${line}/${station}/${departure.trainCode}?missions=${missions}`
               );
             }}
           >

@@ -4,6 +4,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "../../design/colors";
 
+// sample links:
+const missions = "UPAC,TEDI";
+const transport = "rers";
+const line = "a";
+const station = "chatelet+les+halles";
+
 const StartPage = () => {
   return (
     <Panel>
@@ -20,13 +26,7 @@ const StartPage = () => {
         <AppName>'Attraper le train'</AppName>
         <RestOfPhrase>vous aide pour cela</RestOfPhrase>
       </PropositionValue>
-      <Link to="/rers/a/st+germain+en+laye">
-        <ExampleButton>
-          voir un exemple des train pour{" "}
-          <div>Saint-Germain-en-Laye > Paris</div>
-        </ExampleButton>
-      </Link>
-      <Link to="/rers/a/chatelet+les+halles?missions=ZEBU">
+      <Link to={`/${transport}/${line}/${station}?missions=${missions}`}>
         <ExampleButton>
           voir un exemple des train pour <div>Chatelet les halles > ...</div>
         </ExampleButton>
