@@ -3,8 +3,12 @@ import axios from "axios";
 import { SERVER_ROOT_URL } from "../config";
 
 /** function that returns an axios call promise */
-export function getTimeTablePromise(type, line, station) {
-  const url = SERVER_ROOT_URL + `/next-trains/${type}/${line}/${station}`;
+export function getTimeTablePromise(type, line, station, missions) {
+  const url = SERVER_ROOT_URL + `/next-trains/${type}/${line}/${station}?`;
+  const params = {
+    missions: missions ? missions : undefined,
+  };
   // console.log("getTimeTable url = ", url);
-  return axios.request(url);
+  console.log("getTimeTable params = ", params);
+  return axios.request(url, { params });
 }

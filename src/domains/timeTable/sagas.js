@@ -4,8 +4,14 @@ import { fetch, fetchSuccess, fetchError } from "./slice";
 
 export function* getTimeTableEffectSaga(action) {
   try {
-    const { type, line, station } = action.payload;
-    const result = yield call(getTimeTablePromise, type, line, station);
+    const { type, line, station, missions } = action.payload;
+    const result = yield call(
+      getTimeTablePromise,
+      type,
+      line,
+      station,
+      missions
+    );
     if (!result) {
       throw Error("no data from the server");
     }

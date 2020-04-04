@@ -26,7 +26,7 @@ const StartPage = () => {
           <div>Saint-Germain-en-Laye > Paris</div>
         </ExampleButton>
       </Link>
-      <Link to="/rers/a/chatelet+les+halles">
+      <Link to="/rers/a/chatelet+les+halles?missions=ZEBU">
         <ExampleButton>
           voir un exemple des train pour <div>Chatelet les halles > ...</div>
         </ExampleButton>

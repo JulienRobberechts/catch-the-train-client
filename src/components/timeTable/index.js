@@ -48,7 +48,9 @@ function TimeTable() {
           <PreviousButton
             onClick={() => {
               const departure = trains[currentIndex - 1];
-              push(`/rers/a/chatelet+les+halles/${departure.trainCode}`);
+              push(
+                `/rers/a/chatelet+les+halles/${departure.trainCode}?missions=ZEBU`
+              );
             }}
           >
             <IconContainer>
@@ -68,7 +70,9 @@ function TimeTable() {
             key={departure.index}
             selected={departure.index === currentIndex}
             onSelect={() => {
-              push(`/rers/a/chatelet+les+halles/${departure.trainCode}`);
+              push(
+                `/rers/a/chatelet+les+halles/${departure.trainCode}?missions=ZEBU`
+              );
             }}
             {...departure}
           />
@@ -78,7 +82,9 @@ function TimeTable() {
             disabled={minIndex >= trains.length - NUMBER_OF_DEPARTURE_VISIBLE}
             onClick={() => {
               const departure = trains[currentIndex + 1];
-              push(`/rers/a/chatelet+les+halles/${departure.trainCode}`);
+              push(
+                `/rers/a/chatelet+les+halles/${departure.trainCode}?missions=ZEBU`
+              );
             }}
           >
             <IconContainer>
