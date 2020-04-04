@@ -7,7 +7,8 @@ const config = {
   SERVER_ROOT_URL:
     process.env.REACT_APP_SERVER_ROOT_URL || "http://localhost:3000",
   PORT: process.env.PORT || "3025",
-  CLIENT_URL: window.location.href
+  CLIENT_URL: window.location.href,
+  MOCK_TIME: process.env.REACT_APP_MOCK_TIME === "true",
 };
 
 module.exports = config;

@@ -1,15 +1,16 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import moment from "moment";
+import config from "../../config";
 
-const fakeNow = moment();
-fakeNow.set({ hour: 9, minute: 22, second: 30, millisecond: 123 });
-const fakeNowString = fakeNow.format();
+const fakeNowString = config.MOCK_TIME
+  ? "2020-03-10T09:22:30+01:00"
+  : moment().format();
 
 export const initialState = {
   noData: true,
   currentTime: fakeNowString,
   userConfiguration: {
-    onTimeMarginDelaySeconds: 20,
+    onTimeMarginDelaySeconds: 50,
     timezone: "+01:00",
   },
 };
