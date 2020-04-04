@@ -51,7 +51,8 @@ export const slice = createSlice({
       }
 
       state.station = {
-        name: "Saint-Germain-en-Laye",
+        code: "Saint-Germain-en-Laye", // TODO
+        name: "Saint-Germain-en-Laye", // TODO
       };
       state.stationConfiguration = {
         travelDurationSeconds: 10 * 60 + 25,

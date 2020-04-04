@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { colors } from "../../design/colors";
 
 // sample links:
-const missions = "UPAC,TEDI";
+const missions = "ZEBU"; // ZEBU
 const transport = "rers";
 const line = "a";
 const station = "chatelet+les+halles";
@@ -28,7 +28,8 @@ const StartPage = () => {
       </PropositionValue>
       <Link to={`/${transport}/${line}/${station}?missions=${missions}`}>
         <ExampleButton>
-          voir un exemple des train pour <div>Chatelet les halles > ...</div>
+          voir un exemple des train pour{" "}
+          <div>Chatelet les halles > Saint-Germain-en-Laye</div>
         </ExampleButton>
       </Link>
       <Link to="/settings">

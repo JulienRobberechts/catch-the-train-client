@@ -7,14 +7,9 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
+import { selectRoute } from "../../domains/timeTable/selectors";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
-
-// sample links: TO CHANGE
-const missions = "UPAC,TEDI";
-const transport = "rers";
-const line = "a";
-const station = "chatelet+les+halles";
 
 function TimeTable() {
   const { push } = useHistory();
@@ -25,9 +20,14 @@ function TimeTable() {
   // and nothing here...
   const toTheStation = useSelector(selectToTheStation);
 
+  const timetable = useSelector(selectRoute);
+
   if (!route || !toTheStation.station || !toTheStation.train) {
     return <Panel>...</Panel>;
   }
+
+  const { type, line, station, missions } = timetable;
+  const missionsString = missions ? missions.join(",") : undefined;
 
   const trainCode = toTheStation.train.trainCode;
 
@@ -55,7 +55,7 @@ function TimeTable() {
             onClick={() => {
               const departure = trains[currentIndex - 1];
               push(
-                `/${transport}/${line}/${station}/${departure.trainCode}?missions=${missions}`
+                `/${type}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
             }}
           >
@@ -77,7 +77,7 @@ function TimeTable() {
             selected={departure.index === currentIndex}
             onSelect={() => {
               push(
-                `/${transport}/${line}/${station}/${departure.trainCode}?missions=${missions}`
+                `/${type}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
             }}
             {...departure}
@@ -89,7 +89,7 @@ function TimeTable() {
             onClick={() => {
               const departure = trains[currentIndex + 1];
               push(
-                `/${transport}/${line}/${station}/${departure.trainCode}?missions=${missions}`
+                `/${type}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
             }}
           >
