@@ -11,12 +11,14 @@ import CatchPage from "./page";
 const CatchPageContainer = () => {
   // Get data from the server at startup
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetch());
-  }, [dispatch]);
 
   // Select the train according to the url
   const selectedRoute = useParams();
+
+  useEffect(() => {
+    dispatch(fetch(selectedRoute));
+  }, [dispatch, selectedRoute]);
+
   const trainDeparture = useSelector(selectTrainDeparture(selectedRoute));
   useEffect(() => {
     dispatch(chooseTrain({ trainDeparture }));

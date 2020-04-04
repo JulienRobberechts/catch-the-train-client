@@ -23,7 +23,7 @@ const ServerSettings = ({ serverUrl }) => {
         }
       />
       <KeyValueComponent
-        keyName="Ip publique du serveur"
+        keyName="Ip sortante du serveur"
         value={serverData?.serverPublicIp ?? "-"}
       />
       <KeyValueComponent

@@ -14,14 +14,8 @@ const TrainRoute = () => {
   return (
     <Panel>
       <span>
-        {route.station.name} ({route.station.code})
+        {route.type}/{route.line}/{route.station}
       </span>
-      {route.direction && (
-        <>
-          <span> {">"} </span>
-          <span>{route.direction}</span>
-        </>
-      )}
     </Panel>
   );
 };

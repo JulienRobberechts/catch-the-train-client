@@ -29,7 +29,7 @@ function TimeTable() {
 
   const currentIndex = Math.max(
     0,
-    trains.findIndex(departure => departure.trainCode === trainCode)
+    trains.findIndex((departure) => departure.trainCode === trainCode)
   );
 
   const minIndex = Math.max(
@@ -48,7 +48,7 @@ function TimeTable() {
           <PreviousButton
             onClick={() => {
               const departure = trains[currentIndex - 1];
-              push(`/SLG/PARIS/${departure.trainCode}`);
+              push(`/rers/a/chatelet+les+halles/${departure.trainCode}`);
             }}
           >
             <IconContainer>
@@ -63,12 +63,12 @@ function TimeTable() {
           </PreviousPlaceholder>
         )}
 
-        {trains.slice(minIndex, minIndex + 3).map(departure => (
+        {trains.slice(minIndex, minIndex + 3).map((departure) => (
           <Departure
             key={departure.index}
             selected={departure.index === currentIndex}
             onSelect={() => {
-              push(`/SGL/PARIS/${departure.trainCode}`);
+              push(`/rers/a/chatelet+les+halles/${departure.trainCode}`);
             }}
             {...departure}
           />
@@ -78,7 +78,7 @@ function TimeTable() {
             disabled={minIndex >= trains.length - NUMBER_OF_DEPARTURE_VISIBLE}
             onClick={() => {
               const departure = trains[currentIndex + 1];
-              push(`/SGL/PARIS/${departure.trainCode}`);
+              push(`/rers/a/chatelet+les+halles/${departure.trainCode}`);
             }}
           >
             <IconContainer>

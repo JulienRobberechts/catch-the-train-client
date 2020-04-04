@@ -7,11 +7,11 @@ const CatchTrainRoutes = () => {
   const configIsValid = useSelector(selectConfigIsValid);
   return (
     <Switch>
-      <Route path="/:station/:direction/:trainCode">
+      <Route path="/:type/:line/:station/:train">
         <CatchPageContainer />
       </Route>
       {!configIsValid && <Redirect to="/settings" />}
-      <Route path="/:station/:direction">
+      <Route path="/:type/:line/:station">
         <CatchPageContainer />
       </Route>
       <Redirect to="/start" />

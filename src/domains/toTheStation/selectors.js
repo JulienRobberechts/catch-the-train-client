@@ -1,19 +1,19 @@
 import moment from "moment";
 import { getDelay, getDelayStatus } from "./pure";
 
-export const selectNow = state => state?.toTheStation?.currentTime;
+export const selectNow = (state) => state?.toTheStation?.currentTime;
 
-export const selectToTheStation = state => state?.toTheStation;
+export const selectToTheStation = (state) => state?.toTheStation;
 
 // TO MOVE ??
-export const selectEnhancedToTheStation = state => {
+export const selectEnhancedToTheStation = (state) => {
   const { timeTable, toTheStation } = state; // MASHUP !!!!!!
 
-  if (!state.timeTable.route || state.toTheStation.noData) return null;
+  if (!state.timeTable.data || state.toTheStation.noData) return null;
 
-  const { trains } = timeTable.route;
+  const { routes } = timeTable.data;
 
-  if (!trains) {
+  if (!routes) {
     return null;
   }
 
@@ -24,25 +24,25 @@ export const selectEnhancedToTheStation = state => {
   }
 
   const departureIndex = Math.max(
-    trains.findIndex(departure => departure.trainCode === trainCode),
+    routes.findIndex((departure) => departure.trainCode === trainCode),
     0
   );
 
-  const departure = trains[departureIndex];
+  const departure = routes[departureIndex];
 
   // second part
   // From the slice toTheStation
 
   const {
     userConfiguration: { onTimeMarginDelaySeconds },
-    stationConfiguration: { travelDurationSeconds, waitingDelaySeconds }
+    stationConfiguration: { travelDurationSeconds, waitingDelaySeconds },
   } = toTheStation;
 
   const travelDuration = moment.duration({
-    seconds: travelDurationSeconds
+    seconds: travelDurationSeconds,
   });
   const waitingDuration = moment.duration({
-    seconds: waitingDelaySeconds
+    seconds: waitingDelaySeconds,
   });
   const targetTime = moment.parseZone(departure.departureTime);
 
@@ -54,7 +54,7 @@ export const selectEnhancedToTheStation = state => {
     nowTime,
     targetTime,
     travelDuration,
-    waitingDuration
+    waitingDuration,
   });
   const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
 
@@ -66,6 +66,6 @@ export const selectEnhancedToTheStation = state => {
     travelDuration,
     waitingDuration,
     delayDuration,
-    delayStatus
+    delayStatus,
   };
 };

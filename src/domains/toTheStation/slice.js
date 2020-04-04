@@ -1,16 +1,20 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import moment from "moment";
 
+const fakeNow = moment();
+fakeNow.set({ hour: 9, minute: 22, second: 30, millisecond: 123 });
+const fakeNowString = fakeNow.format();
+
 export const initialState = {
   noData: true,
-  currentTime: "2020-03-10T09:19:56+01:00",
+  currentTime: fakeNowString,
   userConfiguration: {
     onTimeMarginDelaySeconds: 20,
-    timezone: "+01:00"
-  }
+    timezone: "+01:00",
+  },
 };
 
-export const updateTime = createAction("toTheStation/updateTime", payload => {
+export const updateTime = createAction("toTheStation/updateTime", (payload) => {
   console.log("payload", payload);
   const lastTime = moment(payload.lastTime);
   const duration = moment.duration({ milliseconds: payload.refreshInterval });
@@ -22,8 +26,8 @@ export const updateTime = createAction("toTheStation/updateTime", payload => {
   return {
     payload: {
       ...payload,
-      currentTime
-    }
+      currentTime,
+    },
   };
 });
 
@@ -31,9 +35,9 @@ export const slice = createSlice({
   name: "toTheStation",
   initialState,
   reducers: {
-    reset: state => {
+    reset: (state) => {
       Object.assign(state, initialState);
-      state.currentTime = "2020-03-10T09:19:56+01:00";
+      state.currentTime = fakeNowString;
     },
     chooseTrain: (state, action) => {
       const { trainDeparture } = action.payload;
@@ -46,17 +50,14 @@ export const slice = createSlice({
       }
 
       state.station = {
-        code: "SGL",
-        name: "Saint-Germain-en-Laye"
+        name: "Saint-Germain-en-Laye",
       };
       state.stationConfiguration = {
         travelDurationSeconds: 10 * 60 + 25,
-        waitingDelaySeconds: 100
+        waitingDelaySeconds: 100,
       };
       state.train = {
-        trainCode: trainDeparture.trainCode,
-        departureTime: trainDeparture.departureTime,
-        platform: trainDeparture.platform
+        ...trainDeparture,
       };
       state.noData = false;
     },
@@ -65,8 +66,8 @@ export const slice = createSlice({
       console.log("currentTime in updateTime", currentTime);
       state.currentTime = currentTime;
       state.noData = false;
-    }
-  }
+    },
+  },
 });
 
 export const { reset, chooseTrain } = slice.actions;

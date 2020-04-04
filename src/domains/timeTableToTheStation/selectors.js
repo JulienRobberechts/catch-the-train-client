@@ -5,8 +5,8 @@ import { getDelay, getDelayStatus } from "../toTheStation/pure";
 // in order to provide a ready to use selectors for the timeLine component.
 
 // Be careful with change of references!!!
-export const selectEnhancedTimeTable = state => {
-  if (!state.timeTable.route || state.toTheStation.noData) return null;
+export const selectEnhancedTimeTable = (state) => {
+  if (!state.timeTable.data || state.toTheStation.noData) return null;
 
   const { timeTable } = state;
   const nowTime = moment.parseZone(state.toTheStation.currentTime);
@@ -17,18 +17,18 @@ export const selectEnhancedTimeTable = state => {
 
   const {
     userConfiguration: { onTimeMarginDelaySeconds },
-    stationConfiguration: { travelDurationSeconds, waitingDelaySeconds }
+    stationConfiguration: { travelDurationSeconds, waitingDelaySeconds },
   } = state.toTheStation;
 
-  const trains = state.timeTable.route.trains.map((departure, index) => {
+  const trains = state.timeTable.data.routes.map((departure, index) => {
     const departureTime = moment.parseZone(departure.departureTime);
     const departureDuration = moment.duration(departureTime.diff(nowTime));
     const targetTime = moment.parseZone(departure.departureTime);
     const travelDuration = moment.duration({
-      seconds: travelDurationSeconds
+      seconds: travelDurationSeconds,
     });
     const waitingDuration = moment.duration({
-      seconds: waitingDelaySeconds
+      seconds: waitingDelaySeconds,
     });
 
     const trainCode = departure.trainCode;
@@ -37,7 +37,7 @@ export const selectEnhancedTimeTable = state => {
       nowTime,
       targetTime,
       travelDuration,
-      waitingDuration
+      waitingDuration,
     });
     const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
 
@@ -48,7 +48,7 @@ export const selectEnhancedTimeTable = state => {
       targetDuration,
       delayDuration,
       delayStatus,
-      trainCode
+      trainCode,
     };
   });
 

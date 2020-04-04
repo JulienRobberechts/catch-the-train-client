@@ -8,19 +8,19 @@ export const slice = createSlice({
   name: "timeTable",
   initialState,
   reducers: {
-    reset: state => {
+    reset: (state) => {
       Object.assign(state, initialState);
     },
-    mockTimeTable: state => {
+    mockTimeTable: (state) => {
       state.lastUpdate = moment.parseZone().format();
       state.route = mockedTimeTable.route;
       state.noData = false;
     },
-    fetch: state => {
+    fetch: (state) => {
       state.loading = true;
       state.error = null;
     },
-    fetchError: state => {
+    fetchError: (state) => {
       state.loading = false;
       state.error = "Error on fetch";
     },
@@ -31,17 +31,24 @@ export const slice = createSlice({
       state.loading = false;
       state.error = null;
       state.lastUpdate = moment.parseZone().format();
-      state.route = payload.routes[0]; // first route
+      state.data = payload;
       state.noData = false;
     },
     update: (state, action) => {
       const { route } = action.payload;
       state.lastUpdate = moment.parseZone();
       state.route = route;
-    }
-  }
+    },
+  },
 });
 
-export const { reset, mockTimeTable, fetch, update } = slice.actions;
+export const {
+  reset,
+  mockTimeTable,
+  fetch,
+  fetchSuccess,
+  fetchError,
+  update,
+} = slice.actions;
 
 export default slice.reducer;

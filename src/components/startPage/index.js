@@ -20,10 +20,15 @@ const StartPage = () => {
         <AppName>'Attraper le train'</AppName>
         <RestOfPhrase>vous aide pour cela</RestOfPhrase>
       </PropositionValue>
-      <Link to="/sgl/paris">
+      <Link to="/rers/a/st+germain+en+laye">
         <ExampleButton>
           voir un exemple des train pour{" "}
           <div>Saint-Germain-en-Laye > Paris</div>
+        </ExampleButton>
+      </Link>
+      <Link to="/rers/a/chatelet+les+halles">
+        <ExampleButton>
+          voir un exemple des train pour <div>Chatelet les halles > ...</div>
         </ExampleButton>
       </Link>
       <Link to="/settings">

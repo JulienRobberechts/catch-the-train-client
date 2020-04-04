@@ -1,24 +1,27 @@
-export const selectConfigIsValid = state => {
+export const selectConfigIsValid = (state) => {
   return true;
   // Not sure it should be here!!
   // return !!state?.timeTable.route?.station?.code;
 };
 
-export const selectStationCode = state => {
+export const selectStationCode = (state) => {
   return state?.timeTable.route?.station?.code;
 };
 
-export const selectRoute = state => {
-  return state?.timeTable?.route;
+export const selectRoute = (state) => {
+  return state?.timeTable?.data;
 };
 
 export const selectTrainDeparture = ({
-  stationCode,
-  direction,
-  trainCode
-}) => state => {
+  type,
+  line,
+  station,
+  train: trainCode,
+}) => (state) => {
+  console.log("selectTrainDeparture");
+
   // search in trains
-  const trains = state?.timeTable?.route?.trains;
+  const trains = state?.timeTable?.data?.routes;
 
   if (!trains) {
     return null;
@@ -28,7 +31,7 @@ export const selectTrainDeparture = ({
 
   const currentIndex = Math.max(
     0,
-    trains.findIndex(departure => departure.trainCode === trainCode)
+    trains.findIndex((departure) => departure.trainCode === trainCode)
   );
 
   return trains[currentIndex];
