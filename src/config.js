@@ -9,6 +9,7 @@ const config = {
   PORT: process.env.PORT || "3025",
   CLIENT_URL: window.location.href,
   MOCK_TIME: process.env.REACT_APP_MOCK_TIME === "true",
+  DISABLE_TIME_UPDATE: process.env.REACT_APP_DISABLE_TIME_UPDATE === "true",
 };
 
 module.exports = config;
