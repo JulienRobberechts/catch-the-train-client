@@ -16,7 +16,7 @@ describe("slice toTheStation", () => {
       expect(now).toBeTruthy();
     });
     it("'selectUserConfiguration' should not return data", () => {
-      expect(selectUserConfiguration(rootState)).toBeTruthy();
+      expect(selectUserConfiguration(rootState)).toBeFalsy();
     });
     it("'selectStationConfiguration' should not return data", () => {
       expect(selectStationConfiguration(rootState)).toBeFalsy();

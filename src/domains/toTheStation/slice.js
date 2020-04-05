@@ -8,10 +8,6 @@ const fakeNowString = config.MOCK_TIME
 
 export const initialState = {
   currentTime: fakeNowString,
-  userConfiguration: {
-    onTimeMarginDelaySeconds: 50,
-    timezone: "+01:00",
-  },
 };
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
@@ -39,9 +35,17 @@ export const slice = createSlice({
       Object.assign(state, initialState);
       state.currentTime = fakeNowString;
     },
+    setUserConfiguration: (state, action) => {
+      // const { stationConfiguration } = action.payload;
+      state.userConfiguration = {
+        onTimeMarginDelaySeconds: 50,
+        timezone: "+01:00",
+      };
+    },
     setStationConfiguration: (state, action) => {
       // const { stationConfiguration } = action.payload;
       state.stationConfiguration = {
+        station: "chatelet+les+halles",
         travelDurationSeconds: 10 * 60 + 25,
         waitingDelaySeconds: 100,
       };
@@ -57,6 +61,11 @@ export const slice = createSlice({
   },
 });
 
-export const { reset, chooseTrain, setStationConfiguration } = slice.actions;
+export const {
+  reset,
+  setStationConfiguration,
+  setUserConfiguration,
+  chooseTrain,
+} = slice.actions;
 
 export default slice.reducer;

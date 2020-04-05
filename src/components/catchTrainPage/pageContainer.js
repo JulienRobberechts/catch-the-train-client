@@ -4,6 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { requestStart } from "../../domains/timeTable/slice";
 import {
   chooseTrain,
+  setUserConfiguration,
   setStationConfiguration,
 } from "../../domains/toTheStation/slice";
 import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
@@ -32,6 +33,10 @@ const CatchPageContainer = () => {
   useEffect(() => {
     dispatch(requestStart({ ...selectedRoute, missions }));
   }, [dispatch, selectedRoute, missions]);
+
+  useEffect(() => {
+    dispatch(setUserConfiguration());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setStationConfiguration());
