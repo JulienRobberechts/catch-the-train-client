@@ -1,10 +1,9 @@
 import timeTableReducer, {
   initialState as timeTableInitialState,
-  mockTimeTable
 } from "../timeTable/slice";
 
 import toTheStationReducer, {
-  initialState as toTheStationInitialState
+  initialState as toTheStationInitialState,
 } from "../toTheStation/slice";
 
 import { selectEnhancedTimeTable } from "./selectors";
@@ -13,7 +12,7 @@ describe("slice timeTable", () => {
   describe("initial state", () => {
     const rootState = {
       timeTable: timeTableInitialState,
-      toTheStation: toTheStationInitialState
+      toTheStation: toTheStationInitialState,
     };
     it("'selectEnhancedTimeTable' should return falsy", () => {
       expect(selectEnhancedTimeTable(rootState)).toBeFalsy();

@@ -1,4 +1,4 @@
-import reducer, { initialState, mockTimeTable } from "./slice";
+import reducer, { initialState } from "./slice";
 
 import {
   selectConfigIsValid,

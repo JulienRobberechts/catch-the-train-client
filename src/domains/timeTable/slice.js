@@ -11,9 +11,6 @@ export const slice = createSlice({
     reset: (state) => {
       Object.assign(state, initialState);
     },
-    mockTimeTable: (state) => {
-      state.route = mockedTimeTable.route;
-    },
     fetch: (state) => {
       state.loading = true;
       state.error = null;
@@ -36,13 +33,6 @@ export const slice = createSlice({
   },
 });
 
-export const {
-  reset,
-  mockTimeTable,
-  fetch,
-  fetchSuccess,
-  fetchError,
-  update,
-} = slice.actions;
+export const { reset, fetch, fetchSuccess, fetchError, update } = slice.actions;
 
 export default slice.reducer;
