@@ -5,16 +5,18 @@ import { useSelector } from "react-redux";
 import { selectRoute } from "../../domains/timeTable/selectors";
 
 const TrainRoute = () => {
-  const route = useSelector(selectRoute);
+  const { context } = useSelector(selectRoute);
 
-  if (!route) {
+  if (!context) {
     return <Panel>...</Panel>;
   }
+
+  const { type, line, station } = context;
 
   return (
     <Panel>
       <span>
-        {route.for.type}/{route.for.line}/{route.for.station}
+        {type}/{line}/{station}
       </span>
     </Panel>
   );

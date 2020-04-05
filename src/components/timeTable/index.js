@@ -26,7 +26,7 @@ function TimeTable() {
     return <Panel>...</Panel>;
   }
 
-  const { type, line, station, missions } = timetable.for;
+  const { type, line, station, missions } = timetable.context;
   const missionsString = missions ? missions.join(",") : undefined;
 
   const trainCode = toTheStation.train.trainCode;
