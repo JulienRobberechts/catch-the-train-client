@@ -14,7 +14,7 @@ const TrainRoute = () => {
   return (
     <Panel>
       <span>
-        {route.type}/{route.line}/{route.station}
+        {route.for.type}/{route.for.line}/{route.for.station}
       </span>
     </Panel>
   );

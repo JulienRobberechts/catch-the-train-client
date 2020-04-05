@@ -17,7 +17,7 @@ export const selectEnhancedTimeTable = (state) => {
     stationConfiguration: { travelDurationSeconds, waitingDelaySeconds },
   } = state.toTheStation;
 
-  const trains = state.timeTable.data.routes.map((departure, index) => {
+  const trains = state.timeTable.data.departures.map((departure, index) => {
     const departureTime = moment.parseZone(departure.departureTime);
     const departureDuration = moment.duration(departureTime.diff(nowTime));
     const targetTime = moment.parseZone(departure.departureTime);
@@ -49,5 +49,5 @@ export const selectEnhancedTimeTable = (state) => {
     };
   });
 
-  return { route: timeTable.route, trains };
+  return { route: timeTable.departures, trains };
 };

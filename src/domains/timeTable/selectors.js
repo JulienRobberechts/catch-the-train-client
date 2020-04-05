@@ -4,10 +4,6 @@ export const selectConfigIsValid = (state) => {
   // return !!state?.timeTable.route?.station?.code;
 };
 
-export const selectStationCode = (state) => {
-  return state?.timeTable.route?.station?.code;
-};
-
 export const selectRoute = (state) => {
   return state?.timeTable?.data;
 };
@@ -21,9 +17,9 @@ export const selectTrainDeparture = ({
   console.log("selectTrainDeparture");
 
   // search in trains
-  const trains = state?.timeTable?.data?.routes;
+  const departures = state?.timeTable?.data?.departures;
 
-  if (!trains) {
+  if (!departures) {
     return null;
   }
 
@@ -31,10 +27,10 @@ export const selectTrainDeparture = ({
 
   const currentIndex = Math.max(
     0,
-    trains.findIndex((departure) => departure.trainCode === trainCode)
+    departures.findIndex((departure) => departure.trainCode === trainCode)
   );
 
-  return trains[currentIndex];
+  return departures[currentIndex];
 
   // if found:
   // if not found: return closest to the time

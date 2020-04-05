@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import moment from "moment";
+// import moment from "moment";
 import { mockedTimeTable } from "./mock";
 
 export const initialState = {};
@@ -17,18 +17,17 @@ export const slice = createSlice({
     fetch: (state) => {
       state.loading = true;
       state.error = null;
+      // we still can have data during the loading
     },
     fetchError: (state) => {
       state.loading = false;
       state.error = "Error on fetch";
+      // we still can have data after an error
     },
     fetchSuccess: (state, action) => {
-      const { payload } = action;
-      console.log("fetchSuccess payload", payload);
-      // TODO ...
       state.loading = false;
       state.error = null;
-      state.data = payload;
+      state.data = action.payload;
     },
     update: (state, action) => {
       const { route } = action.payload;

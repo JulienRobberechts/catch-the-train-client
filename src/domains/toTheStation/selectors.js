@@ -16,9 +16,9 @@ export const selectEnhancedToTheStation = (state) => {
   )
     return null;
 
-  const { routes } = timeTable.data;
+  const { departures } = timeTable.data;
 
-  if (!routes) {
+  if (!departures) {
     return null;
   }
 
@@ -29,11 +29,11 @@ export const selectEnhancedToTheStation = (state) => {
   }
 
   const departureIndex = Math.max(
-    routes.findIndex((departure) => departure.trainCode === trainCode),
+    departures.findIndex((departure) => departure.trainCode === trainCode),
     0
   );
 
-  const departure = routes[departureIndex];
+  const departure = departures[departureIndex];
 
   // second part
   // From the slice toTheStation
