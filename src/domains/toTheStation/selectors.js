@@ -3,6 +3,7 @@ import { getDelay, getDelayStatus } from "./pure";
 
 export const selectNow = (state) => state?.toTheStation?.currentTime;
 
+// To split into smaller piece
 export const selectToTheStation = (state) => state?.toTheStation;
 
 // TO MOVE ??

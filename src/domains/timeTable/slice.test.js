@@ -1,6 +1,10 @@
 import reducer, { initialState, mockTimeTable } from "./slice";
 
-import { selectConfigIsValid, selectRoute } from "./selectors";
+import {
+  selectConfigIsValid,
+  selectRoute,
+  selectTimeTableContext,
+} from "./selectors";
 
 describe("slice timeTable", () => {
   describe("initial state", () => {
@@ -11,6 +15,9 @@ describe("slice timeTable", () => {
     });
     it("'selectRoute' should return falsy", () => {
       expect(selectRoute(rootState)).toBeFalsy();
+    });
+    it("'selectTimeTableContext' should return falsy", () => {
+      expect(selectTimeTableContext(rootState)).toBeFalsy();
     });
   });
 });

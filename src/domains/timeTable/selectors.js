@@ -8,6 +8,10 @@ export const selectRoute = (state) => {
   return state?.timeTable?.data;
 };
 
+export const selectTimeTableContext = (state) => {
+  return state?.timeTable?.data?.context;
+};
+
 export const selectTrainDeparture = ({
   network,
   line,

@@ -22,7 +22,7 @@ function TimeTable() {
 
   const timetable = useSelector(selectRoute);
 
-  if (!route || !toTheStation.station || !toTheStation.train) {
+  if (!route || !toTheStation.train) {
     return <Panel>...</Panel>;
   }
 

@@ -4,7 +4,10 @@ import { useParams, useLocation } from "react-router-dom";
 import { fetch } from "../../domains/timeTable/slice";
 import { chooseTrain } from "../../domains/toTheStation/slice";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
-import { selectTrainDeparture } from "../../domains/timeTable/selectors";
+import {
+  selectTrainDeparture,
+  selectTimeTableContext,
+} from "../../domains/timeTable/selectors";
 
 import CatchPage from "./page";
 
@@ -36,8 +39,11 @@ const CatchPageContainer = () => {
 
   const toTheStation = useSelector(selectToTheStation);
 
+  const context = useSelector(selectTimeTableContext);
+
   if (!toTheStation.train) return <div>...</div>;
-  return <CatchPage station={toTheStation?.station?.name} />;
+
+  return <CatchPage station={context?.station?.name} />;
 };
 
 export default CatchPageContainer;

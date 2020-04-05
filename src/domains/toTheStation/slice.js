@@ -43,15 +43,9 @@ export const slice = createSlice({
       const { trainDeparture } = action.payload;
 
       if (!trainDeparture) {
-        state.station = null;
         state.train = null;
         return;
       }
-
-      state.station = {
-        code: "Saint-Germain-en-Laye", // TODO
-        name: "Saint-Germain-en-Laye", // TODO
-      };
       state.stationConfiguration = {
         travelDurationSeconds: 10 * 60 + 25,
         waitingDelaySeconds: 100,
