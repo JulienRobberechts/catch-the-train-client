@@ -1,30 +1,25 @@
-export const selectConfigIsValid = (state) => {
-  return true;
-  // Not sure it should be here!!
-  // return !!state?.timeTable.route?.station?.code;
-};
-
-export const selectRoute = (state) => {
-  return state?.timeTable?.data;
+export const selectRequestStatus = (state) => {
+  return {
+    loading: !!state?.timeTable?.loading,
+    error: state?.timeTable?.error,
+    hasData: !!state?.timeTable?.data,
+  };
 };
 
 export const selectTimeTableContext = (state) => {
   return state?.timeTable?.data?.context;
 };
 
-export const selectTrainDeparture = ({
-  network,
-  line,
-  station,
-  train: trainCode,
-}) => (state) => {
-  console.log("selectTrainDeparture");
+export const selectAllDepartures = (state) => {
+  return state?.timeTable?.data?.departures;
+};
 
-  // todo:
-  // check network, line, station are still ok.
+// to move into mashup
+export const selectDepartureByTrainCode = (trainCode) => (state) => {
+  // console.log("selectDepartureByTrainCode");
 
   // search in trains
-  const departures = state?.timeTable?.data?.departures;
+  const departures = selectAllDepartures(state);
 
   if (!departures) {
     return null;

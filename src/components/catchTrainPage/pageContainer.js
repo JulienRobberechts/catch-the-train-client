@@ -5,7 +5,7 @@ import { fetch } from "../../domains/timeTable/slice";
 import { chooseTrain } from "../../domains/toTheStation/slice";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import {
-  selectTrainDeparture,
+  selectDepartureByTrainCode,
   selectTimeTableContext,
 } from "../../domains/timeTable/selectors";
 
@@ -32,7 +32,9 @@ const CatchPageContainer = () => {
     dispatch(fetch({ ...selectedRoute, missions }));
   }, [dispatch, selectedRoute, missions]);
 
-  const trainDeparture = useSelector(selectTrainDeparture(selectedRoute));
+  const trainDeparture = useSelector(
+    selectDepartureByTrainCode(selectedRoute.train)
+  );
   useEffect(() => {
     dispatch(chooseTrain({ trainDeparture }));
   }, [dispatch, trainDeparture, selectedRoute]);

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
-import { selectRoute } from "../../domains/timeTable/selectors";
+import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 
 import ServerSettings from "./serverSettings";
 import ClientSettings from "./clientSettings";
@@ -17,7 +17,7 @@ const SettingsPage = () => {
   const { stationConfiguration, userConfiguration } = useSelector(
     selectToTheStation
   );
-  const { station } = useSelector(selectRoute);
+  const { station } = useSelector(selectTimeTableContext);
 
   return (
     <>

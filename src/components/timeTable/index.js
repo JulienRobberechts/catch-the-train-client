@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
-import { selectRoute } from "../../domains/timeTable/selectors";
+import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
@@ -20,7 +20,7 @@ function TimeTable() {
   // and nothing here...
   const toTheStation = useSelector(selectToTheStation);
 
-  const timetable = useSelector(selectRoute);
+  const context = useSelector(selectTimeTableContext);
 
   if (!route || !toTheStation.train) {
     return <Panel>...</Panel>;
@@ -31,7 +31,7 @@ function TimeTable() {
     line,
     station: { slug: station },
     missions,
-  } = timetable.context;
+  } = context;
   const missionsString = missions ? missions.join(",") : undefined;
 
   const trainCode = toTheStation.train.trainCode;

@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
-import { selectRoute } from "../../domains/timeTable/selectors";
+import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 
 const TrainRoute = () => {
-  const { context } = useSelector(selectRoute);
+  const context = useSelector(selectTimeTableContext);
 
   if (!context) {
     return <Panel>...</Panel>;

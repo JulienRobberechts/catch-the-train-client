@@ -1,23 +1,51 @@
-import reducer, { initialState } from "./slice";
+import reducer, { initialState, fetch } from "./slice";
 
 import {
-  selectConfigIsValid,
-  selectRoute,
   selectTimeTableContext,
+  selectRequestStatus,
+  selectAllDepartures,
+  selectDepartureByTrainCode,
 } from "./selectors";
 
 describe("slice timeTable", () => {
   describe("initial state", () => {
     const rootState = { timeTable: initialState };
-    it("'selectConfigIsValid' should return truthy", () => {
-      // to change to be false...
-      expect(selectConfigIsValid(rootState)).toBeTruthy();
-    });
-    it("'selectRoute' should return falsy", () => {
-      expect(selectRoute(rootState)).toBeFalsy();
+    it("'selectRequestStatus' should return results", () => {
+      const actualStatus = selectRequestStatus(rootState);
+      expect(actualStatus.loading).toBeFalsy();
+      expect(actualStatus.error).toBeFalsy();
+      expect(actualStatus.hasData).toBeFalsy();
     });
     it("'selectTimeTableContext' should return falsy", () => {
       expect(selectTimeTableContext(rootState)).toBeFalsy();
+    });
+    it("'selectAllDepartures' should return falsy", () => {
+      expect(selectAllDepartures(rootState)).toBeFalsy();
+    });
+    it("'selectDepartureByTrainCode' should return falsy", () => {
+      expect(selectDepartureByTrainCode("0929")(rootState)).toBeFalsy();
+    });
+  });
+  describe("after first requestStart", () => {
+    let rootState;
+    beforeEach(() => {
+      const timeTable = reducer(initialState, fetch());
+      rootState = { timeTable };
+    });
+    it("'selectRequestStatus' should return results", () => {
+      const actualStatus = selectRequestStatus(rootState);
+      expect(actualStatus.loading).toBeTruthy();
+      expect(actualStatus.error).toBeFalsy();
+      expect(actualStatus.hasData).toBeFalsy();
+    });
+    it("'selectTimeTableContext' should return falsy", () => {
+      expect(selectTimeTableContext(rootState)).toBeFalsy();
+    });
+    it("'selectAllDepartures' should return falsy", () => {
+      expect(selectAllDepartures(rootState)).toBeFalsy();
+    });
+    it("'selectDepartureByTrainCode' should return falsy", () => {
+      expect(selectDepartureByTrainCode("0929")(rootState)).toBeFalsy();
     });
   });
 });
