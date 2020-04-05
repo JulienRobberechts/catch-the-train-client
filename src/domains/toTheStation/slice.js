@@ -56,6 +56,7 @@ export const slice = createSlice({
       state.train = {
         ...trainDeparture,
       };
+      state.currentTrainCode = trainDeparture.trainCode;
     },
     updateTime: (state, action) => {
       const { currentTime } = action.payload;

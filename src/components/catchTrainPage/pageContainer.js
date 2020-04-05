@@ -6,7 +6,7 @@ import {
   chooseTrain,
   setStationConfiguration,
 } from "../../domains/toTheStation/slice";
-import { selectToTheStation } from "../../domains/toTheStation/selectors";
+import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
 import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 import { selectDepartureByTrainCode } from "../../domains/timeTableToTheStation/selectors";
 
@@ -41,11 +41,11 @@ const CatchPageContainer = () => {
     dispatch(chooseTrain({ trainDeparture }));
   }, [dispatch, trainDeparture, selectedRoute]);
 
-  const toTheStation = useSelector(selectToTheStation);
+  const currentTrainCode = useSelector(selectCurrentTrainCode);
 
   const context = useSelector(selectTimeTableContext);
 
-  if (!toTheStation.train) return <div>...</div>;
+  if (!currentTrainCode) return <div>...</div>;
 
   return <CatchPage station={context?.station?.name} />;
 };

@@ -1,7 +1,12 @@
 import moment from "moment";
 import { initialState } from "./slice";
 
-import { selectNow, selectToTheStation } from "./selectors";
+import {
+  selectNow,
+  selectUserConfiguration,
+  selectStationConfiguration,
+  selectCurrentTrainCode,
+} from "./selectors";
 
 describe("slice toTheStation", () => {
   describe("initial state", () => {
@@ -10,21 +15,14 @@ describe("slice toTheStation", () => {
       const now = moment(selectNow(rootState));
       expect(now).toBeTruthy();
     });
-    it("'selectToTheStation' should not return data", () => {
-      expect(selectToTheStation(rootState).data).toBeFalsy();
+    it("'selectUserConfiguration' should not return data", () => {
+      expect(selectUserConfiguration(rootState)).toBeTruthy();
+    });
+    it("'selectStationConfiguration' should not return data", () => {
+      expect(selectStationConfiguration(rootState)).toBeFalsy();
+    });
+    it("'selectCurrentTrainCode' should not return data", () => {
+      expect(selectCurrentTrainCode(rootState)).toBeFalsy();
     });
   });
-  // describe("after 'XXX' action, state", () => {
-  //   let rootState;
-  //   beforeEach(() => {
-  //     const toTheStation = reducer(initialState, actionXXX());
-  //     rootState = { toTheStation };
-  //   });
-  //   it("'selectNow' should return data", () => {
-  //     expect(selectNow(rootState)).toEqual("2020-03-10T09:19:56+01:00");
-  //   });
-  //   it("'selectToTheStation' should return data", () => {
-  //     expect(selectToTheStation(rootState)).toEqual(expect.anything());
-  //   });
-  // });
 });

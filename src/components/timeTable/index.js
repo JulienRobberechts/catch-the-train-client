@@ -5,7 +5,7 @@ import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectToTheStation } from "../../domains/toTheStation/selectors";
+import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 
@@ -14,15 +14,12 @@ const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 function TimeTable() {
   const { push } = useHistory();
 
-  // the goal is to put everything here
   const route = useSelector(selectEnhancedTimeTable);
-
-  // and nothing here...
-  const toTheStation = useSelector(selectToTheStation);
+  const currentTrainCode = useSelector(selectCurrentTrainCode);
 
   const context = useSelector(selectTimeTableContext);
 
-  if (!route || !toTheStation.train) {
+  if (!route || !currentTrainCode) {
     return <Panel>...</Panel>;
   }
 
@@ -34,7 +31,7 @@ function TimeTable() {
   } = context;
   const missionsString = missions ? missions.join(",") : undefined;
 
-  const trainCode = toTheStation.train.trainCode;
+  const trainCode = currentTrainCode;
 
   const { trains } = route;
 

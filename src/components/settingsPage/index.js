@@ -5,7 +5,10 @@ import { useSelector } from "react-redux";
 
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
-import { selectToTheStation } from "../../domains/toTheStation/selectors";
+import {
+  selectUserConfiguration,
+  selectStationConfiguration,
+} from "../../domains/toTheStation/selectors";
 import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 
 import ServerSettings from "./serverSettings";
@@ -14,9 +17,8 @@ import UserSettings from "./userSettings";
 import KeyValueComponent from "./keyValue";
 
 const SettingsPage = () => {
-  const { stationConfiguration, userConfiguration } = useSelector(
-    selectToTheStation
-  );
+  const stationConfiguration = useSelector(selectStationConfiguration);
+  const userConfiguration = useSelector(selectUserConfiguration);
   const { station } = useSelector(selectTimeTableContext);
 
   return (
