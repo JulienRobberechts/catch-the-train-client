@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { getTimeTablePromise } from "../../adapters/timetable";
-import { fetch, fetchSuccess, fetchError } from "./slice";
+import { requestStart, requestSuccess, requestError } from "./slice";
 
 export function* getTimeTableEffectSaga(action) {
   try {
@@ -15,14 +15,14 @@ export function* getTimeTableEffectSaga(action) {
     if (!result) {
       throw Error("no data from the server");
     }
-    yield put({ type: fetchSuccess.type, payload: result.data });
+    yield put({ type: requestSuccess.type, payload: result.data });
   } catch (error) {
     console.log("error : ", error);
-    yield put({ type: fetchError.type });
+    yield put({ type: requestError.type });
   }
 }
 
 // watcher Saga
 export function* timeTableSagas() {
-  yield takeLatest(fetch.type, getTimeTableEffectSaga);
+  yield takeLatest(requestStart.type, getTimeTableEffectSaga);
 }

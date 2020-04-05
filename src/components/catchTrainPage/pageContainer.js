@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import { fetch } from "../../domains/timeTable/slice";
+import { requestStart } from "../../domains/timeTable/slice";
 import { chooseTrain } from "../../domains/toTheStation/slice";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import { selectTimeTableContext } from "../../domains/timeTable/selectors";
@@ -27,7 +27,7 @@ const CatchPageContainer = () => {
   console.log({ selectedRoute });
 
   useEffect(() => {
-    dispatch(fetch({ ...selectedRoute, missions }));
+    dispatch(requestStart({ ...selectedRoute, missions }));
   }, [dispatch, selectedRoute, missions]);
 
   const trainDeparture = useSelector(
