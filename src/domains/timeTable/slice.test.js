@@ -4,7 +4,6 @@ import reducer, {
   requestError,
   requestSuccess,
 } from "./slice";
-
 import {
   selectTimeTableContext,
   selectRequestStatus,
@@ -102,14 +101,19 @@ describe("slice timeTable", () => {
       error: false,
       data: undefined,
     };
+    const error503 = {
+      code: 503,
+      msg: "Le service est indisponible pour le moment",
+      level: "LOW",
+    };
     beforeEach(() => {
-      const timeTable = reducer(stateBefore, requestError());
+      const timeTable = reducer(stateBefore, requestError(error503));
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
       const actualStatus = selectRequestStatus(rootState);
       expect(actualStatus.loading).toBeFalsy();
-      expect(actualStatus.error).toBeTruthy();
+      expect(actualStatus.error).toEqual(error503);
       expect(actualStatus.hasData).toBeFalsy();
     });
     it("'selectTimeTableContext' should return results", () => {

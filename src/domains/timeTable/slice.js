@@ -14,9 +14,9 @@ export const slice = createSlice({
       state.error = null;
       // we still can have data during the loading
     },
-    requestError: (state) => {
+    requestError: (state, action) => {
       state.loading = false;
-      state.error = "Error on fetch"; // better error mgt
+      state.error = action.payload;
       // we still can have data after an error
     },
     requestSuccess: (state, action) => {

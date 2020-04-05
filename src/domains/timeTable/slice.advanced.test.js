@@ -116,14 +116,19 @@ describe("slice timeTable", () => {
         departures: sampleDeparturesV1,
       },
     };
+    const error503 = {
+      code: 503,
+      msg: "Le service est indisponible pour le moment",
+      level: "LOW",
+    };
     beforeEach(() => {
-      const timeTable = reducer(stateBefore, requestError());
+      const timeTable = reducer(stateBefore, requestError(error503));
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
       const actualStatus = selectRequestStatus(rootState);
       expect(actualStatus.loading).toBeFalsy();
-      expect(actualStatus.error).toBeTruthy();
+      expect(actualStatus.error).toEqual(error503);
       // data are staying even though they are not corresponding to the error!
       expect(actualStatus.hasData).toBeTruthy();
     });
