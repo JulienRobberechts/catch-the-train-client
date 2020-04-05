@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import { requestStart } from "../../domains/timeTable/slice";
-import { chooseTrain } from "../../domains/toTheStation/slice";
+import {
+  chooseTrain,
+  setStationConfiguration,
+} from "../../domains/toTheStation/slice";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
 import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 import { selectDepartureByTrainCode } from "../../domains/timeTableToTheStation/selectors";
@@ -34,6 +37,7 @@ const CatchPageContainer = () => {
     selectDepartureByTrainCode(selectedRoute.train)
   );
   useEffect(() => {
+    dispatch(setStationConfiguration());
     dispatch(chooseTrain({ trainDeparture }));
   }, [dispatch, trainDeparture, selectedRoute]);
 

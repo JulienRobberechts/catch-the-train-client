@@ -39,6 +39,13 @@ export const slice = createSlice({
       Object.assign(state, initialState);
       state.currentTime = fakeNowString;
     },
+    setStationConfiguration: (state, action) => {
+      // const { stationConfiguration } = action.payload;
+      state.stationConfiguration = {
+        travelDurationSeconds: 10 * 60 + 25,
+        waitingDelaySeconds: 100,
+      };
+    },
     chooseTrain: (state, action) => {
       const { trainDeparture } = action.payload;
 
@@ -46,10 +53,6 @@ export const slice = createSlice({
         state.train = null;
         return;
       }
-      state.stationConfiguration = {
-        travelDurationSeconds: 10 * 60 + 25,
-        waitingDelaySeconds: 100,
-      };
       state.train = {
         ...trainDeparture,
       };
@@ -62,6 +65,6 @@ export const slice = createSlice({
   },
 });
 
-export const { reset, chooseTrain } = slice.actions;
+export const { reset, chooseTrain, setStationConfiguration } = slice.actions;
 
 export default slice.reducer;

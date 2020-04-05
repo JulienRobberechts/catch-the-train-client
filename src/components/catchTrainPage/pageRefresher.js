@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateTime } from "../../domains/toTheStation/slice";
 import { selectNow } from "../../domains/toTheStation/selectors";
 
+// to transform into hooks
 const PageRefresher = ({ refreshInterval }) => {
   // update the time every 1s
   const dispatch = useDispatch();

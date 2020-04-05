@@ -1,6 +1,9 @@
 import moment from "moment";
 import { getDelay, getDelayStatus } from "./pure";
 
+// to move
+import { selectAllDepartures } from "../timeTable/selectors";
+
 export const selectNow = (state) => state?.toTheStation?.currentTime;
 
 // To split into smaller piece
@@ -8,22 +11,14 @@ export const selectToTheStation = (state) => state?.toTheStation;
 
 // TO MOVE ??
 export const selectEnhancedToTheStation = (state) => {
-  const { timeTable, toTheStation } = state; // MASHUP !!!!!!
+  // const { timeTable } = state; // MASHUP !!!!!!
 
-  if (
-    !state.timeTable.data ||
-    !state.toTheStation.train ||
-    !state.toTheStation.stationConfiguration
-  )
-    return null;
+  const toTheStation = selectToTheStation(state);
+  const departures = selectAllDepartures(state);
 
-  const { departures } = timeTable.data;
+  if (!departures || !toTheStation) return null;
 
-  if (!departures) {
-    return null;
-  }
-
-  const trainCode = state?.toTheStation?.train?.trainCode;
+  const trainCode = toTheStation?.train?.trainCode;
 
   if (!trainCode) {
     return null;
@@ -35,9 +30,6 @@ export const selectEnhancedToTheStation = (state) => {
   );
 
   const departure = departures[departureIndex];
-
-  // second part
-  // From the slice toTheStation
 
   const {
     userConfiguration: { onTimeMarginDelaySeconds },
@@ -52,8 +44,8 @@ export const selectEnhancedToTheStation = (state) => {
   });
   const targetTime = moment.parseZone(departure.departureTime);
 
-  const nowTime = state.toTheStation.currentTime
-    ? moment.parseZone(state.toTheStation.currentTime)
+  const nowTime = toTheStation.currentTime
+    ? moment.parseZone(toTheStation.currentTime)
     : null;
 
   const { targetDuration, delayDuration } = getDelay({
