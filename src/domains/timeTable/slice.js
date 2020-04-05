@@ -24,13 +24,9 @@ export const slice = createSlice({
       state.error = null;
       state.data = action.payload;
     },
-    update: (state, action) => {
-      const { route } = action.payload;
-      state.route = route;
-    },
   },
 });
 
-export const { reset, fetch, fetchSuccess, fetchError, update } = slice.actions;
+export const { reset, fetch, fetchSuccess, fetchError } = slice.actions;
 
 export default slice.reducer;
