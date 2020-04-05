@@ -4,7 +4,6 @@ import {
   selectTimeTableContext,
   selectRequestStatus,
   selectAllDepartures,
-  selectDepartureByTrainCode,
 } from "./selectors";
 
 describe("slice timeTable", () => {
@@ -21,9 +20,6 @@ describe("slice timeTable", () => {
     });
     it("'selectAllDepartures' should return falsy", () => {
       expect(selectAllDepartures(rootState)).toBeFalsy();
-    });
-    it("'selectDepartureByTrainCode' should return falsy", () => {
-      expect(selectDepartureByTrainCode("0929")(rootState)).toBeFalsy();
     });
   });
   describe("after first requestStart", () => {
@@ -43,9 +39,6 @@ describe("slice timeTable", () => {
     });
     it("'selectAllDepartures' should return falsy", () => {
       expect(selectAllDepartures(rootState)).toBeFalsy();
-    });
-    it("'selectDepartureByTrainCode' should return falsy", () => {
-      expect(selectDepartureByTrainCode("0929")(rootState)).toBeFalsy();
     });
   });
 });

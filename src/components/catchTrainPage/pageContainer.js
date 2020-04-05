@@ -4,10 +4,8 @@ import { useParams, useLocation } from "react-router-dom";
 import { fetch } from "../../domains/timeTable/slice";
 import { chooseTrain } from "../../domains/toTheStation/slice";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
-import {
-  selectDepartureByTrainCode,
-  selectTimeTableContext,
-} from "../../domains/timeTable/selectors";
+import { selectTimeTableContext } from "../../domains/timeTable/selectors";
+import { selectDepartureByTrainCode } from "../../domains/timeTableToTheStation/selectors";
 
 import CatchPage from "./page";
 

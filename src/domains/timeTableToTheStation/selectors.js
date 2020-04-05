@@ -1,6 +1,8 @@
 import moment from "moment";
 import { getDelay, getDelayStatus } from "../toTheStation/pure";
 
+import { selectAllDepartures } from "../timeTable/selectors";
+
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
 
@@ -50,4 +52,29 @@ export const selectEnhancedTimeTable = (state) => {
   });
 
   return { route: timeTable.departures, trains };
+};
+
+// to move into mashup
+export const selectDepartureByTrainCode = (trainCode) => (state) => {
+  // console.log("selectDepartureByTrainCode");
+
+  // search in trains
+  const departures = selectAllDepartures(state);
+
+  if (!departures) {
+    return null;
+  }
+
+  // TODO ...
+
+  const currentIndex = Math.max(
+    0,
+    departures.findIndex((departure) => departure.trainCode === trainCode)
+  );
+
+  return departures[currentIndex];
+
+  // if found:
+  // if not found: return closest to the time
+  // return `MY TRAIN DEPARTURE trainCode=${trainCode} currentIndex=${currentIndex}`;
 };
