@@ -36,7 +36,7 @@ const CatchPageContainer = () => {
 
   const toTheStation = useSelector(selectToTheStation);
 
-  if (toTheStation.noData) return <div>...</div>;
+  if (!toTheStation.train) return <div>...</div>;
   return <CatchPage station={toTheStation?.station?.name} />;
 };
 

@@ -9,7 +9,12 @@ export const selectToTheStation = (state) => state?.toTheStation;
 export const selectEnhancedToTheStation = (state) => {
   const { timeTable, toTheStation } = state; // MASHUP !!!!!!
 
-  if (!state.timeTable.data || state.toTheStation.noData) return null;
+  if (
+    !state.timeTable.data ||
+    !state.toTheStation.train ||
+    !state.toTheStation.stationConfiguration
+  )
+    return null;
 
   const { routes } = timeTable.data;
 

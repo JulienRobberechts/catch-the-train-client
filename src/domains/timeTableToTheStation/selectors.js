@@ -6,14 +6,11 @@ import { getDelay, getDelayStatus } from "../toTheStation/pure";
 
 // Be careful with change of references!!!
 export const selectEnhancedTimeTable = (state) => {
-  if (!state.timeTable.data || state.toTheStation.noData) return null;
+  if (!state.timeTable.data || !state.toTheStation.stationConfiguration)
+    return null;
 
   const { timeTable } = state;
   const nowTime = moment.parseZone(state.toTheStation.currentTime);
-
-  if (!state.toTheStation.station) {
-    return null;
-  }
 
   const {
     userConfiguration: { onTimeMarginDelaySeconds },

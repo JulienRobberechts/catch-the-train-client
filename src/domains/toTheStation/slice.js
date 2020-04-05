@@ -7,7 +7,6 @@ const fakeNowString = config.MOCK_TIME
   : moment().format();
 
 export const initialState = {
-  noData: true,
   currentTime: fakeNowString,
   userConfiguration: {
     onTimeMarginDelaySeconds: 50,
@@ -46,7 +45,6 @@ export const slice = createSlice({
       if (!trainDeparture) {
         state.station = null;
         state.train = null;
-        state.noData = true;
         return;
       }
 
@@ -61,13 +59,11 @@ export const slice = createSlice({
       state.train = {
         ...trainDeparture,
       };
-      state.noData = false;
     },
     updateTime: (state, action) => {
       const { currentTime } = action.payload;
       console.log("currentTime in updateTime", currentTime);
       state.currentTime = currentTime;
-      state.noData = false;
     },
   },
 });

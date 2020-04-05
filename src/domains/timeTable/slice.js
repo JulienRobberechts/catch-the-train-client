@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { mockedTimeTable } from "./mock";
 
-export const initialState = { noData: true };
+export const initialState = {};
 
 export const slice = createSlice({
   name: "timeTable",
@@ -12,9 +12,7 @@ export const slice = createSlice({
       Object.assign(state, initialState);
     },
     mockTimeTable: (state) => {
-      state.lastUpdate = moment.parseZone().format();
       state.route = mockedTimeTable.route;
-      state.noData = false;
     },
     fetch: (state) => {
       state.loading = true;
@@ -30,13 +28,10 @@ export const slice = createSlice({
       // TODO ...
       state.loading = false;
       state.error = null;
-      state.lastUpdate = moment.parseZone().format();
       state.data = payload;
-      state.noData = false;
     },
     update: (state, action) => {
       const { route } = action.payload;
-      state.lastUpdate = moment.parseZone();
       state.route = route;
     },
   },

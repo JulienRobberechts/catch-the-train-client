@@ -11,8 +11,8 @@ describe("slice toTheStation", () => {
       expect(now.hours()).toBe(9);
       expect(now.minutes()).toBe(22);
     });
-    it("'selectToTheStation' should return noData", () => {
-      expect(selectToTheStation(rootState).noData).toBeTruthy();
+    it("'selectToTheStation' should not return data", () => {
+      expect(selectToTheStation(rootState).data).toBeFalsy();
     });
   });
   // describe("after 'mockToTheStation' action, state", () => {

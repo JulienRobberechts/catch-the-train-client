@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
 import { selectToTheStation } from "../../domains/toTheStation/selectors";
+import { selectRoute } from "../../domains/timeTable/selectors";
 
 import ServerSettings from "./serverSettings";
 import ClientSettings from "./clientSettings";
@@ -13,12 +14,10 @@ import UserSettings from "./userSettings";
 import KeyValueComponent from "./keyValue";
 
 const SettingsPage = () => {
-  const {
-    noData,
-    station,
-    stationConfiguration,
-    userConfiguration
-  } = useSelector(selectToTheStation);
+  const { stationConfiguration, userConfiguration } = useSelector(
+    selectToTheStation
+  );
+  const { station } = useSelector(selectRoute);
 
   return (
     <>
@@ -26,7 +25,7 @@ const SettingsPage = () => {
         <title>Paramètres</title>
       </Helmet>
       <Title>Paramètres</Title>
-      {!noData && (
+      {station && (
         <>
           <SectionTitle>
             pour la station de <StationName>'{station?.name}'</StationName>
