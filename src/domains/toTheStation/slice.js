@@ -47,16 +47,7 @@ export const slice = createSlice({
       };
     },
     chooseTrain: (state, action) => {
-      const { trainDeparture } = action.payload;
-
-      if (!trainDeparture) {
-        state.train = null;
-        return;
-      }
-      state.train = {
-        ...trainDeparture,
-      };
-      state.currentTrainCode = trainDeparture.trainCode;
+      state.currentTrainCode = action.payload;
     },
     updateTime: (state, action) => {
       const { currentTime } = action.payload;

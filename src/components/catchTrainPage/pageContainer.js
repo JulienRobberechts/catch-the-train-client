@@ -33,12 +33,16 @@ const CatchPageContainer = () => {
     dispatch(requestStart({ ...selectedRoute, missions }));
   }, [dispatch, selectedRoute, missions]);
 
+  useEffect(() => {
+    dispatch(setStationConfiguration());
+  }, [dispatch]);
+
   const trainDeparture = useSelector(
     selectDepartureByTrainCode(selectedRoute.train)
   );
+
   useEffect(() => {
-    dispatch(setStationConfiguration());
-    dispatch(chooseTrain({ trainDeparture }));
+    dispatch(chooseTrain({ trainCode: trainDeparture?.trainCode }));
   }, [dispatch, trainDeparture, selectedRoute]);
 
   const currentTrainCode = useSelector(selectCurrentTrainCode);
