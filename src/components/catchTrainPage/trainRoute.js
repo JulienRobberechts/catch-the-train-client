@@ -11,12 +11,16 @@ const TrainRoute = () => {
     return <Panel>...</Panel>;
   }
 
-  const { network, line, station } = context;
+  const {
+    network,
+    line,
+    station: { name: stationName },
+  } = context;
 
   return (
     <Panel>
       <span>
-        {network}/{line}/{station}
+        {network}/{line}/{stationName}
       </span>
     </Panel>
   );

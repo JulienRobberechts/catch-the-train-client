@@ -26,7 +26,12 @@ function TimeTable() {
     return <Panel>...</Panel>;
   }
 
-  const { network, line, station, missions } = timetable.context;
+  const {
+    network,
+    line,
+    station: { slug: station },
+    missions,
+  } = timetable.context;
   const missionsString = missions ? missions.join(",") : undefined;
 
   const trainCode = toTheStation.train.trainCode;
