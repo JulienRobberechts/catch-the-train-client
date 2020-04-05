@@ -26,7 +26,7 @@ function TimeTable() {
     return <Panel>...</Panel>;
   }
 
-  const { type, line, station, missions } = timetable.context;
+  const { network, line, station, missions } = timetable.context;
   const missionsString = missions ? missions.join(",") : undefined;
 
   const trainCode = toTheStation.train.trainCode;
@@ -55,7 +55,7 @@ function TimeTable() {
             onClick={() => {
               const departure = trains[currentIndex - 1];
               push(
-                `/${type}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
+                `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
             }}
           >
@@ -77,7 +77,7 @@ function TimeTable() {
             selected={departure.index === currentIndex}
             onSelect={() => {
               push(
-                `/${type}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
+                `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
             }}
             {...departure}
@@ -89,7 +89,7 @@ function TimeTable() {
             onClick={() => {
               const departure = trains[currentIndex + 1];
               push(
-                `/${type}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
+                `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
             }}
           >

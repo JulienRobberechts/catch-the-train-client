@@ -4,10 +4,10 @@ import { fetch, fetchSuccess, fetchError } from "./slice";
 
 export function* getTimeTableEffectSaga(action) {
   try {
-    const { type, line, station, missions } = action.payload;
+    const { network, line, station, missions } = action.payload;
     const result = yield call(
       getTimeTablePromise,
-      type,
+      network,
       line,
       station,
       missions

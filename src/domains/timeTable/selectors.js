@@ -9,12 +9,15 @@ export const selectRoute = (state) => {
 };
 
 export const selectTrainDeparture = ({
-  type,
+  network,
   line,
   station,
   train: trainCode,
 }) => (state) => {
   console.log("selectTrainDeparture");
+
+  // todo:
+  // check network, line, station are still ok.
 
   // search in trains
   const departures = state?.timeTable?.data?.departures;
