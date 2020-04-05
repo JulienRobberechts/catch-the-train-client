@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import moment from "moment";
-import { mockedTimeTable } from "./mock";
 
 export const initialState = {};
 

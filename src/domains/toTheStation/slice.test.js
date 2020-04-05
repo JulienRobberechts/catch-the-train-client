@@ -14,10 +14,10 @@ describe("slice toTheStation", () => {
       expect(selectToTheStation(rootState).data).toBeFalsy();
     });
   });
-  // describe("after 'mockToTheStation' action, state", () => {
+  // describe("after 'XXX' action, state", () => {
   //   let rootState;
   //   beforeEach(() => {
-  //     const toTheStation = reducer(initialState, mockToTheStation());
+  //     const toTheStation = reducer(initialState, actionXXX());
   //     rootState = { toTheStation };
   //   });
   //   it("'selectNow' should return data", () => {
