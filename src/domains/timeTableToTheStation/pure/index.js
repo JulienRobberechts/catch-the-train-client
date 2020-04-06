@@ -14,64 +14,6 @@ export const getMatchingDeparture = (allDepartures, trainCode) => {
   return allDepartures[departureIndex];
 };
 
-export const calculateEnhancedToTheStation = ({
-  currentTime,
-  currentTrainCode,
-  userConfiguration,
-  stationConfiguration,
-  rawDepartures,
-}) => {
-  if (
-    !currentTime ||
-    !currentTrainCode ||
-    !rawDepartures ||
-    !stationConfiguration ||
-    !userConfiguration
-  )
-    return null;
-
-  const departureIndex = Math.max(
-    rawDepartures.findIndex(
-      (departure) => departure.trainCode === currentTrainCode
-    ),
-    0
-  );
-
-  const departure = rawDepartures[departureIndex];
-
-  const { onTimeMarginDelaySeconds } = userConfiguration;
-  const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;
-
-  const travelDuration = moment.duration({
-    seconds: travelDurationSeconds,
-  });
-  const waitingDuration = moment.duration({
-    seconds: waitingDelaySeconds,
-  });
-  const departureTime = moment.parseZone(departure.departureTime);
-
-  const nowTime = currentTime ? moment.parseZone(currentTime) : null;
-
-  const { departureDuration, delayDuration } = getDelay({
-    nowTime,
-    departureTime,
-    travelDuration,
-    waitingDuration,
-  });
-  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
-
-  return {
-    route: departure.route,
-    nowTime,
-    departureDuration,
-    departureTime,
-    travelDuration,
-    waitingDuration,
-    delayDuration,
-    delayStatus,
-  };
-};
-
 export const enhancedTimeTable = ({
   currentTime,
   currentTrainCode,
@@ -132,10 +74,69 @@ export const enhancedDeparture = (
 
   return {
     index,
+    trainCode,
+
     departureTime,
     departureDuration,
     delayDuration,
     delayStatus,
-    trainCode,
+  };
+};
+
+export const calculateEnhancedToTheStation = ({
+  currentTime,
+  currentTrainCode,
+  userConfiguration,
+  stationConfiguration,
+  rawDepartures,
+}) => {
+  if (
+    !currentTime ||
+    !currentTrainCode ||
+    !rawDepartures ||
+    !stationConfiguration ||
+    !userConfiguration
+  )
+    return null;
+
+  const departureIndex = Math.max(
+    rawDepartures.findIndex(
+      (departure) => departure.trainCode === currentTrainCode
+    ),
+    0
+  );
+
+  const departure = rawDepartures[departureIndex];
+
+  const { onTimeMarginDelaySeconds } = userConfiguration;
+  const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;
+
+  const travelDuration = moment.duration({
+    seconds: travelDurationSeconds,
+  });
+  const waitingDuration = moment.duration({
+    seconds: waitingDelaySeconds,
+  });
+  const departureTime = moment.parseZone(departure.departureTime);
+
+  const nowTime = currentTime ? moment.parseZone(currentTime) : null;
+
+  const { departureDuration, delayDuration } = getDelay({
+    nowTime,
+    departureTime,
+    travelDuration,
+    waitingDuration,
+  });
+  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
+
+  return {
+    nowTime,
+    travelDuration,
+    waitingDuration,
+
+    departureTime,
+    departureDuration,
+    delayDuration,
+    delayStatus,
   };
 };

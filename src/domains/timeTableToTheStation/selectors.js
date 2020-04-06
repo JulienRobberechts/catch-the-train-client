@@ -15,6 +15,15 @@ import {
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
 
+export const selectDepartureByTrainCode = (trainCode) => (state) => {
+  const rawDepartures = selectAllDepartures(state);
+
+  if (!rawDepartures) {
+    return null;
+  }
+  return getMatchingDeparture(rawDepartures, trainCode);
+};
+
 export const selectEnhancedTimeTable = (state) => {
   const currentTime = selectNow(state);
   const currentTrainCode = selectCurrentTrainCode(state);
@@ -32,15 +41,6 @@ export const selectEnhancedTimeTable = (state) => {
   console.log(timeTable);
 
   return timeTable;
-};
-
-export const selectDepartureByTrainCode = (trainCode) => (state) => {
-  const rawDepartures = selectAllDepartures(state);
-
-  if (!rawDepartures) {
-    return null;
-  }
-  return getMatchingDeparture(rawDepartures, trainCode);
 };
 
 export const selectEnhancedToTheStation = (state) => {

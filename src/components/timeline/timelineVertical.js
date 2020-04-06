@@ -20,11 +20,12 @@ const TimelineVertical = () => {
   }
 
   const {
+    nowTime,
     travelDuration,
     waitingDuration,
-    delayDuration,
-    departureDuration,
     departureTime,
+    departureDuration,
+    delayDuration,
     delayStatus,
   } = data;
 
@@ -41,7 +42,7 @@ const TimelineVertical = () => {
             departureTime={departureTime}
             departureDuration={departureDuration}
           />
-          <NowBox {...data} />
+          <NowBox nowTime={nowTime} />
         </TimeColumnLayout>
       </ColumnLeft>
       <ColumnMargin>
