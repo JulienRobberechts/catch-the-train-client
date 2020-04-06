@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import moment from "moment";
 import each from "jest-each";
-
+import jstz from "jstz";
 import Time from "./time";
 
 describe("Time React component", () => {
@@ -20,7 +20,13 @@ describe("Time React component", () => {
   `.test(
     "should display $time as $expectedTextContent",
     ({ time, displaySeconds, expectedTextContent }) => {
-      const timeMoment = moment(time);
+      const timezone = jstz.determine();
+      const timeZoneName = `${timezone.name()}: ${timezone.stdTimezoneOffset()} mins usually and ${timezone.timezoneOffset()} mins now`;
+      console.log({ timeZoneName });
+
+      expect(timezone.name()).toBe("Europe/Paris");
+
+      const timeMoment = moment.parseZone(time);
       const { container } = render(
         <Time time={timeMoment} displaySeconds={displaySeconds} />
       );
