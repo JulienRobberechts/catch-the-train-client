@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
@@ -9,17 +9,30 @@ import {
   selectUserConfiguration,
   selectStationConfiguration,
 } from "../../domains/toTheStation/selectors";
-import { selectTimeTableContext } from "../../domains/timeTable/selectors";
 
 import ServerSettings from "./serverSettings";
 import ClientSettings from "./clientSettings";
 import UserSettings from "./userSettings";
-import KeyValueComponent from "./keyValue";
+import StationSettings from "./stationSettings";
+
+import {
+  setUserConfiguration,
+  setStationConfiguration,
+} from "../../domains/toTheStation/slice";
 
 const SettingsPage = () => {
   const stationConfiguration = useSelector(selectStationConfiguration);
   const userConfiguration = useSelector(selectUserConfiguration);
-  const context = useSelector(selectTimeTableContext);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setUserConfiguration());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setStationConfiguration());
+  }, [dispatch]);
 
   return (
     <>
@@ -27,30 +40,15 @@ const SettingsPage = () => {
         <title>Paramètres</title>
       </Helmet>
       <Title>Paramètres</Title>
-      {context && (
+      {stationConfiguration && (
         <>
-          <SectionTitle>
-            pour la station de{" "}
-            <StationName>'{context?.station?.name}'</StationName>
-          </SectionTitle>
+          <SectionTitle>Trajet vers la gare</SectionTitle>
           <Section>
-            <KeyValueComponent
-              keyName="Temps de trajet vers la station (en secondes)"
-              value={
-                stationConfiguration &&
-                stationConfiguration.travelDurationSeconds
-              }
-            />
-            <KeyValueComponent
-              keyName="Temps de trajet dans la station (en secondes)"
-              value={
-                stationConfiguration && stationConfiguration.waitingDelaySeconds
-              }
-            />
+            <StationSettings config={stationConfiguration} />
           </Section>
         </>
       )}
-      <SectionTitle>Vos préférences</SectionTitle>
+      <SectionTitle>Préférences</SectionTitle>
       <Section>
         <UserSettings config={userConfiguration} />
       </Section>
