@@ -24,8 +24,10 @@ describe("Time React component", () => {
       const timeZoneName = `${timezone.name()}: ${timezone.stdTimezoneOffset()} mins usually and ${timezone.timezoneOffset()} mins now`;
       console.log({ timeZoneName });
 
-      expect(timezone.name()).toBe("Europe/Paris");
+      // expect(timezone.name()).toBe("Europe/Paris");
 
+      // moment.parseZone() parses the string but keeps the resulting Moment object
+      // in a fixed-offset timezone with the provided offset in the string.
       const timeMoment = moment.parseZone(time);
       const { container } = render(
         <Time time={timeMoment} displaySeconds={displaySeconds} />
