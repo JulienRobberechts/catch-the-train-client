@@ -19,7 +19,7 @@ import KeyValueComponent from "./keyValue";
 const SettingsPage = () => {
   const stationConfiguration = useSelector(selectStationConfiguration);
   const userConfiguration = useSelector(selectUserConfiguration);
-  const { station } = useSelector(selectTimeTableContext);
+  const context = useSelector(selectTimeTableContext);
 
   return (
     <>
@@ -27,10 +27,11 @@ const SettingsPage = () => {
         <title>Paramètres</title>
       </Helmet>
       <Title>Paramètres</Title>
-      {station && (
+      {context && (
         <>
           <SectionTitle>
-            pour la station de <StationName>'{station?.name}'</StationName>
+            pour la station de{" "}
+            <StationName>'{context?.station?.name}'</StationName>
           </SectionTitle>
           <Section>
             <KeyValueComponent
