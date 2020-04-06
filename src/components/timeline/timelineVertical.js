@@ -20,13 +20,13 @@ const TimelineVertical = () => {
   }
 
   const {
-    nowTime,
-    travelDuration,
-    waitingDuration,
-    departureTime,
-    departureDuration,
-    delayDuration,
-    delayStatus,
+    travel: { nowTime, travelDuration, waitingDuration },
+    enhancedDeparture: {
+      departureTime,
+      departureDuration,
+      delayDuration,
+      delayStatus,
+    },
   } = data;
 
   const getSizeRatio = getSizeRatioFor(departureDuration);

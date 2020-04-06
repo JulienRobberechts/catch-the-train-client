@@ -26,10 +26,10 @@ export default function enhancedTimeTable({
   });
   const { onTimeMarginDelaySeconds } = userConfiguration;
 
-  const enhancedDepartures = rawDepartures.map((departure, index) =>
-    enhancedDeparture(
+  const enhancedDepartures = rawDepartures.map((departure, departureIndex) =>
+    enhanceDeparture(
       departure,
-      index,
+      departureIndex,
       nowTime,
       onTimeMarginDelaySeconds,
       travelDuration,
@@ -47,7 +47,7 @@ export default function enhancedTimeTable({
   };
 }
 
-export function enhancedDeparture(
+export function enhanceDeparture(
   departure,
   index,
   nowTime,

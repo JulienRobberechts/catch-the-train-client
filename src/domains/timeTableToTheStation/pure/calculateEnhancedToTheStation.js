@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getDelay, getDelayStatus } from "../../toTheStation/pure";
+import { enhanceDeparture } from "./enhancedTimeTable";
 
 export default function calculateEnhancedToTheStation({
   currentTime,
@@ -26,7 +26,10 @@ export default function calculateEnhancedToTheStation({
 
   const departure = rawDepartures[departureIndex];
 
+  const nowTime = currentTime ? moment.parseZone(currentTime) : null;
+
   const { onTimeMarginDelaySeconds } = userConfiguration;
+
   const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;
 
   const travelDuration = moment.duration({
@@ -35,26 +38,22 @@ export default function calculateEnhancedToTheStation({
   const waitingDuration = moment.duration({
     seconds: waitingDelaySeconds,
   });
-  const departureTime = moment.parseZone(departure.departureTime);
 
-  const nowTime = currentTime ? moment.parseZone(currentTime) : null;
-
-  const { departureDuration, delayDuration } = getDelay({
+  const enhancedDepartureInstance = enhanceDeparture(
+    departure,
+    departureIndex,
     nowTime,
-    departureTime,
+    onTimeMarginDelaySeconds,
     travelDuration,
-    waitingDuration,
-  });
-  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
+    waitingDuration
+  );
 
   return {
-    nowTime,
-    travelDuration,
-    waitingDuration,
-
-    departureTime,
-    departureDuration,
-    delayDuration,
-    delayStatus,
+    travel: {
+      nowTime,
+      travelDuration,
+      waitingDuration,
+    },
+    enhancedDeparture: enhancedDepartureInstance,
   };
 }
