@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const twoDigits = number =>
+const twoDigits = (number) =>
   number.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
-    useGrouping: false
+    useGrouping: false,
   });
 
 const Time = ({ time, displaySeconds = false }) => {
+  const hours = time.hours();
+
   const minutes = time.minutes();
   const minutesStr = twoDigits(minutes);
 
@@ -17,7 +19,7 @@ const Time = ({ time, displaySeconds = false }) => {
 
   return (
     <span>
-      <span>{time.hours()}</span>
+      <span>{hours}</span>
       <span>h</span>
       <span>{minutesStr}</span>
       {showSeconds && (
