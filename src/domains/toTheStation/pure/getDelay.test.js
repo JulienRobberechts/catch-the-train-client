@@ -63,13 +63,13 @@ describe("train helpers", () => {
         }
       ) => {
         const nowTime = moment.parseZone(now);
-        const targetTime = moment.parseZone(train);
+        const departureTime = moment.parseZone(train);
         const travelDuration = moment.duration(travel);
         const waitingDuration = moment.duration(waiting);
 
         const result = getDelay({
           nowTime,
-          targetTime,
+          departureTime,
           travelDuration,
           waitingDuration,
         });

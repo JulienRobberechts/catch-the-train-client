@@ -2,11 +2,11 @@ import moment from "moment";
 
 export default function getDelay({
   nowTime,
-  targetTime,
+  departureTime,
   travelDuration,
   waitingDuration,
 }) {
-  const departureDuration = moment.duration(targetTime.diff(nowTime));
+  const departureDuration = moment.duration(departureTime.diff(nowTime));
 
   // positive will be early and negative late
   const delayDuration = departureDuration.clone();

@@ -4,7 +4,7 @@ import { colors } from "../../design/colors";
 import { Time, TimeSpan } from "../time";
 import { Train, Sandglass } from "../../design/icons";
 
-const DepartureBox = ({ targetTime, departureDuration }) => {
+const DepartureBox = ({ departureTime, departureDuration }) => {
   return (
     <Box>
       <Row1>
@@ -15,7 +15,7 @@ const DepartureBox = ({ targetTime, departureDuration }) => {
           <Train />
         </IconTrainContainer>
         <TimeBigStyle>
-          <Time time={targetTime} />
+          <Time time={departureTime} />
         </TimeBigStyle>
       </Row2>
       <Row3>

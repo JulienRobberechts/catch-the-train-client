@@ -24,7 +24,7 @@ const TimelineVertical = () => {
     waitingDuration,
     delayDuration,
     departureDuration,
-    targetTime,
+    departureTime,
     delayStatus,
   } = data;
 
@@ -38,7 +38,7 @@ const TimelineVertical = () => {
       <ColumnLeft>
         <TimeColumnLayout>
           <DepartureBox
-            targetTime={targetTime}
+            departureTime={departureTime}
             departureDuration={departureDuration}
           />
           <NowBox {...data} />

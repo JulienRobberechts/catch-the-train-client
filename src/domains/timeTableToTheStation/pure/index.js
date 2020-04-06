@@ -48,13 +48,13 @@ export const calculateEnhancedToTheStation = ({
   const waitingDuration = moment.duration({
     seconds: waitingDelaySeconds,
   });
-  const targetTime = moment.parseZone(departure.departureTime);
+  const departureTime = moment.parseZone(departure.departureTime);
 
   const nowTime = currentTime ? moment.parseZone(currentTime) : null;
 
   const { departureDuration, delayDuration } = getDelay({
     nowTime,
-    targetTime,
+    departureTime,
     travelDuration,
     waitingDuration,
   });
@@ -64,7 +64,7 @@ export const calculateEnhancedToTheStation = ({
     route: departure.route,
     nowTime,
     departureDuration,
-    targetTime,
+    departureTime,
     travelDuration,
     waitingDuration,
     delayDuration,
@@ -121,7 +121,7 @@ export const enhancedDeparture = (
 
   const { departureDuration, delayDuration } = getDelay({
     nowTime,
-    targetTime: departureTime,
+    departureTime: departureTime,
     travelDuration,
     waitingDuration,
   });
