@@ -50,7 +50,14 @@ export const enhancedTimeTable = ({
     )
   );
 
-  return enhancedDepartures;
+  return {
+    travel: {
+      nowTime,
+      travelDuration,
+      waitingDuration,
+    },
+    enhancedDepartures,
+  };
 };
 
 export const enhancedDeparture = (

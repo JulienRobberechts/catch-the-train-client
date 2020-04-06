@@ -14,7 +14,7 @@ const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 function TimeTable() {
   const { push } = useHistory();
 
-  const enhancedDepartures = useSelector(selectEnhancedTimeTable);
+  const { enhancedDepartures } = useSelector(selectEnhancedTimeTable);
   const currentTrainCode = useSelector(selectCurrentTrainCode);
 
   const context = useSelector(selectTimeTableContext);

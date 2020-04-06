@@ -30,6 +30,7 @@ export const selectEnhancedTimeTable = (state) => {
   const userConfiguration = selectUserConfiguration(state);
   const stationConfiguration = selectStationConfiguration(state);
   const rawDepartures = selectAllDepartures(state);
+
   const timeTable = enhancedTimeTable({
     currentTime,
     currentTrainCode,
