@@ -10,7 +10,7 @@ import { CaretRight } from "../../design/icons";
 import { getSizeRatioFor } from "./pure";
 
 import { useSelector } from "react-redux";
-import { selectEnhancedToTheStation } from "../../domains/toTheStation/selectors";
+import { selectEnhancedToTheStation } from "../../domains/timeTableToTheStation/selectors";
 
 const TimelineVertical = () => {
   const data = useSelector(selectEnhancedToTheStation);
@@ -25,7 +25,7 @@ const TimelineVertical = () => {
     delayDuration,
     targetDuration,
     targetTime,
-    delayStatus
+    delayStatus,
   } = data;
 
   const getSizeRatio = getSizeRatioFor(targetDuration);
@@ -130,21 +130,21 @@ const IconCaretContainer = styled.span`
 `;
 
 const DelayBoxLayout = styled.div`
-  flex-basis: ${props => props.percentage}%;
+  flex-basis: ${(props) => props.percentage}%;
   > * {
     height: 100%;
   }
 `;
 
 const WaitingBoxLayout = styled.div`
-  flex-basis: ${props => props.percentage}%;
+  flex-basis: ${(props) => props.percentage}%;
   > * {
     height: 100%;
   }
 `;
 
 const TravelBoxLayout = styled.div`
-  flex-basis: ${props => props.percentage}%;
+  flex-basis: ${(props) => props.percentage}%;
   > * {
     height: 100%;
   }

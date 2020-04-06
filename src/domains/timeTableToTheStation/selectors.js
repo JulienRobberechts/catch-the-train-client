@@ -3,6 +3,13 @@ import { getDelay, getDelayStatus } from "../toTheStation/pure";
 
 import { selectAllDepartures } from "../timeTable/selectors";
 
+import {
+  selectNow,
+  selectUserConfiguration,
+  selectStationConfiguration,
+  selectCurrentTrainCode,
+} from "../toTheStation/selectors";
+
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
 
@@ -54,7 +61,6 @@ export const selectEnhancedTimeTable = (state) => {
   return { route: timeTable.departures, trains };
 };
 
-// to move into mashup
 export const selectDepartureByTrainCode = (trainCode) => (state) => {
   // console.log("selectDepartureByTrainCode");
 
@@ -77,4 +83,57 @@ export const selectDepartureByTrainCode = (trainCode) => (state) => {
   // if found:
   // if not found: return closest to the time
   // return `MY TRAIN DEPARTURE trainCode=${trainCode} currentIndex=${currentIndex}`;
+};
+
+export const selectEnhancedToTheStation = (state) => {
+  // const { timeTable } = state; // MASHUP !!!!!!
+
+  const currentTime = selectNow(state);
+  const currentTrainCode = selectCurrentTrainCode(state);
+  const userConfiguration = selectUserConfiguration(state);
+  const stationConfiguration = selectStationConfiguration(state);
+  const departures = selectAllDepartures(state);
+
+  if (!departures || !currentTrainCode) return null;
+
+  const departureIndex = Math.max(
+    departures.findIndex(
+      (departure) => departure.trainCode === currentTrainCode
+    ),
+    0
+  );
+
+  const departure = departures[departureIndex];
+
+  const { onTimeMarginDelaySeconds } = userConfiguration;
+  const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;
+
+  const travelDuration = moment.duration({
+    seconds: travelDurationSeconds,
+  });
+  const waitingDuration = moment.duration({
+    seconds: waitingDelaySeconds,
+  });
+  const targetTime = moment.parseZone(departure.departureTime);
+
+  const nowTime = currentTime ? moment.parseZone(currentTime) : null;
+
+  const { targetDuration, delayDuration } = getDelay({
+    nowTime,
+    targetTime,
+    travelDuration,
+    waitingDuration,
+  });
+  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
+
+  return {
+    route: departure.route,
+    nowTime,
+    targetDuration,
+    targetTime,
+    travelDuration,
+    waitingDuration,
+    delayDuration,
+    delayStatus,
+  };
 };
