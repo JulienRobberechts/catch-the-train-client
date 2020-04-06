@@ -7,6 +7,8 @@ import Time from "./time";
 describe("Time React component", () => {
   each`
     time                                | displaySeconds    | expectedTextContent
+    ${null}                             | ${false}          | ${""}
+    ${"XXX"}                            | ${false}          | ${""}
     ${"2020-03-10T09:22:30+01:00"}      | ${false}          | ${"9h22"}
     ${"2020-03-10T09:02:05+01:00"}      | ${false}          | ${"9h02"}
     ${"2020-03-10T09:00:00.500+01:00"}  | ${false}          | ${"9h00"}

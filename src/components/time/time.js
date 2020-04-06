@@ -1,30 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-
-const twoDigits = (number) =>
-  number.toLocaleString("en-US", {
-    minimumIntegerDigits: 2,
-    useGrouping: false,
-  });
+import { getHours, getMinutes, getSeconds } from "./timeFormat";
 
 const Time = ({ time, displaySeconds = false }) => {
-  const hours = time.hours();
-
-  const minutes = time.minutes();
-  const minutesStr = twoDigits(minutes);
-
-  const showSeconds = displaySeconds;
-  const seconds = time.seconds();
-  const secondsStr = twoDigits(seconds);
-
+  if (!time || !time.isValid()) return <span></span>;
   return (
     <span>
-      <span>{hours}</span>
+      <span>{getHours(time)}</span>
       <span>h</span>
-      <span>{minutesStr}</span>
-      {showSeconds && (
+      <span>{getMinutes(time)}</span>
+      {displaySeconds && (
         <>
-          <Seconds>{secondsStr}</Seconds>
+          <Seconds>{getSeconds(time)}</Seconds>
         </>
       )}
     </span>
