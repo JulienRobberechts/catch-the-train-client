@@ -25,10 +25,10 @@ const CatchPageContainer = () => {
 
   // Select the train according to the url
   const selectedRoute = useParams();
+  console.log({ selectedRoute });
+
   let query = useQuery();
   const missions = query.get("missions");
-
-  console.log({ selectedRoute });
 
   useEffect(() => {
     dispatch(requestStart({ ...selectedRoute, missions }));
@@ -47,7 +47,7 @@ const CatchPageContainer = () => {
   );
 
   useEffect(() => {
-    dispatch(chooseTrain({ trainCode: trainDeparture?.trainCode }));
+    dispatch(chooseTrain(trainDeparture?.trainCode));
   }, [dispatch, trainDeparture, selectedRoute]);
 
   const currentTrainCode = useSelector(selectCurrentTrainCode);
