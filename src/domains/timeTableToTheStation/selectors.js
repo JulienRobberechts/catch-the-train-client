@@ -13,105 +13,154 @@ import {
 // those selectors are a mashup of timeTable and toTheStation
 // in order to provide a ready to use selectors for the timeLine component.
 
-// Be careful with change of references!!!
 export const selectEnhancedTimeTable = (state) => {
   const currentTime = selectNow(state);
-  // const currentTrainCode = selectCurrentTrainCode(state);
+  const currentTrainCode = selectCurrentTrainCode(state);
   const userConfiguration = selectUserConfiguration(state);
   const stationConfiguration = selectStationConfiguration(state);
-  const departures = selectAllDepartures(state);
+  const rawDepartures = selectAllDepartures(state);
+  return enhancedTimeTable({
+    currentTime,
+    currentTrainCode,
+    userConfiguration,
+    stationConfiguration,
+    rawDepartures,
+  });
+};
 
-  if (!departures || !stationConfiguration) return null;
+export const enhancedTimeTable = ({
+  currentTime,
+  currentTrainCode,
+  userConfiguration,
+  stationConfiguration,
+  rawDepartures,
+}) => {
+  if (
+    !currentTime ||
+    !rawDepartures ||
+    !stationConfiguration ||
+    !userConfiguration
+  )
+    return null;
 
-  const { timeTable } = state;
   const nowTime = moment.parseZone(currentTime);
 
-  const { onTimeMarginDelaySeconds } = userConfiguration;
-  const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;
-
-  // const {
-  //   userConfiguration: { onTimeMarginDelaySeconds },
-  //   stationConfiguration: { travelDurationSeconds, waitingDelaySeconds },
-  // } = state.toTheStation;
-
-  const trains = departures.map((departure, index) => {
-    const departureTime = moment.parseZone(departure.departureTime);
-    const departureDuration = moment.duration(departureTime.diff(nowTime));
-    const targetTime = moment.parseZone(departure.departureTime);
-    const travelDuration = moment.duration({
-      seconds: travelDurationSeconds,
-    });
-    const waitingDuration = moment.duration({
-      seconds: waitingDelaySeconds,
-    });
-
-    const trainCode = departure.trainCode;
-
-    const { targetDuration, delayDuration } = getDelay({
-      nowTime,
-      targetTime,
-      travelDuration,
-      waitingDuration,
-    });
-    const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
-
-    return {
+  const enhancedDepartures = rawDepartures.map((departure, index) =>
+    enhancedDeparture(
+      departure,
       index,
-      departureTime,
-      departureDuration,
-      targetDuration,
-      delayDuration,
-      delayStatus,
-      trainCode,
-    };
+      nowTime,
+      stationConfiguration,
+      userConfiguration
+    )
+  );
+
+  return enhancedDepartures;
+};
+
+export const enhancedDeparture = (
+  departure,
+  index,
+  nowTime,
+  stationConfiguration,
+  userConfiguration
+) => {
+  const departureTime = moment.parseZone(departure.departureTime);
+  const departureDuration = moment.duration(departureTime.diff(nowTime));
+  const targetTime = moment.parseZone(departure.departureTime);
+  const travelDuration = moment.duration({
+    seconds: stationConfiguration.travelDurationSeconds,
+  });
+  const waitingDuration = moment.duration({
+    seconds: stationConfiguration.waitingDelaySeconds,
   });
 
-  return { route: timeTable.departures, trains };
+  const trainCode = departure.trainCode;
+
+  const { targetDuration, delayDuration } = getDelay({
+    nowTime,
+    targetTime,
+    travelDuration,
+    waitingDuration,
+  });
+  const delayStatus = getDelayStatus(
+    delayDuration,
+    userConfiguration.onTimeMarginDelaySeconds
+  );
+
+  return {
+    index,
+    departureTime,
+    departureDuration,
+    targetDuration,
+    delayDuration,
+    delayStatus,
+    trainCode,
+  };
 };
 
 export const selectDepartureByTrainCode = (trainCode) => (state) => {
   // console.log("selectDepartureByTrainCode");
 
   // search in trains
-  const departures = selectAllDepartures(state);
+  const rawDepartures = selectAllDepartures(state);
 
-  if (!departures) {
+  if (!rawDepartures) {
     return null;
   }
 
   // TODO ...
 
-  const currentIndex = Math.max(
-    0,
-    departures.findIndex((departure) => departure.trainCode === trainCode)
+  const departureIndex = Math.max(
+    rawDepartures.findIndex((departure) => departure.trainCode === trainCode),
+    0
   );
-
-  return departures[currentIndex];
-
   // if found:
   // if not found: return closest to the time
   // return `MY TRAIN DEPARTURE trainCode=${trainCode} currentIndex=${currentIndex}`;
+  return rawDepartures[departureIndex];
 };
 
 export const selectEnhancedToTheStation = (state) => {
-  // const { timeTable } = state; // MASHUP !!!!!!
-
   const currentTime = selectNow(state);
   const currentTrainCode = selectCurrentTrainCode(state);
   const userConfiguration = selectUserConfiguration(state);
   const stationConfiguration = selectStationConfiguration(state);
-  const departures = selectAllDepartures(state);
+  const rawDepartures = selectAllDepartures(state);
 
-  if (!departures || !currentTrainCode) return null;
+  return calculateEnhancedToTheStation({
+    currentTime,
+    currentTrainCode,
+    userConfiguration,
+    stationConfiguration,
+    rawDepartures,
+  });
+};
+
+export const calculateEnhancedToTheStation = ({
+  currentTime,
+  currentTrainCode,
+  userConfiguration,
+  stationConfiguration,
+  rawDepartures,
+}) => {
+  if (
+    !currentTime ||
+    !currentTrainCode ||
+    !rawDepartures ||
+    !stationConfiguration ||
+    !userConfiguration
+  )
+    return null;
 
   const departureIndex = Math.max(
-    departures.findIndex(
+    rawDepartures.findIndex(
       (departure) => departure.trainCode === currentTrainCode
     ),
     0
   );
 
-  const departure = departures[departureIndex];
+  const departure = rawDepartures[departureIndex];
 
   const { onTimeMarginDelaySeconds } = userConfiguration;
   const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;

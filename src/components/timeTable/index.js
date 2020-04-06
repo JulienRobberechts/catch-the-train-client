@@ -14,12 +14,12 @@ const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 function TimeTable() {
   const { push } = useHistory();
 
-  const route = useSelector(selectEnhancedTimeTable);
+  const enhancedDepartures = useSelector(selectEnhancedTimeTable);
   const currentTrainCode = useSelector(selectCurrentTrainCode);
 
   const context = useSelector(selectTimeTableContext);
 
-  if (!route || !currentTrainCode) {
+  if (!enhancedDepartures || !currentTrainCode) {
     return <Panel>...</Panel>;
   }
 
@@ -33,20 +33,24 @@ function TimeTable() {
 
   const trainCode = currentTrainCode;
 
-  const { trains } = route;
-
   const currentIndex = Math.max(
     0,
-    trains.findIndex((departure) => departure.trainCode === trainCode)
+    enhancedDepartures.findIndex(
+      (departure) => departure.trainCode === trainCode
+    )
   );
 
   const minIndex = Math.max(
     0,
-    Math.min(currentIndex - 1, trains.length - NUMBER_OF_DEPARTURE_VISIBLE)
+    Math.min(
+      currentIndex - 1,
+      enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE
+    )
   );
 
   const previousVisible = minIndex > 0;
-  const nextVisible = minIndex < trains.length - NUMBER_OF_DEPARTURE_VISIBLE;
+  const nextVisible =
+    minIndex < enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE;
 
   return (
     <Panel>
@@ -55,7 +59,7 @@ function TimeTable() {
         {previousVisible ? (
           <PreviousButton
             onClick={() => {
-              const departure = trains[currentIndex - 1];
+              const departure = enhancedDepartures[currentIndex - 1];
               push(
                 `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
@@ -73,7 +77,7 @@ function TimeTable() {
           </PreviousPlaceholder>
         )}
 
-        {trains.slice(minIndex, minIndex + 3).map((departure) => (
+        {enhancedDepartures.slice(minIndex, minIndex + 3).map((departure) => (
           <Departure
             key={departure.index}
             selected={departure.index === currentIndex}
@@ -87,9 +91,12 @@ function TimeTable() {
         ))}
         {nextVisible ? (
           <NextButton
-            disabled={minIndex >= trains.length - NUMBER_OF_DEPARTURE_VISIBLE}
+            disabled={
+              minIndex >=
+              enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE
+            }
             onClick={() => {
-              const departure = trains[currentIndex + 1];
+              const departure = enhancedDepartures[currentIndex + 1];
               push(
                 `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
               );
