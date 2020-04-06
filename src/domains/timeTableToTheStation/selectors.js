@@ -15,18 +15,26 @@ import {
 
 // Be careful with change of references!!!
 export const selectEnhancedTimeTable = (state) => {
-  if (!state.timeTable.data || !state.toTheStation.stationConfiguration)
-    return null;
+  const currentTime = selectNow(state);
+  // const currentTrainCode = selectCurrentTrainCode(state);
+  const userConfiguration = selectUserConfiguration(state);
+  const stationConfiguration = selectStationConfiguration(state);
+  const departures = selectAllDepartures(state);
+
+  if (!departures || !stationConfiguration) return null;
 
   const { timeTable } = state;
-  const nowTime = moment.parseZone(state.toTheStation.currentTime);
+  const nowTime = moment.parseZone(currentTime);
 
-  const {
-    userConfiguration: { onTimeMarginDelaySeconds },
-    stationConfiguration: { travelDurationSeconds, waitingDelaySeconds },
-  } = state.toTheStation;
+  const { onTimeMarginDelaySeconds } = userConfiguration;
+  const { travelDurationSeconds, waitingDelaySeconds } = stationConfiguration;
 
-  const trains = state.timeTable.data.departures.map((departure, index) => {
+  // const {
+  //   userConfiguration: { onTimeMarginDelaySeconds },
+  //   stationConfiguration: { travelDurationSeconds, waitingDelaySeconds },
+  // } = state.toTheStation;
+
+  const trains = departures.map((departure, index) => {
     const departureTime = moment.parseZone(departure.departureTime);
     const departureDuration = moment.duration(departureTime.diff(nowTime));
     const targetTime = moment.parseZone(departure.departureTime);
