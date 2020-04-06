@@ -12,7 +12,7 @@ describe("slice toTheStation", () => {
   describe("initial state", () => {
     const rootState = { toTheStation: initialState };
     it("'selectNow' should return falsy", () => {
-      const now = moment(selectNow(rootState));
+      const now = moment.parseZone(selectNow(rootState));
       expect(now).toBeTruthy();
     });
     it("'selectUserConfiguration' should not return data", () => {

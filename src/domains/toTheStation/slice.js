@@ -12,7 +12,7 @@ export const initialState = {
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
   console.log("payload", payload);
-  const lastTime = moment(payload.lastTime);
+  const lastTime = moment.parseZone(payload.lastTime);
   const duration = moment.duration({ milliseconds: payload.refreshInterval });
   const nextTime = lastTime.add(duration);
   const currentTime = nextTime.format();
