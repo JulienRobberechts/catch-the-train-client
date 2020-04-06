@@ -84,8 +84,4 @@ const Section = styled.div`
   margin: 0.1rem 2rem;
 `;
 
-const StationName = styled.span`
-  font-style: italic;
-`;
-
 export default SettingsPage;
