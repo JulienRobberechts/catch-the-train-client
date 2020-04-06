@@ -31,12 +31,10 @@ function TimeTable() {
   } = context;
   const missionsString = missions ? missions.join(",") : undefined;
 
-  const trainCode = currentTrainCode;
-
   const currentIndex = Math.max(
     0,
     enhancedDepartures.findIndex(
-      (departure) => departure.trainCode === trainCode
+      (departure) => departure.trainCode === currentTrainCode
     )
   );
 
@@ -49,8 +47,13 @@ function TimeTable() {
   );
 
   const previousVisible = minIndex > 0;
+  const previousDeparture = enhancedDepartures[currentIndex - 1];
+  const previousLink = `/${network}/${line}/${station}/${previousDeparture?.trainCode}?missions=${missionsString}`;
+
   const nextVisible =
     minIndex < enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE;
+  const nextDeparture = enhancedDepartures[currentIndex + 1];
+  const nextLink = `/${network}/${line}/${station}/${nextDeparture?.trainCode}?missions=${missionsString}`;
 
   return (
     <Panel>
@@ -59,10 +62,7 @@ function TimeTable() {
         {previousVisible ? (
           <PreviousButton
             onClick={() => {
-              const departure = enhancedDepartures[currentIndex - 1];
-              push(
-                `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
-              );
+              push(previousLink);
             }}
           >
             <IconContainer>
@@ -79,8 +79,8 @@ function TimeTable() {
 
         {enhancedDepartures.slice(minIndex, minIndex + 3).map((departure) => (
           <Departure
-            key={departure.index}
-            selected={departure.index === currentIndex}
+            key={departure.trainCode}
+            selected={departure.trainCode === currentTrainCode}
             onSelect={() => {
               push(
                 `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
@@ -91,15 +91,8 @@ function TimeTable() {
         ))}
         {nextVisible ? (
           <NextButton
-            disabled={
-              minIndex >=
-              enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE
-            }
             onClick={() => {
-              const departure = enhancedDepartures[currentIndex + 1];
-              push(
-                `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
-              );
+              push(nextLink);
             }}
           >
             <IconContainer>
