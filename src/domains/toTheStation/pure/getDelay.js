@@ -4,17 +4,17 @@ export default function getDelay({
   nowTime,
   targetTime,
   travelDuration,
-  waitingDuration
+  waitingDuration,
 }) {
-  const targetDuration = moment.duration(targetTime.diff(nowTime));
+  const departureDuration = moment.duration(targetTime.diff(nowTime));
 
   // positive will be early and negative late
-  const delayDuration = targetDuration.clone();
+  const delayDuration = departureDuration.clone();
   delayDuration.subtract(travelDuration);
   delayDuration.subtract(waitingDuration);
 
   return {
-    targetDuration,
-    delayDuration
+    departureDuration,
+    delayDuration,
   };
 }

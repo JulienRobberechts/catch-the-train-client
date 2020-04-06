@@ -13,8 +13,8 @@ describe("train helpers", () => {
           travel: "00:08:00",
           waiting: "00:02:00",
           expectedTargetDuration: 60 * 11,
-          expectedDelayDuration: 60 * 1
-        }
+          expectedDelayDuration: 60 * 1,
+        },
       ],
       [
         "on time 0s",
@@ -24,8 +24,8 @@ describe("train helpers", () => {
           travel: "00:08:00",
           waiting: "00:02:00",
           expectedTargetDuration: 60 * 10,
-          expectedDelayDuration: 60 * 0
-        }
+          expectedDelayDuration: 60 * 0,
+        },
       ],
       [
         "on time -15s",
@@ -35,8 +35,8 @@ describe("train helpers", () => {
           travel: "00:08:00",
           waiting: "00:02:00",
           expectedTargetDuration: 60 * 10 - 15,
-          expectedDelayDuration: 60 * 0 - 15
-        }
+          expectedDelayDuration: 60 * 0 - 15,
+        },
       ],
       [
         "late -1min",
@@ -46,9 +46,9 @@ describe("train helpers", () => {
           travel: "00:08:00",
           waiting: "00:02:00",
           expectedTargetDuration: 60 * 9,
-          expectedDelayDuration: 60 * -1
-        }
-      ]
+          expectedDelayDuration: 60 * -1,
+        },
+      ],
     ]).test(
       "should calculate delay for %s",
       (
@@ -59,7 +59,7 @@ describe("train helpers", () => {
           travel,
           waiting,
           expectedTargetDuration,
-          expectedDelayDuration
+          expectedDelayDuration,
         }
       ) => {
         const nowTime = moment.parseZone(now);
@@ -71,12 +71,12 @@ describe("train helpers", () => {
           nowTime,
           targetTime,
           travelDuration,
-          waitingDuration
+          waitingDuration,
         });
 
         expect(result).toEqual(expect.anything());
-        const { targetDuration, delayDuration } = result;
-        expect(targetDuration.asSeconds()).toEqual(expectedTargetDuration);
+        const { departureDuration, delayDuration } = result;
+        expect(departureDuration.asSeconds()).toEqual(expectedTargetDuration);
         expect(delayDuration.asSeconds()).toEqual(expectedDelayDuration);
       }
     );

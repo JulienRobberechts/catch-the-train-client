@@ -21,13 +21,17 @@ export const selectEnhancedTimeTable = (state) => {
   const userConfiguration = selectUserConfiguration(state);
   const stationConfiguration = selectStationConfiguration(state);
   const rawDepartures = selectAllDepartures(state);
-  return enhancedTimeTable({
+  const timeTable = enhancedTimeTable({
     currentTime,
     currentTrainCode,
     userConfiguration,
     stationConfiguration,
     rawDepartures,
   });
+
+  console.log(timeTable);
+
+  return timeTable;
 };
 
 export const selectDepartureByTrainCode = (trainCode) => (state) => {

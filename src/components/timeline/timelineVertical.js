@@ -23,12 +23,12 @@ const TimelineVertical = () => {
     travelDuration,
     waitingDuration,
     delayDuration,
-    targetDuration,
+    departureDuration,
     targetTime,
     delayStatus,
   } = data;
 
-  const getSizeRatio = getSizeRatioFor(targetDuration);
+  const getSizeRatio = getSizeRatioFor(departureDuration);
   const travelDurationPercentage = getSizeRatio(travelDuration);
   const waitingDurationPercentage = getSizeRatio(waitingDuration);
   const delayDurationPercentage = getSizeRatio(delayDuration);
@@ -39,7 +39,7 @@ const TimelineVertical = () => {
         <TimeColumnLayout>
           <DepartureBox
             targetTime={targetTime}
-            targetDuration={targetDuration}
+            departureDuration={departureDuration}
           />
           <NowBox {...data} />
         </TimeColumnLayout>

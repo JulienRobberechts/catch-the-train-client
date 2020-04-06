@@ -1,8 +1,8 @@
 import { getDurationPercentage } from "../../../domains/toTheStation/pure";
 
-export default function getSizeRatioFor(targetDuration) {
-  return duration => {
-    const percentage = getDurationPercentage(duration, targetDuration);
+export default function getSizeRatioFor(departureDuration) {
+  return (duration) => {
+    const percentage = getDurationPercentage(duration, departureDuration);
     return convertToSizeRatio(percentage);
   };
 }
