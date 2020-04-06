@@ -5,8 +5,13 @@ import handleError from "../errors";
 
 export function* getTimeTableEffectSaga(action) {
   try {
-    const timeTableParameters = action.payload;
-    const result = yield call(getTimeTablePromise, timeTableParameters);
+    const { network, line, station, missions } = action.payload;
+    const result = yield call(getTimeTablePromise, {
+      network,
+      line,
+      station,
+      missions,
+    });
     yield put({ type: requestSuccess.type, payload: result?.data });
   } catch (rawError) {
     const error = handleError(rawError);

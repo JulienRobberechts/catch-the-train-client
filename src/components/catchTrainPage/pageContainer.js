@@ -24,15 +24,14 @@ const CatchPageContainer = () => {
   const dispatch = useDispatch();
 
   // Select the train according to the url
-  const selectedRoute = useParams();
-  console.log({ selectedRoute });
-
+  const { network, line, station, train } = useParams();
   let query = useQuery();
   const missions = query.get("missions");
+  // console.log("current url", { network, line, station, train, missions });
 
   useEffect(() => {
-    dispatch(requestStart({ ...selectedRoute, missions }));
-  }, [dispatch, selectedRoute, missions]);
+    dispatch(requestStart({ network, line, station, missions }));
+  }, [dispatch, network, line, station, missions]);
 
   useEffect(() => {
     dispatch(setUserConfiguration());
@@ -42,13 +41,11 @@ const CatchPageContainer = () => {
     dispatch(setStationConfiguration());
   }, [dispatch]);
 
-  const trainDeparture = useSelector(
-    selectDepartureByTrainCode(selectedRoute.train)
-  );
+  const trainDeparture = useSelector(selectDepartureByTrainCode(train));
 
   useEffect(() => {
     dispatch(chooseTrain(trainDeparture?.trainCode));
-  }, [dispatch, trainDeparture, selectedRoute]);
+  }, [dispatch, trainDeparture]);
 
   const currentTrainCode = useSelector(selectCurrentTrainCode);
 
@@ -56,6 +53,7 @@ const CatchPageContainer = () => {
 
   if (!currentTrainCode) return <div>...</div>;
 
+  // console.log("render page CatchPageContainer");
   return <CatchPage station={context?.station?.name} />;
 };
 
