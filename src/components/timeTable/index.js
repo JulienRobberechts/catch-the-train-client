@@ -6,8 +6,8 @@ import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
-import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 import { selectTimeTableContext } from "../../domains/timeTable/selectors";
+import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
