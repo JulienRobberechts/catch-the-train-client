@@ -31,13 +31,22 @@ export const enhancedTimeTable = ({
 
   const nowTime = moment.parseZone(currentTime);
 
+  const travelDuration = moment.duration({
+    seconds: stationConfiguration.travelDurationSeconds,
+  });
+  const waitingDuration = moment.duration({
+    seconds: stationConfiguration.waitingDelaySeconds,
+  });
+  const { onTimeMarginDelaySeconds } = userConfiguration;
+
   const enhancedDepartures = rawDepartures.map((departure, index) =>
     enhancedDeparture(
       departure,
       index,
       nowTime,
-      stationConfiguration,
-      userConfiguration
+      onTimeMarginDelaySeconds,
+      travelDuration,
+      waitingDuration
     )
   );
 
@@ -48,34 +57,26 @@ export const enhancedDeparture = (
   departure,
   index,
   nowTime,
-  stationConfiguration,
-  userConfiguration
+  onTimeMarginDelaySeconds,
+  travelDuration,
+  waitingDuration
 ) => {
   const departureTime = moment.parseZone(departure.departureTime);
-  const travelDuration = moment.duration({
-    seconds: stationConfiguration.travelDurationSeconds,
-  });
-  const waitingDuration = moment.duration({
-    seconds: stationConfiguration.waitingDelaySeconds,
-  });
 
   const trainCode = departure.trainCode;
 
   const { departureDuration, delayDuration } = getDelay({
     nowTime,
-    departureTime: departureTime,
+    departureTime,
     travelDuration,
     waitingDuration,
   });
-  const delayStatus = getDelayStatus(
-    delayDuration,
-    userConfiguration.onTimeMarginDelaySeconds
-  );
+
+  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
 
   return {
     index,
     trainCode,
-
     departureTime,
     departureDuration,
     delayDuration,
