@@ -27,11 +27,22 @@ const SettingsPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setUserConfiguration());
+    dispatch(
+      setUserConfiguration({
+        onTimeMarginDelaySeconds: 50,
+        timezone: "+01:00",
+      })
+    );
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(setStationConfiguration());
+    dispatch(
+      setStationConfiguration({
+        station: "chatelet+les+halles",
+        travelDurationSeconds: 10 * 60 + 25,
+        waitingDelaySeconds: 100,
+      })
+    );
   }, [dispatch]);
 
   return (
