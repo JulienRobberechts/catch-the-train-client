@@ -7,9 +7,12 @@ import {
   setUserConfiguration,
   setStationConfiguration,
 } from "../../domains/toTheStation/slice";
+
+import {
+  selectTimeTableContext,
+  selectDepartureByTrainCode,
+} from "../../domains/timeTable/selectors";
 import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
-import { selectTimeTableContext } from "../../domains/timeTable/selectors";
-import { selectDepartureByTrainCode } from "../../domains/timeTableToTheStation/selectors";
 
 import CatchPage from "./page";
 

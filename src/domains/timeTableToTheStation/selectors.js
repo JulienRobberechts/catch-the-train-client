@@ -5,22 +5,13 @@ import {
   selectStationConfiguration,
   selectCurrentTrainCode,
 } from "../toTheStation/selectors";
-import { getMatchingDeparture, enhanceTimeTable } from "./pure";
+import { enhanceTimeTable } from "./pure";
 
 // ---------------------------------------------------
 //                  Super-selectors
-// Mashup of timeTable and toTheStation in order
-//   to provide a ready-to-use selectors.
+//   Mashup of timeTable and toTheStation in order
+//        to provide a ready-to-use selectors.
 // ---------------------------------------------------
-
-export const selectDepartureByTrainCode = (trainCode) => (state) => {
-  const rawDepartures = selectAllDepartures(state);
-
-  if (!rawDepartures) {
-    return null;
-  }
-  return getMatchingDeparture(rawDepartures, trainCode);
-};
 
 export const selectEnhancedTimeTable = (state) => {
   // from timeTable

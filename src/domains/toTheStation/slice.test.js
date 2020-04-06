@@ -1,5 +1,10 @@
 import moment from "moment";
-import { initialState } from "./slice";
+import reducer, {
+  initialState,
+  setStationConfiguration,
+  setUserConfiguration,
+  chooseTrain,
+} from "./slice";
 
 import {
   selectNow,
@@ -12,7 +17,7 @@ describe("slice toTheStation", () => {
   describe("initial state", () => {
     const rootState = { toTheStation: initialState };
     it("'selectNow' should return falsy", () => {
-      const now = moment.parseZone(selectNow(rootState));
+      const now = selectNow(rootState);
       expect(now).toBeTruthy();
     });
     it("'selectUserConfiguration' should not return data", () => {
