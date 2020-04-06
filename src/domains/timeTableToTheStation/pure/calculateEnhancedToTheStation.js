@@ -1,5 +1,5 @@
 import moment from "moment";
-import { enhanceDeparture } from "./enhancedTimeTable";
+import { enhanceDeparture } from "./enhanceDeparture";
 
 export default function calculateEnhancedToTheStation({
   currentTime,

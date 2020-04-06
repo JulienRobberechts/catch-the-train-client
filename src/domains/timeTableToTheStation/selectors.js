@@ -2,7 +2,7 @@ import { selectAllDepartures } from "../timeTable/selectors";
 import {
   getMatchingDeparture,
   calculateEnhancedToTheStation,
-  enhancedTimeTable,
+  enhanceTimeTable,
 } from "./pure";
 
 import {
@@ -31,7 +31,7 @@ export const selectEnhancedTimeTable = (state) => {
   const stationConfiguration = selectStationConfiguration(state);
   const rawDepartures = selectAllDepartures(state);
 
-  const timeTable = enhancedTimeTable({
+  const timeTable = enhanceTimeTable({
     currentTime,
     currentTrainCode,
     userConfiguration,
