@@ -16,8 +16,14 @@ export default function enhanceTimeTable({
   )
     return null;
 
-  const nowTime = moment.parseZone(currentTime);
+  const departureIndex = Math.max(
+    rawDepartures.findIndex(
+      (departure) => departure.trainCode === currentTrainCode
+    ),
+    0
+  );
 
+  const nowTime = moment.parseZone(currentTime);
   const travelDuration = moment.duration({
     seconds: stationConfiguration.travelDurationSeconds,
   });
@@ -38,6 +44,10 @@ export default function enhanceTimeTable({
   );
 
   return {
+    currentDeparture: {
+      index: departureIndex,
+      code: currentTrainCode,
+    },
     travel: {
       nowTime,
       travelDuration,

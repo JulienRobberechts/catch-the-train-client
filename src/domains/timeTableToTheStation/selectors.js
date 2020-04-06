@@ -1,19 +1,17 @@
 import { selectAllDepartures } from "../timeTable/selectors";
 import {
-  getMatchingDeparture,
-  calculateEnhancedToTheStation,
-  enhanceTimeTable,
-} from "./pure";
-
-import {
   selectNow,
   selectUserConfiguration,
   selectStationConfiguration,
   selectCurrentTrainCode,
 } from "../toTheStation/selectors";
+import { getMatchingDeparture, enhanceTimeTable } from "./pure";
 
-// those selectors are a mashup of timeTable and toTheStation
-// in order to provide a ready to use selectors for the timeLine component.
+// ---------------------------------------------------
+//                  Super-selectors
+// Mashup of timeTable and toTheStation in order
+//   to provide a ready-to-use selectors.
+// ---------------------------------------------------
 
 export const selectDepartureByTrainCode = (trainCode) => (state) => {
   const rawDepartures = selectAllDepartures(state);
@@ -25,11 +23,13 @@ export const selectDepartureByTrainCode = (trainCode) => (state) => {
 };
 
 export const selectEnhancedTimeTable = (state) => {
+  // from timeTable
+  const rawDepartures = selectAllDepartures(state);
+  // from toTheStation
   const currentTime = selectNow(state);
   const currentTrainCode = selectCurrentTrainCode(state);
   const userConfiguration = selectUserConfiguration(state);
   const stationConfiguration = selectStationConfiguration(state);
-  const rawDepartures = selectAllDepartures(state);
 
   const timeTable = enhanceTimeTable({
     currentTime,
@@ -42,20 +42,4 @@ export const selectEnhancedTimeTable = (state) => {
   console.log(timeTable);
 
   return timeTable;
-};
-
-export const selectEnhancedToTheStation = (state) => {
-  const currentTime = selectNow(state);
-  const currentTrainCode = selectCurrentTrainCode(state);
-  const userConfiguration = selectUserConfiguration(state);
-  const stationConfiguration = selectStationConfiguration(state);
-  const rawDepartures = selectAllDepartures(state);
-
-  return calculateEnhancedToTheStation({
-    currentTime,
-    currentTrainCode,
-    userConfiguration,
-    stationConfiguration,
-    rawDepartures,
-  });
 };

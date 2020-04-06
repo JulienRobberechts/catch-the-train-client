@@ -10,24 +10,27 @@ import { CaretRight } from "../../design/icons";
 import { getSizeRatioFor } from "./pure";
 
 import { useSelector } from "react-redux";
-import { selectEnhancedToTheStation } from "../../domains/timeTableToTheStation/selectors";
+import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 
 const TimelineVertical = () => {
-  const data = useSelector(selectEnhancedToTheStation);
+  const data = useSelector(selectEnhancedTimeTable);
 
   if (!data) {
     return <div>...</div>;
   }
 
   const {
+    currentDeparture: { index: departureIndex },
     travel: { nowTime, travelDuration, waitingDuration },
-    enhancedDeparture: {
-      departureTime,
-      departureDuration,
-      delayDuration,
-      delayStatus,
-    },
+    enhancedDepartures,
   } = data;
+
+  const {
+    departureTime,
+    departureDuration,
+    delayDuration,
+    delayStatus,
+  } = enhancedDepartures[departureIndex];
 
   const getSizeRatio = getSizeRatioFor(departureDuration);
   const travelDurationPercentage = getSizeRatio(travelDuration);
