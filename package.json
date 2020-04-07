@@ -8,6 +8,7 @@
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^10.0.1",
     "axios": "^0.19.2",
+    "cross-env": "^7.0.2",
     "jstz": "^2.1.1",
     "moment": "^2.24.0",
     "react": "^16.13.1",
@@ -24,6 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "ci:test": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
