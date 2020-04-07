@@ -33,20 +33,20 @@ describe("slice toTheStation", () => {
 
   describe("after setUserConfiguration", () => {
     let rootState;
-    const stationConfiguration = {
+    const userConfiguration = {
       onTimeMarginDelaySeconds: 22,
       timezone: "+04:00",
     };
     beforeEach(() => {
       const toTheStation = reducer(
         initialState,
-        setUserConfiguration(stationConfiguration)
+        setUserConfiguration(userConfiguration)
       );
       rootState = { toTheStation };
     });
     it("'selectUserConfiguration' should return results", () => {
       const actualUserConfiguration = selectUserConfiguration(rootState);
-      expect(actualUserConfiguration).toEqual(stationConfiguration);
+      expect(actualUserConfiguration).toEqual(userConfiguration);
     });
   });
 
