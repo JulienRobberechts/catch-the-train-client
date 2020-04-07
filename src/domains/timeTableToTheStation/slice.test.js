@@ -1,41 +1,44 @@
-import timeTableReducer, {
-  initialState as timeTableInitialState,
-  requestSuccess,
-} from "../timeTable/slice";
-
-import toTheStationReducer, {
-  initialState as toTheStationInitialState,
-  setUserConfiguration,
-  setStationConfiguration,
-  chooseTrain,
-} from "../toTheStation/slice";
-
+import { initialState as timeTableInitialState } from "../timeTable/slice";
+import { initialState as toTheStationInitialState } from "../toTheStation/slice";
 import { selectEnhancedTimeTable } from "./selectors";
 
-const initialRootState = {
-  timeTable: timeTableInitialState,
-  toTheStation: toTheStationInitialState,
-};
+const sampleDepartures = [
+  {
+    trainCode: "0924",
+    departureTime: "2020-03-10T09:24:00+01:00",
+    mission: "UPAC",
+    displayAttributes: "09:24",
+    displayDestination: "Cergy-Le-Haut",
+  },
+  {
+    trainCode: "0929",
+    departureTime: "2020-03-10T09:29:00+01:00",
+    mission: "UPAC",
+    displayAttributes: "09:29",
+    displayDestination: "Cergy-Le-Haut",
+  },
+];
 
 describe("slice timeTable", () => {
+  const initialRootState = {
+    timeTable: timeTableInitialState,
+    toTheStation: toTheStationInitialState,
+  };
   describe("initial state", () => {
     it("'selectEnhancedTimeTable' should return falsy", () => {
       expect(selectEnhancedTimeTable(initialRootState)).toBeFalsy();
     });
   });
   describe("after initialization", () => {
-    let rootStateBeforeTest;
-    const userConfiguration = {
+    const sampleUserConfiguration = {
       onTimeMarginDelaySeconds: 22,
       timezone: "+04:00",
     };
-    const stationConfiguration = {
+    const sampleStationConfiguration = {
       station: "chatelet+les+halles",
       travelDurationSeconds: 555,
       waitingDelaySeconds: 77,
     };
-    const trainCode = "0930";
-
     const sampleContextRerAChatelet = {
       at: "2020-03-10T09:22:30+01:00",
       provider: "ratp",
@@ -47,41 +50,28 @@ describe("slice timeTable", () => {
       },
       missions: ["ZEBU"],
     };
-    const sampleDepartures = [{ trainCode: "T1" }, { trainCode: "T2" }];
 
-    beforeEach(() => {
-      const toTheStationState1 = toTheStationReducer(
-        toTheStationInitialState,
-        setUserConfiguration(userConfiguration)
-      );
-
-      const toTheStationState2 = toTheStationReducer(
-        toTheStationState1,
-        setStationConfiguration(stationConfiguration)
-      );
-
-      const toTheStationState3 = toTheStationReducer(
-        toTheStationState2,
-        chooseTrain(trainCode)
-      );
-
-      const timeTable1 = timeTableReducer(
-        timeTableInitialState,
-        requestSuccess({
+    const rootState = {
+      toTheStation: {
+        currentTime: "2020-03-10T09:13:30+01:00",
+        currentTrainCode: "0924",
+        userConfiguration: sampleUserConfiguration,
+        stationConfiguration: sampleStationConfiguration,
+      },
+      timeTable: {
+        loading: false,
+        error: null,
+        data: {
           context: sampleContextRerAChatelet,
           departures: sampleDepartures,
-        })
-      );
-
-      rootStateBeforeTest = {
-        toTheStation: toTheStationState3,
-        timeTable: timeTable1,
-      };
-      console.log({ rootStateBeforeTest });
-    });
-    it("'selectEnhancedTimeTable' should return results", () => {
-      console.log({ rootStateBeforeTest });
-      expect(selectEnhancedTimeTable(rootStateBeforeTest)).toBeTruthy();
+        },
+      },
+    };
+    it("'selectEnhancedTimeTable' should MatchSnapshot", () => {
+      const actualEnhancedTimeTable = selectEnhancedTimeTable(rootState);
+      expect(actualEnhancedTimeTable).toBeTruthy();
+      expect(actualEnhancedTimeTable.enhancedDepartures.length).toBe(2);
+      expect(actualEnhancedTimeTable).toMatchSnapshot();
     });
   });
 });

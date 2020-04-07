@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`slice timeTable after initialization 'selectEnhancedTimeTable' should MatchSnapshot 1`] = `
+Object {
+  "currentDeparture": Object {
+    "code": "0924",
+    "index": 0,
+  },
+  "enhancedDepartures": Array [
+    Object {
+      "delayDuration": "-PT2S",
+      "delayStatus": "ontime",
+      "departureDuration": "PT10M30S",
+      "departureTime": "2020-03-10T08:24:00.000Z",
+      "index": 0,
+      "trainCode": "0924",
+    },
+    Object {
+      "delayDuration": "PT4M58S",
+      "delayStatus": "early",
+      "departureDuration": "PT15M30S",
+      "departureTime": "2020-03-10T08:29:00.000Z",
+      "index": 1,
+      "trainCode": "0929",
+    },
+  ],
+  "travel": Object {
+    "nowTime": "2020-03-10T08:13:30.000Z",
+    "travelDuration": "PT9M15S",
+    "waitingDuration": "PT1M17S",
+  },
+}
+`;
