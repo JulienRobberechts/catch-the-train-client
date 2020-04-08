@@ -27,13 +27,13 @@ const StartPage = () => {
         <RestOfPhrase>vous aide pour cela</RestOfPhrase>
       </PropositionValue>
       <Link to={`/${network}/${line}/${station}?missions=${missions}`}>
-        <ExampleButton>
-          voir un exemple des train pour{" "}
-          <div>Chatelet les halles > Saint-Germain-en-Laye</div>
-        </ExampleButton>
+        <GoButton>
+          <div>Chatelet les halles > </div>
+          <div>Saint-Germain-en-Laye</div>
+        </GoButton>
       </Link>
       <Link to="/settings">
-        <GoButton>Selectionnez votre train</GoButton>
+        <ExampleButton>Paramètres</ExampleButton>
       </Link>
     </Panel>
   );
