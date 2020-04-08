@@ -52,4 +52,4 @@ jobs:
       - name: Deploy 'static assets' to S3 bucket (immutable)
         run: aws s3 sync ./build/ s3://catch-the-train.dev-app.space --delete --exclude "*" --include "*static/*" --cache-control "public, max-age=604800, immutable" --acl public-read --size-only
       - name: Deploy 'dynamic assets' to S3 bucket (needing revalidation)
-        run: aws s3 sync ./build/ s3://catch-the-train.dev-app.space --delete --exclude "*static/*" --cache-control "no-cache, max-age=0, stale-while-revalidate=300" --acl public-read --size-only
+        run: aws s3 sync ./build/ s3://catch-the-train.dev-app.space --delete --exclude "*static/*" --cache-control "no-cache, max-age=0, stale-while-revalidate=300" --acl public-read
