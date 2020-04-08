@@ -1,0 +1,46 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  buildAndTest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2.1.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install packages
+        run: npm ci
+      - name: build static production files
+        run: npm run build
+      - name: run unit test
+        run: npm ci:test
+        env:
+          CI: true
+  deploy:
+    needs: buildAndTest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Deploy 'static assets' to S3 bucket (immutable)
+        run: aws s3 sync ./build/ s3://catch-the-train.dev-app.space --delete --exclude "*" --include "*static/*" --cache-control "public, max-age=604800, immutable" --acl public-read --size-only
+      - name: Deploy 'dynamic assets' to S3 bucket (needing revalidation)
+        run: aws s3 sync ./build/ s3://catch-the-train.dev-app.space --delete --exclude "*static/*" --cache-control "no-cache, max-age=0, stale-while-revalidate=300" --acl public-read --size-only
