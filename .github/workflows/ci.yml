@@ -27,7 +27,7 @@ jobs:
       - name: build static production files
         run: npm run build
       - name: run unit test
-        run: npm ci:test
+        run: npm run ci:test
         env:
           CI: true
   deploy:
