@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 13.x]
+        node-version: [12.x]
     steps:
       - name: checkout code
         uses: actions/checkout@v2.1.0
@@ -30,10 +30,19 @@ jobs:
         run: npm run ci:test
         env:
           CI: true
+      - name: Upload the build
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: build
   deploy:
     needs: buildAndTest
     runs-on: ubuntu-latest
     steps:
+      - name: Download the build
+        uses: actions/download-artifact@v1
+        with:
+          name: build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
