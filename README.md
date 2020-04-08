@@ -4,6 +4,8 @@ This project is the react frontend of the 'Catch the train' web application. The
 
 The application Catch the train in production: [https://catch-the-train.dev-app.space](https://catch-the-train.dev-app.space) (if deployed)
 
+[![CI](https://github.com/JulienRobberechts/catch-the-train-client/workflows/CI/badge.svg)](https://github.com/JulienRobberechts/catch-the-train-client/actions?query=workflow%3ACI)
+
 ## Dev Setup
 
 ### Install
