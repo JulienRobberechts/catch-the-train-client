@@ -11,13 +11,18 @@ export const initialState = {
 };
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
-  // console.log("payload", { payload });
-  const lastTime = moment.parseZone(payload.lastTime);
-  const duration = moment.duration({ milliseconds: payload.refreshInterval });
-  const nextTime = lastTime.add(duration);
-  const currentTime = nextTime.format();
-  // console.log("currentTime in updateTime", currentTime);
-  return { payload: { currentTime } };
+  if (config.MOCK_TIME) {
+    // console.log("payload", { payload });
+    const lastTime = moment.parseZone(payload.lastTime);
+    const duration = moment.duration({ milliseconds: payload.refreshInterval });
+    const nextTime = lastTime.add(duration);
+    const currentTime = nextTime.format();
+    // console.log("currentTime in updateTime", currentTime);
+    return { payload: { currentTime } };
+  }
+  const now = moment().format();
+  console.log({ now });
+  return { payload: { currentTime: now } };
 });
 
 export const slice = createSlice({
