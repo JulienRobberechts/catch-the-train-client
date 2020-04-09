@@ -29,8 +29,8 @@ function TimeTable() {
     station: { slug: station },
     missions,
   } = context;
-  const missionsString = missions ? missions.join(",") : undefined;
-
+  const missionsString = missions ? "?missions=" + missions.join(",") : "";
+  // console.log({ missionsString });
   const currentIndex = Math.max(
     0,
     enhancedDepartures.findIndex(
@@ -48,12 +48,14 @@ function TimeTable() {
 
   const previousVisible = minIndex > 0;
   const previousDeparture = enhancedDepartures[currentIndex - 1];
-  const previousLink = `/${network}/${line}/${station}/${previousDeparture?.trainCode}?missions=${missionsString}`;
+  const previousLink = `/${network}/${line}/${station}/${previousDeparture?.trainCode}${missionsString}`;
 
   const nextVisible =
     minIndex < enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE;
   const nextDeparture = enhancedDepartures[currentIndex + 1];
-  const nextLink = `/${network}/${line}/${station}/${nextDeparture?.trainCode}?missions=${missionsString}`;
+  const nextLink = `/${network}/${line}/${station}/${nextDeparture?.trainCode}${missionsString}`;
+
+  // console.log({ previousLink, nextLink });
 
   return (
     <Panel>
@@ -83,7 +85,7 @@ function TimeTable() {
             selected={departure.trainCode === currentTrainCode}
             onSelect={() => {
               push(
-                `/${network}/${line}/${station}/${departure.trainCode}?missions=${missionsString}`
+                `/${network}/${line}/${station}/${departure.trainCode}${missionsString}`
               );
             }}
             {...departure}
