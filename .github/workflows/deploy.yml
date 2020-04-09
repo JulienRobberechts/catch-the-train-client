@@ -7,7 +7,7 @@ on:
 name: deploy
 
 jobs:
-  buildAndTest:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
