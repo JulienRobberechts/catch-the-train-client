@@ -9,6 +9,8 @@ import { Break } from "../../design/icons";
 const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
   const delayStatusText = textForDelayStatus(delayStatus);
 
+  const showWaitIcon = largeSpace && delayStatus === "early";
+
   return (
     <Box delayStatus={delayStatus}>
       <div>
@@ -18,7 +20,7 @@ const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
       <DelayValue>
         <TimeSpan timeSpan={delayDuration} displayPositiveSign={true} />
       </DelayValue>
-      {largeSpace && (
+      {showWaitIcon && (
         <IconContainer delayStatus={delayStatus}>
           <Break />
         </IconContainer>
@@ -27,7 +29,7 @@ const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
   );
 };
 
-const textForDelayStatus = delayStatus => {
+const textForDelayStatus = (delayStatus) => {
   switch (delayStatus) {
     case "early":
       return "en avance";
@@ -42,7 +44,7 @@ const textForDelayStatus = delayStatus => {
 
 const Box = styled.div`
   background: ${() => colors.dark.background};
-  color: ${props => fontColorForDelayStatus(props.delayStatus)};
+  color: ${(props) => fontColorForDelayStatus(props.delayStatus)};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -78,7 +80,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${props => fontColorForDelayStatus(props.delayStatus)};
+    fill: ${(props) => fontColorForDelayStatus(props.delayStatus)};
   }
 `;
 
