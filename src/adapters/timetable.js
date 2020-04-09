@@ -8,7 +8,6 @@ export function getTimeTablePromise({ network, line, station, missions }) {
   const params = {
     missions: missions ? missions : undefined,
   };
-  // console.log("getTimeTable url = ", url);
-  console.log("CALL API getTimeTable", url, params);
+  // console.log("CALL API getTimeTable", url, params);
   return axios.request(url, { params });
 }
