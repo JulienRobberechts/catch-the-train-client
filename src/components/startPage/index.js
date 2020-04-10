@@ -8,7 +8,7 @@ import { colors } from "../../design/colors";
 const network = "rers";
 const line = "a";
 const station = "chatelet+les+halles";
-const missions = "ZEBU,TEDI";
+const missions = "";
 
 const StartPage = () => {
   return (
@@ -26,14 +26,17 @@ const StartPage = () => {
         <AppName>'Attraper le train'</AppName>
         <RestOfPhrase>vous aide pour cela</RestOfPhrase>
       </PropositionValue>
+      <Link to="/selection">
+        <PrimaryButton>Choix du train</PrimaryButton>
+      </Link>
       <Link to={`/${network}/${line}/${station}?missions=${missions}`}>
-        <GoButton>
+        <SecondaryButton>
           <div>Chatelet les halles > </div>
           <div>Saint-Germain-en-Laye</div>
-        </GoButton>
+        </SecondaryButton>
       </Link>
       <Link to="/settings">
-        <ExampleButton>Paramètres</ExampleButton>
+        <SecondaryButton>Paramètres</SecondaryButton>
       </Link>
     </Panel>
   );
@@ -81,7 +84,7 @@ const PropositionValue = styled.div`
   border: none;
 `;
 
-const ExampleButton = styled.button`
+const SecondaryButton = styled.button`
   margin: 0.3rem 2rem;
   padding: 0.7rem 1rem;
   border-radius: 1rem;
@@ -92,7 +95,7 @@ const ExampleButton = styled.button`
   cursor: pointer;
 `;
 
-const GoButton = styled.button`
+const PrimaryButton = styled.button`
   margin: 1.3rem;
   padding: 2rem;
   border-radius: 1rem;
