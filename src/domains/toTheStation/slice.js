@@ -11,7 +11,7 @@ export const initialState = {
 };
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
-  if (config.MOCK_TIME) {
+  if (payload.calculateByInterval) {
     // console.log("payload", { payload });
     const lastTime = moment.parseZone(payload.lastTime);
     const duration = moment.duration({ milliseconds: payload.refreshInterval });

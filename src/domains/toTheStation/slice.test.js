@@ -91,7 +91,7 @@ describe("slice toTheStation", () => {
     beforeEach(() => {
       const toTheStation = reducer(
         initialState,
-        updateTime({ lastTime, refreshInterval })
+        updateTime({ calculateByInterval: true, lastTime, refreshInterval })
       );
       rootState = { toTheStation };
     });
