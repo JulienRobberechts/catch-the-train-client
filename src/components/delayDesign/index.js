@@ -1,10 +1,11 @@
+import DELAY_STATUS from "../../domains/toTheStation/pure/delayStatus";
 import { colors } from "../../design/colors";
 
-const fontColorForDelayStatus = delayStatus => {
+const fontColorForDelayStatus = (delayStatus) => {
   switch (delayStatus) {
-    case "early":
+    case DELAY_STATUS.EARLY:
       return colors.dark.text.original;
-    case "late":
+    case DELAY_STATUS.LATE:
       return colors.dark.text.warning;
     default:
       return colors.dark.text.highlight;

@@ -3,13 +3,14 @@ import { TimeSpan } from "../time";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { fontColorForDelayStatus } from "../delayDesign";
+import DELAY_STATUS from "../../domains/toTheStation/pure/delayStatus";
 
 import { Break } from "../../design/icons";
 
 const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
   const delayStatusText = textForDelayStatus(delayStatus);
 
-  const showWaitIcon = largeSpace && delayStatus === "early";
+  const showWaitIcon = largeSpace && delayStatus === DELAY_STATUS.EARLY;
 
   return (
     <Box delayStatus={delayStatus}>
@@ -31,11 +32,11 @@ const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
 
 const textForDelayStatus = (delayStatus) => {
   switch (delayStatus) {
-    case "early":
+    case DELAY_STATUS.EARLY:
       return "en avance";
-    case "ontime":
+    case DELAY_STATUS.ON_TIME:
       return "à l'heure";
-    case "late":
+    case DELAY_STATUS.LATE:
       return "en retard";
     default:
       return "...";
