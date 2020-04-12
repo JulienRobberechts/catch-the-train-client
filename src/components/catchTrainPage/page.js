@@ -13,7 +13,7 @@ const CatchPage = ({ station }) => {
   return (
     <>
       <Helmet>
-        <title>Trains - {station ?? "..."}</title>
+        <title>Prochain trains - {station ?? "..."}</title>
       </Helmet>
       <PageRefresher refreshInterval={refreshInterval} />
       <TopSection>

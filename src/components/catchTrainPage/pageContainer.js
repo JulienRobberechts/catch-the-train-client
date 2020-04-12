@@ -61,11 +61,11 @@ const CatchPageContainer = () => {
     dispatch(chooseTrain(trainDeparture?.trainCode));
   }, [dispatch, trainDeparture]);
 
-  const currentTrainCode = useSelector(selectCurrentTrainCode);
+  // const currentTrainCode = useSelector(selectCurrentTrainCode);
 
   const context = useSelector(selectTimeTableContext);
 
-  if (!currentTrainCode) return <div>...</div>;
+  // if (!currentTrainCode) return <div>...</div>;
 
   // console.log("render page CatchPageContainer");
   return <CatchPage station={context?.station?.name} />;

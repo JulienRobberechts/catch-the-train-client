@@ -11,17 +11,42 @@ import { getSizeRatioFor } from "./pure";
 
 import { useSelector } from "react-redux";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
+import TimeSpan from "../time/timeSpan";
 
 const TimelineVertical = () => {
   const data = useSelector(selectEnhancedTimeTable);
 
-  if (!data) {
-    return <div>...</div>;
+  if (!data || !data.travel) {
+    return <div>... no travel data </div>;
   }
 
   const {
-    currentDeparture: { index: departureIndex },
     travel: { nowTime, travelDuration, waitingDuration },
+  } = data;
+
+  if (!data.currentDeparture) {
+    return (
+      <div>
+        <div> ...</div>
+        <div>edge case UI</div>
+        <div>no departure</div>
+        <div>
+          <NowBox nowTime={nowTime} />
+          <div>
+            travelDuration:
+            <TimeSpan timeSpan={travelDuration} />
+          </div>
+          <div>
+            waitingDuration:
+            <TimeSpan timeSpan={waitingDuration} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const {
+    currentDeparture: { index: departureIndex } = { index: undefined },
     enhancedDepartures,
   } = data;
 
