@@ -2,7 +2,12 @@ import {
   calculateMissionsForJourney,
   formatMissionsSchedules,
 } from "./pure/missionSchedule";
-import { importMissionsCodes, importMissionsSchedules } from "./dataAccess";
+import { getStation } from "./pure/station";
+import {
+  importMissionsCodes,
+  importMissionsSchedules,
+  importStations,
+} from "./dataAccess";
 
 export function getMissionsSchedules() {
   const missionsCodes = importMissionsCodes();
@@ -18,4 +23,9 @@ export function getMissions(departureStation, arrivalStation) {
     arrivalStation
   );
   return missions;
+}
+
+export function getStationBySlug(stationSlug) {
+  const allStation = importStations();
+  return getStation(stationSlug, allStation);
 }
