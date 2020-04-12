@@ -41,15 +41,10 @@ describe("slice timeTable", () => {
       travelDurationSeconds: 555,
       waitingDelaySeconds: 77,
     };
-    const sampleContextRerAChatelet = {
-      at: "2020-03-10T09:22:30+01:00",
-      provider: "ratp",
+    const sampleRequestRerAChatelet = {
       network: "rers",
       line: "a",
-      station: {
-        name: "Chatelet-Les-Halles",
-        slug: "chatelet+les+halles",
-      },
+      station: "chatelet+les+halles",
       missions: ["ZEBU"],
     };
 
@@ -63,8 +58,8 @@ describe("slice timeTable", () => {
       timeTable: {
         loading: false,
         error: null,
+        request: sampleRequestRerAChatelet,
         data: {
-          context: sampleContextRerAChatelet,
           departures: sampleDepartures,
         },
       },

@@ -6,35 +6,24 @@ import reducer, {
 } from "./slice";
 
 import {
-  selectTimeTableContext,
   selectTimeTableRequest,
   selectRequestStatus,
   selectAllDepartures,
 } from "./selectors";
 
-const sampleContextRerAChateletV1 = {
-  at: "2020-03-10T09:22:30+01:00",
-  provider: "ratp",
+const sampleRequestRerAChateletV1 = {
   network: "rers",
   line: "a",
-  station: {
-    name: "Chatelet-Les-Halles",
-    slug: "chatelet+les+halles",
-  },
+  station: "chatelet+les+halles",
   missions: ["ZEBU"],
 };
 
 const sampleDeparturesV1 = [{ trainCode: "T1" }, { trainCode: "T2" }];
 
-const sampleContextRerAChateletV2 = {
-  at: "2020-03-10T09:25:00+01:00",
-  provider: "ratp",
+const sampleRequestRerAChateletV2 = {
   network: "rers",
   line: "a",
-  station: {
-    name: "Chatelet-Les-Halles",
-    slug: "chatelet+les+halles",
-  },
+  station: "chatelet+les+halles",
   missions: ["ZEBU"],
 };
 
@@ -46,13 +35,16 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: false,
       error: false,
+      request: sampleRequestRerAChateletV1,
       data: {
-        context: sampleContextRerAChateletV1,
         departures: sampleDeparturesV1,
       },
     };
     beforeEach(() => {
-      const timeTable = reducer(stateBefore, requestStart());
+      const timeTable = reducer(
+        stateBefore,
+        requestStart(sampleRequestRerAChateletV2)
+      );
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
@@ -61,9 +53,9 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableContext' should return falsy", () => {
-      expect(selectTimeTableContext(rootState)).toEqual(
-        sampleContextRerAChateletV1
+    it("'selectTimeTableRequest' should return data", () => {
+      expect(selectTimeTableRequest(rootState)).toEqual(
+        sampleRequestRerAChateletV2
       );
     });
     it("'selectAllDepartures' should return V1", () => {
@@ -76,8 +68,8 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: true,
       error: false,
+      request: sampleRequestRerAChateletV1,
       data: {
-        context: sampleContextRerAChateletV1,
         departures: sampleDeparturesV1,
       },
     };
@@ -85,7 +77,6 @@ describe("slice timeTable", () => {
       const timeTable = reducer(
         stateBefore,
         requestSuccess({
-          context: sampleContextRerAChateletV2,
           departures: sampleDeparturesV2,
         })
       );
@@ -97,9 +88,9 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableContext' should return results", () => {
-      expect(selectTimeTableContext(rootState)).toEqual(
-        sampleContextRerAChateletV2
+    it("'selectTimeTableRequest' should return results", () => {
+      expect(selectTimeTableRequest(rootState)).toEqual(
+        sampleRequestRerAChateletV2
       );
     });
     it("'selectAllDepartures' should return V2", () => {
@@ -112,8 +103,8 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: true,
       error: false,
+      request: sampleRequestRerAChateletV1,
       data: {
-        context: sampleContextRerAChateletV1,
         departures: sampleDeparturesV1,
       },
     };
@@ -133,9 +124,9 @@ describe("slice timeTable", () => {
       // data are staying even though they are not corresponding to the error!
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableContext' should return results", () => {
-      expect(selectTimeTableContext(rootState)).toEqual(
-        sampleContextRerAChateletV1
+    it("'selectTimeTableRequest' should return results", () => {
+      expect(selectTimeTableRequest(rootState)).toEqual(
+        sampleRequestRerAChateletV1
       );
     });
     it("'selectAllDepartures' should return V1", () => {
@@ -148,13 +139,16 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: false,
       error: "Error: invalid station",
+      request: sampleRequestRerAChateletV1,
       data: {
-        context: sampleContextRerAChateletV1,
         departures: sampleDeparturesV1,
       },
     };
     beforeEach(() => {
-      const timeTable = reducer(stateBefore, requestStart());
+      const timeTable = reducer(
+        stateBefore,
+        requestStart(sampleRequestRerAChateletV1)
+      );
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
@@ -163,9 +157,9 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableContext' should return falsy", () => {
-      expect(selectTimeTableContext(rootState)).toEqual(
-        sampleContextRerAChateletV1
+    it("'selectTimeTableRequest' should return data", () => {
+      expect(selectTimeTableRequest(rootState)).toEqual(
+        sampleRequestRerAChateletV1
       );
     });
     it("'selectAllDepartures' should return V1", () => {

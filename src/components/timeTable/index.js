@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
-import { selectTimeTableContext } from "../../domains/timeTable/selectors";
+import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
@@ -17,18 +17,13 @@ function TimeTable() {
   const { enhancedDepartures } = useSelector(selectEnhancedTimeTable);
   const currentTrainCode = useSelector(selectCurrentTrainCode);
 
-  const context = useSelector(selectTimeTableContext);
+  const request = useSelector(selectTimeTableRequest);
 
-  if (!enhancedDepartures || !currentTrainCode) {
+  if (!enhancedDepartures) {
     return <Panel>...</Panel>;
   }
 
-  const {
-    network,
-    line,
-    station: { slug: station },
-    missions,
-  } = context;
+  const { network, line, station, missions } = request;
   const missionsString = missions ? "?missions=" + missions.join(",") : "";
   // console.log({ missionsString });
   const currentIndex = Math.max(

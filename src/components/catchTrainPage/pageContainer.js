@@ -7,12 +7,13 @@ import {
   setUserConfiguration,
   setStationConfiguration,
 } from "../../domains/toTheStation/slice";
+import { getStationBySlug } from "../../domains/journey/service";
 
 import {
-  selectTimeTableContext,
+  selectTimeTableRequest,
   selectDepartureByTrainCode,
 } from "../../domains/timeTable/selectors";
-import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
+// import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
 
 import CatchPage from "./page";
 
@@ -63,12 +64,12 @@ const CatchPageContainer = () => {
 
   // const currentTrainCode = useSelector(selectCurrentTrainCode);
 
-  const context = useSelector(selectTimeTableContext);
-
+  const request = useSelector(selectTimeTableRequest);
+  const stationName = getStationBySlug(request?.station);
   // if (!currentTrainCode) return <div>...</div>;
 
   // console.log("render page CatchPageContainer");
-  return <CatchPage station={context?.station?.name} />;
+  return <CatchPage station={stationName} />;
 };
 
 export default CatchPageContainer;

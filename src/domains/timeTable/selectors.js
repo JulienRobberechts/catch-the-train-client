@@ -14,9 +14,9 @@ export const selectTimeTableRequest = (state) => {
 };
 
 // OLD version
-export const selectTimeTableContext = (state) => {
-  return state?.timeTable?.data?.context;
-};
+// export const selectTimeTableContext = (state) => {
+//   return state?.timeTable?.data?.context;
+// };
 
 export const selectAllDepartures = (state) => {
   return state?.timeTable?.data?.departures ?? [];

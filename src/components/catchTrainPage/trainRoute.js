@@ -2,20 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
-import { selectTimeTableContext } from "../../domains/timeTable/selectors";
+import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
+
+import { getStationBySlug } from "../../domains/journey/service";
 
 const TrainRoute = () => {
-  const context = useSelector(selectTimeTableContext);
+  const request = useSelector(selectTimeTableRequest);
 
-  if (!context) {
+  if (!request) {
     return <Panel>...</Panel>;
   }
 
-  const {
-    network,
-    line,
-    station: { name: stationName },
-  } = context;
+  const { network, line } = request;
+  const stationName = getStationBySlug(request?.station);
 
   return (
     <Panel>

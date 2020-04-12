@@ -5,7 +5,6 @@ import reducer, {
   requestSuccess,
 } from "./slice";
 import {
-  selectTimeTableContext,
   selectRequestStatus,
   selectAllDepartures,
   selectTimeTableRequest,
@@ -18,17 +17,6 @@ const sampleRequestRerAChatelet = {
   missions: ["ZEBU"],
 };
 
-const sampleContextRerAChatelet = {
-  at: "2020-03-10T09:22:30+01:00",
-  provider: "ratp",
-  network: "rers",
-  line: "a",
-  station: {
-    name: "Chatelet-Les-Halles",
-    slug: "chatelet+les+halles",
-  },
-  missions: ["ZEBU"],
-};
 const sampleDepartures = [{ trainCode: "T1" }, { trainCode: "T2" }];
 
 describe("slice timeTable", () => {
@@ -42,9 +30,6 @@ describe("slice timeTable", () => {
     });
     it("'selectTimeTableRequest' should return falsy", () => {
       expect(selectTimeTableRequest(rootState)).toBeFalsy();
-    });
-    it("'selectTimeTableContext' should return falsy", () => {
-      expect(selectTimeTableContext(rootState)).toBeFalsy();
     });
     it("'selectAllDepartures' should return an empty array", () => {
       expect(selectAllDepartures(rootState)).toEqual([]);
@@ -72,9 +57,6 @@ describe("slice timeTable", () => {
         sampleRequestRerAChatelet
       );
     });
-    it("'selectTimeTableContext' should return falsy", () => {
-      expect(selectTimeTableContext(rootState)).toBeFalsy();
-    });
     it("'selectAllDepartures' should return an empty array", () => {
       expect(selectAllDepartures(rootState)).toEqual([]);
     });
@@ -85,13 +67,13 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: true,
       error: false,
+      request: sampleRequestRerAChatelet,
       data: undefined,
     };
     beforeEach(() => {
       const timeTable = reducer(
         stateBefore,
         requestSuccess({
-          context: sampleContextRerAChatelet,
           departures: sampleDepartures,
         })
       );
@@ -103,9 +85,9 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableContext' should return results", () => {
-      expect(selectTimeTableContext(rootState)).toEqual(
-        sampleContextRerAChatelet
+    it("'selectTimeTableRequest' should return results", () => {
+      expect(selectTimeTableRequest(rootState)).toEqual(
+        sampleRequestRerAChatelet
       );
     });
     it("'selectAllDepartures' should return results", () => {
@@ -135,8 +117,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toEqual(error503);
       expect(actualStatus.hasData).toBeFalsy();
     });
-    it("'selectTimeTableContext' should return results", () => {
-      expect(selectTimeTableContext(rootState)).toBeFalsy();
+    it("'selectTimeTableRequest' should return results", () => {
+      expect(selectTimeTableRequest(rootState)).toBeFalsy();
     });
     it("'selectAllDepartures' should return an empty array", () => {
       expect(selectAllDepartures(rootState)).toEqual([]);
