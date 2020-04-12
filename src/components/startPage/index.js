@@ -8,7 +8,7 @@ import { colors } from "../../design/colors";
 const network = "rers";
 const line = "a";
 const station = "chatelet+les+halles";
-const missions = "";
+const missions = "UPAC,ZEBU,TEDI";
 
 const StartPage = () => {
   return (
