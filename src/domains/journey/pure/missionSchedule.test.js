@@ -1,8 +1,7 @@
-import getMissions, {
-  getMissionsSchedules,
+import {
   calculateMissionsForJourney,
   addStationIndexToSchedule,
-} from "./getMissions";
+} from "./missionSchedule";
 import each from "jest-each";
 
 const schedule1 = {
@@ -66,30 +65,6 @@ describe("Missions", () => {
           departure,
           arrival
         );
-        expect(actualMissions).toEqual(expectedMissions);
-      }
-    );
-  });
-
-  describe("getMissionsSchedules", () => {
-    test("should get Missions Schedules", () => {
-      const missionsSchedules = getMissionsSchedules();
-      console.log({ missionsSchedules });
-      expect(missionsSchedules).toMatchSnapshot();
-    });
-  });
-
-  describe("getMissions", () => {
-    each([
-      ["cergy+prefecture", "houilles", ["NANI"]],
-      ["chatelet+les+halles", "sucy+bonneuil", ["NANI", "NOTE"]],
-      ["maisons+laffitte", "nation", ["NANI", "NOTE"]],
-      ["auber", "gare+de+lyon", ["NANI", "NOTE", "QIKI"]],
-      ["charles+de+gaulle+etoile", "marne+la+vallee+chessy", ["QIKI"]],
-    ]).test(
-      "should get missions from '%s' to '%s'",
-      (departure, arrival, expectedMissions) => {
-        const actualMissions = getMissions(departure, arrival);
         expect(actualMissions).toEqual(expectedMissions);
       }
     );

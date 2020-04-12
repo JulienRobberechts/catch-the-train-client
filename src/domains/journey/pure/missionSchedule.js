@@ -1,23 +1,4 @@
-import stationsNANI from "../../../data/ratp/rers/A/stations-NANI.json";
-import stationsNOTE from "../../../data/ratp/rers/A/stations-NOTE.json";
-import stationsQIKI from "../../../data/ratp/rers/A/stations-QIKI.json";
-
-export default function getMissions(departureStation, arrivalStation) {
-  const missionsSchedules = getMissionsSchedules();
-  const missions = calculateMissionsForJourney(
-    missionsSchedules,
-    departureStation,
-    arrivalStation
-  );
-  return missions;
-}
-
-export function getMissionsSchedules() {
-  const missionsSchedules = [
-    { mission: "NANI", ...stationsNANI },
-    { mission: "NOTE", ...stationsNOTE },
-    { mission: "QIKI", ...stationsQIKI },
-  ];
+function formatMissionsSchedules(missionsSchedules) {
   const formattedSchedule = missionsSchedules.map(({ mission, result }) => ({
     mission,
     stations: result.stations.map((station) => station.slug),
@@ -25,7 +6,7 @@ export function getMissionsSchedules() {
   return formattedSchedule;
 }
 
-export function calculateMissionsForJourney(
+function calculateMissionsForJourney(
   missionsSchedules,
   departureStation,
   arrivalStation
@@ -53,4 +34,8 @@ const addStationIndexToSchedule = (station, indexPropName) => ({
   ...otherProps,
 });
 
-export { addStationIndexToSchedule };
+export {
+  formatMissionsSchedules,
+  calculateMissionsForJourney,
+  addStationIndexToSchedule,
+};

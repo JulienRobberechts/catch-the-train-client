@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Missions getMissionsSchedules should get Missions Schedules 1`] = `
+exports[`journey services getMissionsSchedules should get Missions Schedules 1`] = `
 Array [
   Object {
     "mission": "NANI",
