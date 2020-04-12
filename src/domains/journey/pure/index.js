@@ -1,1 +1,1 @@
-export { default as getMissions } from "./getMissions";
+export { getMissions } from "./getMissions";

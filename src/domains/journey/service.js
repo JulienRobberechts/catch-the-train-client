@@ -10,7 +10,7 @@ export function getMissionsSchedules() {
   return formatMissionsSchedules(missionsSchedules);
 }
 
-export default function getMissions(departureStation, arrivalStation) {
+export function getMissions(departureStation, arrivalStation) {
   const missionsSchedules = getMissionsSchedules();
   const missions = calculateMissionsForJourney(
     missionsSchedules,

@@ -5,6 +5,8 @@ import { colors } from "../../design/colors";
 import { Formik, Form, useField } from "formik";
 import stations from "../../data/ratp/rers/A/stations.json";
 import { Button, Header, Dropdown } from "semantic-ui-react";
+import { getMissions } from "../../domains/journey/service";
+import { useHistory } from "react-router-dom";
 
 const DropdownSemantic = ({ ...props }) => {
   const [field, meta, helpers] = useField(props);
@@ -33,6 +35,12 @@ const DropdownSemantic = ({ ...props }) => {
   );
 };
 
+const buildUrl = ({ network, line, departure, destination }) => {
+  const missions = getMissions(departure, destination);
+  const missionParam = missions.join(",");
+  return `/${network}/${line}/${departure}?missions=${missionParam}`;
+};
+
 const SelectionPage = () => {
   const stationOptions = stations.map((station) => ({
     key: station.slug,
@@ -40,6 +48,7 @@ const SelectionPage = () => {
     text: station.name,
   }));
 
+  const history = useHistory();
   return (
     <>
       <Helmet>
@@ -47,12 +56,19 @@ const SelectionPage = () => {
       </Helmet>
       <Title>Selection</Title>
       <Formik
-        initialValues={{ departure: "", destination: "" }}
-        onSubmit={(data, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(data, null, 2));
-            setSubmitting(false);
-          }, 400);
+        initialValues={{
+          departure: "chatelet+les+halles",
+          destination: "gare+de+lyon",
+        }}
+        onSubmit={(data) => {
+          const url = buildUrl({
+            network: "rers",
+            line: "A",
+            departure: data.departure,
+            destination: data.destination,
+          });
+          console.log({ url });
+          history.push(url);
         }}
       >
         {(formik) => (
@@ -61,7 +77,7 @@ const SelectionPage = () => {
             <Section>RER</Section>
             <SectionTitle>Ligne</SectionTitle>
             <Section>A</Section>
-            <SectionTitle>Gare de départ</SectionTitle>
+            <SectionTitle>Au départ de</SectionTitle>
             <Section>
               <FieldContainer>
                 <DropdownSemantic
@@ -76,7 +92,7 @@ const SelectionPage = () => {
                 />
               </FieldContainer>
             </Section>
-            <SectionTitle>Destination</SectionTitle>
+            <SectionTitle>Á destination de</SectionTitle>
             <Section>
               <FieldContainer>
                 <DropdownSemantic
