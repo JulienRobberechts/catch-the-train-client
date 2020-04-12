@@ -8,13 +8,27 @@ export default function enhanceTimeTable({
   stationConfiguration,
   rawDepartures,
 }) {
-  if (
-    !currentTime ||
-    !rawDepartures ||
-    !stationConfiguration ||
-    !userConfiguration
-  )
-    return null;
+  if (!stationConfiguration) return { currentDeparture: null };
+
+  const travelDuration = moment.duration({
+    seconds: stationConfiguration.travelDurationSeconds,
+  });
+  const waitingDuration = moment.duration({
+    seconds: stationConfiguration.waitingDelaySeconds,
+  });
+
+  if (!currentTime) return { currentDeparture: null };
+  const nowTime = moment.parseZone(currentTime);
+
+  if (!rawDepartures || !userConfiguration)
+    return {
+      currentDeparture: null,
+      travel: {
+        nowTime,
+        travelDuration,
+        waitingDuration,
+      },
+    };
 
   const departureIndex = Math.max(
     rawDepartures.findIndex(
@@ -23,13 +37,6 @@ export default function enhanceTimeTable({
     0
   );
 
-  const nowTime = moment.parseZone(currentTime);
-  const travelDuration = moment.duration({
-    seconds: stationConfiguration.travelDurationSeconds,
-  });
-  const waitingDuration = moment.duration({
-    seconds: stationConfiguration.waitingDelaySeconds,
-  });
   const { onTimeMarginDelaySeconds } = userConfiguration;
 
   const enhancedDepartures = rawDepartures.map((departure, departureIndex) =>

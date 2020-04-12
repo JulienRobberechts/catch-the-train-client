@@ -26,7 +26,9 @@ describe("slice timeTable", () => {
   };
   describe("initial state", () => {
     it("'selectEnhancedTimeTable' should return falsy", () => {
-      expect(selectEnhancedTimeTable(initialRootState)).toBeFalsy();
+      expect(selectEnhancedTimeTable(initialRootState)).toEqual({
+        currentDeparture: null,
+      });
     });
   });
   describe("after initialization", () => {
