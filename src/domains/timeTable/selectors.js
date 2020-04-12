@@ -8,12 +8,18 @@ export const selectRequestStatus = (state) => {
   };
 };
 
+// New version
+export const selectTimeTableRequest = (state) => {
+  return state?.timeTable?.request;
+};
+
+// OLD version
 export const selectTimeTableContext = (state) => {
   return state?.timeTable?.data?.context;
 };
 
 export const selectAllDepartures = (state) => {
-  return state?.timeTable?.data?.departures;
+  return state?.timeTable?.data?.departures ?? [];
 };
 
 export const selectDepartureByTrainCode = (trainCode) => (state) => {

@@ -7,6 +7,7 @@ import reducer, {
 
 import {
   selectTimeTableContext,
+  selectTimeTableRequest,
   selectRequestStatus,
   selectAllDepartures,
 } from "./selectors";
@@ -65,7 +66,7 @@ describe("slice timeTable", () => {
         sampleContextRerAChateletV1
       );
     });
-    it("'selectAllDepartures' should return falsy", () => {
+    it("'selectAllDepartures' should return V1", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV1);
     });
   });
@@ -101,7 +102,7 @@ describe("slice timeTable", () => {
         sampleContextRerAChateletV2
       );
     });
-    it("'selectAllDepartures' should return results", () => {
+    it("'selectAllDepartures' should return V2", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV2);
     });
   });
@@ -137,7 +138,7 @@ describe("slice timeTable", () => {
         sampleContextRerAChateletV1
       );
     });
-    it("'selectAllDepartures' should return results", () => {
+    it("'selectAllDepartures' should return V1", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV1);
     });
   });
@@ -167,7 +168,7 @@ describe("slice timeTable", () => {
         sampleContextRerAChateletV1
       );
     });
-    it("'selectAllDepartures' should return falsy", () => {
+    it("'selectAllDepartures' should return V1", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV1);
     });
   });

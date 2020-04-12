@@ -8,7 +8,15 @@ import {
   selectTimeTableContext,
   selectRequestStatus,
   selectAllDepartures,
+  selectTimeTableRequest,
 } from "./selectors";
+
+const sampleRequestRerAChatelet = {
+  network: "rers",
+  line: "a",
+  station: "chatelet+les+halles",
+  missions: ["ZEBU"],
+};
 
 const sampleContextRerAChatelet = {
   at: "2020-03-10T09:22:30+01:00",
@@ -32,11 +40,14 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeFalsy();
     });
+    it("'selectTimeTableRequest' should return falsy", () => {
+      expect(selectTimeTableRequest(rootState)).toBeFalsy();
+    });
     it("'selectTimeTableContext' should return falsy", () => {
       expect(selectTimeTableContext(rootState)).toBeFalsy();
     });
-    it("'selectAllDepartures' should return falsy", () => {
-      expect(selectAllDepartures(rootState)).toBeFalsy();
+    it("'selectAllDepartures' should return an empty array", () => {
+      expect(selectAllDepartures(rootState)).toEqual([]);
     });
   });
 
@@ -44,7 +55,10 @@ describe("slice timeTable", () => {
     let rootState;
     const stateBefore = initialState;
     beforeEach(() => {
-      const timeTable = reducer(stateBefore, requestStart());
+      const timeTable = reducer(
+        stateBefore,
+        requestStart(sampleRequestRerAChatelet)
+      );
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
@@ -53,11 +67,16 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeFalsy();
     });
+    it("'selectTimeTableRequest' should return data", () => {
+      expect(selectTimeTableRequest(rootState)).toEqual(
+        sampleRequestRerAChatelet
+      );
+    });
     it("'selectTimeTableContext' should return falsy", () => {
       expect(selectTimeTableContext(rootState)).toBeFalsy();
     });
-    it("'selectAllDepartures' should return falsy", () => {
-      expect(selectAllDepartures(rootState)).toBeFalsy();
+    it("'selectAllDepartures' should return an empty array", () => {
+      expect(selectAllDepartures(rootState)).toEqual([]);
     });
   });
 
@@ -119,8 +138,8 @@ describe("slice timeTable", () => {
     it("'selectTimeTableContext' should return results", () => {
       expect(selectTimeTableContext(rootState)).toBeFalsy();
     });
-    it("'selectAllDepartures' should return results", () => {
-      expect(selectAllDepartures(rootState)).toBeFalsy();
+    it("'selectAllDepartures' should return an empty array", () => {
+      expect(selectAllDepartures(rootState)).toEqual([]);
     });
   });
 });

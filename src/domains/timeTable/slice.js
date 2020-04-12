@@ -9,9 +9,10 @@ export const slice = createSlice({
     reset: (state) => {
       Object.assign(state, initialState);
     },
-    requestStart: (state) => {
+    requestStart: (state, action) => {
       state.loading = true;
       state.error = null;
+      state.request = action.payload;
       // we still can have data during the loading
     },
     requestError: (state, action) => {
