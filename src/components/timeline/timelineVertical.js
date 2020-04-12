@@ -50,12 +50,36 @@ const TimelineVertical = () => {
     enhancedDepartures,
   } = data;
 
+  console.log({ departureIndex });
+
+  const departure = enhancedDepartures[departureIndex];
+  if (!departure) {
+    return (
+      <div>
+        <div> ...</div>
+        <div>edge case UI</div>
+        <div>no departure</div>
+        <div>
+          <NowBox nowTime={nowTime} />
+          <div>
+            travelDuration:
+            <TimeSpan timeSpan={travelDuration} />
+          </div>
+          <div>
+            waitingDuration:
+            <TimeSpan timeSpan={waitingDuration} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const {
     departureTime,
     departureDuration,
     delayDuration,
     delayStatus,
-  } = enhancedDepartures[departureIndex];
+  } = departure;
 
   const getSizeRatio = getSizeRatioFor(departureDuration);
   const travelDurationPercentage = getSizeRatio(travelDuration);

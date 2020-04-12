@@ -14,7 +14,7 @@ const TrainRoute = () => {
   }
 
   const { network, line } = request;
-  const stationName = getStationBySlug(request?.station);
+  const stationName = getStationBySlug(request?.station)?.name;
 
   return (
     <Panel>

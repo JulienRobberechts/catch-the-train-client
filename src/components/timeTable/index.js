@@ -24,7 +24,9 @@ function TimeTable() {
   }
 
   const { network, line, station, missions } = request;
-  const missionsString = missions ? "?missions=" + missions.join(",") : "";
+  console.log({ missions });
+
+  const missionsString = !!missions ? "?missions=" + missions : "";
   // console.log({ missionsString });
   const currentIndex = Math.max(
     0,
