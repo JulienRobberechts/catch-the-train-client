@@ -2,38 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { colors } from "../../design/colors";
-import { Formik, Form, useField } from "formik";
+import { Formik, Form } from "formik";
 import stations from "../../data/ratp/rers/A/stations.json";
-import { Button, Header, Dropdown } from "semantic-ui-react";
+import { Button, Header } from "semantic-ui-react";
 import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";
-
-const DropdownSemantic = ({ ...props }) => {
-  const [field, meta, helpers] = useField(props);
-  const finalProps = { ...props, ...field };
-
-  // Can be useful to act on the full formik
-  // const formikContext = useFormikContext();
-  // console.log("DropdownSemantic formikContext ", { formikContext });
-
-  // console.log("DropdownSemantic helpers ", { helpers });
-  // console.log("DropdownSemantic", { props });
-  // console.log("DropdownSemantic", { field });
-  // console.log("DropdownSemantic", { meta });
-  // console.log("DropdownSemantic", { finalProps });
-
-  return (
-    <Dropdown
-      {...finalProps}
-      onChange={(e, data) => {
-        helpers.setValue(data.value);
-        const touched = data.value !== meta.initialValue;
-        console.log({ touched });
-        helpers.setTouched(data.value !== meta.initialValue);
-      }}
-    />
-  );
-};
+import DropdownSemantic from "./dropdownSemantic";
+import DropdownReactSelectField from "./dropdown-reactSelect";
+import { selectStyles } from "./dropdown-reactSelect.style";
 
 const buildUrl = ({ network, line, departure, destination }) => {
   const missions = getMissions(departure, destination);
@@ -41,20 +17,25 @@ const buildUrl = ({ network, line, departure, destination }) => {
   return `/${network}/${line}/${departure}?missions=${missionParam}`;
 };
 
-const SelectionPage = () => {
-  const stationOptions = stations.map((station) => ({
-    key: station.slug,
+const stationOptions = stations.map((station) => ({
+  key: station.slug,
+  label: station.name, //
+  value: station.slug, // React-select
+  text: station.name,
+  color: "#0052CC",
+  target: {
     value: station.slug,
-    text: station.name,
-  }));
+  },
+}));
 
+const SelectionPage = () => {
   const history = useHistory();
   return (
     <>
       <Helmet>
         <title>Selection</title>
       </Helmet>
-      <Title>Selection</Title>
+      <Title>Choix du train</Title>
       <Formik
         initialValues={{
           departure: "chatelet+les+halles",
@@ -64,7 +45,7 @@ const SelectionPage = () => {
           const url = buildUrl({
             network: "rers",
             line: "A",
-            departure: data.departure,
+            departure: data.departure.value,
             destination: data.destination,
           });
           console.log({ url });
@@ -73,11 +54,9 @@ const SelectionPage = () => {
       >
         {(formik) => (
           <Form>
-            <SectionTitle>Réseau</SectionTitle>
-            <Section>RER</Section>
             <SectionTitle>Ligne</SectionTitle>
-            <Section>A</Section>
-            <SectionTitle>Au départ de</SectionTitle>
+            <Section>RER A</Section>
+            <SectionTitle>Départ</SectionTitle>
             <Section>
               <FieldContainer>
                 <DropdownSemantic
@@ -92,7 +71,25 @@ const SelectionPage = () => {
                 />
               </FieldContainer>
             </Section>
-            <SectionTitle>Á destination de</SectionTitle>
+            <Section>
+              <FieldContainer>
+                <DropdownReactSelectField
+                  name="departure"
+                  label="Départ"
+                  placeholder={<div>Sélectionnez une gare de depart</div>}
+                  noOptionsMessage={() => <div>aucune gare correspondante</div>}
+                  autoFocus
+                  isClearable
+                  menuPlacement="bottom"
+                  options={stationOptions}
+                  styles={selectStyles(300)}
+                />
+              </FieldContainer>
+            </Section>
+            <Section>
+              <FieldContainer></FieldContainer>
+            </Section>
+            <SectionTitle>Destination</SectionTitle>
             <Section>
               <FieldContainer>
                 <DropdownSemantic
@@ -120,7 +117,6 @@ const SelectionPage = () => {
 };
 
 const FieldContainer = styled.div`
-  display: flex;
   justify-content: center;
   max-width: 500px;
 `;
