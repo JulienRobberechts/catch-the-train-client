@@ -7,19 +7,19 @@ import stations from "../../data/ratp/rers/A/stations.json";
 import { Button, Header } from "semantic-ui-react";
 import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";
-import DropdownSemantic from "./dropdownSemantic";
 import DropdownReactSelectField from "./dropdown-reactSelect";
 import { selectStyles } from "./dropdown-reactSelect.style";
 
 const buildUrl = ({ network, line, departure, destination }) => {
   const missions = getMissions(departure, destination);
+  console.log({ missions });
   const missionParam = missions.join(",");
   return `/${network}/${line}/${departure}?missions=${missionParam}`;
 };
 
 const stationOptions = stations.map((station) => ({
   key: station.slug,
-  label: station.name, //
+  label: station.name, // React-select
   value: station.slug, // React-select
   text: station.name,
   color: "#0052CC",
@@ -28,8 +28,31 @@ const stationOptions = stations.map((station) => ({
   },
 }));
 
+const initialValues = {
+  departure: null,
+  destination: {
+    label: "Chatelet-Les-Halles",
+    value: "chatelet+les+halles",
+  },
+};
+
+const getUrl = (data) => {
+  return buildUrl({
+    network: "rers",
+    line: "A",
+    departure: data.departure.value,
+    destination: data.destination.value,
+  });
+};
+
+const redirectToNextTrain = (pushMethod) => (data) => {
+  const url = getUrl(data);
+  console.log({ url });
+  pushMethod(url);
+};
+
 const SelectionPage = () => {
-  const history = useHistory();
+  const { push } = useHistory();
   return (
     <>
       <Helmet>
@@ -37,20 +60,8 @@ const SelectionPage = () => {
       </Helmet>
       <Title>Choix du train</Title>
       <Formik
-        initialValues={{
-          departure: "chatelet+les+halles",
-          destination: "gare+de+lyon",
-        }}
-        onSubmit={(data) => {
-          const url = buildUrl({
-            network: "rers",
-            line: "A",
-            departure: data.departure.value,
-            destination: data.destination,
-          });
-          console.log({ url });
-          history.push(url);
-        }}
+        initialValues={initialValues}
+        onSubmit={redirectToNextTrain(push)}
       >
         {(formik) => (
           <Form>
@@ -59,26 +70,12 @@ const SelectionPage = () => {
             <SectionTitle>Départ</SectionTitle>
             <Section>
               <FieldContainer>
-                <DropdownSemantic
-                  name="departure"
-                  type="select"
-                  placeholder="Gare de départ"
-                  fluid
-                  search
-                  selection
-                  clearable
-                  options={stationOptions}
-                />
-              </FieldContainer>
-            </Section>
-            <Section>
-              <FieldContainer>
                 <DropdownReactSelectField
                   name="departure"
                   label="Départ"
                   placeholder={<div>Sélectionnez une gare de depart</div>}
                   noOptionsMessage={() => <div>aucune gare correspondante</div>}
-                  autoFocus
+                  autoFocus={true}
                   isClearable
                   menuPlacement="bottom"
                   options={stationOptions}
@@ -92,23 +89,28 @@ const SelectionPage = () => {
             <SectionTitle>Destination</SectionTitle>
             <Section>
               <FieldContainer>
-                <DropdownSemantic
+                <DropdownReactSelectField
                   name="destination"
-                  type="select"
-                  placeholder="Gare de destination"
-                  fluid
-                  search
-                  selection
-                  clearable
+                  label="Départ"
+                  placeholder={<div>Sélectionnez une gare de destination</div>}
+                  noOptionsMessage={() => <div>aucune gare correspondante</div>}
+                  autoFocus={false}
+                  isClearable
+                  menuPlacement="bottom"
                   options={stationOptions}
+                  styles={selectStyles(400)}
                 />
               </FieldContainer>
             </Section>
             <SubmitButtonContainer>
               <Button type="submit">Voir les prochains départs</Button>
             </SubmitButtonContainer>
-            <h1>Formik</h1>
-            <pre>{JSON.stringify(formik, null, 3)}</pre>
+            {process.env.NODE_ENV === "development" && (
+              <div>
+                <h1>Formik</h1>
+                <pre>{JSON.stringify(formik, null, 3)}</pre>
+              </div>
+            )}
           </Form>
         )}
       </Formik>
