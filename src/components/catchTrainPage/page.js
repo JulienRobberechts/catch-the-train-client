@@ -6,6 +6,9 @@ import TimelineVertical from "../timeline/timelineVertical";
 import TimeTable from "../timeTable";
 import PageRefresher from "./pageRefresher";
 import config from "../../config";
+import { colors } from "../../design/colors";
+import { Link } from "react-router-dom";
+import { Search } from "../../design/icons";
 
 const refreshInterval = config.DISABLE_TIME_UPDATE ? 36000000 : 1000;
 
@@ -17,7 +20,16 @@ const CatchPage = ({ station }) => {
       </Helmet>
       <PageRefresher refreshInterval={refreshInterval} />
       <TopSection>
-        <TrainRoute />
+        <StationHeader>
+          <TrainRoute />
+          <IconContainer
+            className="ui circular icon"
+            as={Link}
+            to={`/selection`}
+          >
+            <Search />
+          </IconContainer>
+        </StationHeader>
         <TimeTable />
       </TopSection>
       <BodySection>
@@ -26,6 +38,20 @@ const CatchPage = ({ station }) => {
     </>
   );
 };
+
+const IconContainer = styled.div`
+  margin: 0.2rem 2rem;
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: ${() => colors.dark.text.original};
+  }
+`;
+
+const StationHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const TopSection = styled.div`
   padding: 0.7rem;

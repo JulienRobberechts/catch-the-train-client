@@ -15,3 +15,4 @@ export { ReactComponent as More } from "./assets/more.svg";
 export { ReactComponent as Menu } from "./assets/menu.svg";
 export { ReactComponent as Dot } from "./assets/dot.svg";
 export { ReactComponent as SwitchIcon } from "./assets/switch.svg";
+export { ReactComponent as Search } from "./assets/search.svg";
