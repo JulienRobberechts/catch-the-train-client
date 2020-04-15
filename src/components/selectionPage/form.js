@@ -6,7 +6,7 @@ import { Button, Header, Icon } from "semantic-ui-react";
 import DropdownReactSelectField from "./dropdown-reactSelect";
 import { selectStyles } from "./dropdown-reactSelect.style";
 import { SwitchIcon } from "../../design/icons";
-import { Form } from "formik";
+import { Form, useFormikContext } from "formik";
 
 const stationOptions = stations.map((station) => ({
   key: station.slug,
@@ -19,69 +19,79 @@ const stationOptions = stations.map((station) => ({
   },
 }));
 
-const JourneySelectionForm = ({ onSwitchStationValues }) => (
-  <StyledForm>
-    <FormInnerLayout>
-      <SectionTitle>Ligne</SectionTitle>
-      <Section>RER A</Section>
-      <SectionTitle>Départ</SectionTitle>
-      <Section>
-        <FieldContainer>
-          <DropdownReactSelectField
-            name="departure"
-            label="Départ"
-            placeholder={<div>Sélectionnez une gare de depart</div>}
-            noOptionsMessage={() => <div>aucune gare correspondante</div>}
-            autoFocus={true}
-            isClearable
-            menuPlacement="bottom"
-            options={stationOptions}
-            styles={selectStyles(300)}
-          />
-        </FieldContainer>
-      </Section>
-      <Section>
-        <FieldContainer></FieldContainer>
-      </Section>
-      <FlexContainer>
-        <SectionTitle>Destination</SectionTitle>
-        <IconContainer
-          className="ui circular icon"
-          onClick={onSwitchStationValues}
-        >
-          <SwitchIcon />
-        </IconContainer>
-      </FlexContainer>
-      <Section>
-        <FieldContainer>
-          <DropdownReactSelectField
-            name="destination"
-            label="Départ"
-            placeholder={<div>Sélectionnez une gare de destination</div>}
-            noOptionsMessage={() => <div>aucune gare correspondante</div>}
-            autoFocus={false}
-            isClearable
-            menuPlacement="bottom"
-            options={stationOptions}
-            styles={selectStyles(400)}
-          />
-        </FieldContainer>
-      </Section>
-      <SubmitButtonContainer>
-        <SubmitButton
-          type="submit"
-          size="large"
-          inverted
-          color="orange"
-          disabled={false}
-        >
-          Voir les prochains départs
-          <Icon name="right arrow" />
-        </SubmitButton>
-      </SubmitButtonContainer>
-    </FormInnerLayout>
-  </StyledForm>
-);
+const JourneySelectionForm = ({ onSwitchStationValues }) => {
+  const formContext = useFormikContext();
+  console.log({ formContext });
+  const { values, isValid } = formContext;
+  return (
+    <StyledForm>
+      <FormInnerLayout>
+        <SectionTitle>Ligne</SectionTitle>
+        <Section>RER A</Section>
+        <SectionTitle>Départ</SectionTitle>
+        <Section>
+          <FieldContainer>
+            <DropdownReactSelectField
+              name="departure"
+              label="Départ"
+              placeholder={<div>Sélectionnez une gare de depart</div>}
+              noOptionsMessage={() => <div>aucune gare correspondante</div>}
+              autoFocus={true}
+              isClearable
+              menuPlacement="bottom"
+              options={stationOptions}
+              styles={selectStyles(300)}
+            />
+          </FieldContainer>
+        </Section>
+        {values?.departure?.value && (
+          <>
+            <FlexContainer>
+              <SectionTitle>Destination</SectionTitle>
+              <IconContainer
+                className="ui circular icon"
+                onClick={onSwitchStationValues}
+              >
+                <SwitchIcon />
+              </IconContainer>
+            </FlexContainer>
+            <Section>
+              <FieldContainer>
+                <DropdownReactSelectField
+                  name="destination"
+                  label="Départ"
+                  placeholder={<div>Sélectionnez une gare de destination</div>}
+                  noOptionsMessage={() => <div>aucune gare correspondante</div>}
+                  autoFocus={false}
+                  isClearable
+                  menuPlacement="bottom"
+                  options={stationOptions}
+                  styles={selectStyles(400)}
+                />
+              </FieldContainer>
+            </Section>
+          </>
+        )}
+        {values?.departure?.value && values?.destination?.value && (
+          <>
+            <SubmitButtonContainer>
+              <SubmitButton
+                type="submit"
+                size="large"
+                inverted
+                color="orange"
+                disabled={!isValid}
+              >
+                Voir les prochains départs
+                <Icon name="right arrow" />
+              </SubmitButton>
+            </SubmitButtonContainer>
+          </>
+        )}
+      </FormInnerLayout>
+    </StyledForm>
+  );
+};
 
 const StyledForm = styled(Form)`
   flex-basis: 500px;
@@ -97,6 +107,7 @@ const FormInnerLayout = styled.div`
 `;
 
 const FlexContainer = styled.div`
+  margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
 `;
