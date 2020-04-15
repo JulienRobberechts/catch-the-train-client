@@ -16,3 +16,5 @@ export { ReactComponent as Menu } from "./assets/menu.svg";
 export { ReactComponent as Dot } from "./assets/dot.svg";
 export { ReactComponent as SwitchIcon } from "./assets/switch.svg";
 export { ReactComponent as Search } from "./assets/search.svg";
+export { ReactComponent as SettingsIcon } from "./assets/gear.svg";
+export { ReactComponent as LogoIcon } from "./assets/walk2.svg";
