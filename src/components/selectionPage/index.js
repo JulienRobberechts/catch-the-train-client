@@ -9,6 +9,7 @@ import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";
 import DropdownReactSelectField from "./dropdown-reactSelect";
 import { selectStyles } from "./dropdown-reactSelect.style";
+import { SwitchIcon } from "../../design/icons";
 
 const buildUrl = ({ network, line, departure, destination }) => {
   const missions = getMissions(departure, destination);
@@ -59,64 +60,122 @@ const SelectionPage = () => {
         <title>Selection</title>
       </Helmet>
       <Title>Choix du train</Title>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={redirectToNextTrain(push)}
-      >
-        {(formik) => (
-          <Form>
-            <SectionTitle>Ligne</SectionTitle>
-            <Section>RER A</Section>
-            <SectionTitle>Départ</SectionTitle>
-            <Section>
-              <FieldContainer>
-                <DropdownReactSelectField
-                  name="departure"
-                  label="Départ"
-                  placeholder={<div>Sélectionnez une gare de depart</div>}
-                  noOptionsMessage={() => <div>aucune gare correspondante</div>}
-                  autoFocus={true}
-                  isClearable
-                  menuPlacement="bottom"
-                  options={stationOptions}
-                  styles={selectStyles(300)}
-                />
-              </FieldContainer>
-            </Section>
-            <Section>
-              <FieldContainer></FieldContainer>
-            </Section>
-            <SectionTitle>Destination</SectionTitle>
-            <Section>
-              <FieldContainer>
-                <DropdownReactSelectField
-                  name="destination"
-                  label="Départ"
-                  placeholder={<div>Sélectionnez une gare de destination</div>}
-                  noOptionsMessage={() => <div>aucune gare correspondante</div>}
-                  autoFocus={false}
-                  isClearable
-                  menuPlacement="bottom"
-                  options={stationOptions}
-                  styles={selectStyles(400)}
-                />
-              </FieldContainer>
-            </Section>
-            <SubmitButtonContainer>
-              <Button type="submit">Voir les prochains départs</Button>
-            </SubmitButtonContainer>
-            {process.env.NODE_ENV === "development" && (
-              <div>
-                <h1>Formik</h1>
-                <pre>{JSON.stringify(formik, null, 3)}</pre>
-              </div>
-            )}
-          </Form>
-        )}
-      </Formik>
+      <ContentLayout>
+        <StyledFormik
+          initialValues={initialValues}
+          onSubmit={redirectToNextTrain(push)}
+        >
+          {(formik) => (
+            <StyledForm>
+              <FormInnerLayout>
+                <SectionTitle>Ligne</SectionTitle>
+                <Section>RER A</Section>
+                <SectionTitle>Départ</SectionTitle>
+                <Section>
+                  <FieldContainer>
+                    <DropdownReactSelectField
+                      name="departure"
+                      label="Départ"
+                      placeholder={<div>Sélectionnez une gare de depart</div>}
+                      noOptionsMessage={() => (
+                        <div>aucune gare correspondante</div>
+                      )}
+                      autoFocus={true}
+                      isClearable
+                      menuPlacement="bottom"
+                      options={stationOptions}
+                      styles={selectStyles(300)}
+                    />
+                  </FieldContainer>
+                </Section>
+                <Section>
+                  <FieldContainer></FieldContainer>
+                </Section>
+                <FlexContainer>
+                  <SectionTitle>Destination</SectionTitle>
+                  <IconContainer
+                    className="ui circular icon"
+                    onClick={() => {
+                      const previousDeparture = formik.values.departure;
+                      const previousDestination = formik.values.destination;
+                      formik.setFieldValue("departure", previousDestination);
+                      formik.setFieldValue("destination", previousDeparture);
+                      // formik.values.departure = previousDestination;
+                      // formik.values.destination = previousDeparture;
+                      console.log("Switch");
+                    }}
+                  >
+                    <SwitchIcon />
+                  </IconContainer>
+                </FlexContainer>
+                <Section>
+                  <FieldContainer>
+                    <DropdownReactSelectField
+                      name="destination"
+                      label="Départ"
+                      placeholder={
+                        <div>Sélectionnez une gare de destination</div>
+                      }
+                      noOptionsMessage={() => (
+                        <div>aucune gare correspondante</div>
+                      )}
+                      autoFocus={false}
+                      isClearable
+                      menuPlacement="bottom"
+                      options={stationOptions}
+                      styles={selectStyles(400)}
+                    />
+                  </FieldContainer>
+                </Section>
+                <SubmitButtonContainer>
+                  <Button type="submit">Voir les prochains départs</Button>
+                </SubmitButtonContainer>
+              </FormInnerLayout>
+            </StyledForm>
+          )}
+        </StyledFormik>
+      </ContentLayout>
     </>
   );
 };
+
+const ContentLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  // background-color: red;
+`;
+
+const StyledFormik = styled(Formik)`
+  flex-shrink: 3;
+`;
+
+const StyledForm = styled(Form)`
+  flex-basis: 500px;
+  // background-color: yellow;
+`;
+
+const FormInnerLayout = styled.div`
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const IconContainer = styled.div`
+  margin: 0.2rem 2rem;
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: ${() => colors.dark.text.highlight};
+  }
+`;
 
 const FieldContainer = styled.div`
   justify-content: center;
