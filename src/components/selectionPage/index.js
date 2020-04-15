@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { colors } from "../../design/colors";
 import { Formik, Form } from "formik";
 import stations from "../../data/ratp/rers/A/stations.json";
-import { Button, Header } from "semantic-ui-react";
+import { Button, Header, Icon } from "semantic-ui-react";
 import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";
 import DropdownReactSelectField from "./dropdown-reactSelect";
@@ -128,7 +128,16 @@ const SelectionPage = () => {
                   </FieldContainer>
                 </Section>
                 <SubmitButtonContainer>
-                  <Button type="submit">Voir les prochains départs</Button>
+                  <SubmitButton
+                    type="submit"
+                    size="large"
+                    inverted
+                    color="orange"
+                    disabled={false}
+                  >
+                    Voir les prochains départs
+                    <Icon name="right arrow" />
+                  </SubmitButton>
                 </SubmitButtonContainer>
               </FormInnerLayout>
             </StyledForm>
@@ -155,7 +164,6 @@ const StyledForm = styled(Form)`
 `;
 
 const FormInnerLayout = styled.div`
-  max-width: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -179,14 +187,21 @@ const IconContainer = styled.div`
 
 const FieldContainer = styled.div`
   justify-content: center;
-  max-width: 500px;
 `;
 
 const SubmitButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 500px;
-  padding: 1rem;
+  padding: 1rem 2 rem;
+  margin: 1rem 2rem;
+  // background-color: green;
+`;
+
+const SubmitButton = styled(Button)`
+  flex-grow: 1;
+  &.ui.button {
+    margin: 0;
+  }
 `;
 
 const Title = styled.div`
