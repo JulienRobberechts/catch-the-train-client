@@ -202,6 +202,26 @@ const SubmitButton = styled(Button)`
   &.ui.button {
     margin: 0;
   }
+
+  &.ui.inverted.orange.button:hover {
+    background-color: #e0ab19;
+  }
+  &.ui.inverted.orange.button.active,
+  &.ui.inverted.orange.button:active,
+  &.ui.inverted.orange.button:focus,
+  &.ui.inverted.orange.button:hover,
+  &.ui.inverted.orange.buttons .button.active,
+  &.ui.inverted.orange.buttons .button:active,
+  &.ui.inverted.orange.buttons .button:focus,
+  &.ui.inverted.orange.buttons .button:hover {
+    box-shadow: none !important;
+    color: #252149;
+  }
+  &.ui.inverted.orange.button {
+    background-color: transparent;
+    box-shadow: 0 0 0 2px #e0ab19 inset !important;
+    color: #e0ab19;
+  }
 `;
 
 const Title = styled.div`
