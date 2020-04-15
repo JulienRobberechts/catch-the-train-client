@@ -1,18 +1,3 @@
-const optionIcon = () => ({
-  alignItems: "center",
-  display: "flex",
-
-  ":before": {
-    backgroundColor: "#E6716E",
-    borderRadius: 10,
-    content: '" "',
-    display: "block",
-    marginRight: 8,
-    height: 18,
-    width: 18,
-  },
-});
-
 const selectStyles = (topOfMenu) => ({
   container: (styles) => ({
     ...styles,
