@@ -33,6 +33,18 @@ const selectStyles = (topOfMenu) => ({
       backgroundColor: "#252149",
       color: "#E0AB19",
       fontSize: "1.2rem",
+      boxShadow: "none",
+
+      ":active": {
+        ...styles[":active"],
+        boxShadow: "none",
+        borderColor: "#FFFFFF",
+      },
+      ":hover": {
+        ...styles[":active"],
+        boxShadow: "none",
+        borderColor: "#E0AB19",
+      },
     };
   },
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -41,17 +53,30 @@ const selectStyles = (topOfMenu) => ({
       ...styles,
       backgroundColor: isDisabled ? "#AAA" : "#252149",
       color: isDisabled
-        ? "#b1afac"
+        ? "#5b5a59"
         : isSelected
         ? "#E0AB19"
         : isFocused
-        ? "#60A38E"
-        : "#FFFFFF",
+        ? "#FFFFFF"
+        : "#b1afac",
       cursor: isDisabled ? "not-allowed" : "default",
       fontSize: "1.2rem",
     };
   },
-  input: (styles) => ({ ...styles }),
+  input: (styles) => {
+    console.log("input", { styles });
+    return {
+      ...styles,
+
+      // backgroundColor: "red",
+      // color: "red",
+      // borderColor: "#FFFFFF",
+      // borderRadius: "15px",
+      // borderWidth: "4px",
+      // backgroundColor: "#E0AB19",
+      color: "#E0AB19",
+    };
+  },
   placeholder: (styles) => {
     console.log("placeholder", { styles });
     return {

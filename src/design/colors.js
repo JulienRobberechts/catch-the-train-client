@@ -2,6 +2,7 @@ export * from "./color-utils";
 
 const palette = {
   blue: "#252149",
+  darkGray: "#5b5a59",
   gray: "#b1afac",
   white: "#FFFFFF",
   green: "#60A38E",
