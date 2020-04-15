@@ -21,7 +21,7 @@ const selectStyles = (topOfMenu) => ({
     // borderColor: "red",
   }),
   control: (styles) => {
-    console.log("control", { styles });
+    // console.log("control", { styles });
     return {
       ...styles,
 
@@ -48,7 +48,7 @@ const selectStyles = (topOfMenu) => ({
     };
   },
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    // console.log(styles);
+    // // console.log(styles);
     return {
       ...styles,
       backgroundColor: isDisabled ? "#AAA" : "#252149",
@@ -64,7 +64,7 @@ const selectStyles = (topOfMenu) => ({
     };
   },
   input: (styles) => {
-    console.log("input", { styles });
+    // console.log("input", { styles });
     return {
       ...styles,
 
@@ -78,7 +78,7 @@ const selectStyles = (topOfMenu) => ({
     };
   },
   placeholder: (styles) => {
-    console.log("placeholder", { styles });
+    // console.log("placeholder", { styles });
     return {
       ...styles,
 
@@ -92,7 +92,7 @@ const selectStyles = (topOfMenu) => ({
     };
   },
   singleValue: (styles) => {
-    console.log("singleValue", { styles });
+    // console.log("singleValue", { styles });
     return {
       ...styles,
 
@@ -106,7 +106,7 @@ const selectStyles = (topOfMenu) => ({
     };
   },
   valueContainer: (styles) => {
-    console.log("valueContainer", { styles });
+    // console.log("valueContainer", { styles });
     return {
       ...styles,
 
@@ -120,14 +120,14 @@ const selectStyles = (topOfMenu) => ({
     };
   },
   menu: (styles) => {
-    // console.log("menu", { styles });
+    // // console.log("menu", { styles });
     return {
       ...styles,
       boxShadow: "none",
     };
   },
   menuList: (styles) => {
-    // console.log("menuList", { topOfMenu, styles });
+    // // console.log("menuList", { topOfMenu, styles });
     return {
       ...styles,
 
