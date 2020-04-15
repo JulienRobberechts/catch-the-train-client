@@ -13,7 +13,8 @@ const TrainRoute = () => {
     return <Panel>...</Panel>;
   }
 
-  const { network, line } = request;
+  const { line } = request;
+  const network = "RER";
   const stationName = getStationBySlug(request?.station)?.name;
   const destination = "Paris";
 
@@ -31,6 +32,7 @@ const Panel = styled.div`
   color: ${() => colors.dark.text.original};
   padding: 0.3rem;
   font-size: 1rem;
+  font-weight: 700;
 `;
 
 export default TrainRoute;

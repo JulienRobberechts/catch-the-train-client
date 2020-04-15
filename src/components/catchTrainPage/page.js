@@ -8,7 +8,7 @@ import PageRefresher from "./pageRefresher";
 import config from "../../config";
 import { colors } from "../../design/colors";
 import { Link } from "react-router-dom";
-import { Search } from "../../design/icons";
+import { Search as SearchIcon } from "../../design/icons";
 
 const refreshInterval = config.DISABLE_TIME_UPDATE ? 36000000 : 1000;
 
@@ -22,13 +22,13 @@ const CatchPage = ({ station }) => {
       <TopSection>
         <StationHeader>
           <TrainRoute />
-          <IconContainer
+          <SearchIconContainer
             className="ui circular icon"
             as={Link}
             to={`/selection`}
           >
-            <Search />
-          </IconContainer>
+            <SearchIcon />
+          </SearchIconContainer>
         </StationHeader>
         <TimeTable />
       </TopSection>
@@ -39,12 +39,18 @@ const CatchPage = ({ station }) => {
   );
 };
 
-const IconContainer = styled.div`
-  margin: 0.2rem 2rem;
+const SearchIconContainer = styled.div`
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.1rem;
   svg {
     width: 1.3rem;
     height: 1.3rem;
     fill: ${() => colors.dark.text.original};
+  }
+
+  svg:hover {
+    fill: ${() => colors.dark.text.highlight};
   }
 `;
 
