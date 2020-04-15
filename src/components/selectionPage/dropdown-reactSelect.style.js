@@ -1,11 +1,9 @@
-import chroma from "chroma-js";
-
-const dot = (color = "#ccc") => ({
+const optionIcon = () => ({
   alignItems: "center",
   display: "flex",
 
   ":before": {
-    backgroundColor: color,
+    backgroundColor: "#E6716E",
     borderRadius: 10,
     content: '" "',
     display: "block",
@@ -16,40 +14,86 @@ const dot = (color = "#ccc") => ({
 });
 
 const selectStyles = (topOfMenu) => ({
-  control: (styles) => ({ ...styles, backgroundColor: "#CCC" }),
+  container: (styles) => ({
+    ...styles,
+    // backgroundColor: "red",
+    // color: "red",
+    // borderColor: "red",
+  }),
+  control: (styles) => {
+    console.log("control", { styles });
+    return {
+      ...styles,
+
+      // backgroundColor: "red",
+      // color: "red",
+      borderColor: "#FFFFFF",
+      borderRadius: "5px",
+      borderWidth: "1px",
+      backgroundColor: "#252149",
+      color: "#E0AB19",
+      fontSize: "1.2rem",
+    };
+  },
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    const color = chroma(data.color);
     // console.log(styles);
     return {
       ...styles,
-      backgroundColor: isDisabled
-        ? "#AAA"
-        : isSelected
-        ? data.color
-        : isFocused
-        ? color.alpha(0.1).css()
-        : "#CCC",
+      backgroundColor: isDisabled ? "#AAA" : "#252149",
       color: isDisabled
-        ? "#ccc"
+        ? "#b1afac"
         : isSelected
-        ? chroma.contrast(color, "white") > 2
-          ? "white"
-          : "black"
-        : data.color,
+        ? "#E0AB19"
+        : isFocused
+        ? "#60A38E"
+        : "#FFFFFF",
       cursor: isDisabled ? "not-allowed" : "default",
-
-      ":active": {
-        ...styles[":active"],
-        backgroundColor:
-          !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
-      },
-
-      ...dot(data.color),
+      fontSize: "1.2rem",
     };
   },
-  input: (styles) => ({ ...styles, ...dot() }),
-  placeholder: (styles) => ({ ...styles, ...dot() }),
-  singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+  input: (styles) => ({ ...styles }),
+  placeholder: (styles) => {
+    console.log("placeholder", { styles });
+    return {
+      ...styles,
+
+      // backgroundColor: "red",
+      // color: "red",
+      // borderColor: "#FFFFFF",
+      // borderRadius: "15px",
+      // borderWidth: "4px",
+      // backgroundColor: "#E0AB19",
+      color: "#b1afac",
+    };
+  },
+  singleValue: (styles) => {
+    console.log("singleValue", { styles });
+    return {
+      ...styles,
+
+      // backgroundColor: "red",
+      // color: "red",
+      // borderColor: "#FFFFFF",
+      // borderRadius: "15px",
+      // borderWidth: "4px",
+      // backgroundColor: "#E0AB19",
+      color: "#E0AB19",
+    };
+  },
+  valueContainer: (styles) => {
+    console.log("valueContainer", { styles });
+    return {
+      ...styles,
+
+      // backgroundColor: "red",
+      // color: "red",
+      // borderColor: "#FFFFFF",
+      // borderRadius: "15px",
+      // borderWidth: "4px",
+      // backgroundColor: "#E0AB19",
+      color: "#E0AB19",
+    };
+  },
   menu: (styles) => {
     // console.log("menu", { styles });
     return {
@@ -64,7 +108,7 @@ const selectStyles = (topOfMenu) => ({
 
       maxHeight: `calc(100vh - ${topOfMenu}px)`,
 
-      border: "2px solid #9AF",
+      border: "1px solid #b1afac",
       paddingTop: "0",
       paddingBottom: "0",
       borderRadius: "5px",

@@ -181,7 +181,7 @@ const IconContainer = styled.div`
   svg {
     width: 1.3rem;
     height: 1.3rem;
-    fill: ${() => colors.dark.text.highlight};
+    fill: ${() => colors.dark.text.original};
   }
 `;
 
