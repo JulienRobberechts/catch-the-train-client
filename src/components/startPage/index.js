@@ -1,14 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-// import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { colors } from "../../design/colors";
-
-// sample links:
-const network = "rers";
-const line = "a";
-const station = "chatelet+les+halles";
-const missions = "UPAC,ZEBU,TEDI";
+import { SettingsIcon } from "../../design/icons";
 
 const StartPage = () => {
   return (
@@ -29,14 +23,13 @@ const StartPage = () => {
       <Link to="/selection">
         <PrimaryButton>Choix du train</PrimaryButton>
       </Link>
-      <Link to={`/${network}/${line}/${station}?missions=${missions}`}>
-        <SecondaryButton>
-          <div>Chatelet les halles > </div>
-          <div>Saint-Germain-en-Laye</div>
-        </SecondaryButton>
-      </Link>
       <Link to="/settings">
-        <SecondaryButton>Paramètres</SecondaryButton>
+        <SecondaryButton>
+          Paramètres
+          <SettingsIconContainer className="ui icon" as={Link} to={`/settings`}>
+            <SettingsIcon />
+          </SettingsIconContainer>
+        </SecondaryButton>
       </Link>
     </Panel>
   );
@@ -50,6 +43,7 @@ const Panel = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const Need = styled.div`
@@ -84,17 +78,6 @@ const PropositionValue = styled.div`
   border: none;
 `;
 
-const SecondaryButton = styled.button`
-  margin: 0.3rem 2rem;
-  padding: 0.7rem 1rem;
-  border-radius: 1rem;
-  background: ${() => colors.dark.panel.one.background};
-  color: ${() => colors.dark.panel.one.text.normal};
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-`;
-
 const PrimaryButton = styled.button`
   margin: 1.3rem;
   padding: 2rem;
@@ -113,6 +96,33 @@ const AppName = styled.div`
 const RestOfPhrase = styled.div`
   color: ${() => colors.dark.text.normal};
   font-size: 1.3rem;
+`;
+
+const SecondaryButton = styled.button`
+  margin: 0.3rem 2rem;
+  padding: 0.7rem 4rem;
+  padding-bottom: 1rem;
+  border-radius: 1rem;
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text.normal};
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+`;
+
+const SettingsIconContainer = styled.div`
+  margin: 0.5rem;
+  position: relative;
+  top: 0.3rem;
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: ${() => colors.dark.text.original};
+  }
+
+  svg:hover {
+    fill: ${() => colors.dark.text.highlight};
+  }
 `;
 
 export default StartPage;
