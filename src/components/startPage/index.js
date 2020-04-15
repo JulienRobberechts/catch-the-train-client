@@ -26,7 +26,7 @@ const StartPage = () => {
       <Link to="/settings">
         <SecondaryButton>
           Paramètres
-          <SettingsIconContainer className="ui icon" as={Link} to={`/settings`}>
+          <SettingsIconContainer className="ui icon">
             <SettingsIcon />
           </SettingsIconContainer>
         </SecondaryButton>
