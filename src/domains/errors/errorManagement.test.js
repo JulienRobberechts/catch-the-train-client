@@ -1,9 +1,5 @@
 import each from "jest-each";
-import {
-  handleError,
-  formatError,
-  attachErrorContext,
-} from "./errorManagement";
+import { handleError, getAppError } from "./errorManagement";
 import errorCases from "./errorCaseTest";
 
 describe("errorManagement", () => {
@@ -63,19 +59,9 @@ describe("errorManagement", () => {
     `.test(
       "should format an error $errorCode",
       ({ errorCode, expectedMessage }) => {
-        const actualObject = formatError(errorCode);
+        const actualObject = getAppError(errorCode);
         expect(actualObject.msg).toEqual(expectedMessage);
       }
     );
-  });
-  describe("attachErrorContext", () => {
-    test("should attach a context to the error", () => {
-      const error = {
-        message: "simple error",
-      };
-      const context = "In module X";
-      const errorWithContext = attachErrorContext(error, context);
-      expect(errorWithContext.context).toEqual(context);
-    });
   });
 });

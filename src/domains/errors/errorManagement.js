@@ -1,4 +1,5 @@
-import ErrorMessages, {
+import {
+  ErrorMessages,
   errorInErrorManagementObject,
 } from "./errorMessages.fr";
 import ErrorLevels from "./errorLevels";
@@ -7,7 +8,7 @@ import { identifyError } from "./identifyError";
 const handleError = (incomingError) => {
   try {
     const errorCode = identifyError(incomingError);
-    const appError = formatError(errorCode);
+    const appError = getAppError(errorCode);
     LogErrorInternally(incomingError, appError);
     LogErrorForUser(appError);
     return toPublicError(appError);
@@ -33,13 +34,8 @@ const toPublicError = (appError) => {
   };
 };
 
-const formatError = (errorCode) => {
+const getAppError = (errorCode) => {
   return ErrorMessages.find((e) => e.code === errorCode);
-};
-
-const attachErrorContext = (errorObject, context) => {
-  errorObject.context = context;
-  return errorObject;
 };
 
 const LogErrorInternally = (errorInDev, errorObjectWithContext) => {
@@ -81,10 +77,4 @@ const LogErrorForUser = (errorObject) => {
   }
 };
 
-export {
-  handleError,
-  formatError,
-  attachErrorContext,
-  LogErrorInternally,
-  LogErrorForUser,
-};
+export { handleError, getAppError, LogErrorInternally, LogErrorForUser };
