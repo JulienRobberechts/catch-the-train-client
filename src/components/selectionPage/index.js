@@ -64,34 +64,47 @@ const stationToOption = (station) => ({
   },
 });
 
+const getPreferredJourney = () => {
+  const departureValue = localStorage.getItem("preferred-departure-station");
+  const destinationValue = localStorage.getItem(
+    "preferred-destination-station"
+  );
+  console.log("from local storage", { departureValue, destinationValue });
+
+  const departureStation = getStationBySlug(departureValue);
+  const departureOption = departureStation
+    ? stationToOption(departureStation)
+    : null;
+
+  const destinationStation = getStationBySlug(destinationValue);
+  const destinationOption = destinationStation
+    ? stationToOption(destinationStation)
+    : null;
+
+  return {
+    departure: departureOption,
+    destination: destinationOption,
+  };
+};
+
 const SelectionPage = () => {
   const { push } = useHistory();
-  const request = useSelector(selectTimeTableRequest);
   const [initialValuesDynamic, setInitialValuesDynamic] = useState(
     initialValues
   );
 
   // Get the departure station from localStorage
   useEffect(() => {
-    const departureValue = localStorage.getItem("preferred-departure-station");
-    const destinationValue = localStorage.getItem(
-      "preferred-destination-station"
-    );
-    console.log("from local storage", { departureValue, destinationValue });
+    const preferredJourney = getPreferredJourney();
 
-    const departureOption = stationToOption(getStationBySlug(departureValue));
-    const destinationOption = stationToOption(
-      getStationBySlug(destinationValue)
-    );
     if (
-      departureValue !== initialValuesDynamic?.departure?.value ||
-      destinationValue !== initialValuesDynamic?.destination?.value
+      preferredJourney?.departure?.value !==
+        initialValuesDynamic?.departure?.value ||
+      preferredJourney?.destination?.value !==
+        initialValuesDynamic?.destination?.value
     ) {
-      console.log("CHANGE");
-      setInitialValuesDynamic({
-        departure: departureOption,
-        destination: destinationOption,
-      });
+      console.log("CHANGE", preferredJourney);
+      setInitialValuesDynamic(preferredJourney);
     }
   }, [initialValuesDynamic, setInitialValuesDynamic]);
 
