@@ -15,10 +15,12 @@ const ErrorMessages = [
   {
     code: ErrorCodes.ERROR_499_OTHER_CLIENT_ERRORS,
     msg: "Erreur cliente renvoyée par le serveur",
+    level: ErrorLevels.HIGH,
   },
   {
     code: ErrorCodes.ERROR_500_SERVER_ERROR,
     msg: "Une erreur inconnue s'est produite sur le serveur",
+    level: ErrorLevels.LOW,
   },
   {
     code: ErrorCodes.ERROR_503_SERVER_NOT_AVAILABLE,
@@ -33,7 +35,7 @@ const ErrorMessages = [
   {
     code: ErrorCodes.ERROR_599_OTHER_SERVER_ERROR,
     msg: "Erreur du serveur",
-    level: ErrorLevels.LOW,
+    level: ErrorLevels.HIGH,
   },
   {
     code: ErrorCodes.ERROR_600_UNKNOWN_ERROR,
@@ -43,6 +45,7 @@ const ErrorMessages = [
   {
     code: ErrorCodes.ERROR_700_CLIENT_ERROR,
     msg: "Erreur dans l'application (client web)",
+    level: ErrorLevels.HIGH,
   },
   {
     code: ErrorCodes.ERROR_701_ERROR_MANAGEMENT_ERROR,
