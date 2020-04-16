@@ -48,7 +48,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
               isClearable
               menuPlacement="bottom"
               options={stationOptions}
-              styles={selectStyles(300)}
+              styles={selectStyles(170)}
             />
           </FieldContainer>
         </SectionContent>
@@ -74,7 +74,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
                   isClearable
                   menuPlacement="bottom"
                   options={stationOptions}
-                  styles={selectStyles(400)}
+                  styles={selectStyles(245)}
                 />
               </FieldContainer>
             </SectionContent>
