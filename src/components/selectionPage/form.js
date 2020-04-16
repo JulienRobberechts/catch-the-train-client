@@ -8,7 +8,9 @@ import { selectStyles } from "./dropdown-reactSelect.style";
 import { SwitchIcon } from "../../design/icons";
 import { Form, useFormikContext } from "formik";
 
-const stationOptions = stations.map((station) => ({
+const alphabeticalOrder = (a, b) => a.name.localeCompare(b.name);
+
+const stationOptions = stations.sort(alphabeticalOrder).map((station) => ({
   key: station.slug,
   label: station.name, // React-select
   value: station.slug, // React-select
