@@ -112,12 +112,6 @@ const FormInnerLayout = styled.div`
   align-items: stretch;
 `;
 
-const Title = styled.div`
-  color: ${() => colors.dark.text.normal};
-  font-size: 1rem;
-  margin: 0.2rem 1rem;
-`;
-
 const FlexContainer = styled.div`
   margin-top: 0.5rem;
   display: flex;
