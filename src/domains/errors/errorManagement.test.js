@@ -1,45 +1,10 @@
 import each from "jest-each";
-import ErrorCodes from "./errorCodes";
-import ErrorLevels from "./errorLevels";
 import {
   handleError,
-  identifyError,
   formatError,
   attachErrorContext,
 } from "./errorManagement";
-
-const axiosError400 = {
-  message: "Request failed with status code 400",
-  isAxiosError: true,
-  response: { status: 400 },
-};
-
-const axiosError500 = {
-  message: "Request failed with status code 500",
-  isAxiosError: true,
-  response: { status: 500 },
-};
-
-const axiosError503 = {
-  message: "Request failed with status code 503",
-  isAxiosError: true,
-  response: { status: 503 },
-};
-
-const axiosError503_Object = {
-  code: ErrorCodes.ERROR_503_SERVER_NOT_AVAILABLE,
-  msg: "Le service est indisponible pour le moment",
-  level: ErrorLevels.LOW,
-};
-
-const simpleClientError700 = {
-  message: "simple client error",
-};
-
-const simpleClientError700_Object = {
-  code: ErrorCodes.ERROR_700_CLIENT_ERROR,
-  msg: "Erreur dans l'application (client web)",
-};
+import errorCases from "./errorCaseTest";
 
 describe("errorManagement", () => {
   // disable console logs for this test
@@ -59,35 +24,37 @@ describe("errorManagement", () => {
     console.warn = originalWarn;
     console.log = originalLog;
   });
-
   describe("handleError", () => {
     each`
-      rawError                  | expectedErrorObject
-      ${axiosError503}          | ${axiosError503_Object}
-      ${simpleClientError700}   | ${simpleClientError700_Object}
-    `.test(
-      "%#. should handleError an error",
-      ({ rawError, expectedErrorObject }) => {
-        const actualErrorObject = handleError(rawError);
-        expect(actualErrorObject).toEqual(expectedErrorObject);
+      errorCaseId | errorCase                  
+      ${1}        | ${errorCases.axiosError400}
+      ${2}        | ${errorCases.axiosError500}
+      ${3}        | ${errorCases.axiosError503}
+      ${4}        | ${errorCases.simpleClientError700}
+  `.test(
+      "should handleError an error number $errorCaseId",
+      ({ errorCaseId, errorCase }) => {
+        const actualAppError = handleError(errorCase.incomingError);
+        expect(actualAppError).toMatchSnapshot();
+        expect(actualAppError.errorCode).toBeTruthy();
+        expect(actualAppError.errorMessage).toBeTruthy();
+        expect(actualAppError.errorCode).toEqual(errorCase.expectedErrorCode);
       }
     );
+
+    test("should handleError an error REPRO", () => {
+      const actualAppError = handleError(
+        errorCases.simpleClientError700.incomingError
+      );
+      expect(actualAppError).toMatchSnapshot();
+      expect(actualAppError.errorCode).toBeTruthy();
+      expect(actualAppError.errorMessage).toBeTruthy();
+      expect(actualAppError.errorCode).toEqual(
+        errorCases.simpleClientError700.expectedErrorCode
+      );
+    });
   });
-  describe("identifyError", () => {
-    each`
-      error                     | expectedCode
-      ${axiosError400}          | ${400}
-      ${axiosError500}          | ${500}
-      ${axiosError503}          | ${503}
-      ${simpleClientError700}   | ${700}
-    `.test(
-      "should identify an error $expectedCode",
-      ({ error, expectedCode }) => {
-        const actualCode = identifyError(error);
-        expect(actualCode).toEqual(expectedCode);
-      }
-    );
-  });
+
   describe("formatError", () => {
     each`
       errorCode   | expectedMessage

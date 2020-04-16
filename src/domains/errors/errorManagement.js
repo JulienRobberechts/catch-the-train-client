@@ -1,31 +1,36 @@
-import ErrorCodes from "./errorCodes";
 import ErrorMessages, {
   errorInErrorManagementObject,
 } from "./errorMessages.fr";
 import ErrorLevels from "./errorLevels";
+import { identifyError } from "./identifyError";
 
-const handleError = (rawError) => {
+const handleError = (incomingError) => {
   try {
-    const errorCode = identifyError(rawError);
-    const errorObject = formatError(errorCode);
-    const context = undefined; // todo...
-    const errorObjectWithContext = attachErrorContext(errorObject, context);
-    LogErrorInternally(rawError, errorObjectWithContext);
-    LogErrorForUser(errorObjectWithContext);
-    return errorObjectWithContext;
+    const errorCode = identifyError(incomingError);
+    const appError = formatError(errorCode);
+    LogErrorInternally(incomingError, appError);
+    LogErrorForUser(appError);
+    return toPublicError(appError);
   } catch (errorInErrorManagement) {
     console.log("Error in the error treatment", { errorInErrorManagement });
     return errorInErrorManagementObject;
   }
 };
 
-const identifyError = (rawError) => {
-  const httpStatus = rawError?.response?.status;
-  if (httpStatus === 500) return ErrorCodes.ERROR_500_SERVER_ERROR;
-  if (httpStatus === 503) return ErrorCodes.ERROR_503_SERVER_NOT_AVAILABLE;
-  if (httpStatus === 400) return ErrorCodes.ERROR_400_SERVER_BAD_REQUEST;
-  if (!httpStatus) return ErrorCodes.ERROR_700_CLIENT_ERROR;
-  return ErrorCodes.ERROR_600_UNKNOWN_ERROR;
+const toPublicError = (appError) => {
+  const { code: errorCode, msg: errorMessage } = appError;
+
+  const originalException =
+    process.env.NODE_ENV !== "production"
+      ? appError.originalException
+      : undefined;
+
+  return {
+    errorType: "Error",
+    errorCode,
+    errorMessage,
+    originalException,
+  };
 };
 
 const formatError = (errorCode) => {
@@ -78,7 +83,6 @@ const LogErrorForUser = (errorObject) => {
 
 export {
   handleError,
-  identifyError,
   formatError,
   attachErrorContext,
   LogErrorInternally,

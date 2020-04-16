@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`errorManagement handleError should handleError an error REPRO 1`] = `
+Object {
+  "errorCode": 700,
+  "errorMessage": "Erreur dans l'application (client web)",
+  "errorType": "Error",
+  "originalException": undefined,
+}
+`;
+
+exports[`errorManagement handleError should handleError an error number 1 1`] = `
+Object {
+  "errorCode": 400,
+  "errorMessage": "Erreur dans les donnees envoyés au serveur.",
+  "errorType": "Error",
+  "originalException": undefined,
+}
+`;
+
+exports[`errorManagement handleError should handleError an error number 2 1`] = `
+Object {
+  "errorCode": 500,
+  "errorMessage": "Une erreur inconnue s'est produite sur le serveur",
+  "errorType": "Error",
+  "originalException": undefined,
+}
+`;
+
+exports[`errorManagement handleError should handleError an error number 3 1`] = `
+Object {
+  "errorCode": 503,
+  "errorMessage": "Le service est indisponible pour le moment",
+  "errorType": "Error",
+  "originalException": undefined,
+}
+`;
+
+exports[`errorManagement handleError should handleError an error number 4 1`] = `
+Object {
+  "errorCode": 700,
+  "errorMessage": "Erreur dans l'application (client web)",
+  "errorType": "Error",
+  "originalException": undefined,
+}
+`;
