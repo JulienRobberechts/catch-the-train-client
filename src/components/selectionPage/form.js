@@ -177,16 +177,19 @@ const SectionTitle = styled(Header).attrs(() => ({ as: "h2" }))`
   margin: 0.3rem 1rem;
 `;
 
-const SectionSummary = styled.div``;
+const SectionSummary = styled.div`
+  font-weight: bold;
+`;
+
 const Note = styled.span`
   color: ${() => colors.dark.text.disabled};
   font-size: 0.8rem;
-  margin: 0.2rem;
+  margin: 0.4rem;
 `;
 
 const SectionContent = styled.div`
   color: ${() => colors.dark.text.highlight};
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0.1rem 2rem;
 `;
 
