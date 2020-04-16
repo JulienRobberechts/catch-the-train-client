@@ -6,7 +6,7 @@ import { SettingsIcon } from "../../design/icons";
 import { Link } from "react-router-dom";
 import AppLogo from "./appLogo";
 
-const AppTitle = () => {
+const AppTitle = ({ title }) => {
   return (
     <>
       <Helmet>
@@ -14,6 +14,7 @@ const AppTitle = () => {
       </Helmet>
       <Panel>
         <AppLogo />
+        <Title>{title}</Title>
         <SettingsIconContainer className="ui icon" as={Link} to={`/settings`}>
           <SettingsIcon />
         </SettingsIconContainer>
@@ -21,6 +22,13 @@ const AppTitle = () => {
     </>
   );
 };
+
+const Title = styled.div`
+  color: ${() => colors.dark.text.original};
+  font-size: 1.2rem;
+  margin: 1rem 1rem;
+  text-transform: uppercase;
+`;
 
 const Panel = styled.div`
   color: ${() => colors.dark.text.normal};

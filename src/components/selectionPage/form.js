@@ -26,7 +26,6 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
   return (
     <StyledForm>
       <FormInnerLayout>
-        <Title>Choix du train</Title>
         <Section>
           <SectionTitle>Ligne</SectionTitle>
           <SectionContent>

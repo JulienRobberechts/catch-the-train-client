@@ -20,18 +20,21 @@ function App() {
       <Router>
         <ErrorBoundary>
           <Page>
-            <AppTitle />
             <Switch>
               <Route path="/start">
+                <AppTitle />
                 <StartPage />
               </Route>
               <Route path="/settings">
+                <AppTitle title="Paramètres" />
                 <SettingsPage />
               </Route>
               <Route path="/selection">
+                <AppTitle title="Choix du train" />
                 <SelectionPage />
               </Route>
               <Route path="/">
+                <AppTitle title="Prochains train" />
                 <CatchTrainRoutes />
               </Route>
             </Switch>

@@ -50,7 +50,6 @@ const SettingsPage = () => {
       <Helmet>
         <title>Paramètres</title>
       </Helmet>
-      <Title>Paramètres</Title>
       {stationConfiguration && (
         <>
           <SectionTitle>Trajet vers la gare</SectionTitle>
@@ -76,12 +75,6 @@ const SettingsPage = () => {
     </>
   );
 };
-
-const Title = styled.div`
-  color: ${() => colors.dark.text.normal};
-  font-size: 1.4rem;
-  margin: 1rem 1rem;
-`;
 
 const SectionTitle = styled.div`
   color: ${() => colors.dark.text.normal};

@@ -19,7 +19,7 @@ function TimeTable() {
 
   const request = useSelector(selectTimeTableRequest);
 
-  if (!enhancedDepartures) {
+  if (!enhancedDepartures || !request) {
     return <Panel>...</Panel>;
   }
 
