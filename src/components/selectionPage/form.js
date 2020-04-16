@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import stations from "../../data/ratp/rers/A/stations.json";
@@ -7,9 +7,6 @@ import DropdownReactSelectField from "./dropdown-reactSelect";
 import { selectStyles } from "./dropdown-reactSelect.style";
 import { SwitchIcon } from "../../design/icons";
 import { Form, useFormikContext } from "formik";
-import { useSelector } from "react-redux";
-import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
-import { getStationBySlug } from "../../domains/journey/service";
 const alphabeticalOrder = (a, b) => a.name.localeCompare(b.name);
 
 const stationToOption = (station) => ({
@@ -17,7 +14,6 @@ const stationToOption = (station) => ({
   label: station?.name, // React-select
   value: station?.slug, // React-select
   text: station?.name,
-  color: "#0052CC",
   target: {
     value: station?.slug,
   },
@@ -27,15 +23,7 @@ const stationOptions = stations.sort(alphabeticalOrder).map(stationToOption);
 
 const JourneySelectionForm = ({ onSwitchStationValues }) => {
   const formContext = useFormikContext();
-  console.log({ formContext });
   const { values, isValid } = formContext;
-
-  const request = useSelector(selectTimeTableRequest);
-  console.log("request", { request });
-
-  const defaultVal = stationToOption(getStationBySlug(request?.station));
-  console.log("default val", { defaultVal });
-
   return (
     <StyledForm>
       <FormInnerLayout>
@@ -50,7 +38,6 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
         <SectionTitle>Départ</SectionTitle>
         <SectionContent>
           <FieldContainer>
-            defaultVal = {defaultVal?.value}
             <DropdownReactSelectField
               name="departure"
               label="Départ"
