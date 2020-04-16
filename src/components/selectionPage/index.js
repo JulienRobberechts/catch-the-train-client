@@ -32,7 +32,15 @@ const getUrl = (data) => {
   });
 };
 
-const redirectToNextTrain = (pushMethod) => (data) => {
+const saveAndRedirectToNextTrain = (pushMethod) => (data) => {
+  localStorage.setItem("preferred-network", "rers");
+  localStorage.setItem("preferred-line", "A");
+  localStorage.setItem("preferred-departure-station", data?.departure.value);
+  localStorage.setItem(
+    "preferred-destination-station",
+    data?.destination.value
+  );
+
   const url = getUrl(data);
   pushMethod(url);
 };
@@ -63,18 +71,29 @@ const SelectionPage = () => {
     initialValues
   );
 
+  // Get the departure station from localStorage
   useEffect(() => {
-    const departureSaved = stationToOption(getStationBySlug(request?.station));
+    const departureValue = localStorage.getItem("preferred-departure-station");
+    const destinationValue = localStorage.getItem(
+      "preferred-destination-station"
+    );
+    console.log("from local storage", { departureValue, destinationValue });
+
+    const departureOption = stationToOption(getStationBySlug(departureValue));
+    const destinationOption = stationToOption(
+      getStationBySlug(destinationValue)
+    );
     if (
-      departureSaved?.value &&
-      departureSaved?.value !== initialValuesDynamic?.departure?.value
+      departureValue !== initialValuesDynamic?.departure?.value ||
+      destinationValue !== initialValuesDynamic?.destination?.value
     ) {
-      setInitialValuesDynamic((previousState) => ({
-        ...previousState,
-        departure: departureSaved,
-      }));
+      console.log("CHANGE");
+      setInitialValuesDynamic({
+        departure: departureOption,
+        destination: destinationOption,
+      });
     }
-  }, [request, initialValuesDynamic, setInitialValuesDynamic]);
+  }, [initialValuesDynamic, setInitialValuesDynamic]);
 
   return (
     <>
@@ -84,7 +103,7 @@ const SelectionPage = () => {
       <ContentLayout>
         <StyledFormik
           initialValues={initialValuesDynamic}
-          onSubmit={redirectToNextTrain(push)}
+          onSubmit={saveAndRedirectToNextTrain(push)}
           enableReinitialize
         >
           {(formik) => (
