@@ -46,6 +46,7 @@ const selectStyles = (topOfMenu) => ({
         : "#b1afac",
       cursor: isDisabled ? "not-allowed" : "default",
       fontSize: "1.2rem",
+      fontWeight: isFocused ? "800" : "300",
     };
   },
   input: (styles) => {
