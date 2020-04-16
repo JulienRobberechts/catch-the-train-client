@@ -8,6 +8,11 @@ export default function enhanceTimeTable({
   stationConfiguration,
   rawDepartures,
 }) {
+  // currentDeparture can be null for 2 reasons:
+  // - stationConfiguration empty
+  // - userConfiguration empty
+  // TODO: expose this
+
   if (!stationConfiguration) return { currentDeparture: null };
 
   const travelDuration = moment.duration({
@@ -20,7 +25,10 @@ export default function enhanceTimeTable({
   if (!currentTime) return { currentDeparture: null };
   const nowTime = moment.parseZone(currentTime);
 
-  if (!rawDepartures || !userConfiguration)
+  if (!rawDepartures)
+    throw Error("rawDepartures is empty. It should never happen");
+
+  if (!userConfiguration)
     return {
       currentDeparture: null,
       travel: {
