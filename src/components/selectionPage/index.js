@@ -52,7 +52,6 @@ const SelectionPage = () => {
       <Helmet>
         <title>Selection</title>
       </Helmet>
-      <Title>Choix du train</Title>
       <ContentLayout>
         <StyledFormik
           initialValues={initialValues}
@@ -77,12 +76,6 @@ const ContentLayout = styled.div`
 
 const StyledFormik = styled(Formik)`
   flex-shrink: 3;
-`;
-
-const Title = styled.div`
-  color: ${() => colors.dark.text.normal};
-  font-size: 1.4rem;
-  margin: 1rem 1rem;
 `;
 
 export default SelectionPage;

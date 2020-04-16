@@ -26,10 +26,17 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
   return (
     <StyledForm>
       <FormInnerLayout>
-        <SectionTitle>Ligne</SectionTitle>
-        <Section>RER A</Section>
-        <SectionTitle>Départ</SectionTitle>
+        <Title>Choix du train</Title>
         <Section>
+          <SectionTitle>Ligne</SectionTitle>
+          <SectionContent>
+            <SectionSummary>
+              RER A<Note>(seule ligne pour l'instant disponible)</Note>
+            </SectionSummary>
+          </SectionContent>
+        </Section>
+        <SectionTitle>Départ</SectionTitle>
+        <SectionContent>
           <FieldContainer>
             <DropdownReactSelectField
               name="departure"
@@ -43,7 +50,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
               styles={selectStyles(300)}
             />
           </FieldContainer>
-        </Section>
+        </SectionContent>
         {values?.departure?.value && (
           <>
             <FlexContainer>
@@ -55,7 +62,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
                 <SwitchIcon />
               </IconContainer>
             </FlexContainer>
-            <Section>
+            <SectionContent>
               <FieldContainer>
                 <DropdownReactSelectField
                   name="destination"
@@ -69,7 +76,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
                   styles={selectStyles(400)}
                 />
               </FieldContainer>
-            </Section>
+            </SectionContent>
           </>
         )}
         {values?.departure?.value && values?.destination?.value && (
@@ -104,6 +111,12 @@ const FormInnerLayout = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+`;
+
+const Title = styled.div`
+  color: ${() => colors.dark.text.normal};
+  font-size: 1rem;
+  margin: 0.2rem 1rem;
 `;
 
 const FlexContainer = styled.div`
@@ -159,14 +172,24 @@ const SubmitButton = styled(Button)`
     color: #e0ab19;
   }
 `;
+const Section = styled.div`
+  display: flex;
+`;
 
 const SectionTitle = styled(Header).attrs(() => ({ as: "h2" }))`
   color: ${() => colors.dark.text.original};
-  font-size: 1.1rem;
-  margin: 0.5rem 1rem;
+  font-size: 1.2rem;
+  margin: 0.3rem 1rem;
 `;
 
-const Section = styled.div`
+const SectionSummary = styled.div``;
+const Note = styled.span`
+  color: ${() => colors.dark.text.disabled};
+  font-size: 0.8rem;
+  margin: 0.2rem;
+`;
+
+const SectionContent = styled.div`
   color: ${() => colors.dark.text.highlight};
   font-size: 0.9rem;
   margin: 0.1rem 2rem;
