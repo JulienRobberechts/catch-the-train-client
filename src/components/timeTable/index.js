@@ -24,10 +24,9 @@ function TimeTable() {
   }
 
   const { network, line, station, missions } = request;
-  console.log({ missions });
 
   const missionsString = !!missions ? "?missions=" + missions : "";
-  // console.log({ missionsString });
+
   const currentIndex = Math.max(
     0,
     enhancedDepartures.findIndex(
@@ -51,8 +50,6 @@ function TimeTable() {
     minIndex < enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE;
   const nextDeparture = enhancedDepartures[currentIndex + 1];
   const nextLink = `/${network}/${line}/${station}/${nextDeparture?.trainCode}${missionsString}`;
-
-  // console.log({ previousLink, nextLink });
 
   return (
     <Panel>

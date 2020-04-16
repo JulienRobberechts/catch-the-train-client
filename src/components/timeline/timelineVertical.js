@@ -50,8 +50,6 @@ const TimelineVertical = () => {
     enhancedDepartures,
   } = data;
 
-  console.log({ departureIndex });
-
   const departure = enhancedDepartures[departureIndex];
   if (!departure) {
     return (

@@ -11,7 +11,6 @@ import { getStationBySlug } from "../../domains/journey/service";
 
 const buildUrl = ({ network, line, departure, destination }) => {
   const missions = getMissions(departure, destination);
-  console.log({ missions });
   const missionParam = missions.join(",");
   return `/${network}/${line}/${departure}?missions=${missionParam}`;
 };
@@ -35,7 +34,6 @@ const getUrl = (data) => {
 
 const redirectToNextTrain = (pushMethod) => (data) => {
   const url = getUrl(data);
-  console.log({ url });
   pushMethod(url);
 };
 

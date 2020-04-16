@@ -66,7 +66,7 @@ const CatchPageContainer = () => {
 
   const request = useSelector(selectTimeTableRequest);
   const stationName = getStationBySlug(request?.station)?.name;
-  console.log({ stationName });
+
   // if (!currentTrainCode) return <div>...</div>;
 
   // console.log("render page CatchPageContainer");

@@ -22,7 +22,6 @@ const DropdownSemantic = ({ ...props }) => {
       onChange={(e, data) => {
         helpers.setValue(data.value);
         const touched = data.value !== meta.initialValue;
-        console.log({ touched });
         helpers.setTouched(data.value !== meta.initialValue);
       }}
     />

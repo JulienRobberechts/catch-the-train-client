@@ -21,7 +21,6 @@ export const updateTime = createAction("toTheStation/updateTime", (payload) => {
     return { payload: { currentTime } };
   }
   const now = moment().format();
-  // console.log({ now });
   return { payload: { currentTime: now } };
 });
 
