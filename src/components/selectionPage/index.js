@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Formik } from "formik";
 import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
-import { useSelector } from "react-redux";
-import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 import { getStationBySlug } from "../../domains/journey/service";
 
 const buildUrl = ({ network, line, departure, destination }) => {
   const missions = getMissions(departure, destination);
   const missionParam = missions.join(",");
   return `/${network}/${line}/${departure}?missions=${missionParam}`;
-};
-
-const initialValues = {
-  departure: null,
-  destination: {
-    label: "Chatelet-Les-Halles",
-    value: "chatelet+les+halles",
-  },
 };
 
 const getUrl = (data) => {
@@ -32,7 +22,7 @@ const getUrl = (data) => {
   });
 };
 
-const saveAndRedirectToNextTrain = (pushMethod) => (data) => {
+const saveJourney = (data) => {
   localStorage.setItem("preferred-network", "rers");
   localStorage.setItem("preferred-line", "A");
   localStorage.setItem("preferred-departure-station", data?.departure.value);
@@ -40,7 +30,10 @@ const saveAndRedirectToNextTrain = (pushMethod) => (data) => {
     "preferred-destination-station",
     data?.destination.value
   );
+};
 
+const saveAndRedirectToNextTrain = (pushMethod) => (data) => {
+  saveJourney(data);
   const url = getUrl(data);
   pushMethod(url);
 };
@@ -58,7 +51,6 @@ const stationToOption = (station) => ({
   label: station?.name, // React-select
   value: station?.slug, // React-select
   text: station?.name,
-  color: "#0052CC",
   target: {
     value: station?.slug,
   },
@@ -89,25 +81,6 @@ const getPreferredJourney = () => {
 
 const SelectionPage = () => {
   const { push } = useHistory();
-  const [initialValuesDynamic, setInitialValuesDynamic] = useState(
-    initialValues
-  );
-
-  // Get the departure station from localStorage
-  useEffect(() => {
-    const preferredJourney = getPreferredJourney();
-
-    if (
-      preferredJourney?.departure?.value !==
-        initialValuesDynamic?.departure?.value ||
-      preferredJourney?.destination?.value !==
-        initialValuesDynamic?.destination?.value
-    ) {
-      console.log("CHANGE", preferredJourney);
-      setInitialValuesDynamic(preferredJourney);
-    }
-  }, [initialValuesDynamic, setInitialValuesDynamic]);
-
   return (
     <>
       <Helmet>
@@ -115,7 +88,7 @@ const SelectionPage = () => {
       </Helmet>
       <ContentLayout>
         <StyledFormik
-          initialValues={initialValuesDynamic}
+          initialValues={getPreferredJourney()}
           onSubmit={saveAndRedirectToNextTrain(push)}
           enableReinitialize
         >
