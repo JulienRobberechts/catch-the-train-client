@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import { colors } from "../../design/colors";
 import { Formik } from "formik";
 import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";

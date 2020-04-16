@@ -74,16 +74,28 @@ const SettingsPage = () => {
         <ServerSettings serverUrl={techConfig.SERVER_ROOT_URL} />
       </Section>
       <LinkSection>
-        <NavButton type="button" size="medium" inverted color="orange">
+        <NavButton
+          type="button"
+          className="ui orange medium inverted button"
+          as={Link}
+          to="/selection"
+        >
           Choix du trajet
         </NavButton>
-        <NavButton type="button" size="medium" inverted color="orange">
+        <NavButton
+          type="button"
+          disabled={true}
+          className="ui orange medium inverted button"
+          as={Link}
+          to="/rers/A/st+germain+en+laye?missions=QIKI,NELY"
+        >
           Prochains départs
         </NavButton>
       </LinkSection>
     </>
   );
 };
+
 const NavButton = styled(Button)`
   flex-grow: 1;
 
