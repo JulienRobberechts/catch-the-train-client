@@ -102,7 +102,6 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
 
 const StyledForm = styled(Form)`
   flex-basis: 500px;
-  // background-color: yellow;
 `;
 
 const FormInnerLayout = styled.div`
@@ -137,7 +136,6 @@ const SubmitButtonContainer = styled.div`
   justify-content: center;
   padding: 1rem 2 rem;
   margin: 1rem 2rem;
-  // background-color: green;
 `;
 
 const SubmitButton = styled(Button)`
@@ -146,9 +144,6 @@ const SubmitButton = styled(Button)`
     margin: 0;
   }
 
-  &.ui.inverted.orange.button:hover {
-    background-color: #e0ab19;
-  }
   &.ui.inverted.orange.button.active,
   &.ui.inverted.orange.button:active,
   &.ui.inverted.orange.button:focus,
@@ -157,6 +152,7 @@ const SubmitButton = styled(Button)`
   &.ui.inverted.orange.buttons .button:active,
   &.ui.inverted.orange.buttons .button:focus,
   &.ui.inverted.orange.buttons .button:hover {
+    background-color: #e0ab19;
     box-shadow: none !important;
     color: #252149;
   }

@@ -101,12 +101,10 @@ const NavButton = styled(Button)`
 
   &.ui.inverted.orange.button {
     margin: 0.5rem 0;
-    // background-color: green;
   }
 
   &.ui.inverted.orange.button + &.ui.inverted.orange.button {
     margin-left: 1.5rem;
-    // background-color: yellow;
   }
 
   &.ui.inverted.orange.button.active,

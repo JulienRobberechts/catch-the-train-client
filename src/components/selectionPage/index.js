@@ -101,7 +101,6 @@ const SelectionPage = () => {
 const ContentLayout = styled.div`
   display: flex;
   justify-content: center;
-  // background-color: red;
 `;
 
 const StyledFormik = styled(Formik)`
