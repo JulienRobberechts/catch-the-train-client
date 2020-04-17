@@ -4,7 +4,12 @@ import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
 import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 
-import { getStationBySlug } from "../../domains/journey/service";
+import {
+  getLineByKey,
+  getNetworkByKey,
+  getStationBySlug,
+} from "../../domains/journey/service";
+import { getJourney } from "../../adapters/journey";
 
 const JourneyBreadcrumb = () => {
   const request = useSelector(selectTimeTableRequest);
@@ -12,16 +17,16 @@ const JourneyBreadcrumb = () => {
   if (!request) {
     return <Panel>...</Panel>;
   }
-
-  const { line } = request;
-  const network = "RER";
-  const stationName = getStationBySlug(request?.station)?.name;
-  const destination = "Paris";
+  const { network, line, departure, destination } = getJourney();
+  const networkName = getNetworkByKey(network)?.name;
+  const lineName = getLineByKey(line)?.name;
+  const departureName = getStationBySlug(departure)?.name;
+  const destinationName = getStationBySlug(destination)?.name;
 
   return (
     <Panel>
       <span>
-        {network} {line} - {stationName} > {destination}
+        {networkName} {lineName} - {departureName} > {destinationName}
       </span>
     </Panel>
   );
