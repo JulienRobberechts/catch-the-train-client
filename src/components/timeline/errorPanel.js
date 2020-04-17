@@ -19,7 +19,7 @@ const getMessageByErrorCode = (errorCode) => {
       };
     case 533:
       return {
-        message1: "Petit problème de connexion.",
+        message1: "Problème de connexion",
         message2: "merci de verifiez votre connexion internet.",
         icon: "NoConnectionErrorIcon",
       };

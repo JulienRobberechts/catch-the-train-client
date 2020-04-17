@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const twoDigits = number =>
+const twoDigits = (number) =>
   number.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
-    useGrouping: false
+    useGrouping: false,
   });
 
 const TimeSpan = ({
   timeSpan,
   displaySeconds = true,
-  displayPositiveSign = false
+  displayPositiveSign = false,
 }) => {
+  if (!timeSpan) {
+    throw new Error("timeSpan is empty");
+  }
+
   const totalMilliseconds = timeSpan.valueOf() * 1000;
   const negative = totalMilliseconds < 0;
   const positive = totalMilliseconds > 0;

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import TrainRoute from "./trainRoute";
-import TimelineVertical from "../timeline/timelineVertical";
+import TimelineVertical from "../timeline";
 import TimeTable from "../timeTable";
 import PageRefresher from "./pageRefresher";
 import config from "../../config";
