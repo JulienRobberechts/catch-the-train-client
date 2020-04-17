@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import TrainRoute from "./trainRoute";
+import JourneyBreadcrumb from "./journeyBreadcrumb";
 import TimelineVertical from "../timeline";
 import TimeTable from "../timeTable";
 import PageRefresher from "./pageRefresher";
@@ -21,7 +21,7 @@ const CatchPage = ({ station }) => {
       <PageRefresher refreshInterval={refreshInterval} />
       <TopSection>
         <StationHeader>
-          <TrainRoute />
+          <JourneyBreadcrumb />
           <SearchIconContainer
             className="ui circular icon"
             as={Link}

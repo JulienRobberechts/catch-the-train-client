@@ -6,7 +6,7 @@ import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 
 import { getStationBySlug } from "../../domains/journey/service";
 
-const TrainRoute = () => {
+const JourneyBreadcrumb = () => {
   const request = useSelector(selectTimeTableRequest);
 
   if (!request) {
@@ -35,4 +35,4 @@ const Panel = styled.div`
   font-weight: 700;
 `;
 
-export default TrainRoute;
+export default JourneyBreadcrumb;
