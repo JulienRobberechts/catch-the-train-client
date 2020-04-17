@@ -49,17 +49,6 @@ const TimelineVertical = () => {
         {!requestStatus?.loading && requestStatus?.error && (
           <ErrorPanel error={requestStatus?.error} />
         )}
-        <div>
-          <NowBox nowTime={nowTime} />
-          <div>
-            travelDuration:
-            <TimeSpan timeSpan={travelDuration} />
-          </div>
-          <div>
-            waitingDuration:
-            <TimeSpan timeSpan={waitingDuration} />
-          </div>
-        </div>
       </div>
     );
   }

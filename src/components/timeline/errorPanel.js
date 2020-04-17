@@ -67,7 +67,7 @@ const ErrorPanel = ({ error }) => {
             <RefreshIconContainer className="ui icon">
               <RefreshIcon />
             </RefreshIconContainer>
-            <RefreshText>Rafraîchir</RefreshText>
+            <RefreshText></RefreshText>
           </RefreshSection>
         </div>
       )}
