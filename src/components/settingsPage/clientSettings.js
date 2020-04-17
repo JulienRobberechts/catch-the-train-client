@@ -1,12 +1,11 @@
 import React from "react";
 import getLanguage from "../../domains/config/getLanguage";
 import KeyValueComponent from "./keyValue";
-
 import jstz from "jstz";
 
 const ClientSettings = ({ config }) => {
   const timezone = jstz.determine();
-  const timeZoneName = `${timezone.name()}: ${timezone.stdTimezoneOffset()} mins usually and ${timezone.timezoneOffset()} mins now`;
+  const timeZoneName = `${timezone.name()}`;
   // => Europe/Paris: -60 mins usually and -120 mins now
   return (
     <>

@@ -7,12 +7,14 @@ const StationSettings = ({ config }) => {
     <>
       <KeyValueComponent keyName={`Gare de '${stationName}'`} />
       <KeyValueComponent
-        keyName=" > Temps de trajet vers la gare (en secondes)"
+        keyName=" > Temps de trajet vers la gare "
         value={config && config.travelDurationSeconds}
+        unit="secondes"
       />
       <KeyValueComponent
-        keyName=" > Temps de trajet dans la gare (en secondes)"
+        keyName=" > Temps dans la gare pour atteindre le quai"
         value={config && config.waitingDelaySeconds}
+        unit="secondes"
       />
     </>
   );
