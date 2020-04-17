@@ -15,8 +15,6 @@ function TimeTable({
   handleNextDepartureNav,
   numberOfDepartureVisible,
 }) {
-  // previousLink, enhancedDepartures, minIndex
-  console.log("render timetable");
   return (
     <Panel>
       <Title>Prochains trains</Title>
