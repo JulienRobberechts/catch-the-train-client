@@ -1,9 +1,19 @@
 import ErrorCodes from "./errorCodes";
+import ClientError from "./clientError";
 
 const identifyError = (incomingError) => {
-  return incomingError.isAxiosError
-    ? identifyServerError(incomingError)
-    : identifyClientError(incomingError);
+  if (!incomingError) {
+    throw Error("The incoming Error is falsy");
+  }
+  if (incomingError instanceof ClientError) {
+    return identifyClientError(incomingError);
+  }
+
+  if (incomingError.isAxiosError) {
+    return identifyServerError(incomingError);
+  }
+
+  return identifyClientError(incomingError);
 };
 
 const identifyServerError = (incomingError) => {
@@ -34,6 +44,13 @@ const identifyServerErrorByHttpStatus = (status) => {
 };
 
 const identifyClientError = (incomingError) => {
+  if (incomingError instanceof ClientError) {
+    if (!incomingError?.errorCode) {
+      throw Error("Each ClientError should have an errorCode");
+    }
+    return incomingError.errorCode;
+  }
+
   return ErrorCodes.ERROR_700_CLIENT_ERROR;
 };
 

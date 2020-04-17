@@ -2,6 +2,8 @@ import { put, call, takeLatest } from "redux-saga/effects";
 import { getTimeTablePromise } from "../../adapters/timetable";
 import { requestStart, requestSuccess, requestError } from "./slice";
 import handleError from "../errors";
+import ErrorCodes from "../errors/errorCodes";
+import ClientError from "../errors/clientError";
 
 export function* getTimeTableEffectSaga(action) {
   try {
@@ -12,10 +14,17 @@ export function* getTimeTableEffectSaga(action) {
       station,
       missions,
     });
+
+    const departures = result?.data?.departures;
+    if (departures && departures.length === 0) {
+      /// No departure is consider a an error 1001
+      throw new ClientError(ErrorCodes.ERROR_1001_TIMETABLE_NO_DEPARTURE);
+    }
+
     yield put({ type: requestSuccess.type, payload: result?.data });
-  } catch (rawError) {
-    const error = handleError(rawError);
-    yield put({ type: requestError.type, payload: error });
+  } catch (incomingError) {
+    const publicError = handleError(incomingError);
+    yield put({ type: requestError.type, payload: publicError });
   }
 }
 
