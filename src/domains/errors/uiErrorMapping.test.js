@@ -8,6 +8,7 @@ const errorCases = {
       message1: "L'application n'est pas disponible pour l'instant.",
       message2: "Merci de re tenter plus tard.",
       icon: "UnavailableErrorIcon",
+      colorKey: "original",
     },
   },
   notConnection: {
@@ -16,6 +17,7 @@ const errorCases = {
       message1: "Problème de connexion",
       message2: "merci de verifiez votre connexion internet.",
       icon: "NoConnectionErrorIcon",
+      colorKey: "warning",
     },
   },
   notDeparture: {
@@ -24,6 +26,7 @@ const errorCases = {
       message1: "no departure",
       message2: "",
       icon: "NoDepartureErrorIcon",
+      colorKey: "highlight",
     },
   },
 };

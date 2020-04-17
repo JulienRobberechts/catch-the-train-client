@@ -34,7 +34,7 @@ describe("errorManagement", () => {
       errorCode   | expectedMessage
       ${400}      | ${"Erreur dans les donnees envoyés au serveur."}
       ${500}      | ${"Une erreur inconnue s'est produite sur le serveur"}
-      ${503}      | ${"Le service est indisponible pour le moment"}
+      ${503}      | ${"L'application n'est pas disponible pour l'instant. Merci de re tenter plus tard."}
     `.test(
       "should get the message for an error $errorCode",
       ({ errorCode, expectedMessage }) => {

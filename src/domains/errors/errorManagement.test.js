@@ -54,7 +54,7 @@ describe("errorManagement", () => {
   describe("formatError", () => {
     each`
       errorCode   | expectedMessage
-      ${503}      | ${"Le service est indisponible pour le moment"}
+      ${503}      | ${"L'application n'est pas disponible pour l'instant. Merci de re tenter plus tard."}
       ${700}      | ${"Erreur dans l'application (client web)"}
     `.test(
       "should format an error $errorCode",

@@ -24,12 +24,13 @@ const ErrorMessages = [
   },
   {
     code: ErrorCodes.ERROR_503_SERVER_NOT_AVAILABLE,
-    msg: "Le service est indisponible pour le moment",
+    msg:
+      "L'application n'est pas disponible pour l'instant. Merci de re tenter plus tard.",
     level: ErrorLevels.LOW,
   },
   {
     code: ErrorCodes.ERROR_533_SERVER_NOT_REACHABLE,
-    msg: "Le service est injoignable pour le moment",
+    msg: "Problème de connexion. merci de verifiez votre connexion internet.",
     level: ErrorLevels.LOW,
   },
   {

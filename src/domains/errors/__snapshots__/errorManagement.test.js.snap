@@ -30,7 +30,7 @@ Object {
 exports[`errorManagement handleError should handleError an error number 3 1`] = `
 Object {
   "errorCode": 503,
-  "errorMessage": "Le service est indisponible pour le moment",
+  "errorMessage": "L'application n'est pas disponible pour l'instant. Merci de re tenter plus tard.",
   "errorType": "Error",
   "originalException": undefined,
 }
