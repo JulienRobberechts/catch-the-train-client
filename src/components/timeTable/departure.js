@@ -9,7 +9,7 @@ function Departure({
   departureTime,
   departureDuration,
   onSelect,
-  delayStatus
+  delayStatus,
 }) {
   return (
     <Train selected={selected} onClick={onSelect} delayStatus={delayStatus}>
@@ -24,17 +24,9 @@ function Departure({
   );
 }
 
-const TimeStyle = styled.span`
-  font-size: 1.3rem;
-`;
-
-const DurationStyle = styled.span`
-  font-size: 1rem;
-`;
-
 const Train = styled.div`
-  background: ${props => fontColorForDelayStatus(props.delayStatus)};
-  border: ${props => (props.selected ? 4 : 1)}px solid;
+  background: ${(props) => fontColorForDelayStatus(props.delayStatus)};
+  border: ${(props) => (props.selected ? 4 : 1)}px solid;
   margin: 0.1rem;
   padding: 0.4rem;
   border-radius: 3px;
@@ -45,6 +37,21 @@ const Train = styled.div`
   cursor: pointer;
   flex-basis: 20%;
   font-size: 0.7rem;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`;
+
+const TimeStyle = styled.span`
+  font-size: 1.3rem;
+`;
+
+const DurationStyle = styled.span`
+  font-size: 1rem;
 `;
 
 export default Departure;
