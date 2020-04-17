@@ -60,7 +60,7 @@ const TimelineVerticalContainer = () => {
     delayStatus,
   } = departure;
 
-  console.log("departure", { departure });
+  // console.log("departure", { departure });
 
   return (
     <TimelineVertical
