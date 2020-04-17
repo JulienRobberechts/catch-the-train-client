@@ -18,3 +18,8 @@ export { ReactComponent as SwitchIcon } from "./assets/switch.svg";
 export { ReactComponent as Search } from "./assets/search.svg";
 export { ReactComponent as SettingsIcon } from "./assets/gear.svg";
 export { ReactComponent as LogoIcon } from "./assets/walk2.svg";
+export { ReactComponent as RefreshIcon } from "./assets/refresh2.svg";
+export { ReactComponent as UnknownErrorIcon } from "./assets/ufo-and-cow.svg";
+export { ReactComponent as UnavailableErrorIcon } from "./assets/sleep.svg";
+export { ReactComponent as NoConnectionErrorIcon } from "./assets/plug.svg";
+export { ReactComponent as NoDepartureErrorIcon } from "./assets/waiting-room.svg";

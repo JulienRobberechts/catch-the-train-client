@@ -11,19 +11,19 @@ import { getSizeRatioFor } from "./pure";
 
 import { useSelector } from "react-redux";
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
-import { selectRequestStatus } from "../../domains/timeTable/selectors";
+import {
+  selectRequestStatus,
+  selectTimeTableRequest,
+} from "../../domains/timeTable/selectors";
 import TimeSpan from "../time/timeSpan";
-import CircleLoader from "react-spinners/CircleLoader";
-import { css } from "@emotion/core";
-
-const override = css`
-  display: block;
-  margin: 1.3rem auto;
-`;
+import ErrorPanel from "./errorPanel";
+import LoadingPanel from "./loadingPanel";
+import { getStationBySlug } from "../../domains/journey/service";
 
 const TimelineVertical = () => {
   const data = useSelector(selectEnhancedTimeTable);
   const requestStatus = useSelector(selectRequestStatus);
+  const request = useSelector(selectTimeTableRequest);
 
   if (!data || !data.travel) {
     return <div>... no travel data </div>;
@@ -33,6 +33,8 @@ const TimelineVertical = () => {
     travel: { nowTime, travelDuration, waitingDuration },
   } = data;
 
+  const departureName = getStationBySlug(request?.station)?.name;
+
   // currentDeparture can be null for 2 reasons:
   // - stationConfiguration empty
   // - userConfiguration empty
@@ -41,27 +43,12 @@ const TimelineVertical = () => {
   if (!data?.currentDeparture?.code || !data?.enhancedDepartures) {
     return (
       <div>
-        <div> ...</div>
-        <div>edge case UI v1</div>
         {requestStatus?.loading && (
-          <LoadingPanel>
-            <LoadingText>
-              <div>recherche du prochain départ</div>
-              <div>XXX</div>
-            </LoadingText>
-            <CircleLoader css={override} size={100} color={"#E0AB19"} />
-          </LoadingPanel>
+          <LoadingPanel departureName={departureName} />
         )}
         {!requestStatus?.loading && requestStatus?.error && (
-          <ErrorPanel>
-            <LoadingText>
-              <div>Oups !!</div>
-              <div>XXX</div>
-            </LoadingText>
-          </ErrorPanel>
+          <ErrorPanel error={requestStatus?.error} />
         )}
-        {requestStatus?.error && "Error"}
-        <div>no departure</div>
         <div>
           <NowBox nowTime={nowTime} />
           <div>
@@ -156,27 +143,6 @@ const TwoColumnLayout = styled.div`
 
 const ColumnLeft = styled.div`
   flex-basis: 50%;
-`;
-
-const LoadingPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #e0ab19;
-  font-size: 1.2rem;
-`;
-const LoadingText = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ErrorPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #e6716e;
-  font-size: 1.2rem;
 `;
 
 const TimeColumnLayout = styled.div`
