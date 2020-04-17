@@ -17,10 +17,12 @@ describe("ErrorCodes", () => {
     }
   );
   each(ErrorCodesKeyValues).test(
-    "entry %s=%s should be between 400 and 800",
+    "entry %s=%s should be between 400 and 800 or 1000 and 2000",
     (errorCodeName, errorCodeValue) => {
-      expect(errorCodeValue).toBeGreaterThanOrEqual(400);
-      expect(errorCodeValue).toBeLessThan(800);
+      expect(
+        (errorCodeValue >= 400 && errorCodeValue < 800) ||
+          (errorCodeValue >= 1000 && errorCodeValue < 2000)
+      ).toBeTruthy();
     }
   );
 

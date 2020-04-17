@@ -15,6 +15,10 @@ function TimeTable({
   handleNextDepartureNav,
   numberOfDepartureVisible,
 }) {
+  if (!currentTrainCode) {
+    return <PanelEmpty></PanelEmpty>;
+  }
+
   return (
     <Panel>
       <ScrollPanel>
@@ -69,12 +73,17 @@ const Panel = styled.div`
   flex-direction: column;
 `;
 
+const PanelEmpty = styled(Panel)`
+  background: ${() => colors.dark.background};
+`;
+
 const ScrollPanel = styled.div`
   flex-grow: 1;
   margin: 0.1rem;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
 `;
 
 const ScrollPanelItem = styled.button`

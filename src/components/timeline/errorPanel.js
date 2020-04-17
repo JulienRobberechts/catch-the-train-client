@@ -8,38 +8,10 @@ import {
   NoConnectionErrorIcon,
   NoDepartureErrorIcon,
 } from "../../design/icons";
-
-const getMessageByErrorCode = (errorCode) => {
-  switch (errorCode) {
-    case 503:
-      return {
-        message1: "L'application n'est pas disponible pour l'instant.",
-        message2: "Merci de re tenter plus tard.",
-        icon: "UnavailableErrorIcon",
-      };
-    case 533:
-      return {
-        message1: "Problème de connexion",
-        message2: "merci de verifiez votre connexion internet.",
-        icon: "NoConnectionErrorIcon",
-      };
-    case 703:
-      return {
-        message1: "Il n'y a pas de train au départ affiché en gare",
-        message2: "pour l'instant...",
-        icon: "NoDepartureErrorIcon",
-      };
-    default:
-      return {
-        message1: "Oups! Nous vivons une expérience paranormale",
-        message2: "Nous travaillons à rétablir l'ordre dans l'univers",
-        icon: "UnknownErrorIcon",
-      };
-  }
-};
+import { getUiError } from "../../domains/errors/uiErrorMapping";
 
 const ErrorPanel = ({ error }) => {
-  const { message1, message2, icon } = getMessageByErrorCode(error.errorCode);
+  const { message1, message2, icon } = getUiError(error);
   return (
     <div>
       {error && (

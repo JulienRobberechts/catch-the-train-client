@@ -17,6 +17,9 @@ const ErrorCodes = {
   // 700: Client errors
   ERROR_700_CLIENT_ERROR: 700,
   ERROR_701_ERROR_MANAGEMENT_ERROR: 701,
+
+  // 1000: Domain errors - TimeTable
+  ERROR_1001_TIMETABLE_NO_DEPARTURE: 1001,
 };
 
 export default ErrorCodes;

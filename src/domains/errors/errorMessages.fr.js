@@ -52,6 +52,11 @@ const ErrorMessages = [
     msg: "La gestion d'erreur n'a pas fonctionnée",
     level: ErrorLevels.HIGH,
   },
+  {
+    code: ErrorCodes.ERROR_1001_TIMETABLE_NO_DEPARTURE,
+    msg: "Il n'y a pas de train au départ affiché en gare",
+    level: ErrorLevels.LOW,
+  },
 ];
 
 export { ErrorMessages, errorInErrorManagementObject };
