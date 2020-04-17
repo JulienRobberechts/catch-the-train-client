@@ -17,7 +17,6 @@ function TimeTable({
 }) {
   return (
     <Panel>
-      <Title>Prochains trains</Title>
       <ScrollPanel>
         {previousVisible ? (
           <PreviousButton onClick={handlePreviousDepartureNav}>
@@ -26,11 +25,11 @@ function TimeTable({
             </IconContainer>
           </PreviousButton>
         ) : (
-          <PreviousPlaceholder>
+          <PlaceholderItem>
             <IconContainer>
               <Clock />
             </IconContainer>
-          </PreviousPlaceholder>
+          </PlaceholderItem>
         )}
         {enhancedDepartures
           .slice(minIndex, minIndex + numberOfDepartureVisible)
@@ -49,11 +48,11 @@ function TimeTable({
             </IconContainer>
           </NextButton>
         ) : (
-          <PreviousPlaceholder>
+          <PlaceholderItem>
             <IconContainer>
               <More />
             </IconContainer>
-          </PreviousPlaceholder>
+          </PlaceholderItem>
         )}
       </ScrollPanel>
     </Panel>
@@ -65,16 +64,14 @@ const Panel = styled.div`
   color: ${() => colors.dark.panel.one.text.normal};
   margin-top: 0.3rem;
   border-radius: 3px;
-`;
-
-const Title = styled.div`
-  font-size: 0.7rem;
-  padding-left: 0.4rem;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ScrollPanel = styled.div`
-  padding: 0.2rem;
-  padding-top: 0;
+  flex-grow: 1;
+  margin: 0.1rem;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -99,7 +96,7 @@ const PreviousButton = styled(ScrollPanelItem)``;
 
 const NextButton = styled(ScrollPanelItem)``;
 
-const PreviousPlaceholder = styled.div`
+const PlaceholderItem = styled(ScrollPanelItem)`
   background: ${() => colors.dark.panel.one.background};
   color: ${() => colors.dark.panel.one.text.normal};
   margin: 0.3rem;
@@ -118,8 +115,8 @@ const PreviousPlaceholder = styled.div`
 
 const IconContainer = styled.div`
   svg {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.5rem;
+    height: 100%;
     fill: ${() => colors.dark.panel.one.button.one.text.normal};
   }
 `;
