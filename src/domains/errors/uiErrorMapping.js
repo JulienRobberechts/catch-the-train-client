@@ -9,24 +9,28 @@ const getUiError = (error) => {
         message1: "L'application n'est pas disponible pour l'instant.",
         message2: "Merci de re tenter plus tard.",
         icon: "UnavailableErrorIcon",
+        colorKey: "original",
       };
     case ErrorCodes.ERROR_533_SERVER_NOT_REACHABLE:
       return {
         message1: "Problème de connexion",
         message2: "merci de verifiez votre connexion internet.",
         icon: "NoConnectionErrorIcon",
+        colorKey: "warning",
       };
     case ErrorCodes.ERROR_1001_TIMETABLE_NO_DEPARTURE:
       return {
         message1: errorMessage,
         message2: "",
         icon: "NoDepartureErrorIcon",
+        colorKey: "highlight",
       };
     default:
       return {
         message1: "Oups! Nous vivons une expérience paranormale",
         message2: "Nous travaillons à rétablir l'ordre dans l'univers",
         icon: "UnknownErrorIcon",
+        colorKey: "warning",
       };
   }
 };

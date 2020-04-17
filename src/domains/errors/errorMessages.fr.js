@@ -54,7 +54,7 @@ const ErrorMessages = [
   },
   {
     code: ErrorCodes.ERROR_1001_TIMETABLE_NO_DEPARTURE,
-    msg: "Il n'y a pas de train au départ affiché en gare",
+    msg: "Il n'y a pas de train au départ pour l'instant",
     level: ErrorLevels.LOW,
   },
 ];

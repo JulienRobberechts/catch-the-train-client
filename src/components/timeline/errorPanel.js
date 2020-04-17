@@ -11,14 +11,17 @@ import {
 import { getUiError } from "../../domains/errors/uiErrorMapping";
 
 const ErrorPanel = ({ error }) => {
-  const { message1, message2, icon } = getUiError(error);
+  const { message1, message2, icon, colorKey } = getUiError(error);
+  const messageColor = colors.dark.text[colorKey];
+
   return (
     <div>
       {error && (
         <div>
-          <ErrorSection>
+          <ErrorSection color={messageColor}>
             <ErrorText1>{message1}</ErrorText1>
             <ErrorIconContainer
+              color={messageColor}
               className="ui icon"
               onClick={() => {
                 window.location.reload();
@@ -29,7 +32,7 @@ const ErrorPanel = ({ error }) => {
               {icon === "NoConnectionErrorIcon" && <NoConnectionErrorIcon />}
               {icon === "NoDepartureErrorIcon" && <NoDepartureErrorIcon />}
             </ErrorIconContainer>
-            <ErrorText2>{message2}</ErrorText2>
+            <ErrorText2 color={messageColor}>{message2}</ErrorText2>
           </ErrorSection>
           <RefreshSection
             onClick={() => {
@@ -51,7 +54,7 @@ const ErrorSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #e6716e;
+  color: ${(props) => props.color};
   font-size: 1.2rem;
 `;
 
@@ -72,7 +75,7 @@ const ErrorIconContainer = styled.div`
   svg {
     width: 7rem;
     height: 7rem;
-    fill: ${() => colors.dark.text.warning};
+    fill: ${(props) => props.color};
   }
 `;
 
