@@ -20,7 +20,7 @@ const StartPage = () => {
         <AppName>'Attraper le train'</AppName>
         <RestOfPhrase>vous aide pour cela</RestOfPhrase>
       </PropositionValue>
-      <Link to="/selection">
+      <Link to="/select-journey">
         <PrimaryButton>Choix du train</PrimaryButton>
       </Link>
       <Link to="/settings">

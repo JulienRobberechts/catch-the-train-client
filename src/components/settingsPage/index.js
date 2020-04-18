@@ -78,7 +78,7 @@ const SettingsPage = () => {
           type="button"
           className="ui orange medium inverted button"
           as={Link}
-          to="/selection"
+          to="/select-journey"
         >
           Choix du trajet
         </NavButton>

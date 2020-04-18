@@ -8,7 +8,7 @@ import {
   CatchTrainRoutes,
   SettingsPage,
   StartPage,
-  SelectionPage,
+  SelectJourneyPage,
 } from "./components/pages";
 import AppTitle from "./components/appBar/appTitle";
 import { colors } from "./design/colors";
@@ -29,9 +29,9 @@ function App() {
                 <AppTitle title="Paramètres" />
                 <SettingsPage />
               </Route>
-              <Route path="/selection">
+              <Route path="/select-journey">
                 <AppTitle title="Choix du train" />
-                <SelectionPage />
+                <SelectJourneyPage />
               </Route>
               <Route path="/">
                 <AppTitle title="Prochains train" />

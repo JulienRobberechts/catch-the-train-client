@@ -25,7 +25,7 @@ const CatchPage = ({ station }) => {
           <SearchIconContainer
             className="ui circular icon"
             as={Link}
-            to={`/selection`}
+            to={`/select-journey`}
           >
             <SearchIcon />
           </SearchIconContainer>
