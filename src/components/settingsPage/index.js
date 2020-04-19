@@ -9,7 +9,7 @@ import {
   selectUserConfiguration,
   selectStationConfiguration,
 } from "../../domains/toTheStation/selectors";
-
+import { AppButtonLink, ButtonContainerTwo } from "../design-system/controls";
 import ServerSettings from "./serverSettings";
 import ClientSettings from "./clientSettings";
 import UserSettings from "./userSettings";
@@ -73,64 +73,22 @@ const SettingsPage = () => {
       <Section>
         <ServerSettings serverUrl={techConfig.SERVER_ROOT_URL} />
       </Section>
-      <LinkSection>
-        <NavButton
-          type="button"
-          className="ui orange medium inverted button"
-          as={Link}
-          to="/select-journey"
-        >
+      <ButtonContainerTwo>
+        <AppButtonLink type="button" to="/select-journey">
           Choix du trajet
-        </NavButton>
-        <NavButton
+        </AppButtonLink>
+        <AppButtonLink
           type="button"
           disabled={true}
-          className="ui orange medium inverted button"
-          as={Link}
           to="/rers/A/st+germain+en+laye?missions=QIKI,NELY"
         >
           Prochains départs
-        </NavButton>
-      </LinkSection>
+        </AppButtonLink>
+      </ButtonContainerTwo>
     </>
   );
 };
 
-const NavButton = styled(Button)`
-  flex-grow: 1;
-
-  &.ui.inverted.orange.button {
-    margin: 0.5rem 0;
-  }
-
-  &.ui.inverted.orange.button + &.ui.inverted.orange.button {
-    margin-left: 1.5rem;
-  }
-
-  &.ui.inverted.orange.button.active,
-  &.ui.inverted.orange.button:active,
-  &.ui.inverted.orange.button:focus,
-  &.ui.inverted.orange.button:hover,
-  &.ui.inverted.orange.buttons .button.active,
-  &.ui.inverted.orange.buttons .button:active,
-  &.ui.inverted.orange.buttons .button:focus,
-  &.ui.inverted.orange.buttons .button:hover {
-    box-shadow: none !important;
-    color: #252149;
-    background-color: #60a38e;
-  }
-  &.ui.inverted.orange.button {
-    background-color: transparent;
-    box-shadow: 0 0 0 2px #60a38e inset !important;
-    color: #60a38e;
-  }
-`;
-
-const LinkSection = styled.div`
-  margin: 0.5rem 1rem;
-  display: flex;
-  justify-items: space-between;
-`;
 const SectionTitle = styled.div`
   color: ${() => colors.dark.text.normal};
   font-size: 1.1rem;
