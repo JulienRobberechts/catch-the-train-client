@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getMissions } from "../journey/service";
 
 export const initialState = {};
 
@@ -10,13 +11,14 @@ export const slice = createSlice({
       Object.assign(state, initialState);
     },
     setRequest: (state, action) => {
-      // temp
-      state.request = action.payload;
+      const { network, line, departure, destination } = action.payload;
+      const missions = getMissions(departure, destination).join(",");
+      state.request = { network, line, departure, destination, missions };
     },
     requestStart: (state, action) => {
       state.loading = true;
       state.error = null;
-      state.request = action.payload;
+      // state.request = action.payload;
       // we still can have data during the loading
     },
     requestError: (state, action) => {

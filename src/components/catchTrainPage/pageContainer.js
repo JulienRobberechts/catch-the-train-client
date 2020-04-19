@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { requestStart } from "../../domains/timeTable/slice";
 import {
   chooseTrain,
   setUserConfiguration,
-  setStationConfiguration,
 } from "../../domains/toTheStation/slice";
 import { getStationBySlug } from "../../domains/journey/service";
-
+// import { getMissions } from "../../domains/journey/service";
 import {
   selectTimeTableRequest,
   selectDepartureByTrainCode,
@@ -19,25 +18,33 @@ import CatchPage from "./page";
 
 // A custom hook that builds on useLocation to parse
 // the query string for you.
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+// function useQuery() {
+//   return new URLSearchParams(useLocation().search);
+// }
 
 const CatchPageContainer = () => {
   // Get data from the server at startup
   const dispatch = useDispatch();
 
+  const request = useSelector(selectTimeTableRequest);
+
   // Select the train according to the url
-  const { network, line, station, train } = useParams();
-  let query = useQuery();
-  const missions = query.get("missions");
+  const { train } = useParams();
+  // let query = useQuery();
+  // const missions = query.get("missions");
   // console.log("current url", { network, line, station, train, missions });
 
-  useEffect(() => {
-    dispatch(requestStart({ network, line, station, missions }));
-  }, [dispatch, network, line, station, missions]);
+  // const missions = getMissions(request.departure, request.destination);
 
   useEffect(() => {
+    console.log("dispatch requestStart");
+    if (request) {
+      dispatch(requestStart(request));
+    }
+  }, [dispatch, request]);
+
+  useEffect(() => {
+    console.log("dispatch setUserConfiguration");
     dispatch(
       setUserConfiguration({
         onTimeMarginDelaySeconds: 50,
@@ -46,28 +53,14 @@ const CatchPageContainer = () => {
     );
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(
-      setStationConfiguration({
-        station: "chatelet+les+halles",
-        travelDurationSeconds: 10 * 60 + 25,
-        waitingDelaySeconds: 100,
-      })
-    );
-  }, [dispatch]);
-
   const trainDeparture = useSelector(selectDepartureByTrainCode(train));
 
   useEffect(() => {
+    console.log("dispatch setUserConfiguration");
     dispatch(chooseTrain(trainDeparture?.trainCode));
   }, [dispatch, trainDeparture]);
 
-  // const currentTrainCode = useSelector(selectCurrentTrainCode);
-
-  const request = useSelector(selectTimeTableRequest);
   const stationName = getStationBySlug(request?.station)?.name;
-
-  // if (!currentTrainCode) return <div>...</div>;
 
   // console.log("render page CatchPageContainer");
   return <CatchPage station={stationName} />;

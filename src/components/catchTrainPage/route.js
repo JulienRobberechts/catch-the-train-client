@@ -6,10 +6,10 @@ import CatchPageContainer from "./pageContainer";
 const CatchTrainRoutes = () => {
   return (
     <Switch>
-      <Route path="/:network/:line/:station/:train">
+      <Route path="/next-train/:train">
         <CatchPageContainer />
       </Route>
-      <Route path="/:network/:line/:station">
+      <Route path="/next-train">
         <CatchPageContainer />
       </Route>
       <Redirect to="/start" />

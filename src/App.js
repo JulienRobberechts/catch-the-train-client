@@ -1,6 +1,11 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route,
+} from "react-router-dom";
 import styled from "styled-components";
 import { Provider } from "react-redux";
 import ErrorBoundary from "./components/error-mgt/errorBoundary";
@@ -38,10 +43,11 @@ function App() {
                 <AppTitle title="Préférences" />
                 <SelectPreferencePage />
               </Route>
-              <Route path="/">
+              <Route path="/next-train">
                 <AppTitle title="Prochains train" />
                 <CatchTrainRoutes />
               </Route>
+              <Redirect to="/start" />
             </Switch>
           </Page>
         </ErrorBoundary>

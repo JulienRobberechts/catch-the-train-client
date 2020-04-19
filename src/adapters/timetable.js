@@ -3,8 +3,8 @@ import axios from "axios";
 import { SERVER_ROOT_URL } from "../config";
 
 /** function that returns an axios call promise */
-export function getTimeTablePromise({ network, line, station, missions }) {
-  const url = SERVER_ROOT_URL + `/next-trains/${network}/${line}/${station}?`;
+export function getTimeTablePromise({ network, line, departure, missions }) {
+  const url = SERVER_ROOT_URL + `/next-trains/${network}/${line}/${departure}?`;
   const params = {
     missions: missions ? missions : undefined,
   };

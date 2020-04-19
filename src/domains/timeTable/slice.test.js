@@ -52,11 +52,11 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeFalsy();
     });
-    it("'selectTimeTableRequest' should return data", () => {
-      expect(selectTimeTableRequest(rootState)).toEqual(
-        sampleRequestRerAChatelet
-      );
-    });
+    // it("'selectTimeTableRequest' should return data", () => {
+    //   expect(selectTimeTableRequest(rootState)).toEqual(
+    //     sampleRequestRerAChatelet
+    //   );
+    // });
     it("'selectAllDepartures' should return an empty array", () => {
       expect(selectAllDepartures(rootState)).toEqual([]);
     });

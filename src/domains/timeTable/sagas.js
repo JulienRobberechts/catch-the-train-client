@@ -7,11 +7,12 @@ import ClientError from "../errors/clientError";
 
 export function* getTimeTableEffectSaga(action) {
   try {
-    const { network, line, station, missions } = action.payload;
+    const { network, line, departure, missions } = action.payload;
+    console.log({ network, line, departure, missions });
     const result = yield call(getTimeTablePromise, {
       network,
       line,
-      station,
+      departure,
       missions,
     });
 
