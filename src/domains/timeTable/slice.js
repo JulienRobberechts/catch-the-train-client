@@ -9,6 +9,10 @@ export const slice = createSlice({
     reset: (state) => {
       Object.assign(state, initialState);
     },
+    setRequest: (state, action) => {
+      // temp
+      state.request = action.payload;
+    },
     requestStart: (state, action) => {
       state.loading = true;
       state.error = null;
@@ -30,6 +34,7 @@ export const slice = createSlice({
 
 export const {
   reset,
+  setRequest,
   requestStart,
   requestSuccess,
   requestError,

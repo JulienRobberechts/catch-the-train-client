@@ -6,3 +6,4 @@ export {
   ButtonContainerTwo,
 } from "./button";
 export { default as AppButtonLink } from "./buttonLink";
+export { default as InputField } from "./inputField-Semantic";

@@ -82,7 +82,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
               appColor={colors.dark.text.highlight}
               disabled={!isValid}
             >
-              Voir les prochains départs
+              Valider
               <Icon name="right arrow" />
             </AppButton>
           </ButtonContainerOne>

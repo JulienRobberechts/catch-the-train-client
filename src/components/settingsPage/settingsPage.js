@@ -14,8 +14,6 @@ import ServerSettings from "./serverSettings";
 import ClientSettings from "./clientSettings";
 import UserSettings from "./userSettings";
 import StationSettings from "./stationSettings";
-import { Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import {
   setUserConfiguration,
   setStationConfiguration,

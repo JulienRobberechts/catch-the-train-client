@@ -1,41 +1,40 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Formik } from "formik";
-import { getMissions } from "../../domains/journey/service";
 import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
 import { getStationBySlug } from "../../domains/journey/service";
 import { getJourney, setJourney } from "../../adapters/journey";
+import { setRequest } from "../../domains/timeTable/slice";
 
-const buildUrl = ({ network, line, departure, destination }) => {
-  const missions = getMissions(departure, destination);
-  const missionParam = missions.join(",");
-  return `/${network}/${line}/${departure}?missions=${missionParam}`;
-};
+// import { getMissions } from "../../domains/journey/service";
+// const buildUrl = ({ network, line, departure, destination }) => {
+//   const missions = getMissions(departure, destination);
+//   const missionParam = missions.join(",");
+//   return `/${network}/${line}/${departure}?missions=${missionParam}`;
+// };
 
-const getUrl = (data) => {
-  return buildUrl({
-    network: "rers",
-    line: "A",
-    departure: data.departure.value,
-    destination: data.destination.value,
-  });
-};
+// const getUrl = (data) => {
+//   return buildUrl({
+//     network: "rers",
+//     line: "A",
+//     departure: data.departure.value,
+//     destination: data.destination.value,
+//   });
+// };
 
-const saveJourney = (data) => {
-  setJourney({
+const saveAndNavigate = (dispatch, pushMethod) => (data) => {
+  const journey = {
     network: "rers",
     line: "A",
     departure: data?.departure.value,
     destination: data?.destination.value,
-  });
-};
-
-const saveAndRedirectToNextTrain = (pushMethod) => (data) => {
-  saveJourney(data);
-  const url = getUrl(data);
-  pushMethod(url);
+  };
+  setJourney(journey);
+  dispatch(setRequest(journey));
+  pushMethod("/preferences");
 };
 
 const onSwitchStationValues = (formik) => () => {
@@ -56,14 +55,11 @@ const stationToOption = (station) => ({
   },
 });
 
-const getPreferredJourney = () => {
+const getInitialJourney = () => {
   const {
     departure: departureValue,
     destination: destinationValue,
   } = getJourney();
-  // const departureValue = localStorage.getItem(lsDeparture);
-  // const destinationValue = localStorage.getItem(lsDestination);
-  // console.log("from local storage", { departureValue, destinationValue });
 
   const departureStation = getStationBySlug(departureValue);
   const departureOption = departureStation
@@ -83,6 +79,10 @@ const getPreferredJourney = () => {
 
 const SelectionPage = () => {
   const { push } = useHistory();
+  const dispatch = useDispatch();
+  // useEffect(()=> {
+  //   dispatch()
+  // }, [dispatch]);
   return (
     <>
       <Helmet>
@@ -90,8 +90,8 @@ const SelectionPage = () => {
       </Helmet>
       <ContentLayout>
         <StyledFormik
-          initialValues={getPreferredJourney()}
-          onSubmit={saveAndRedirectToNextTrain(push)}
+          initialValues={getInitialJourney()}
+          onSubmit={saveAndNavigate(dispatch, push)}
           enableReinitialize
         >
           {(formik) => (
