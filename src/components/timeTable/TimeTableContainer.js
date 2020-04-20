@@ -20,10 +20,6 @@ function TimeTableContainer() {
     return <div>...</div>;
   }
 
-  const { network, line, station, missions } = request;
-
-  const missionsString = !!missions ? "?missions=" + missions : "";
-
   const currentIndex = Math.max(
     0,
     enhancedDepartures.findIndex(
@@ -41,12 +37,12 @@ function TimeTableContainer() {
 
   const previousVisible = minIndex > 0;
   const previousDeparture = enhancedDepartures[currentIndex - 1];
-  const previousLink = `/${network}/${line}/${station}/${previousDeparture?.trainCode}${missionsString}`;
+  const previousLink = `/next-train/${previousDeparture?.trainCode}`;
 
   const nextVisible =
     minIndex < enhancedDepartures.length - NUMBER_OF_DEPARTURE_VISIBLE;
   const nextDeparture = enhancedDepartures[currentIndex + 1];
-  const nextLink = `/${network}/${line}/${station}/${nextDeparture?.trainCode}${missionsString}`;
+  const nextLink = `/next-train/${nextDeparture?.trainCode}`;
 
   return (
     <TimeTable
@@ -54,9 +50,7 @@ function TimeTableContainer() {
       minIndex={minIndex}
       currentTrainCode={currentTrainCode}
       handleDepartureNav={(targetTrainCode) => () => {
-        push(
-          `/${network}/${line}/${station}/${targetTrainCode}${missionsString}`
-        );
+        push(`/next-train/${targetTrainCode}`);
       }}
       previousVisible={previousVisible}
       handlePreviousDepartureNav={() => push(previousLink)}
