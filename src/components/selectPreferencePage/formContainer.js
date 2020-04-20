@@ -17,11 +17,13 @@ import { setStationConfiguration } from "../../domains/toTheStation/slice";
 const validationSchema = yup.object({
   travelDuration: yup
     .number()
+    .typeError("Le temps de trajet doit être un nombre de secondes")
     .required("Le temps de trajet est indispensable")
     .min(0, "Le temps de trajet doit être positif")
     .max(1800, "Le temps de trajet doit être inférieur à 30 minutes"),
   accessDuration: yup
     .number()
+    .typeError("Le temps d'accès au quai doit être un nombre de secondes")
     .required("Le temps d'accès au quai est indispensable")
     .min(0, "Le temps d'accès au quai doit être positif")
     .max(300, "Le temps d'accès doit être inférieur à 5 minutes"),
@@ -44,10 +46,25 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
   pushMethod("/next-train");
 };
 
+const getFormInitialValues = () => {
+  const {
+    travelDuration = "600",
+    accessDuration = "120",
+  } = getStationPreferences();
+
+  return {
+    travelDuration,
+    accessDuration,
+  };
+};
+
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
+
+  // TODO Use selector
   const station = "chatelet+les+halles";
+
   return (
     <>
       <Helmet>
@@ -55,7 +72,7 @@ const SelectionPage = () => {
       </Helmet>
       <ContentLayout>
         <StyledFormik
-          initialValues={getStationPreferences()}
+          initialValues={getFormInitialValues()}
           onSubmit={saveAndNavigateToNextTrain(station, dispatch, push)}
           validationSchema={validationSchema}
           enableReinitialize
