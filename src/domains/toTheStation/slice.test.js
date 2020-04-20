@@ -55,7 +55,7 @@ describe("slice toTheStation", () => {
     const stationConfiguration = {
       station: "chatelet+les+halles",
       travelDurationSeconds: 555,
-      waitingDelaySeconds: 77,
+      accessDurationSeconds: 77,
     };
     beforeEach(() => {
       const toTheStation = reducer(

@@ -8,7 +8,6 @@ export function getStationPreferences() {
   if (!departure) return {};
 
   const lsStationTravelDuration = lsStationTravelDurationPrefix + departure;
-  // == waitingDelaySeconds
   const lsStationAccessDuration = lsStationAccessDurationPrefix + departure;
 
   return {
@@ -31,7 +30,6 @@ export function setStationAccessDuration(accessDuration) {
   const departure = localStorage.getItem(lsDeparture);
   if (!departure) return {};
 
-  // == waitingDelaySeconds
   const lsStationAccessDuration = lsStationAccessDurationPrefix + departure;
 
   localStorage.setItem(lsStationAccessDuration, accessDuration);

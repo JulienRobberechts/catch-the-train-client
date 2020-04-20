@@ -37,7 +37,7 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
     setStationConfiguration({
       station,
       travelDurationSeconds: data?.travelDuration,
-      waitingDelaySeconds: data?.accessDuration,
+      accessDurationSeconds: data?.accessDuration,
     })
   );
 

@@ -25,9 +25,9 @@ Object {
     },
   ],
   "travel": Object {
+    "accessDuration": "PT1M17S",
     "nowTime": "2020-03-10T08:13:30.000Z",
     "travelDuration": "PT9M15S",
-    "waitingDuration": "PT1M17S",
   },
 }
 `;

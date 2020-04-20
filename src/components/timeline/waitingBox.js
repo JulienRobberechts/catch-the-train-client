@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { Station, CaretUp } from "../../design/icons";
 
-const WaitingBox = ({ waitingDuration, largeSpace }) => {
+const WaitingBox = ({ accessDuration, largeSpace }) => {
   return (
     <>
       <CaretParent>
@@ -17,7 +17,7 @@ const WaitingBox = ({ waitingDuration, largeSpace }) => {
       <LeftArrow>
         <Box>
           <Text>en gare</Text>
-          <TimeSpan timeSpan={waitingDuration} />
+          <TimeSpan timeSpan={accessDuration} />
           {largeSpace && (
             <IconContainer>
               <Station />

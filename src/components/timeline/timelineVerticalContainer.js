@@ -20,7 +20,7 @@ const TimelineVerticalContainer = () => {
   }
 
   const {
-    travel: { nowTime, travelDuration, waitingDuration },
+    travel: { nowTime, travelDuration, accessDuration },
   } = data;
 
   const departureName = getStationBySlug(request?.station)?.name;
@@ -70,7 +70,7 @@ const TimelineVerticalContainer = () => {
       delayDuration={delayDuration}
       delayStatus={delayStatus}
       travelDuration={travelDuration}
-      waitingDuration={waitingDuration}
+      accessDuration={accessDuration}
     />
   );
 };

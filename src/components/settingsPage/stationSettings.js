@@ -13,7 +13,7 @@ const StationSettings = ({ config }) => {
       />
       <KeyValueComponent
         keyName=" > Temps dans la gare pour atteindre le quai"
-        value={config && config.waitingDelaySeconds}
+        value={config && config.accessDurationSeconds}
         unit="secondes"
       />
     </>

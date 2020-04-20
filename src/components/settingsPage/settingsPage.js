@@ -39,7 +39,7 @@ const SettingsPage = () => {
       setStationConfiguration({
         station: "chatelet+les+halles",
         travelDurationSeconds: 10 * 60 + 25,
-        waitingDelaySeconds: 100,
+        accessDurationSeconds: 100,
       })
     );
   }, [dispatch]);

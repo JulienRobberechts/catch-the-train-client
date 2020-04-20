@@ -39,7 +39,7 @@ describe("slice timeTable", () => {
     const sampleStationConfiguration = {
       station: "chatelet+les+halles",
       travelDurationSeconds: 555,
-      waitingDelaySeconds: 77,
+      accessDurationSeconds: 77,
     };
     const sampleRequestRerAChatelet = {
       network: "rers",

@@ -7,7 +7,7 @@ export function enhanceDeparture(
   nowTime,
   onTimeMarginDelaySeconds,
   travelDuration,
-  waitingDuration
+  accessDuration
 ) {
   const departureTime = moment.parseZone(departure.departureTime);
 
@@ -17,7 +17,7 @@ export function enhanceDeparture(
     nowTime,
     departureTime,
     travelDuration,
-    waitingDuration,
+    accessDuration,
   });
 
   const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);

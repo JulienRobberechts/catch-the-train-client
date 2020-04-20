@@ -18,8 +18,8 @@ export default function enhanceTimeTable({
   const travelDuration = moment.duration({
     seconds: stationConfiguration.travelDurationSeconds,
   });
-  const waitingDuration = moment.duration({
-    seconds: stationConfiguration.waitingDelaySeconds,
+  const accessDuration = moment.duration({
+    seconds: stationConfiguration.accessDurationSeconds,
   });
 
   if (!currentTime) return { currentDeparture: null };
@@ -34,7 +34,7 @@ export default function enhanceTimeTable({
       travel: {
         nowTime,
         travelDuration,
-        waitingDuration,
+        accessDuration,
       },
     };
 
@@ -54,7 +54,7 @@ export default function enhanceTimeTable({
       nowTime,
       onTimeMarginDelaySeconds,
       travelDuration,
-      waitingDuration
+      accessDuration
     )
   );
 
@@ -66,7 +66,7 @@ export default function enhanceTimeTable({
     travel: {
       nowTime,
       travelDuration,
-      waitingDuration,
+      accessDuration,
     },
     enhancedDepartures,
   };

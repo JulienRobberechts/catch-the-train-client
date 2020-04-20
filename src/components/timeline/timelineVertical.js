@@ -16,11 +16,11 @@ const TimelineVertical = ({
   delayDuration,
   delayStatus,
   travelDuration,
-  waitingDuration,
+  accessDuration,
 }) => {
   const getSizeRatio = getSizeRatioFor(departureDuration);
   const travelDurationPercentage = getSizeRatio(travelDuration);
-  const waitingDurationPercentage = getSizeRatio(waitingDuration);
+  const accessDurationPercentage = getSizeRatio(accessDuration);
   const delayDurationPercentage = getSizeRatio(delayDuration);
 
   return (
@@ -51,10 +51,10 @@ const TimelineVertical = ({
               largeSpace={delayDurationPercentage > 25}
             />
           </DelayBoxLayout>
-          <WaitingBoxLayout percentage={waitingDurationPercentage}>
+          <WaitingBoxLayout percentage={accessDurationPercentage}>
             <WaitingBox
-              waitingDuration={waitingDuration}
-              largeSpace={waitingDurationPercentage > 25}
+              accessDuration={accessDuration}
+              largeSpace={accessDurationPercentage > 25}
             />
           </WaitingBoxLayout>
           <TravelBoxLayout percentage={travelDurationPercentage}>
