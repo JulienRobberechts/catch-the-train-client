@@ -3,20 +3,27 @@
 exports[`dataAccess importMissionsCodes should import Missions codes 1`] = `
 Array [
   "NANI",
+  "NATO",
+  "NELY",
+  "NEMO",
   "NOTE",
   "QIKI",
+  "QUDO",
+  "QURE",
+  "QYAN",
+  "QYLT",
   "TAXE",
   "TEDI",
+  "TERI",
+  "TETE",
   "UPAC",
+  "UPUS",
+  "UZAR",
   "UZEL",
   "ZEBU",
-  "ZULI",
+  "ZEMA",
   "ZEUS",
-  "UPUS",
-  "TERI",
-  "QYAN",
-  "NELY",
-  "QUDO",
+  "ZULI",
 ]
 `;
 
