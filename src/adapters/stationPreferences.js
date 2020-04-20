@@ -12,8 +12,8 @@ export function getStationPreferences() {
 
   return {
     station: departure,
-    travelDuration: localStorage.getItem(lsStationTravelDuration),
-    accessDuration: localStorage.getItem(lsStationAccessDuration),
+    travelDuration: localStorage.getItem(lsStationTravelDuration) ?? undefined,
+    accessDuration: localStorage.getItem(lsStationAccessDuration) ?? undefined,
   };
 }
 
