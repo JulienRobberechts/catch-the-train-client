@@ -11,24 +11,17 @@ describe("journey services", () => {
 
   describe("getMissions", () => {
     each([
-      ["cergy+prefecture", "houilles", ["NANI", "QYAN"]],
-      ["chatelet+les+halles", "sucy+bonneuil", ["NANI", "NOTE", "NELY"]],
-      ["maisons+laffitte", "nation", ["NANI", "NOTE", "QYAN", "QUDO"]],
+      ["cergy+prefecture", "houilles", ["NANI", "QYAN", "NATO", "QYLT"]],
       [
-        "auber",
-        "gare+de+lyon",
-        ["NANI", "NOTE", "QIKI", "QYAN", "NELY", "QUDO"],
-      ],
-      [
-        "charles+de+gaulle+etoile",
-        "marne+la+vallee+chessy",
-        ["QIKI", "QYAN", "QUDO"],
+        "chatelet+les+halles",
+        "sucy+bonneuil",
+        ["NANI", "NOTE", "NATO", "NELY", "NEMO"],
       ],
     ]).test(
       "should get missions from '%s' to '%s'",
       (departure, arrival, expectedMissions) => {
         const actualMissions = getMissions(departure, arrival);
-        expect(actualMissions).toEqual(expectedMissions);
+        expect(actualMissions.sort()).toEqual(expectedMissions.sort());
       }
     );
   });
