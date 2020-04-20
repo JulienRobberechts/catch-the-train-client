@@ -13,29 +13,6 @@ import {
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { setStationConfiguration } from "../../domains/toTheStation/slice";
-// const buildUrl = ({ network, line, departure, destination }) => {
-//   const missions = getMissions(departure, destination);
-//   const missionParam = missions.join(",");
-//   return `/${network}/${line}/${departure}?missions=${missionParam}`;
-// };
-
-// const getUrl = (data) => {
-//   return buildUrl({
-//     network: "rers",
-//     line: "A",
-//     departure: data.departure.value,
-//     destination: data.destination.value,
-//   });
-// };
-
-// const saveJourney = (data) => {
-//   setJourney({
-//     network: "rers",
-//     line: "A",
-//     departure: data?.departure.value,
-//     destination: data?.destination.value,
-//   });
-// };
 
 const validationSchema = yup.object({
   travelDuration: yup

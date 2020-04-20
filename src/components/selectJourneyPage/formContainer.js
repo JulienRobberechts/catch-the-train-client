@@ -9,22 +9,6 @@ import { getStationBySlug } from "../../domains/journey/service";
 import { getJourney, setJourney } from "../../adapters/journey";
 import { setRequest } from "../../domains/timeTable/slice";
 
-// import { getMissions } from "../../domains/journey/service";
-// const buildUrl = ({ network, line, departure, destination }) => {
-//   const missions = getMissions(departure, destination);
-//   const missionParam = missions.join(",");
-//   return `/${network}/${line}/${departure}?missions=${missionParam}`;
-// };
-
-// const getUrl = (data) => {
-//   return buildUrl({
-//     network: "rers",
-//     line: "A",
-//     departure: data.departure.value,
-//     destination: data.destination.value,
-//   });
-// };
-
 const saveAndNavigate = (dispatch, pushMethod) => (data) => {
   const journey = {
     network: "rers",
