@@ -6,13 +6,13 @@ import { useHistory } from "react-router-dom";
 import StationPreferenceForm from "./form";
 
 import {
-  getStationPreferences,
   setStationTravelDuration,
   setStationAccessDuration,
 } from "../../adapters/stationPreferences";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setStationConfiguration } from "../../domains/toTheStation/slice";
+import { selectStationConfiguration } from "../../domains/toTheStation/selectors";
 
 const validationSchema = yup.object({
   travelDuration: yup
@@ -46,21 +46,25 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
   pushMethod("/next-train");
 };
 
-const getFormInitialValues = () => {
-  const {
-    travelDuration = "600",
-    accessDuration = "120",
-  } = getStationPreferences();
+// const getFormInitialValues = () => {
+//   const {
+//     travelDuration = "600",
+//     accessDuration = "120",
+//   } = getStationPreferences();
 
-  return {
-    travelDuration,
-    accessDuration,
-  };
-};
+//   return {
+//     travelDuration,
+//     accessDuration,
+//   };
+// };
 
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
+  const initialStationPreferences = useSelector(selectStationConfiguration) ?? {
+    travelDuration: 600,
+    accessDuration: 120,
+  };
 
   // TODO Use selector
   const station = "chatelet+les+halles";
@@ -72,7 +76,7 @@ const SelectionPage = () => {
       </Helmet>
       <ContentLayout>
         <StyledFormik
-          initialValues={getFormInitialValues()}
+          initialValues={initialStationPreferences}
           onSubmit={saveAndNavigateToNextTrain(station, dispatch, push)}
           validationSchema={validationSchema}
           enableReinitialize
