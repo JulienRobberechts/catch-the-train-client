@@ -38,7 +38,6 @@ export const slice = createSlice({
       state.userConfiguration = action.payload;
     },
     setStationConfiguration: (state, action) => {
-      state.stationConfiguration = action.payload;
       const { station, ...props } = action.payload || {};
       if (station) {
         state.stationConfigurations[station] = { ...props };
