@@ -1,13 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
 import { getStationBySlug } from "../../domains/journey/service";
-import { getJourney, setJourney } from "../../adapters/journey";
+import { setJourney } from "../../adapters/journey";
 import { setRequest } from "../../domains/timeTable/slice";
+import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 
 const saveAndNavigate = (dispatch, pushMethod) => (data) => {
   const journey = {
@@ -16,8 +17,8 @@ const saveAndNavigate = (dispatch, pushMethod) => (data) => {
     departure: data?.departure.value,
     destination: data?.destination.value,
   };
-  setJourney(journey);
   dispatch(setRequest(journey));
+  setJourney(journey);
   pushMethod("/preferences");
 };
 
@@ -34,11 +35,8 @@ const stationToOption = (station) => ({
   value: station?.slug,
 });
 
-const getInitialJourney = () => {
-  const {
-    departure: departureValue,
-    destination: destinationValue,
-  } = getJourney();
+const requestToOptions = (request) => {
+  const { departure: departureValue, destination: destinationValue } = request;
 
   const departureStation = getStationBySlug(departureValue);
   const departureOption = departureStation
@@ -59,6 +57,8 @@ const getInitialJourney = () => {
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
+
+  const request = useSelector(selectTimeTableRequest);
   // useEffect(()=> {
   //   dispatch()
   // }, [dispatch]);
@@ -69,7 +69,7 @@ const SelectionPage = () => {
       </Helmet>
       <ContentLayout>
         <StyledFormik
-          initialValues={getInitialJourney()}
+          initialValues={requestToOptions(request)}
           onSubmit={saveAndNavigate(dispatch, push)}
           enableReinitialize
         >

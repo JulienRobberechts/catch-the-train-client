@@ -4,17 +4,26 @@ import createSagaMiddleware from "redux-saga";
 import timeTableReducer from "./domains/timeTable/slice";
 import toTheStationReducer from "./domains/toTheStation/slice";
 import rootSaga from "./sagas";
+import { getJourney } from "./adapters/journey";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];
+const preloadedState = {
+  timeTable: {
+    request: getJourney(),
+  },
+  toTheStation: {},
+};
+
 const reducer = {
   timeTable: timeTableReducer,
-  toTheStation: toTheStationReducer
+  toTheStation: toTheStationReducer,
 };
 
 export default configureStore({
   reducer,
-  middleware
+  middleware,
+  preloadedState,
 });
 
 sagaMiddleware.run(rootSaga);
