@@ -45,7 +45,7 @@ describe("slice timeTable", () => {
         accessDurationSeconds: 77,
       },
     };
-    const sampleRequestRerAChatelet = {
+    const samplejourneyRerAChatelet = {
       network: "rers",
       line: "a",
       departure: "chatelet+les+halles",
@@ -54,16 +54,18 @@ describe("slice timeTable", () => {
     };
 
     const rootState = {
+      journey: samplejourneyRerAChatelet,
+      station: {
+        userConfiguration: sampleUserConfiguration,
+        stationConfigurations: sampleStationConfigurations,
+      },
       toTheStation: {
         currentTime: "2020-03-10T09:13:30+01:00",
         currentTrainCode: "0924",
-        userConfiguration: sampleUserConfiguration,
-        stationConfigurations: sampleStationConfigurations,
       },
       timeTable: {
         loading: false,
         error: null,
-        request: sampleRequestRerAChatelet,
         data: {
           departures: sampleDepartures,
         },

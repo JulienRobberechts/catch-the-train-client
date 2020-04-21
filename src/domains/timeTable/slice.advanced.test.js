@@ -32,7 +32,6 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: false,
       error: false,
-      request: sampleRequestRerAChateletV1,
       data: {
         departures: sampleDeparturesV1,
       },
@@ -50,11 +49,6 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectCurrentJourney' should return data", () => {
-      expect(selectCurrentJourney(rootState)).toEqual(
-        sampleRequestRerAChateletV2
-      );
-    });
     it("'selectAllDepartures' should return V1", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV1);
     });
@@ -65,7 +59,6 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: true,
       error: false,
-      request: sampleRequestRerAChateletV1,
       data: {
         departures: sampleDeparturesV1,
       },
@@ -100,7 +93,6 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: true,
       error: false,
-      request: sampleRequestRerAChateletV1,
       data: {
         departures: sampleDeparturesV1,
       },
@@ -136,7 +128,6 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: false,
       error: "Error: invalid station",
-      request: sampleRequestRerAChateletV1,
       data: {
         departures: sampleDeparturesV1,
       },

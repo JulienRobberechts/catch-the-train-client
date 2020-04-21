@@ -64,7 +64,6 @@ describe("slice timeTable", () => {
     const stateBefore = {
       loading: true,
       error: false,
-      request: sampleRequestRerAChatelet,
       data: undefined,
     };
     beforeEach(() => {
