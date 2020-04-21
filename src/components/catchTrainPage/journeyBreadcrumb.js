@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
-import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
+import { selectTimeTableRequest } from "../../domains/journey/selectors";
 
 import {
   getLineByKey,

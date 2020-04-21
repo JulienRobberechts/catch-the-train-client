@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMissions } from "../journey/service";
+
 import { loadJourney } from "../../adapters/journey";
 
 export const initialState = {
@@ -12,11 +12,6 @@ export const slice = createSlice({
   reducers: {
     reset: (state) => {
       Object.assign(state, initialState);
-    },
-    setRequest: (state, action) => {
-      const { network, line, departure, destination } = action.payload;
-      const missions = getMissions(departure, destination).join(",");
-      state.request = { network, line, departure, destination, missions };
     },
     requestStart: (state, action) => {
       state.loading = true;

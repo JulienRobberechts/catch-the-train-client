@@ -8,11 +8,8 @@ import {
   setUserConfiguration,
 } from "../../domains/toTheStation/slice";
 import { getStationBySlug } from "../../domains/journey/service";
-import {
-  selectTimeTableRequest,
-  selectDepartureByTrainCode,
-} from "../../domains/timeTable/selectors";
-
+import { selectTimeTableRequest } from "../../domains/journey/selectors";
+import { selectDepartureByTrainCode } from "../../domains/timeTable/selectors";
 import CatchPage from "./page";
 
 const CatchPageContainer = () => {

@@ -4,11 +4,8 @@ import reducer, {
   requestError,
   requestSuccess,
 } from "./slice";
-import {
-  selectRequestStatus,
-  selectAllDepartures,
-  selectTimeTableRequest,
-} from "./selectors";
+import { selectRequestStatus, selectAllDepartures } from "./selectors";
+import { selectTimeTableRequest } from "../journey/selectors";
 
 const sampleRequestRerAChatelet = {
   network: "rers",

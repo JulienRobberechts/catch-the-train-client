@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
-import {
-  selectRequestStatus,
-  selectTimeTableRequest,
-} from "../../domains/timeTable/selectors";
-import ErrorPanel from "./errorPanel";
-import LoadingPanel from "./loadingPanel";
+import { selectRequestStatus } from "../../domains/timeTable/selectors";
+import { selectTimeTableRequest } from "../../domains/journey/selectors";
 import { getStationBySlug } from "../../domains/journey/service";
+import LoadingPanel from "./loadingPanel";
+import ErrorPanel from "./errorPanel";
 import TimelineVertical from "./timelineVertical";
 
 const TimelineVerticalContainer = () => {

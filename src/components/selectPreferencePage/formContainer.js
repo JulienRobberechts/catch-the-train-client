@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { setStationConfiguration } from "../../domains/toTheStation/slice";
 import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
-import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
+import { selectTimeTableRequest } from "../../domains/journey/selectors";
 
 const validationSchema = yup.object({
   travelDuration: yup

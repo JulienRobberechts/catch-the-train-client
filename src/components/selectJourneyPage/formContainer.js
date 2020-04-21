@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
 import { getStationBySlug } from "../../domains/journey/service";
 import { saveJourney } from "../../adapters/journey";
-import { setRequest } from "../../domains/timeTable/slice";
-import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
+import { setRequest } from "../../domains/journey/slice";
+import { selectTimeTableRequest } from "../../domains/journey/selectors";
 
 const saveAndNavigate = (dispatch, pushMethod) => (data) => {
   const journey = {
