@@ -8,7 +8,6 @@ import reducer, {
 
 import {
   selectUserConfiguration,
-  selectStationConfiguration,
   selectCurrentTrainCode,
   selectNow,
 } from "./selectors";
@@ -22,9 +21,6 @@ describe("slice toTheStation", () => {
     });
     it("'selectUserConfiguration' should not return data", () => {
       expect(selectUserConfiguration(rootState)).toBeFalsy();
-    });
-    it("'selectStationConfiguration' should not return data", () => {
-      expect(selectStationConfiguration(rootState)).toBeFalsy();
     });
     it("'selectCurrentTrainCode' should not return data", () => {
       expect(selectCurrentTrainCode(rootState)).toBeFalsy();
@@ -47,26 +43,6 @@ describe("slice toTheStation", () => {
     it("'selectUserConfiguration' should return results", () => {
       const actualUserConfiguration = selectUserConfiguration(rootState);
       expect(actualUserConfiguration).toEqual(userConfiguration);
-    });
-  });
-
-  describe("after setStationConfiguration", () => {
-    let rootState;
-    const stationConfiguration = {
-      station: "chatelet+les+halles",
-      travelDurationSeconds: 555,
-      accessDurationSeconds: 77,
-    };
-    beforeEach(() => {
-      const toTheStation = reducer(
-        initialState,
-        setStationConfiguration(stationConfiguration)
-      );
-      rootState = { toTheStation };
-    });
-    it("'selectStationConfiguration' should return results", () => {
-      const actualStationConfiguration = selectStationConfiguration(rootState);
-      expect(actualStationConfiguration).toEqual(stationConfiguration);
     });
   });
 

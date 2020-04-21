@@ -2,9 +2,9 @@ import { selectAllDepartures } from "../timeTable/selectors";
 import {
   selectNow,
   selectUserConfiguration,
-  selectStationConfiguration,
   selectCurrentTrainCode,
 } from "../toTheStation/selectors";
+import { selectCurrentStationConfiguration } from "./selectors";
 import { enhanceTimeTable } from "./pure";
 
 // ---------------------------------------------------
@@ -20,7 +20,7 @@ export const selectEnhancedTimeTable = (state) => {
   const currentTime = selectNow(state);
   const currentTrainCode = selectCurrentTrainCode(state);
   const userConfiguration = selectUserConfiguration(state);
-  const stationConfiguration = selectStationConfiguration(state);
+  const stationConfiguration = selectCurrentStationConfiguration(state);
 
   const timeTable = enhanceTimeTable({
     currentTime,

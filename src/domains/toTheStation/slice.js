@@ -37,6 +37,10 @@ export const slice = createSlice({
     },
     setStationConfiguration: (state, action) => {
       state.stationConfiguration = action.payload;
+      const { station, ...props } = action.payload || {};
+      if (station) {
+        state.stationConfigurations[station] = { ...props };
+      }
     },
     chooseTrain: (state, action) => {
       state.currentTrainCode = action.payload;

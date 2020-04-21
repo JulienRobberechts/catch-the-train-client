@@ -5,22 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { colors } from "../../design/colors";
 import techConfig from "../../config";
-import {
-  selectUserConfiguration,
-  selectStationConfiguration,
-} from "../../domains/toTheStation/selectors";
+import { selectUserConfiguration } from "../../domains/toTheStation/selectors";
+import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
 import { AppButtonLink, ButtonContainerTwo } from "../design-system/controls";
 import ServerSettings from "./serverSettings";
 import ClientSettings from "./clientSettings";
 import UserSettings from "./userSettings";
 import StationSettings from "./stationSettings";
-import {
-  setUserConfiguration,
-  setStationConfiguration,
-} from "../../domains/toTheStation/slice";
+import { setUserConfiguration } from "../../domains/toTheStation/slice";
 
 const SettingsPage = () => {
-  const stationConfiguration = useSelector(selectStationConfiguration);
+  const stationConfiguration = useSelector(selectCurrentStationConfiguration);
   const userConfiguration = useSelector(selectUserConfiguration);
 
   const dispatch = useDispatch();
@@ -30,16 +25,6 @@ const SettingsPage = () => {
       setUserConfiguration({
         onTimeMarginDelaySeconds: 50,
         timezone: "+01:00",
-      })
-    );
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(
-      setStationConfiguration({
-        station: "chatelet+les+halles",
-        travelDurationSeconds: 10 * 60 + 25,
-        accessDurationSeconds: 100,
       })
     );
   }, [dispatch]);

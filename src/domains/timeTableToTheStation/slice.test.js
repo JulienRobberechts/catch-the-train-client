@@ -39,10 +39,11 @@ describe("slice timeTable", () => {
       onTimeMarginDelaySeconds: 22,
       timezone: "+04:00",
     };
-    const sampleStationConfiguration = {
-      station: "chatelet+les+halles",
-      travelDurationSeconds: 555,
-      accessDurationSeconds: 77,
+    const sampleStationConfigurations = {
+      "chatelet+les+halles": {
+        travelDurationSeconds: 555,
+        accessDurationSeconds: 77,
+      },
     };
     const sampleRequestRerAChatelet = {
       network: "rers",
@@ -57,13 +58,7 @@ describe("slice timeTable", () => {
         currentTime: "2020-03-10T09:13:30+01:00",
         currentTrainCode: "0924",
         userConfiguration: sampleUserConfiguration,
-        stationConfiguration: sampleStationConfiguration,
-        stationConfigurations: {
-          "chatelet+les+halles": {
-            travelDurationSeconds: 555,
-            accessDurationSeconds: 77,
-          },
-        },
+        stationConfigurations: sampleStationConfigurations,
       },
       timeTable: {
         loading: false,

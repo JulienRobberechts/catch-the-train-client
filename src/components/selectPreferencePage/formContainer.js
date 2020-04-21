@@ -5,14 +5,11 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import StationPreferenceForm from "./form";
 
-import {
-  setStationTravelDuration,
-  setStationAccessDuration,
-} from "../../adapters/stationPreferences";
+import { saveSingleStationConfiguration } from "../../adapters/stationPreferences";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { setStationConfiguration } from "../../domains/toTheStation/slice";
-import { selectStationConfiguration } from "../../domains/toTheStation/selectors";
+import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
 import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 
 const validationSchema = yup.object({
@@ -33,8 +30,7 @@ const validationSchema = yup.object({
 const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
   data
 ) => {
-  setStationTravelDuration(data?.travelDuration);
-  setStationAccessDuration(data?.accessDuration);
+  saveSingleStationConfiguration(station, data);
 
   dispatch(
     setStationConfiguration({
@@ -51,7 +47,9 @@ const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   const request = useSelector(selectTimeTableRequest);
-  const currentStationPreferences = useSelector(selectStationConfiguration);
+  const currentStationPreferences = useSelector(
+    selectCurrentStationConfiguration
+  );
 
   const station = request?.departure;
 
@@ -64,11 +62,8 @@ const SelectionPage = () => {
     );
   }
 
-  const {
-    station: stationFromPref,
-    travelDuration,
-    accessDuration = 120,
-  } = currentStationPreferences;
+  const { travelDuration, accessDuration = 120 } =
+    currentStationPreferences || {};
   const initialStationPreferences = { travelDuration, accessDuration };
 
   return (
