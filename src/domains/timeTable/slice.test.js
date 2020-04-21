@@ -5,7 +5,7 @@ import reducer, {
   requestSuccess,
 } from "./slice";
 import { selectRequestStatus, selectAllDepartures } from "./selectors";
-import { selectTimeTableRequest } from "../journey/selectors";
+import { selectCurrentJourney } from "../journey/selectors";
 
 const sampleRequestRerAChatelet = {
   network: "rers",
@@ -25,8 +25,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeFalsy();
     });
-    it("'selectTimeTableRequest' should return falsy", () => {
-      expect(selectTimeTableRequest(rootState)).toBeFalsy();
+    it("'selectCurrentJourney' should return falsy", () => {
+      expect(selectCurrentJourney(rootState)).toBeFalsy();
     });
     it("'selectAllDepartures' should return an empty array", () => {
       expect(selectAllDepartures(rootState)).toEqual([]);
@@ -49,8 +49,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeFalsy();
     });
-    // it("'selectTimeTableRequest' should return data", () => {
-    //   expect(selectTimeTableRequest(rootState)).toEqual(
+    // it("'selectCurrentJourney' should return data", () => {
+    //   expect(selectCurrentJourney(rootState)).toEqual(
     //     sampleRequestRerAChatelet
     //   );
     // });
@@ -82,8 +82,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableRequest' should return results", () => {
-      expect(selectTimeTableRequest(rootState)).toEqual(
+    it("'selectCurrentJourney' should return results", () => {
+      expect(selectCurrentJourney(rootState)).toEqual(
         sampleRequestRerAChatelet
       );
     });
@@ -114,8 +114,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toEqual(error503);
       expect(actualStatus.hasData).toBeFalsy();
     });
-    it("'selectTimeTableRequest' should return results", () => {
-      expect(selectTimeTableRequest(rootState)).toBeFalsy();
+    it("'selectCurrentJourney' should return results", () => {
+      expect(selectCurrentJourney(rootState)).toBeFalsy();
     });
     it("'selectAllDepartures' should return an empty array", () => {
       expect(selectAllDepartures(rootState)).toEqual([]);

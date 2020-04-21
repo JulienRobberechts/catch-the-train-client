@@ -8,13 +8,13 @@ import {
   setUserConfiguration,
 } from "../../domains/toTheStation/slice";
 import { getStationBySlug } from "../../domains/journey/service";
-import { selectTimeTableRequest } from "../../domains/journey/selectors";
+import { selectCurrentJourney } from "../../domains/journey/selectors";
 import { selectDepartureByTrainCode } from "../../domains/timeTable/selectors";
 import CatchPage from "./page";
 
 const CatchPageContainer = () => {
   const dispatch = useDispatch();
-  const journey = useSelector(selectTimeTableRequest);
+  const journey = useSelector(selectCurrentJourney);
   const { train } = useParams();
 
   useEffect(() => {

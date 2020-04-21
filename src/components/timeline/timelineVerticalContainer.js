@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 import { selectRequestStatus } from "../../domains/timeTable/selectors";
-import { selectTimeTableRequest } from "../../domains/journey/selectors";
+import { selectCurrentJourney } from "../../domains/journey/selectors";
 import { getStationBySlug } from "../../domains/journey/service";
 import LoadingPanel from "./loadingPanel";
 import ErrorPanel from "./errorPanel";
@@ -12,7 +12,7 @@ import TimelineVertical from "./timelineVertical";
 const TimelineVerticalContainer = () => {
   const data = useSelector(selectEnhancedTimeTable);
   const requestStatus = useSelector(selectRequestStatus);
-  const currentJourney = useSelector(selectTimeTableRequest);
+  const currentJourney = useSelector(selectCurrentJourney);
 
   if (!data || !data.travel) {
     return <div>... no travel data </div>;

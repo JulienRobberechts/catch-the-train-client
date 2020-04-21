@@ -33,7 +33,6 @@ export const slice = createSlice({
 
 export const {
   reset,
-  setRequest,
   requestStart,
   requestSuccess,
   requestError,

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { useSelector } from "react-redux";
-import { selectTimeTableRequest } from "../../domains/journey/selectors";
+import { selectCurrentJourney } from "../../domains/journey/selectors";
 
 import {
   getLineByKey,
@@ -11,7 +11,7 @@ import {
 } from "../../domains/journey/service";
 
 const JourneyBreadcrumb = () => {
-  const journey = useSelector(selectTimeTableRequest);
+  const journey = useSelector(selectCurrentJourney);
 
   if (!journey) {
     return <Panel>...</Panel>;

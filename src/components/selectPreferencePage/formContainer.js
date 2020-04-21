@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { setStationConfiguration } from "../../domains/toTheStation/slice";
 import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
-import { selectTimeTableRequest } from "../../domains/journey/selectors";
+import { selectCurrentJourney } from "../../domains/journey/selectors";
 
 const validationSchema = yup.object({
   travelDuration: yup
@@ -46,7 +46,7 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const currentJourney = useSelector(selectTimeTableRequest);
+  const currentJourney = useSelector(selectCurrentJourney);
   const currentStationPreferences = useSelector(
     selectCurrentStationConfiguration
   );

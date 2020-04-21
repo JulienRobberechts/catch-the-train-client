@@ -14,7 +14,7 @@ export const slice = createSlice({
     reset: (state) => {
       Object.assign(state, initialState);
     },
-    setRequest: (state, action) => {
+    setCurrentJourney: (state, action) => {
       const { network, line, departure, destination } = action.payload;
       const missions = getMissions(departure, destination).join(",");
       state.request = { network, line, departure, destination, missions };
@@ -22,6 +22,6 @@ export const slice = createSlice({
   },
 });
 
-export const { reset, setRequest } = slice.actions;
+export const { reset, setCurrentJourney } = slice.actions;
 
 export default slice.reducer;

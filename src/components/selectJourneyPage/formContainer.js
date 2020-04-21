@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
 import { getStationBySlug } from "../../domains/journey/service";
 import { saveJourney } from "../../adapters/journey";
-import { setRequest } from "../../domains/journey/slice";
-import { selectTimeTableRequest } from "../../domains/journey/selectors";
+import { setCurrentJourney } from "../../domains/journey/slice";
+import { selectCurrentJourney } from "../../domains/journey/selectors";
 
 const saveAndNavigate = (dispatch, pushMethod) => (data) => {
   const journey = {
@@ -17,7 +17,7 @@ const saveAndNavigate = (dispatch, pushMethod) => (data) => {
     departure: data?.departure.value,
     destination: data?.destination.value,
   };
-  dispatch(setRequest(journey));
+  dispatch(setCurrentJourney(journey));
   saveJourney(journey);
   pushMethod("/preferences");
 };
@@ -62,7 +62,7 @@ const journeyToOptions = (journey) => {
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const initialJourney = useSelector(selectTimeTableRequest);
+  const initialJourney = useSelector(selectCurrentJourney);
   return (
     <>
       <Helmet>

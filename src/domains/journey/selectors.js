@@ -1,3 +1,3 @@
-export const selectTimeTableRequest = (state) => {
+export const selectCurrentJourney = (state) => {
   return state?.timeTable?.request;
 };

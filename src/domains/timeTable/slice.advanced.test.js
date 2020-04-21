@@ -6,7 +6,7 @@ import reducer, {
 } from "./slice";
 
 import { selectRequestStatus, selectAllDepartures } from "./selectors";
-import { selectTimeTableRequest } from "../journey/selectors";
+import { selectCurrentJourney } from "../journey/selectors";
 
 const sampleRequestRerAChateletV1 = {
   network: "rers",
@@ -50,8 +50,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableRequest' should return data", () => {
-      expect(selectTimeTableRequest(rootState)).toEqual(
+    it("'selectCurrentJourney' should return data", () => {
+      expect(selectCurrentJourney(rootState)).toEqual(
         sampleRequestRerAChateletV2
       );
     });
@@ -85,8 +85,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableRequest' should return results", () => {
-      expect(selectTimeTableRequest(rootState)).toEqual(
+    it("'selectCurrentJourney' should return results", () => {
+      expect(selectCurrentJourney(rootState)).toEqual(
         sampleRequestRerAChateletV2
       );
     });
@@ -121,8 +121,8 @@ describe("slice timeTable", () => {
       // data are staying even though they are not corresponding to the error!
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableRequest' should return results", () => {
-      expect(selectTimeTableRequest(rootState)).toEqual(
+    it("'selectCurrentJourney' should return results", () => {
+      expect(selectCurrentJourney(rootState)).toEqual(
         sampleRequestRerAChateletV1
       );
     });
@@ -154,8 +154,8 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectTimeTableRequest' should return data", () => {
-      expect(selectTimeTableRequest(rootState)).toEqual(
+    it("'selectCurrentJourney' should return data", () => {
+      expect(selectCurrentJourney(rootState)).toEqual(
         sampleRequestRerAChateletV1
       );
     });
