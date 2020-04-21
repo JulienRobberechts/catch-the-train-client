@@ -30,13 +30,8 @@ const onSwitchStationValues = (formik) => () => {
 };
 
 const stationToOption = (station) => ({
-  key: station?.slug,
-  label: station?.name, // React-select
-  value: station?.slug, // React-select
-  text: station?.name,
-  target: {
-    value: station?.slug,
-  },
+  label: station?.name,
+  value: station?.slug,
 });
 
 const getInitialJourney = () => {
