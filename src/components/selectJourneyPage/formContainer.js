@@ -23,7 +23,6 @@ const saveAndNavigate = (dispatch, pushMethod) => (data) => {
 };
 
 const onSwitchStationValues = (formik) => () => {
-  console.log("formik.values", formik.values);
   const previousDeparture = formik.values.departure;
   const previousDestination = formik.values.destination;
   formik.setFieldValue("departure", previousDestination);
@@ -35,14 +34,14 @@ const stationToOption = (station) => ({
   value: station?.slug,
 });
 
-const requestToOptions = (request) => {
-  if (!request) {
+const journeyToOptions = (journey) => {
+  if (!journey) {
     return {
       departure: undefined,
       destination: undefined,
     };
   }
-  const { departure: departureValue, destination: destinationValue } = request;
+  const { departure: departureValue, destination: destinationValue } = journey;
 
   const departureStation = getStationBySlug(departureValue);
   const departureOption = departureStation
@@ -63,19 +62,15 @@ const requestToOptions = (request) => {
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-
-  const request = useSelector(selectTimeTableRequest);
-  // useEffect(()=> {
-  //   dispatch()
-  // }, [dispatch]);
+  const initialJourney = useSelector(selectTimeTableRequest);
   return (
     <>
       <Helmet>
-        <title>Selection</title>
+        <title>Trajet</title>
       </Helmet>
       <ContentLayout>
         <StyledFormik
-          initialValues={requestToOptions(request)}
+          initialValues={journeyToOptions(initialJourney)}
           onSubmit={saveAndNavigate(dispatch, push)}
           enableReinitialize
         >

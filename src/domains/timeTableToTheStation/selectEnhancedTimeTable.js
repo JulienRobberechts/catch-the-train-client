@@ -30,7 +30,5 @@ export const selectEnhancedTimeTable = (state) => {
     rawDepartures,
   });
 
-  // console.log(timeTable);
-
   return timeTable;
 };

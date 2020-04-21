@@ -46,12 +46,12 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const request = useSelector(selectTimeTableRequest);
+  const currentJourney = useSelector(selectTimeTableRequest);
   const currentStationPreferences = useSelector(
     selectCurrentStationConfiguration
   );
 
-  const station = request?.departure;
+  const station = currentJourney?.departure;
 
   if (!station) {
     return (
@@ -69,7 +69,7 @@ const SelectionPage = () => {
   return (
     <>
       <Helmet>
-        <title>Attraper le train</title>
+        <title>Station</title>
       </Helmet>
       <ContentLayout>
         <StyledFormik

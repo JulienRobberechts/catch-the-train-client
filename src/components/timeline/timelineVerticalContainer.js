@@ -13,7 +13,7 @@ import TimelineVertical from "./timelineVertical";
 const TimelineVerticalContainer = () => {
   const data = useSelector(selectEnhancedTimeTable);
   const requestStatus = useSelector(selectRequestStatus);
-  const request = useSelector(selectTimeTableRequest);
+  const currentJourney = useSelector(selectTimeTableRequest);
 
   if (!data || !data.travel) {
     return <div>... no travel data </div>;
@@ -23,7 +23,7 @@ const TimelineVerticalContainer = () => {
     travel: { nowTime, travelDuration, accessDuration },
   } = data;
 
-  const departureName = getStationBySlug(request?.station)?.name;
+  const departureName = getStationBySlug(currentJourney?.departure)?.name;
 
   // currentDeparture can be null for 2 reasons:
   // - stationConfiguration empty
@@ -59,8 +59,6 @@ const TimelineVerticalContainer = () => {
     delayDuration,
     delayStatus,
   } = departure;
-
-  // console.log("departure", { departure });
 
   return (
     <TimelineVertical

@@ -17,7 +17,6 @@ const InputField = ({ name, ...props }) => {
       {...props}
       value={field.value}
       onChange={(_e, data) => {
-        // console.log("onChange", { data });
         helpers.setValue(data.value);
       }}
       onBlur={() => {

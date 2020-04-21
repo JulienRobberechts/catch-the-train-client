@@ -13,7 +13,6 @@ describe("errorManagement", () => {
       "should have an entry for errorCode %o (in ErrorCodes.js)",
       (errorCode) => {
         const appError = getAppError(errorCode);
-        // console.log({ appError });
         expect(appError).toBeTruthy();
         expect(appError.code).toBe(errorCode);
         expect(appError.msg).toBeTruthy();

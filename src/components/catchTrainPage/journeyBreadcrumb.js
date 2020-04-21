@@ -11,12 +11,12 @@ import {
 } from "../../domains/journey/service";
 
 const JourneyBreadcrumb = () => {
-  const request = useSelector(selectTimeTableRequest);
+  const journey = useSelector(selectTimeTableRequest);
 
-  if (!request) {
+  if (!journey) {
     return <Panel>...</Panel>;
   }
-  const { network, line, departure, destination } = request;
+  const { network, line, departure, destination } = journey;
   const networkName = getNetworkByKey(network)?.name;
   const lineName = getLineByKey(line)?.name;
   const departureName = getStationBySlug(departure)?.name;

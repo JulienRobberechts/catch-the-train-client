@@ -14,12 +14,10 @@ export const initialState = {
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
   if (payload.calculateByInterval) {
-    // console.log("payload", { payload });
     const lastTime = moment.parseZone(payload.lastTime);
     const duration = moment.duration({ milliseconds: payload.refreshInterval });
     const nextTime = lastTime.add(duration);
     const currentTime = nextTime.format();
-    // console.log("currentTime in updateTime", currentTime);
     return { payload: { currentTime } };
   }
   const now = moment().format();
@@ -47,9 +45,7 @@ export const slice = createSlice({
       state.currentTrainCode = action.payload;
     },
     updateTime: (state, action) => {
-      const { currentTime } = action.payload;
-      // console.log("currentTime in updateTime", currentTime);
-      state.currentTime = currentTime;
+      state.currentTime = action?.payload?.currentTime;
     },
   },
 });

@@ -1,10 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
-import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
-import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
+
 import TimeTable from "./timetable";
+import { selectCurrentTrainCode } from "../../domains/toTheStation/selectors";
+import { selectEnhancedTimeTable } from "../../domains/timeTableToTheStation/selectors";
 
 const NUMBER_OF_DEPARTURE_VISIBLE = 3;
 
@@ -14,9 +14,7 @@ function TimeTableContainer() {
   const { enhancedDepartures } = useSelector(selectEnhancedTimeTable);
   const currentTrainCode = useSelector(selectCurrentTrainCode);
 
-  const request = useSelector(selectTimeTableRequest);
-
-  if (!enhancedDepartures || !request) {
+  if (!enhancedDepartures) {
     return <div>...</div>;
   }
 

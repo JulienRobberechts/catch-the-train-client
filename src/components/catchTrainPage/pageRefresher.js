@@ -10,9 +10,7 @@ const PageRefresher = ({ refreshInterval }) => {
   const dispatch = useDispatch();
   const lastTime = useSelector(selectNow);
   useEffect(() => {
-    // console.log("init setInterval");
     const interval = setInterval(() => {
-      // console.log("This will run every X second!");
       dispatch(
         updateTime({
           calculateByInterval: config.MOCK_TIME,
