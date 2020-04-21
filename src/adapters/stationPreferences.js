@@ -5,7 +5,7 @@ import {
 
 const LocalStorageKey_StationConfigurations = "stations";
 
-export function getStationConfigurations() {
+export function loadStationConfigurations() {
   return loadDataFromLocalStorage(LocalStorageKey_StationConfigurations) ?? {};
 }
 
@@ -14,7 +14,7 @@ export function saveStationConfigurations(configs) {
 }
 
 export function saveSingleStationConfiguration(station, stationConfig) {
-  const allConfigs = getStationConfigurations();
+  const allConfigs = loadStationConfigurations();
   allConfigs[station] = stationConfig;
   saveStationConfigurations(allConfigs);
 }
