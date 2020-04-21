@@ -46,28 +46,17 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
   pushMethod("/next-train");
 };
 
-// const getFormInitialValues = () => {
-//   const {
-//     travelDuration = "600",
-//     accessDuration = "120",
-//   } = getStationPreferences();
-
-//   return {
-//     travelDuration,
-//     accessDuration,
-//   };
-// };
-
 const SelectionPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const initialStationPreferences = useSelector(selectStationConfiguration) ?? {
-    travelDuration: 600,
-    accessDuration: 120,
-  };
+  const currentStationPreferences = useSelector(selectStationConfiguration);
 
-  // TODO Use selector
-  const station = "chatelet+les+halles";
+  const {
+    station,
+    travelDuration,
+    accessDuration = 120,
+  } = currentStationPreferences;
+  const initialStationPreferences = { travelDuration, accessDuration };
 
   return (
     <>
