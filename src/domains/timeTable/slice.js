@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getMissions } from "../journey/service";
-import { getJourney } from "../../adapters/journey";
+import { loadJourney } from "../../adapters/journey";
 
 export const initialState = {
-  request: getJourney(),
+  request: loadJourney(),
 };
 
 export const slice = createSlice({

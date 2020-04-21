@@ -4,10 +4,10 @@ import {
 } from "./localStorage";
 const LocalStorageKey_CurrentJourney = "journey";
 
-export function getJourney() {
+export function loadJourney() {
   return loadDataFromLocalStorage(LocalStorageKey_CurrentJourney) ?? undefined;
 }
 
-export function setJourney(item) {
+export function saveJourney(item) {
   saveDataIntoLocalStorage(LocalStorageKey_CurrentJourney, item);
 }

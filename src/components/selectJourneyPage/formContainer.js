@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
 import { getStationBySlug } from "../../domains/journey/service";
-import { setJourney } from "../../adapters/journey";
+import { saveJourney } from "../../adapters/journey";
 import { setRequest } from "../../domains/timeTable/slice";
 import { selectTimeTableRequest } from "../../domains/timeTable/selectors";
 
@@ -18,7 +18,7 @@ const saveAndNavigate = (dispatch, pushMethod) => (data) => {
     destination: data?.destination.value,
   };
   dispatch(setRequest(journey));
-  setJourney(journey);
+  saveJourney(journey);
   pushMethod("/preferences");
 };
 
