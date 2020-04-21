@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getMissions } from "../journey/service";
+import { getJourney } from "../../adapters/journey";
 
-export const initialState = {};
+export const initialState = {
+  request: getJourney(),
+};
 
 export const slice = createSlice({
   name: "timeTable",

@@ -1,6 +1,7 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import moment from "moment";
 import config from "../../config";
+import { getStationConfigurations } from "../../adapters/stationPreferences";
 
 const fakeNowString = config.MOCK_TIME
   ? "2020-03-10T09:22:30+01:00"
@@ -8,6 +9,7 @@ const fakeNowString = config.MOCK_TIME
 
 export const initialState = {
   currentTime: fakeNowString,
+  stationConfigurations: getStationConfigurations(),
 };
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
