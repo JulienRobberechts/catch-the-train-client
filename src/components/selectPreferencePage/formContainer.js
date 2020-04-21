@@ -8,7 +8,7 @@ import StationPreferenceForm from "./form";
 import { saveSingleStationConfiguration } from "../../adapters/stationPreferences";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { setStationConfiguration } from "../../domains/toTheStation/slice";
+import { setStationConfiguration } from "../../domains/station/slice";
 import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
 
@@ -30,13 +30,16 @@ const validationSchema = yup.object({
 const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
   data
 ) => {
-  saveSingleStationConfiguration(station, data);
+  // todo: check when not a number
+  const travelDuration = Number(data?.travelDuration);
+  const accessDuration = Number(data?.accessDuration);
+  const config = { travelDuration, accessDuration };
+  saveSingleStationConfiguration(station, config);
 
   dispatch(
     setStationConfiguration({
       station,
-      travelDurationSeconds: data?.travelDuration,
-      accessDurationSeconds: data?.accessDuration,
+      ...config,
     })
   );
 

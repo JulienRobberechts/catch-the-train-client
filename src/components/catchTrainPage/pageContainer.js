@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { requestStart } from "../../domains/timeTable/slice";
-import {
-  chooseTrain,
-  setUserConfiguration,
-} from "../../domains/toTheStation/slice";
+import { chooseTrain } from "../../domains/toTheStation/slice";
+import { setUserConfiguration } from "../../domains/station/slice";
 import { getStationBySlug } from "../../domains/journey/service";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
 import { selectDepartureByTrainCode } from "../../domains/timeTable/selectors";

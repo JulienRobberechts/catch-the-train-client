@@ -1,9 +1,6 @@
 import { selectAllDepartures } from "../timeTable/selectors";
-import {
-  selectNow,
-  selectUserConfiguration,
-  selectCurrentTrainCode,
-} from "../toTheStation/selectors";
+import { selectNow, selectCurrentTrainCode } from "../toTheStation/selectors";
+import { selectUserConfiguration } from "../station/selectors";
 import { selectCurrentStationConfiguration } from "./selectors";
 import { enhanceTimeTable } from "./pure";
 

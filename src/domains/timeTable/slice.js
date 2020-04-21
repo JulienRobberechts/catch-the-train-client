@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { loadJourney } from "../../adapters/journey";
-
-export const initialState = {
-  request: loadJourney(),
-};
+export const initialState = {};
 
 export const slice = createSlice({
   name: "timeTable",

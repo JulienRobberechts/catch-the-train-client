@@ -1,3 +1,3 @@
 export const selectCurrentJourney = (state) => {
-  return state?.timeTable?.request;
+  return state?.journey?.request;
 };

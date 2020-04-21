@@ -1,7 +1,6 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import moment from "moment";
 import config from "../../config";
-import { loadStationConfigurations } from "../../adapters/stationPreferences";
 
 const fakeNowString = config.MOCK_TIME
   ? "2020-03-10T09:22:30+01:00"
@@ -9,7 +8,6 @@ const fakeNowString = config.MOCK_TIME
 
 export const initialState = {
   currentTime: fakeNowString,
-  stationConfigurations: loadStationConfigurations(),
 };
 
 export const updateTime = createAction("toTheStation/updateTime", (payload) => {
@@ -32,15 +30,6 @@ export const slice = createSlice({
       Object.assign(state, initialState);
       state.currentTime = fakeNowString;
     },
-    setUserConfiguration: (state, action) => {
-      state.userConfiguration = action.payload;
-    },
-    setStationConfiguration: (state, action) => {
-      const { station, ...props } = action.payload || {};
-      if (station) {
-        state.stationConfigurations[station] = { ...props };
-      }
-    },
     chooseTrain: (state, action) => {
       state.currentTrainCode = action.payload;
     },
@@ -50,11 +39,6 @@ export const slice = createSlice({
   },
 });
 
-export const {
-  reset,
-  setStationConfiguration,
-  setUserConfiguration,
-  chooseTrain,
-} = slice.actions;
+export const { reset, chooseTrain } = slice.actions;
 
 export default slice.reducer;

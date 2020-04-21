@@ -1,16 +1,5 @@
-import reducer, {
-  initialState,
-  setUserConfiguration,
-  setStationConfiguration,
-  chooseTrain,
-  updateTime,
-} from "./slice";
-
-import {
-  selectUserConfiguration,
-  selectCurrentTrainCode,
-  selectNow,
-} from "./selectors";
+import reducer, { initialState, chooseTrain, updateTime } from "./slice";
+import { selectCurrentTrainCode, selectNow } from "./selectors";
 
 describe("slice toTheStation", () => {
   describe("initial state", () => {
@@ -19,30 +8,8 @@ describe("slice toTheStation", () => {
       const now = selectNow(rootState);
       expect(now).toBeTruthy();
     });
-    it("'selectUserConfiguration' should not return data", () => {
-      expect(selectUserConfiguration(rootState)).toBeFalsy();
-    });
     it("'selectCurrentTrainCode' should not return data", () => {
       expect(selectCurrentTrainCode(rootState)).toBeFalsy();
-    });
-  });
-
-  describe("after setUserConfiguration", () => {
-    let rootState;
-    const userConfiguration = {
-      onTimeMarginDelaySeconds: 22,
-      timezone: "+04:00",
-    };
-    beforeEach(() => {
-      const toTheStation = reducer(
-        initialState,
-        setUserConfiguration(userConfiguration)
-      );
-      rootState = { toTheStation };
-    });
-    it("'selectUserConfiguration' should return results", () => {
-      const actualUserConfiguration = selectUserConfiguration(rootState);
-      expect(actualUserConfiguration).toEqual(userConfiguration);
     });
   });
 
