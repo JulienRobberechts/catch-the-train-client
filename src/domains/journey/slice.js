@@ -4,7 +4,7 @@ import { getMissions } from "./service";
 import { loadJourney } from "../../adapters/journey";
 
 export const initialState = {
-  request: loadJourney(),
+  ...loadJourney(),
 };
 
 export const slice = createSlice({
@@ -17,7 +17,11 @@ export const slice = createSlice({
     setCurrentJourney: (state, action) => {
       const { network, line, departure, destination } = action.payload;
       const missions = getMissions(departure, destination).join(",");
-      state.request = { network, line, departure, destination, missions };
+      state.network = network;
+      state.line = line;
+      state.departure = departure;
+      state.destination = destination;
+      state.missions = missions;
     },
   },
 });
