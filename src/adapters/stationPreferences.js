@@ -1,8 +1,25 @@
+import {
+  loadDataFromLocalStorage,
+  saveDataIntoLocalStorage,
+} from "./localStorage";
+
 // Local storage keys
 const lsDeparture = "departure";
 const lsStationTravelDurationPrefix = "travel-";
 const lsStationAccessDurationPrefix = "access-";
 
+const LocalStorageKey_StationConfigurations = "stations";
+
+// TO USE
+export function getStationConfigurations() {
+  return loadDataFromLocalStorage(LocalStorageKey_StationConfigurations) ?? {};
+}
+
+export function saveStationConfigurations(config) {
+  saveDataIntoLocalStorage(LocalStorageKey_StationConfigurations, config);
+}
+
+// to remove
 export function getStationPreferences() {
   const departure = localStorage.getItem(lsDeparture);
   if (!departure) return {};
