@@ -36,6 +36,12 @@ const stationToOption = (station) => ({
 });
 
 const requestToOptions = (request) => {
+  if (!request) {
+    return {
+      departure: undefined,
+      destination: undefined,
+    };
+  }
   const { departure: departureValue, destination: destinationValue } = request;
 
   const departureStation = getStationBySlug(departureValue);
