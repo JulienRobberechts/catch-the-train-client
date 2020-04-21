@@ -13,7 +13,10 @@ const preloadedState = {
   timeTable: {
     request: getJourney(),
   },
-  toTheStation: { stationConfiguration: getStationPreferences() },
+  toTheStation: {
+    stationConfiguration: getStationPreferences(),
+    stationConfigurations: {},
+  },
 };
 
 const reducer = {

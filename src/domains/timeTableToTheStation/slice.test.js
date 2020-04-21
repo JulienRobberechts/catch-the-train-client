@@ -1,6 +1,9 @@
 import { initialState as timeTableInitialState } from "../timeTable/slice";
 import { initialState as toTheStationInitialState } from "../toTheStation/slice";
-import { selectEnhancedTimeTable } from "./selectors";
+import {
+  selectEnhancedTimeTable,
+  selectCurrentStationConfiguration,
+} from "./selectors";
 
 const sampleDepartures = [
   {
@@ -44,7 +47,8 @@ describe("slice timeTable", () => {
     const sampleRequestRerAChatelet = {
       network: "rers",
       line: "a",
-      station: "chatelet+les+halles",
+      departure: "chatelet+les+halles",
+      destination: "auber",
       missions: ["ZEBU"],
     };
 
@@ -54,6 +58,12 @@ describe("slice timeTable", () => {
         currentTrainCode: "0924",
         userConfiguration: sampleUserConfiguration,
         stationConfiguration: sampleStationConfiguration,
+        stationConfigurations: {
+          "chatelet+les+halles": {
+            travelDurationSeconds: 555,
+            accessDurationSeconds: 77,
+          },
+        },
       },
       timeTable: {
         loading: false,
@@ -69,6 +79,14 @@ describe("slice timeTable", () => {
       expect(actualEnhancedTimeTable).toBeTruthy();
       expect(actualEnhancedTimeTable.enhancedDepartures.length).toBe(2);
       expect(actualEnhancedTimeTable).toMatchSnapshot();
+    });
+    it("'selectCurrentStationConfiguration' should MatchSnapshot", () => {
+      const actualCurrentStationConfiguration = selectCurrentStationConfiguration(
+        rootState
+      );
+      expect(actualCurrentStationConfiguration).toBeTruthy();
+      expect(actualCurrentStationConfiguration.travelDurationSeconds).toBe(555);
+      expect(actualCurrentStationConfiguration.accessDurationSeconds).toBe(77);
     });
   });
 });
