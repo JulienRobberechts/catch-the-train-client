@@ -9,6 +9,7 @@ import { getStationBySlug } from "../../domains/journey/service";
 import { saveJourney } from "../../adapters/journey";
 import { setCurrentJourney } from "../../domains/journey/slice";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
+import { getMissions } from "../../domains/journey/service";
 
 const saveAndNavigate = (dispatch, pushMethod) => (data) => {
   const journey = {
@@ -17,7 +18,10 @@ const saveAndNavigate = (dispatch, pushMethod) => (data) => {
     departure: data?.departure.value,
     destination: data?.destination.value,
   };
-  dispatch(setCurrentJourney(journey));
+  const missions = getMissions(journey.departure, journey.destination).join(
+    ","
+  );
+  dispatch(setCurrentJourney({ ...journey, missions }));
   saveJourney(journey);
   pushMethod("/preferences");
 };

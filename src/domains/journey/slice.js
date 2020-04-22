@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getMissions } from "./service";
 import { loadJourney } from "../../adapters/journey";
 
 export const initialState = {
@@ -15,8 +14,13 @@ export const slice = createSlice({
       Object.assign(state, initialState);
     },
     setCurrentJourney: (state, action) => {
-      const { network, line, departure, destination } = action.payload;
-      const missions = getMissions(departure, destination).join(",");
+      const {
+        network,
+        line,
+        departure,
+        destination,
+        missions,
+      } = action.payload;
       state.network = network;
       state.line = line;
       state.departure = departure;

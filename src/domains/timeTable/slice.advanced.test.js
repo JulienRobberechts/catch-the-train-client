@@ -6,24 +6,8 @@ import reducer, {
 } from "./slice";
 
 import { selectRequestStatus, selectAllDepartures } from "./selectors";
-import { selectCurrentJourney } from "../journey/selectors";
-
-const sampleRequestRerAChateletV1 = {
-  network: "rers",
-  line: "a",
-  station: "chatelet+les+halles",
-  missions: ["ZEBU"],
-};
 
 const sampleDeparturesV1 = [{ trainCode: "T1" }, { trainCode: "T2" }];
-
-const sampleRequestRerAChateletV2 = {
-  network: "rers",
-  line: "a",
-  station: "chatelet+les+halles",
-  missions: ["ZEBU"],
-};
-
 const sampleDeparturesV2 = [{ trainCode: "T2" }, { trainCode: "T3" }];
 
 describe("slice timeTable", () => {
@@ -37,10 +21,7 @@ describe("slice timeTable", () => {
       },
     };
     beforeEach(() => {
-      const timeTable = reducer(
-        stateBefore,
-        requestStart(sampleRequestRerAChateletV2)
-      );
+      const timeTable = reducer(stateBefore, requestStart());
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
@@ -123,10 +104,7 @@ describe("slice timeTable", () => {
       },
     };
     beforeEach(() => {
-      const timeTable = reducer(
-        stateBefore,
-        requestStart(sampleRequestRerAChateletV1)
-      );
+      const timeTable = reducer(stateBefore, requestStart());
       rootState = { timeTable };
     });
     it("'selectRequestStatus' should return results", () => {
