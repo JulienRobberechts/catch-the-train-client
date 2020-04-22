@@ -10,7 +10,9 @@ describe("slice station", () => {
   describe("initial state", () => {
     const rootState = { station: initialState };
     it("'selectUserConfiguration' should not return data", () => {
-      expect(selectUserConfiguration(rootState)).toBeFalsy();
+      const actualUserConfig = selectUserConfiguration(rootState);
+      expect(actualUserConfig).toBeTruthy();
+      expect(actualUserConfig.onTimeMarginDelaySeconds).toBe(50);
     });
   });
 

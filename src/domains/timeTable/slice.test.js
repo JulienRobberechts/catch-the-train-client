@@ -81,11 +81,6 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectCurrentJourney' should return results", () => {
-      expect(selectCurrentJourney(rootState)).toEqual(
-        sampleRequestRerAChatelet
-      );
-    });
     it("'selectAllDepartures' should return results", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDepartures);
     });

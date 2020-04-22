@@ -78,11 +78,6 @@ describe("slice timeTable", () => {
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectCurrentJourney' should return results", () => {
-      expect(selectCurrentJourney(rootState)).toEqual(
-        sampleRequestRerAChateletV2
-      );
-    });
     it("'selectAllDepartures' should return V2", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV2);
     });
@@ -113,11 +108,6 @@ describe("slice timeTable", () => {
       // data are staying even though they are not corresponding to the error!
       expect(actualStatus.hasData).toBeTruthy();
     });
-    it("'selectCurrentJourney' should return results", () => {
-      expect(selectCurrentJourney(rootState)).toEqual(
-        sampleRequestRerAChateletV1
-      );
-    });
     it("'selectAllDepartures' should return V1", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV1);
     });
@@ -144,11 +134,6 @@ describe("slice timeTable", () => {
       expect(actualStatus.loading).toBeTruthy();
       expect(actualStatus.error).toBeFalsy();
       expect(actualStatus.hasData).toBeTruthy();
-    });
-    it("'selectCurrentJourney' should return data", () => {
-      expect(selectCurrentJourney(rootState)).toEqual(
-        sampleRequestRerAChateletV1
-      );
     });
     it("'selectAllDepartures' should return V1", () => {
       expect(selectAllDepartures(rootState)).toEqual(sampleDeparturesV1);
