@@ -44,7 +44,7 @@ function App() {
                 <SelectPreferencePage />
               </Route>
               <Route path="/next-train">
-                <AppTitle title="Prochains train" />
+                <AppTitle title="Prochains trains" />
                 <CatchTrainRoutes />
               </Route>
               <Redirect to="/start" />
