@@ -25,7 +25,7 @@ const ErrorMessages = [
   {
     code: ErrorCodes.ERROR_503_SERVER_NOT_AVAILABLE,
     msg:
-      "L'application n'est pas disponible pour l'instant. Merci de re tenter plus tard.",
+      "L'application n'est pas disponible pour l'instant. Merci de retenter plus tard.",
     level: ErrorLevels.LOW,
   },
   {

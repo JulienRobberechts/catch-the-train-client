@@ -6,7 +6,7 @@ const errorCases = {
     incomingError: { errorCode: 503 },
     expectedUiError: {
       message1: "L'application n'est pas disponible pour l'instant.",
-      message2: "Merci de re tenter plus tard.",
+      message2: "Merci de retenter plus tard.",
       icon: "UnavailableErrorIcon",
       colorKey: "original",
     },
