@@ -2,12 +2,14 @@
 
 exports[`dataAccess importMissionsCodes should import Missions codes 1`] = `
 Array [
+  "TAPI",
   "NANI",
   "NATO",
   "NELY",
   "NEMO",
   "NOTE",
   "QIKI",
+  "QIWI",
   "QUDO",
   "QURE",
   "QYAN",
