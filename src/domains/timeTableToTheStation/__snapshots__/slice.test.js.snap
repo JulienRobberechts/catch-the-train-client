@@ -9,7 +9,7 @@ Object {
   "enhancedDepartures": Array [
     Object {
       "delayDuration": "-PT2S",
-      "delayStatus": "ontime",
+      "delayStatus": "on-time",
       "departureDuration": "PT10M30S",
       "departureTime": "2020-03-10T08:24:00.000Z",
       "index": 0,
