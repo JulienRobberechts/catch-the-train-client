@@ -4,8 +4,12 @@ import { updateTime } from "../../domains/toTheStation/slice";
 import { selectNow } from "../../domains/toTheStation/selectors";
 import config from "../../config";
 
+interface Props {
+  refreshInterval: number;
+}
+
 // to transform into hooks
-const PageRefresher = ({ refreshInterval }) => {
+const PageRefresher: React.FC<Props> = ({ refreshInterval }) => {
   // update the time every 1s
   const dispatch = useDispatch();
   const lastTime = useSelector(selectNow);

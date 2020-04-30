@@ -13,7 +13,7 @@ import { Search as SearchIcon } from "../../design/icons";
 const refreshInterval = config.DISABLE_TIME_UPDATE ? 36000000 : 1000;
 
 interface Props {
-  stationName: string;
+  stationName?: string;
 }
 
 const CatchPage: React.FC<Props> = ({ stationName }) => {
