@@ -12,11 +12,15 @@ import { Search as SearchIcon } from "../../design/icons";
 
 const refreshInterval = config.DISABLE_TIME_UPDATE ? 36000000 : 1000;
 
-const CatchPage = ({ station }) => {
+interface Props {
+  stationName: string;
+}
+
+const CatchPage: React.FC<Props> = ({ stationName }) => {
   return (
     <>
       <Helmet>
-        <title>Prochain trains - {station ?? "..."}</title>
+        <title>Prochain trains - {stationName ?? "..."}</title>
       </Helmet>
       <PageRefresher refreshInterval={refreshInterval} />
       <TopSection>

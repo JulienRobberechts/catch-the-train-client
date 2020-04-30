@@ -38,7 +38,7 @@ const CatchPageContainer = () => {
 
   const stationName = getStationBySlug(journey?.station)?.name;
 
-  return <CatchPage station={stationName} />;
+  return <CatchPage stationName={stationName} />;
 };
 
 export default CatchPageContainer;
