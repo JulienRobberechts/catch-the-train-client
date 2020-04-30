@@ -6,7 +6,11 @@ import { SettingsIcon } from "../../design/icons";
 import { Link } from "react-router-dom";
 import AppLogo from "./appLogo";
 
-const AppTitle = ({ title }) => {
+interface Props {
+  title: string;
+}
+
+const AppTitle: React.FC<Props> = ({ title }) => {
   return (
     <>
       <Helmet>
