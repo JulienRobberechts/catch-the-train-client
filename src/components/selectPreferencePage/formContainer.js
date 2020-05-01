@@ -31,9 +31,9 @@ const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
   data
 ) => {
   // todo: check when not a number
-  const travelDuration = Number(data?.travelDuration);
-  const accessDuration = Number(data?.accessDuration);
-  const config = { travelDuration, accessDuration };
+  const travelDurationSeconds = Number(data?.travelDurationSeconds);
+  const accessDurationSeconds = Number(data?.accessDurationSeconds);
+  const config = { travelDurationSeconds, accessDurationSeconds };
   saveSingleStationConfiguration(station, config);
 
   dispatch(
@@ -65,9 +65,12 @@ const SelectionPage = () => {
     );
   }
 
-  const { travelDuration, accessDuration = 120 } =
+  const { travelDurationSeconds, accessDurationSeconds = 120 } =
     currentStationPreferences || {};
-  const initialStationPreferences = { travelDuration, accessDuration };
+  const initialStationPreferences = {
+    travelDurationSeconds,
+    accessDurationSeconds,
+  };
 
   return (
     <>

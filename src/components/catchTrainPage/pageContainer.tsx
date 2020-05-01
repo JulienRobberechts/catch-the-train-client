@@ -36,7 +36,7 @@ const CatchPageContainer = () => {
     dispatch(chooseTrain(trainDeparture?.trainCode));
   }, [dispatch, trainDeparture]);
 
-  const stationName = getStationBySlug(journey?.station)?.name;
+  const stationName = getStationBySlug(journey?.departure)?.name;
 
   return <CatchPage stationName={stationName} />;
 };

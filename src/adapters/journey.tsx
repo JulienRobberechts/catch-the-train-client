@@ -2,14 +2,9 @@ import {
   loadDataFromLocalStorage,
   saveDataIntoLocalStorage,
 } from "./localStorage";
-const LocalStorageKey_CurrentJourney = "journey";
+import { Journey } from "../domains/journey/types";
 
-export interface Journey {
-  network: string;
-  line: string;
-  departure: string;
-  destination: string;
-}
+const LocalStorageKey_CurrentJourney = "journey";
 
 export function loadJourney() {
   return loadDataFromLocalStorage(LocalStorageKey_CurrentJourney) ?? undefined;
