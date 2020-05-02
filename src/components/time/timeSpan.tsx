@@ -1,13 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
-const twoDigits = (number) =>
+const twoDigits = (number: number) =>
   number.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
 
-const TimeSpan = ({
+interface Props {
+  timeSpan: moment.Duration;
+  displaySeconds: boolean,
+  displayPositiveSign: boolean,
+}
+
+
+const TimeSpan : React.FC<Props> = ({
   timeSpan,
   displaySeconds = true,
   displayPositiveSign = false,
@@ -16,11 +24,11 @@ const TimeSpan = ({
     throw new Error("timeSpan is empty");
   }
 
-  const totalMilliseconds = timeSpan.valueOf() * 1000;
+  const totalMilliseconds = timeSpan.asMilliseconds() * 1000;
   const negative = totalMilliseconds < 0;
   const positive = totalMilliseconds > 0;
 
-  const days = timeSpan.as("days");
+  const days = timeSpan.asDays();
   const moreThanOneDay = days >= 1 || days <= -1;
 
   if (moreThanOneDay) {

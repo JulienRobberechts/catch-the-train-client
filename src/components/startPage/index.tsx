@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { colors } from "../../design/colors";
 import { SettingsIcon } from "../../design/icons";
 
-const StartPage = () => {
+const StartPage: React.FC = () => {
   return (
     <Panel>
       <Need>
