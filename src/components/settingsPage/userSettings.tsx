@@ -1,7 +1,12 @@
 import React from "react";
 import KeyValueComponent from "./keyValue";
+import { UserConfiguration } from "../../domains/station/types";
 
-const UserSettings = ({ config }) => {
+interface Props {
+  config?: UserConfiguration;
+}
+
+const UserSettings: React.FC<Props> = ({ config }) => {
   return (
     <>
       <KeyValueComponent

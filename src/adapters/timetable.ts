@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { SERVER_ROOT_URL } from "../config";
+import config from "../config";
 import { RatpJourney } from "../domains/journey/types";
 
 /** function that returns an axios call promise */
@@ -10,7 +10,8 @@ export function getTimeTablePromise({
   departure,
   missions,
 }: RatpJourney) {
-  const url = SERVER_ROOT_URL + `/next-trains/${network}/${line}/${departure}?`;
+  const url =
+    config.SERVER_ROOT_URL + `/next-trains/${network}/${line}/${departure}?`;
   const params = {
     missions: missions ? missions : undefined,
   };

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getServerParameters } from "../../adapters/ping";
+import { getServerParameters, PingResult } from "../../adapters/ping";
 import KeyValueComponent from "./keyValue";
 
-const ServerSettings = ({ serverUrl }) => {
-  const [serverData, setServerData] = useState({ loading: true });
+interface Props {
+  serverUrl: string;
+}
+
+const ServerSettings: React.FC<Props> = ({ serverUrl }) => {
+  const [serverData, setServerData] = useState<PingResult>({ loading: true });
 
   useEffect(() => {
     (async () => setServerData(await getServerParameters(serverUrl)))();

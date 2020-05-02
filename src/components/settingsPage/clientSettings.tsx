@@ -2,8 +2,13 @@ import React from "react";
 import getLanguage from "../../domains/config/getLanguage";
 import KeyValueComponent from "./keyValue";
 import jstz from "jstz";
+import { AppConfig } from "../../config";
 
-const ClientSettings = ({ config }) => {
+interface Props {
+  config: AppConfig;
+}
+
+const ClientSettings: React.FC<Props> = ({ config }) => {
   const timezone = jstz.determine();
   const timeZoneName = `${timezone.name()}`;
   // => Europe/Paris: -60 mins usually and -120 mins now
