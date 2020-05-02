@@ -13,13 +13,13 @@ import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheS
 import { selectCurrentJourney } from "../../domains/journey/selectors";
 
 const validationSchema = yup.object({
-  travelDuration: yup
+  travelDurationSeconds: yup
     .number()
     .typeError("Le temps de trajet doit être un nombre de secondes")
     .required("Le temps de trajet est indispensable")
     .min(0, "Le temps de trajet doit être positif")
     .max(1800, "Le temps de trajet doit être inférieur à 30 minutes"),
-  accessDuration: yup
+  accessDurationSeconds: yup
     .number()
     .typeError("Le temps d'accès au quai doit être un nombre de secondes")
     .required("Le temps d'accès au quai est indispensable")

@@ -10,6 +10,7 @@ export interface Journey {
   network: string;
   line: string;
   departure: string;
-  missions: string;
+  // To check...
   destination?: string;
+  missions?: string;
 }

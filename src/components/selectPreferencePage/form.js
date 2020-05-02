@@ -27,7 +27,7 @@ const StationPreferenceForm = ({ station }) => {
           <SectionContent>
             <FieldContainer>
               <InputField
-                name="travelDuration"
+                name="travelDurationSeconds"
                 type="number"
                 size="small"
                 placeholder="600"
@@ -38,7 +38,7 @@ const StationPreferenceForm = ({ station }) => {
               <HighlightText>
                 <TimeSpan
                   timeSpan={moment.duration({
-                    seconds: values.travelDuration,
+                    seconds: values.travelDurationSeconds,
                   })}
                   displaySeconds
                 />
@@ -53,7 +53,7 @@ const StationPreferenceForm = ({ station }) => {
           <SectionContent>
             <FieldContainer>
               <InputField
-                name="accessDuration"
+                name="accessDurationSeconds"
                 type="number"
                 placeholder="120"
               />
@@ -63,7 +63,7 @@ const StationPreferenceForm = ({ station }) => {
               <HighlightText>
                 <TimeSpan
                   timeSpan={moment.duration({
-                    seconds: values.accessDuration,
+                    seconds: values.accessDurationSeconds,
                   })}
                   displaySeconds
                 />
