@@ -45,11 +45,9 @@ const errorCases = {
   },
 
   simpleClientError700: {
-    incomingError: {
-      message: "simple client error",
-    },
+    incomingError: Error("simple client error"),
     expectedErrorCode: ErrorCodes.ERROR_700_CLIENT_ERROR,
   },
 };
 
-module.exports = errorCases;
+ export default errorCases;

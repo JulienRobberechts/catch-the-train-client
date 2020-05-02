@@ -1,5 +1,7 @@
 class ClientError extends Error {
-  constructor(errorCode, rootError) {
+  errorCode : number;
+  rootError = Error;
+  constructor(errorCode: number, rootError: Error) {
     super("ClientError");
     this.name = "ClientError";
     this.errorCode = errorCode;

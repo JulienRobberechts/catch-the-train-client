@@ -4,8 +4,9 @@ import {
 } from "./errorMessages.fr";
 import ErrorLevels from "./errorLevels";
 import { identifyError } from "./identifyError";
+import { AppError, PublicError } from "./types";
 
-const handleError = (incomingError) => {
+const handleError = (incomingError: Error): PublicError => {
   try {
     const errorCode = identifyError(incomingError);
     const appError = getAppError(errorCode);
@@ -14,11 +15,11 @@ const handleError = (incomingError) => {
     return toPublicError(appError);
   } catch (errorInErrorManagement) {
     console.log("Error in the error treatment", { errorInErrorManagement });
-    return errorInErrorManagementObject;
+    return toPublicError(errorInErrorManagementObject);
   }
 };
 
-const toPublicError = (appError) => {
+const toPublicError = (appError: AppError): PublicError => {
   const { code: errorCode, msg: errorMessage } = appError;
 
   const originalException =
@@ -34,11 +35,12 @@ const toPublicError = (appError) => {
   };
 };
 
-const getAppError = (errorCode) => {
-  return ErrorMessages.find((e) => e.code === errorCode);
+const getAppError = (errorCode: number) : AppError => {
+  const appError = ErrorMessages.find((e) => e.code === errorCode);
+  return appError ?? errorInErrorManagementObject;
 };
 
-const LogErrorInternally = (errorInDev, errorObjectWithContext) => {
+const LogErrorInternally = (errorInDev: Error, errorObjectWithContext: any) => {
   if (
     process.env.NODE_ENV === "development" ||
     process.env.NODE_ENV === "test"
@@ -51,7 +53,7 @@ const LogErrorInternally = (errorInDev, errorObjectWithContext) => {
   // todo ...
 };
 
-const LogErrorForUser = (errorObject) => {
+const LogErrorForUser = (errorObject: AppError) => {
   if (!errorObject) {
     console.error("Error management received an empty error");
     return;

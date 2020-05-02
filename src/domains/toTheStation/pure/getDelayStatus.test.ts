@@ -35,7 +35,7 @@ describe("toTheStation", () => {
       }
     );
     test("should identify an invalid delay", () => {
-      const delayDuration = "invalid delay";
+      const delayDuration = moment.duration(NaN, 'minutes');
       const onTimeMarginDelaySeconds = 20;
 
       // @ts-ignore - to check error

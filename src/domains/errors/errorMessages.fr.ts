@@ -1,5 +1,6 @@
 import ErrorCodes from "./errorCodes";
 import ErrorLevels from "./errorLevels";
+import { AppError } from "./types";
 
 const errorInErrorManagementObject = {
   code: ErrorCodes.ERROR_701_ERROR_MANAGEMENT_ERROR,
@@ -7,7 +8,7 @@ const errorInErrorManagementObject = {
   level: ErrorLevels.HIGH,
 };
 
-const ErrorMessages = [
+const ErrorMessages : AppError[] = [
   {
     code: ErrorCodes.ERROR_400_SERVER_BAD_REQUEST,
     msg: "Erreur dans les donnees envoyés au serveur.",

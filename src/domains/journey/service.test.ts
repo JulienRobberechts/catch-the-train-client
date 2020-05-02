@@ -15,7 +15,7 @@ describe("journey services", () => {
       [
         "chatelet+les+halles",
         "sucy+bonneuil",
-        ["NANI", "NOTE", "NATO", "NELY", "NEMO"],
+        ["NANI", "NOTE", "NATO", "NEGE", "NELY", "NEMO"],
       ],
     ]).test(
       "should get missions from '%s' to '%s'",

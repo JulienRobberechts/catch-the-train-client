@@ -4,9 +4,9 @@ import errorCases from "./errorCaseTest";
 
 describe("errorManagement", () => {
   // disable console logs for this test
-  let originalError;
-  let originalWarn;
-  let originalLog;
+  let originalError: () => void;
+  let originalWarn: () => void;
+  let originalLog: () => void;
   beforeAll(() => {
     originalError = console.error;
     console.error = jest.fn();

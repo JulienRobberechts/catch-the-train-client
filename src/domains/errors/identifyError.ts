@@ -1,7 +1,7 @@
 import ErrorCodes from "./errorCodes";
 import ClientError from "./clientError";
 
-const identifyError = (incomingError) => {
+const identifyError = (incomingError: Error): number => {
   if (!incomingError) {
     throw Error("The incoming Error is falsy");
   }
@@ -16,7 +16,7 @@ const identifyError = (incomingError) => {
   return identifyClientError(incomingError);
 };
 
-const identifyServerError = (incomingError) => {
+const identifyServerError = (incomingError: Error): number => {
   const response = incomingError?.response;
   if (!response) {
     return ErrorCodes.ERROR_533_SERVER_NOT_REACHABLE;
@@ -25,7 +25,7 @@ const identifyServerError = (incomingError) => {
   return identifyServerErrorByHttpStatus(httpStatus);
 };
 
-const identifyServerErrorByHttpStatus = (status) => {
+const identifyServerErrorByHttpStatus = (status: number): number => {
   switch (status) {
     case 400:
       return ErrorCodes.ERROR_400_SERVER_BAD_REQUEST;
@@ -41,9 +41,10 @@ const identifyServerErrorByHttpStatus = (status) => {
         return ErrorCodes.ERROR_599_OTHER_SERVER_ERROR;
       }
   }
+  return ErrorCodes.ERROR_599_OTHER_SERVER_ERROR;
 };
 
-const identifyClientError = (incomingError) => {
+const identifyClientError = (incomingError: Error): number => {
   if (incomingError instanceof ClientError) {
     if (!incomingError?.errorCode) {
       throw Error("Each ClientError should have an errorCode");

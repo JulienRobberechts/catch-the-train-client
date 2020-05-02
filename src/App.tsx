@@ -28,7 +28,7 @@ function App() {
           <Page>
             <Switch>
               <Route path="/start">
-                <AppTitle />
+                <AppTitle title='' />
                 <StartPage />
               </Route>
               <Route path="/settings">

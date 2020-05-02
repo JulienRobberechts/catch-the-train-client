@@ -1,6 +1,7 @@
 import ErrorCodes from "../../domains/errors/errorCodes";
+import { GuiError, AError } from "./types";
 
-const getUiError = (error) => {
+const getUiError = (error: AError): GuiError => {
   const { errorCode, errorMessage } = error;
 
   switch (errorCode) {

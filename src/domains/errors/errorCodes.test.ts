@@ -27,9 +27,9 @@ describe("ErrorCodes", () => {
   );
 
   test("values should not be unique in errorCode.js", () => {
-    const count = (names) =>
-      names.reduce((a, b) => ({ ...a, [b]: (a[b] || 0) + 1 }), {});
-    const duplicates = (dict) => Object.keys(dict).filter((a) => dict[a] > 1);
+    const count = (entries : number[]) =>
+      entries.reduce((a:any, b) => ({ ...a, [b]: (a[b] || 0) + 1 }), {});
+    const duplicates = (dict: any) => Object.keys(dict).filter((a) => dict[a] > 1);
 
     const allErrorCodeValues = ErrorCodesKeyValues.map(([k, v]) => v);
     const duplicatedErrorCodeValues = duplicates(count(allErrorCodeValues));

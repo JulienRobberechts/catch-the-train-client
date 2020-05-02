@@ -1,4 +1,4 @@
-const getLanguage = clientUrl => {
+const getLanguage = (clientUrl:string) => {
   if (!clientUrl) {
     return "unknown";
   }
