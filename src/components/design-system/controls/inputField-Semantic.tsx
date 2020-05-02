@@ -4,6 +4,7 @@ import { Form } from "semantic-ui-react";
 
 interface Props {
   name: string;
+  [props: string]: any;
 }
 
 const InputField: React.FC<Props> = ({ name, ...props }) => {

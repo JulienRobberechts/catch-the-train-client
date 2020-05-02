@@ -1,6 +1,6 @@
 import React from "react";
 
-const Attributions = () => (
+const Attributions: React.FC<{}> = () => (
   <div>
     <div>
       Icons made by{" "}

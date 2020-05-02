@@ -2,7 +2,7 @@ import React, { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import { Formik, FormikProps, FormikValues } from "formik";
+import { Formik, FormikProps } from "formik";
 import { useHistory } from "react-router-dom";
 import JourneySelectionForm from "./form";
 import { getStationBySlug } from "../../domains/journey/service";
@@ -26,12 +26,12 @@ export interface JourneyFormikValues {
 const saveAndNavigate = (
   dispatch: Dispatch<any>,
   pushMethod: (path: string) => void
-) => (data: FormikValues) => {
+) => (data: JourneyFormikValues) => {
   const journey: UserJourney = {
     network: "rers",
     line: "A",
-    departure: data?.departure.value,
-    destination: data?.destination.value,
+    departure: data?.departure?.value!,
+    destination: data?.destination?.value!,
   };
   const missions = getMissions(journey.departure, journey.destination).join(
     ","

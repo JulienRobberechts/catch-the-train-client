@@ -8,9 +8,14 @@ import { Form, useFormikContext } from "formik";
 import { getStationBySlug } from "../../domains/journey/service";
 import { TimeSpan } from "../time";
 import moment from "moment";
+import { PreferencesFormikValues } from "./formContainer";
 
-const StationPreferenceForm = ({ station }) => {
-  const formContext = useFormikContext();
+interface Props {
+  station: string;
+}
+
+const StationPreferenceForm: React.FC<Props> = ({ station }) => {
+  const formContext = useFormikContext<PreferencesFormikValues>();
   const { values, isValid } = formContext;
   const stationName = getStationBySlug(station)?.name;
   return (
@@ -79,7 +84,7 @@ const StationPreferenceForm = ({ station }) => {
               disabled={!isValid}
             >
               Voir les prochains départs
-              <Icon name="right arrow" />
+              <Icon name="arrow right" />
             </AppButton>
           </ButtonContainerOne>
         </FormInnerLayout>

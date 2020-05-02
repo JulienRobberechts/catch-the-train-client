@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Formik } from "formik";
@@ -11,6 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setStationConfiguration } from "../../domains/station/slice";
 import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
+
+export interface PreferencesFormikValues {
+  travelDurationSeconds?: number;
+  accessDurationSeconds?: number;
+}
 
 const validationSchema = yup.object({
   travelDurationSeconds: yup
@@ -27,9 +32,11 @@ const validationSchema = yup.object({
     .max(300, "Le temps d'accès doit être inférieur à 5 minutes"),
 });
 
-const saveAndNavigateToNextTrain = (station, dispatch, pushMethod) => (
-  data
-) => {
+const saveAndNavigateToNextTrain = (
+  station: string,
+  dispatch: Dispatch<any>,
+  pushMethod: (path: string) => void
+) => (data: PreferencesFormikValues) => {
   // todo: check when not a number
   const travelDurationSeconds = Number(data?.travelDurationSeconds);
   const accessDurationSeconds = Number(data?.accessDurationSeconds);
