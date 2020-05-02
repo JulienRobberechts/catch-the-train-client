@@ -1,5 +1,5 @@
 import React from "react";
-import { Clock, Sandglass, Bus, Train, Walk } from ".";
+import { Clock, Sandglass, Bus, Train, Walk } from "./icons";
 
 const DemoIcons = () => {
   return (

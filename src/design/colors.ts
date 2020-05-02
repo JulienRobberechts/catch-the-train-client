@@ -1,6 +1,16 @@
 export * from "./color-utils";
 
-const palette = {
+interface BRYRPalette {
+  blue: string;
+  darkGray: string;
+  gray: string;
+  white: string;
+  green: string;
+  yellow: string;
+  red: string;
+}
+
+const palette: BRYRPalette = {
   blue: "#252149",
   darkGray: "#5b5a59",
   gray: "#b1afac",
@@ -10,7 +20,7 @@ const palette = {
   red: "#E6716E",
 };
 
-const getColors = (p) => ({
+const getBRYRColors = (p: BRYRPalette) => ({
   dark: {
     background: p.blue,
     text: {
@@ -141,6 +151,6 @@ const getColors = (p) => ({
   },
 });
 
-const colors = getColors(palette);
+const colors = getBRYRColors(palette);
 
 export { colors, palette };

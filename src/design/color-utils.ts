@@ -1,4 +1,9 @@
-function LightenDarkenColor(col, amt) {
+// Lighten
+// var NewColor = LightenDarkenColor("#F06D06", 20);
+// // Darken
+// var NewColor = LightenDarkenColor("#F06D06", -20);
+
+function LightenDarkenColor(col: string, amt: number) {
   var usePound = false;
 
   if (col[0] === "#") {
