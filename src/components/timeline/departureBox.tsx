@@ -3,8 +3,14 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import { Time, TimeSpan } from "../time";
 import { Train, Sandglass } from "../../design/icons";
+import moment from "moment";
 
-const DepartureBox = ({ departureTime, departureDuration }) => {
+interface Props {
+  departureTime: moment.Moment;
+  departureDuration: moment.Duration;
+}
+
+const DepartureBox : React.FC<Props>= ({ departureTime, departureDuration }) => {
   return (
     <Box>
       <Row1>

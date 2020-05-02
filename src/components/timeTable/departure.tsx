@@ -2,15 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { Time, TimeSpan } from "../time";
 import { fontColorForDelayStatus } from "../delayDesign";
+import moment from "moment";
+import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 
-function Departure({
+interface Props {
+  index: number;
+  selected: boolean;
+  departureTime: moment.Moment;
+  departureDuration:moment.Duration;
+  onSelect: ()=> void;
+  delayStatus: DelayStatus;
+}
+
+
+function Departure ({
   index,
   selected,
   departureTime,
   departureDuration,
   onSelect,
   delayStatus,
-}) {
+}: Props) {
   return (
     <Train selected={selected} onClick={onSelect} delayStatus={delayStatus}>
       <TimeStyle>

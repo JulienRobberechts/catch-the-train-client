@@ -1,4 +1,6 @@
 import React from "react";
+import moment from "moment";
+
 import { TimeSpan } from "../time";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
@@ -7,7 +9,13 @@ import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 
 import { Break } from "../../design/icons";
 
-const DelayBox = ({ delayDuration, delayStatus, largeSpace }) => {
+interface Props {
+  delayDuration: moment.Duration;
+  delayStatus: DelayStatus;
+  largeSpace: boolean;
+}
+
+const DelayBox : React.FC<Props> = ({ delayDuration, delayStatus, largeSpace }) => {
   const delayStatusText = textForDelayStatus(delayStatus);
 
   const showWaitIcon = largeSpace && delayStatus === DelayStatus.Early;

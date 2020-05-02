@@ -9,7 +9,11 @@ const override = css`
   margin: 2rem auto;
 `;
 
-const LoadingPanel = ({ departureName }) => {
+interface Props {
+  departureName: string|undefined;  
+}
+
+const LoadingPanel : React.FC<Props>= ({ departureName }) => {
   return (
     <LoadingSection>
       <LoadingText1>recherche des prochains départs...</LoadingText1>

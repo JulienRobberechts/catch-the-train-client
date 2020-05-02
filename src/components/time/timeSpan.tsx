@@ -10,8 +10,8 @@ const twoDigits = (number: number) =>
 
 interface Props {
   timeSpan: moment.Duration;
-  displaySeconds: boolean,
-  displayPositiveSign: boolean,
+  displaySeconds?: boolean,
+  displayPositiveSign?: boolean,
 }
 
 

@@ -4,7 +4,13 @@ import { colors } from "../../design/colors";
 import { Time } from "../time";
 import { Clock } from "../../design/icons";
 
-const NowBox = ({ nowTime }) => {
+import moment from "moment";
+
+interface Props {
+  nowTime: moment.Moment;
+}
+
+const NowBox : React.FC<Props>= ({ nowTime }) => {
   return (
     <Box>
       <Row1>

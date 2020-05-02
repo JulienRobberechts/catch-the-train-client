@@ -9,7 +9,7 @@ import LoadingPanel from "./loadingPanel";
 import ErrorPanel from "./errorPanel";
 import TimelineVertical from "./timelineVertical";
 
-const TimelineVerticalContainer = () => {
+const TimelineVerticalContainer : React.FC= () => {
   const data = useSelector(selectEnhancedTimeTable);
   const requestStatus = useSelector(selectRequestStatus);
   const currentJourney = useSelector(selectCurrentJourney);
@@ -47,10 +47,11 @@ const TimelineVerticalContainer = () => {
     enhancedDepartures,
   } = data;
 
-  const departure = enhancedDepartures[departureIndex];
-  if (!departure) {
-    throw Error("Departure is empty. It should never happen");
+  if (departureIndex === undefined) {
+    throw Error("departureIndex is empty. It should never happen");
   }
+
+  const departure = enhancedDepartures[departureIndex];
 
   const {
     departureTime,

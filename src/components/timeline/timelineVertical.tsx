@@ -8,8 +8,19 @@ import TravelBox from "./travelBox";
 import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
 import { getSizeRatioFor } from "./pure";
+import moment from "moment";
 
-const TimelineVertical = ({
+interface Props {
+  nowTime: moment.Moment;
+  departureTime: moment.Moment;
+  departureDuration: moment.Duration;
+  delayDuration: moment.Duration;
+  delayStatus: DelayStatus;
+  travelDuration: moment.Duration;
+  accessDuration: moment.Duration;
+}
+
+const TimelineVertical : React.FC<Props>= ({
   nowTime,
   departureTime,
   departureDuration,

@@ -1,10 +1,16 @@
 import React from "react";
-import { TimeSpan } from "../time";
 import styled from "styled-components";
+import { TimeSpan } from "../time";
 import { colors } from "../../design/colors";
-import { Station, CaretUp } from "../../design/icons";
+import { Walk, CaretUp } from "../../design/icons";
+import moment from "moment";
 
-const WaitingBox = ({ accessDuration, largeSpace }) => {
+interface Props {
+  travelDuration: moment.Duration;
+  largeSpace: boolean;
+}
+
+const TravelBox : React.FC<Props>= ({ travelDuration, largeSpace }) => {
   return (
     <>
       <CaretParent>
@@ -16,13 +22,18 @@ const WaitingBox = ({ accessDuration, largeSpace }) => {
       </CaretParent>
       <LeftArrow>
         <Box>
-          <Text>en gare</Text>
-          <TimeSpan timeSpan={accessDuration} />
+          <Text>trajet</Text>
           {largeSpace && (
             <IconContainer>
-              <Station />
+              <Walk />
             </IconContainer>
           )}
+          <TimeSpanStyle>
+            <TimeSpan timeSpan={travelDuration} />
+          </TimeSpanStyle>
+          <IconContainer>
+            <Walk />
+          </IconContainer>
         </Box>
       </LeftArrow>
     </>
@@ -30,8 +41,7 @@ const WaitingBox = ({ accessDuration, largeSpace }) => {
 };
 
 const LeftArrow = styled.div`
-  border-left: 3px dashed ${() => colors.dark.text.highlight};
-  margin-left: 1px;
+  border-left: 6px dotted ${() => colors.dark.text.highlight};
 `;
 
 const CaretParent = styled.div`
@@ -43,10 +53,11 @@ const SubContainer = styled.div`
   position: relative;
   left: 3px;
 `;
+
 const IconCaretUpContainer = styled.div`
   position: relative;
   left: -10px;
-  top: -5px;
+  top: -3px;
 
   margin-right: 3px;
   padding-top: 0rem;
@@ -57,14 +68,14 @@ const IconCaretUpContainer = styled.div`
 `;
 
 const Box = styled.div`
-  background: ${() => colors.dark.panel.special.background};
-  color: ${() => colors.dark.panel.special.text.normal};
+  background: ${() => colors.dark.panel.one.background};
+  color: ${() => colors.dark.panel.one.text.normal};
+  display: flex;
   height: 100%;
 
-  margin-left: 12px;
-  border-radius: 3px 3px 0 0;
+  margin-left: 10px;
+  border-radius: 0 0 3px 3px;
 
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -74,7 +85,10 @@ const Text = styled.span`
   margin: 0 0.2rem;
   font-size: 1rem;
 `;
-
+const TimeSpanStyle = styled.span`
+  margin: 0 0.2rem;
+  font-size: 1.6rem;
+`;
 const IconContainer = styled.span`
   vertical-align: text-bottom;
   margin-right: 0rem;
@@ -82,8 +96,8 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${() => colors.dark.panel.special.text.normal};
+    fill: ${() => colors.dark.panel.one.text.normal};
   }
 `;
 
-export default WaitingBox;
+export default TravelBox;
