@@ -2,20 +2,25 @@ import React from "react";
 import { useField } from "formik";
 import Select from "react-select";
 
-const DropdownReactSelectField = ({ name, ...props }) => {
+interface Props {
+  name: string;
+  [props: string]: any;
+}
+
+const DropdownReactSelectField: React.FC<Props> = ({ name, ...props }) => {
   if (!name) console.warn("mission name on DropdownReactSelectField");
   // eslint-disable-next-line no-unused-vars
-  const [field, _meta, helpers] = useField(name);
+  const [field, , helpers] = useField(name);
   return (
     <Select
-      name
+      name={name}
       {...props}
       value={field.value}
       onChange={(value) => {
         helpers.setValue(value);
       }}
       onBlur={() => {
-        helpers.setTouched();
+        helpers.setTouched(true);
       }}
     />
   );

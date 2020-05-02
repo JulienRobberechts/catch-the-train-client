@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { loadJourney } from "../../adapters/journey";
-import { ReduxStateJourney } from "./types";
+import { ReduxStateJourney, FullJourney } from "./types";
 
 export const initialState: ReduxStateJourney = {
   ...loadJourney(),
@@ -14,7 +14,7 @@ export const slice = createSlice({
     reset: (state) => {
       Object.assign(state, initialState);
     },
-    setCurrentJourney: (state, action) => {
+    setCurrentJourney: (state, action: PayloadAction<FullJourney>) => {
       const {
         network,
         line,

@@ -3,7 +3,7 @@ export interface ReduxStateJourney {
   line: string;
   departure: string;
   missions: string;
-  destination?: string;
+  destination: string;
 }
 
 export interface Journey {
@@ -13,6 +13,21 @@ export interface Journey {
   // To check...
   destination?: string;
   missions: string;
+}
+
+export interface FullJourney {
+  network: string;
+  line: string;
+  departure: string;
+  destination: string;
+  missions: string;
+}
+
+export interface UserJourney {
+  network: string;
+  line: string;
+  departure: string;
+  destination: string;
 }
 
 export interface RatpJourney {

@@ -1,11 +1,23 @@
-const selectStyles = (topOfMenu) => ({
-  container: (styles) => ({
+import { Styles } from "react-select";
+
+interface StylesWithActive extends Styles {
+  [":active"]: any;
+}
+
+interface ControlProps {
+  isDisabled: boolean;
+  isFocused: boolean;
+  isSelected: boolean;
+}
+
+const selectStyles = (topOfMenu: number) => ({
+  container: (styles: StylesWithActive) => ({
     ...styles,
     // backgroundColor: "red",
     // color: "red",
     // borderColor: "red",
   }),
-  control: (styles) => {
+  control: (styles: StylesWithActive) => {
     return {
       ...styles,
       borderColor: "#FFFFFF",
@@ -28,7 +40,10 @@ const selectStyles = (topOfMenu) => ({
       },
     };
   },
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  option: (
+    styles: StylesWithActive,
+    { isDisabled, isFocused, isSelected }: ControlProps
+  ) => {
     return {
       ...styles,
       backgroundColor: isDisabled ? "#AAA" : "#252149",
@@ -44,37 +59,37 @@ const selectStyles = (topOfMenu) => ({
       fontWeight: isFocused ? "800" : "300",
     };
   },
-  input: (styles) => {
+  input: (styles: StylesWithActive) => {
     return {
       ...styles,
       color: "#E0AB19",
     };
   },
-  placeholder: (styles) => {
+  placeholder: (styles: StylesWithActive) => {
     return {
       ...styles,
       color: "#b1afac",
     };
   },
-  singleValue: (styles) => {
+  singleValue: (styles: StylesWithActive) => {
     return {
       ...styles,
       color: "#E0AB19",
     };
   },
-  valueContainer: (styles) => {
+  valueContainer: (styles: StylesWithActive) => {
     return {
       ...styles,
       color: "#E0AB19",
     };
   },
-  menu: (styles) => {
+  menu: (styles: StylesWithActive) => {
     return {
       ...styles,
       boxShadow: "none",
     };
   },
-  menuList: (styles) => {
+  menuList: (styles: StylesWithActive) => {
     return {
       ...styles,
       maxHeight: `calc(100vh - ${topOfMenu}px)`,

@@ -2,7 +2,11 @@ import React from "react";
 import { useField } from "formik";
 import { Form } from "semantic-ui-react";
 
-const InputField = ({ name, ...props }) => {
+interface Props {
+  name: string;
+}
+
+const InputField: React.FC<Props> = ({ name, ...props }) => {
   if (!name) console.warn("no name on InputField");
   // eslint-disable-next-line no-unused-vars
   const [field, meta, helpers] = useField(name);
@@ -20,7 +24,7 @@ const InputField = ({ name, ...props }) => {
         helpers.setValue(data.value);
       }}
       onBlur={() => {
-        helpers.setTouched();
+        helpers.setTouched(true);
       }}
     />
   );

@@ -7,17 +7,29 @@ import { AppButton, ButtonContainerOne } from "../design-system/controls";
 import { DropdownField, DropdownFieldStyle } from "../design-system/controls";
 import { SwitchIcon } from "../../design/icons";
 import { Form, useFormikContext } from "formik";
-const alphabeticalOrder = (a, b) => a.name.localeCompare(b.name);
+import { StationDefinition } from "../../data/ratp/rers/A/types";
+import { JourneyFormikValues } from "./formContainer";
 
-const stationToOption = (station) => ({
+const stationByAlphabeticalOrder = (
+  a: StationDefinition,
+  b: StationDefinition
+) => a.name.localeCompare(b.name);
+
+const stationToOption = (station: StationDefinition) => ({
   label: station?.name,
   value: station?.slug,
 });
 
-const stationOptions = stations.sort(alphabeticalOrder).map(stationToOption);
+const stationOptions = stations
+  .sort(stationByAlphabeticalOrder)
+  .map(stationToOption);
 
-const JourneySelectionForm = ({ onSwitchStationValues }) => {
-  const formContext = useFormikContext();
+interface Props {
+  onSwitchStationValues: () => void;
+}
+
+const JourneySelectionForm: React.FC<Props> = ({ onSwitchStationValues }) => {
+  const formContext = useFormikContext<JourneyFormikValues>();
   const { values, isValid } = formContext;
   return (
     <StyledForm>
@@ -83,7 +95,7 @@ const JourneySelectionForm = ({ onSwitchStationValues }) => {
               disabled={!isValid}
             >
               Valider
-              <Icon name="right arrow" />
+              <Icon name="arrow right" />
             </AppButton>
           </ButtonContainerOne>
         )}
