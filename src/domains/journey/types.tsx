@@ -12,5 +12,12 @@ export interface Journey {
   departure: string;
   // To check...
   destination?: string;
-  missions?: string;
+  missions: string;
+}
+
+export interface RatpJourney {
+  network: string;
+  line: string;
+  departure: string;
+  missions: string;
 }
