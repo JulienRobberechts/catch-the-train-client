@@ -30,9 +30,7 @@ describe("slice timeTable", () => {
   };
   describe("initial state", () => {
     it("'selectEnhancedTimeTable' should return falsy", () => {
-      expect(selectEnhancedTimeTable(initialRootState)).toEqual({
-        currentDeparture: null,
-      });
+      expect(selectEnhancedTimeTable(initialRootState)).toEqual({ });
     });
   });
   describe("after initialization", () => {
@@ -55,7 +53,7 @@ describe("slice timeTable", () => {
       line: "a",
       departure: "chatelet+les+halles",
       destination: "auber",
-      missions: ["ZEBU"],
+      missions: "ZEBU",
     };
 
     const rootState: RootState = {
@@ -93,14 +91,16 @@ describe("slice timeTable", () => {
       expect(enhancedDepartures).toBeTruthy();
       const enhancedDepartures2 = enhancedDepartures!;
       expect(enhancedDepartures2.length).toBe(2);
-      expect(enhancedDepartures2[0].delayDuration.asSeconds()).toBe(-2); // 630 - 555 - 77 = -2
-      expect(enhancedDepartures2[0].delayStatus).toBe("on-time");
-      expect(enhancedDepartures2[0].departureDuration.asSeconds()).toBe(630); // = 10min30
+
+      expect(enhancedDepartures2[0].departureIndex).toBe(0);
+      expect(enhancedDepartures2[0].trainCode).toBe("0824");
+
       expect(enhancedDepartures2[0].departureTime.toISOString()).toBe(
         "2020-03-10T08:24:00.000Z"
       );
-      expect(enhancedDepartures2[0].index).toBe(0);
-      expect(enhancedDepartures2[0].trainCode).toBe("0824");
+      expect(enhancedDepartures2[0].delayDuration.asSeconds()).toBe(-2); // 630 - 555 - 77 = -2
+      expect(enhancedDepartures2[0].delayStatus).toBe("on-time");
+      expect(enhancedDepartures2[0].onTimeMarginDelaySeconds).toBe(22);
 
       expect(travel).toBeTruthy();
       expect(travel?.accessDuration.asSeconds()).toBe(77);
@@ -114,8 +114,8 @@ describe("slice timeTable", () => {
         rootState
       );
       expect(actualCurrentStationConfiguration).toBeTruthy();
-      expect(actualCurrentStationConfiguration.travelDurationSeconds).toBe(555);
-      expect(actualCurrentStationConfiguration.accessDurationSeconds).toBe(77);
+      expect(actualCurrentStationConfiguration?.travelDurationSeconds).toBe(555);
+      expect(actualCurrentStationConfiguration?.accessDurationSeconds).toBe(77);
     });
   });
 });
