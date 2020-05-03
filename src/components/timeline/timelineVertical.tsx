@@ -9,6 +9,7 @@ import NowBox from "./nowBox";
 import { CaretRight } from "../../design/icons";
 import { getSizeRatioFor } from "./pure";
 import moment from "moment";
+import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 
 interface Props {
   nowTime: moment.Moment;
@@ -131,21 +132,21 @@ const IconCaretContainer = styled.span`
 `;
 
 const DelayBoxLayout = styled.div`
-  flex-basis: ${(props) => props.percentage}%;
+  flex-basis: ${(props:{percentage:number}) => props.percentage}%;
   > * {
     height: 100%;
   }
 `;
 
 const WaitingBoxLayout = styled.div`
-  flex-basis: ${(props) => props.percentage}%;
+  flex-basis: ${(props:{percentage:number}) => props.percentage}%;
   > * {
     height: 100%;
   }
 `;
 
 const TravelBoxLayout = styled.div`
-  flex-basis: ${(props) => props.percentage}%;
+  flex-basis: ${(props:{percentage:number}) => props.percentage}%;
   > * {
     height: 100%;
   }

@@ -4,9 +4,9 @@ import {
 } from "./errorMessages.fr";
 import ErrorLevels from "./errorLevels";
 import { identifyError } from "./identifyError";
-import { AppError, PublicError } from "./types";
+import { AppError, PublicError, AnyIncomingError } from "./types";
 
-const handleError = (incomingError: Error): PublicError => {
+const handleError = (incomingError: AnyIncomingError): PublicError => {
   try {
     const errorCode = identifyError(incomingError);
     const appError = getAppError(errorCode);
@@ -40,12 +40,12 @@ const getAppError = (errorCode: number) : AppError => {
   return appError ?? errorInErrorManagementObject;
 };
 
-const LogErrorInternally = (errorInDev: Error, errorObjectWithContext: any) => {
+const LogErrorInternally = (incomingError: AnyIncomingError, errorObjectWithContext: any) => {
   if (
     process.env.NODE_ENV === "development" ||
     process.env.NODE_ENV === "test"
   ) {
-    console.error({ errorInDev });
+    console.error({ incomingError });
     console.error({ errorObjectWithContext });
   }
 

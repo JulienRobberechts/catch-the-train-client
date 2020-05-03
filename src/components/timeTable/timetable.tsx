@@ -3,6 +3,19 @@ import styled from "styled-components";
 import { colors } from "../../design/colors";
 import Departure from "./departure";
 import { ArrowLeft, ArrowRight, More, Clock } from "../../design/icons";
+import { EnhancedDeparture } from "../../domains/timeTableToTheStation/types";
+
+interface Props {
+  enhancedDepartures?:  EnhancedDeparture[];
+  minIndex: number;
+  currentTrainCode: string;
+  handleDepartureNav: (targetTrainCode: string) => () => void;
+  previousVisible: boolean;
+  handlePreviousDepartureNav: ()=> void;
+  nextVisible: boolean;
+  handleNextDepartureNav:  ()=> void;
+  numberOfDepartureVisible: number;
+}
 
 function TimeTable({
   enhancedDepartures,
@@ -14,7 +27,7 @@ function TimeTable({
   nextVisible,
   handleNextDepartureNav,
   numberOfDepartureVisible,
-}) {
+}: Props) {
   if (!currentTrainCode) {
     return <PanelEmpty></PanelEmpty>;
   }
@@ -35,7 +48,7 @@ function TimeTable({
             </IconContainer>
           </PlaceholderItem>
         )}
-        {enhancedDepartures
+        {enhancedDepartures && enhancedDepartures
           .slice(minIndex, minIndex + numberOfDepartureVisible)
           .map((departure) => (
             <Departure

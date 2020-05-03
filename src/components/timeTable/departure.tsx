@@ -6,7 +6,6 @@ import moment from "moment";
 import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 
 interface Props {
-  index: number;
   selected: boolean;
   departureTime: moment.Moment;
   departureDuration:moment.Duration;
@@ -14,9 +13,7 @@ interface Props {
   delayStatus: DelayStatus;
 }
 
-
 function Departure ({
-  index,
   selected,
   departureTime,
   departureDuration,
@@ -36,7 +33,7 @@ function Departure ({
   );
 }
 
-const Train = styled.div`
+const Train = styled.div<{selected:boolean,delayStatus:DelayStatus}>`
   background: ${(props) => fontColorForDelayStatus(props.delayStatus)};
   border: ${(props) => (props.selected ? 4 : 1)}px solid;
   margin: 0.1rem;

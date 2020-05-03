@@ -38,7 +38,7 @@ const DelayBox : React.FC<Props> = ({ delayDuration, delayStatus, largeSpace }) 
   );
 };
 
-const textForDelayStatus = (delayStatus) => {
+const textForDelayStatus = (delayStatus:DelayStatus) => {
   switch (delayStatus) {
     case DelayStatus.Early:
       return "en avance";
@@ -53,7 +53,7 @@ const textForDelayStatus = (delayStatus) => {
 
 const Box = styled.div`
   background: ${() => colors.dark.background};
-  color: ${(props) => fontColorForDelayStatus(props.delayStatus)};
+  color: ${(props: {delayStatus: DelayStatus}) => fontColorForDelayStatus(props.delayStatus)};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -89,7 +89,7 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${(props) => fontColorForDelayStatus(props.delayStatus)};
+    fill: ${(props: {delayStatus: DelayStatus}) => fontColorForDelayStatus(props.delayStatus)};
   }
 `;
 

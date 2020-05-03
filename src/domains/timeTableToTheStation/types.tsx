@@ -1,6 +1,7 @@
 import moment from "moment";
+import DelayStatus from "../toTheStation/pure/delayStatus";
 
-export interface enhanceTimeTable {
+export interface EnhanceTimeTable {
   currentDeparture?: {
     index: number;
     code: string;
@@ -10,14 +11,17 @@ export interface enhanceTimeTable {
     travelDuration: moment.Duration;
     accessDuration: moment.Duration;
   };
-  enhancedDepartures?: enhancedDeparture[];
+  enhancedDepartures?: EnhancedDeparture[];
 }
 
-export interface enhancedDeparture {
-  departure: string;
-  departureIndex: string;
-  nowTime: string;
-  onTimeMarginDelaySeconds: string;
-  travelDuration: string;
-  accessDuration: string;
+export interface EnhancedDeparture {
+  departureIndex: number;
+  trainCode: string;
+  
+  departureTime:  moment.Moment;
+  departureDuration:  moment.Duration;
+
+  delayDuration:  moment.Duration;
+  delayStatus:  DelayStatus;
+  onTimeMarginDelaySeconds: number;
 }

@@ -4,11 +4,18 @@ export interface AError {
     errorMessage: string;
 }
 
+export interface AnyIncomingError {
+    isAxiosError?: boolean;
+    response?: {
+        status: number;
+    } 
+}
+
 export interface GuiError {
     message1: string;
     message2: string;
     icon: string;
-    colorKey: string;
+    colorKey: "disabled"|"normal"|"original"|"highlight"|"warning";
 }
 
 export interface AppError {

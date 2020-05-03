@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { getHours, getMinutes, getSeconds } from "./timeFormat";
+import moment from "moment";
 
-const Time = ({ time, displaySeconds = false }) => {
+interface Props {
+  time: moment.Moment;
+  displaySeconds?: boolean;
+}
+
+const Time : React.FC<Props> = ({ time, displaySeconds = false }) => {
   if (!time || !time.isValid()) return <span></span>;
   return (
     <span>

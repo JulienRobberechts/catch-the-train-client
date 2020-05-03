@@ -2,14 +2,13 @@ import React from "react";
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { colors } from "../../../design/colors";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const AppButtonLink = ({ appColor = colors.dark.text.original, ...props }) => {
   return (
     <StyledSemanticButton
       className="ui orange medium inverted button"
       appColor={appColor}
-      as={Link}
       {...props}
     />
   );
