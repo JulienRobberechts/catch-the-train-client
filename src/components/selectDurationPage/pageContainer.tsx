@@ -10,6 +10,7 @@ import { setStationConfiguration } from "../../domains/station/slice";
 import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
 import { getStationBySlug } from "../../domains/journey/service";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
+import ResizeContainer from "./ResizeContainer";
 
 const saveAndNavigate = (
   station: string,
@@ -55,6 +56,7 @@ const SelectDurationPage = () => {
           >
             Valider
           </Button>
+          <ResizeContainer onValidation={() => console.log("onValidation")} />
         </div>
       </ContentLayout>
     </>
