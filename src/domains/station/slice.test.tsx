@@ -1,6 +1,13 @@
-import reducer, { initialState, setUserConfiguration } from "./slice";
+import reducer, {
+  initialState,
+  setUserConfiguration,
+  setStationConfiguration,
+} from "./slice";
 
-import { selectUserConfiguration } from "./selectors";
+import {
+  selectUserConfiguration,
+  selectStationConfigurations,
+} from "./selectors";
 import { ReduxStateStation } from "./types";
 
 type RootState = {
@@ -32,6 +39,38 @@ describe("slice station", () => {
     it("'selectUserConfiguration' should return results", () => {
       const actualUserConfiguration = selectUserConfiguration(rootState);
       expect(actualUserConfiguration).toEqual(userConfiguration);
+    });
+  });
+  describe("StationConfiguration", () => {
+    const stationConfigurationStGermain = {
+      travelDurationSeconds: 487,
+      accessDurationSeconds: 94,
+    };
+
+    describe("after setStationConfiguration with full config", () => {
+      let rootState: RootState;
+      const stationConfigurations = {
+        "st+germain+en+laye": stationConfigurationStGermain,
+      };
+      beforeEach(() => {
+        const rootState0 = initialState;
+        const rootState1 = {
+          station: reducer(
+            rootState0,
+            setStationConfiguration({
+              station: "st+germain+en+laye",
+              ...stationConfigurationStGermain,
+            })
+          ),
+        };
+        rootState = rootState1;
+      });
+      it("'selectStationConfigurations' should return results", () => {
+        const actualStationConfigurations = selectStationConfigurations(
+          rootState
+        );
+        expect(actualStationConfigurations).toEqual(stationConfigurations);
+      });
     });
   });
 });
