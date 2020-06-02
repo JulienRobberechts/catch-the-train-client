@@ -1,9 +1,9 @@
 import React from "react";
 import KeyValueComponent from "./keyValue";
-import { PayloadStationConfiguration } from "../../domains/station/types";
+import { StationConfigurationWithStation } from "../../domains/station/types";
 
 interface Props {
-  config: PayloadStationConfiguration;
+  config: StationConfigurationWithStation;
 }
 
 const StationSettings: React.FC<Props> = ({ config }) => {

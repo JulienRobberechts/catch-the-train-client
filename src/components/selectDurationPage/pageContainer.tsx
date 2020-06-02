@@ -1,21 +1,26 @@
 import React, { Dispatch } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import { FixedAppTitleHeightRem } from "../appBar/appTitle";
 import { Button } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
+
+import { FixedAppTitleHeightRem } from "../appBar/appTitle";
 import { setStationConfiguration } from "../../domains/station/slice";
-import { useDispatch } from "react-redux";
+import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
+import { getStationBySlug } from "../../domains/journey/service";
+import { selectCurrentJourney } from "../../domains/journey/selectors";
 
 const saveAndNavigate = (
   station: string,
   dispatch: Dispatch<any>,
-  pushMethod: (path: string) => void
+  pushMethod: (path: string) => void,
+  travelDurationSeconds: number
 ) => () => {
   dispatch(
     setStationConfiguration({
       station,
-      travelDurationSeconds: 456,
+      travelDurationSeconds: travelDurationSeconds,
     })
   );
 
@@ -25,6 +30,12 @@ const saveAndNavigate = (
 const SelectDurationPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
+  const stationConfiguration = useSelector(selectCurrentStationConfiguration);
+  const initialTravelDurationSeconds =
+    stationConfiguration?.travelDurationSeconds || 600;
+
+  const currentJourney = useSelector(selectCurrentJourney);
+  const departureName = getStationBySlug(currentJourney?.departure)?.name;
 
   return (
     <>
@@ -33,8 +44,16 @@ const SelectDurationPage = () => {
       </Helmet>
       <ContentLayout>
         <div>
-          <Button onClick={saveAndNavigate("auber", dispatch, push)}>
-            Next
+          <div>gare de {departureName}</div>
+          <Button
+            onClick={saveAndNavigate(
+              "auber",
+              dispatch,
+              push,
+              initialTravelDurationSeconds
+            )}
+          >
+            Valider
           </Button>
         </div>
       </ContentLayout>
