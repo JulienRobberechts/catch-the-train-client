@@ -9,6 +9,7 @@ import AppLogo from "./appLogo";
 interface Props {
   title: string;
 }
+const FixedAppTitleHeightRem = 4;
 
 const AppTitle: React.FC<Props> = ({ title }) => {
   return (
@@ -37,9 +38,10 @@ const Title = styled.div`
 const Panel = styled.div`
   color: ${() => colors.dark.text.normal};
   font-weight: bold;
-  padding: 0.3rem;
+  padding: 0.25rem;
   display: flex;
   justify-content: space-between;
+  height: 4rem;
 `;
 
 const SettingsIconContainer = styled.div`
@@ -57,4 +59,4 @@ const SettingsIconContainer = styled.div`
   }
 `;
 
-export default AppTitle;
+export { AppTitle as default, FixedAppTitleHeightRem };
