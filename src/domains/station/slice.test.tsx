@@ -43,15 +43,49 @@ describe("slice station", () => {
   });
   describe("StationConfiguration", () => {
     const stationConfigurationStGermain = {
-      travelDurationSeconds: 487,
-      accessDurationSeconds: 94,
+      travelDurationSeconds: 500,
+      accessDurationSeconds: 100,
     };
+
+    describe("after init", () => {
+      let rootState: RootState;
+      beforeEach(() => {
+        const rootState0 = initialState;
+        rootState = { station: rootState0 };
+      });
+      it("'selectStationConfigurations' should return results", () => {
+        const actualStationConfigurations = selectStationConfigurations(
+          rootState
+        );
+        expect(actualStationConfigurations).toEqual({});
+      });
+    });
 
     describe("after setStationConfiguration with full config", () => {
       let rootState: RootState;
-      const stationConfigurations = {
-        "st+germain+en+laye": stationConfigurationStGermain,
-      };
+      beforeEach(() => {
+        const rootState0 = initialState;
+        const rootState1 = reducer(
+          rootState0,
+          setStationConfiguration({
+            station: "st+germain+en+laye",
+            ...stationConfigurationStGermain,
+          })
+        );
+        rootState = { station: rootState1 };
+      });
+      it("'selectStationConfigurations' should return results", () => {
+        const actualStationConfigurations = selectStationConfigurations(
+          rootState
+        );
+        expect(actualStationConfigurations).toEqual({
+          "st+germain+en+laye": stationConfigurationStGermain,
+        });
+      });
+    });
+
+    describe("after setStationConfiguration with partial config", () => {
+      let rootState: RootState;
       beforeEach(() => {
         const rootState0 = initialState;
         const rootState1 = {
@@ -59,7 +93,7 @@ describe("slice station", () => {
             rootState0,
             setStationConfiguration({
               station: "st+germain+en+laye",
-              ...stationConfigurationStGermain,
+              travelDurationSeconds: 456,
             })
           ),
         };
@@ -69,7 +103,12 @@ describe("slice station", () => {
         const actualStationConfigurations = selectStationConfigurations(
           rootState
         );
-        expect(actualStationConfigurations).toEqual(stationConfigurations);
+        expect(actualStationConfigurations).toEqual({
+          "st+germain+en+laye": {
+            travelDurationSeconds: 456,
+            accessDurationSeconds: 120,
+          },
+        });
       });
     });
   });

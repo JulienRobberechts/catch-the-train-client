@@ -25,9 +25,25 @@ export const slice = createSlice({
       state,
       action: PayloadAction<PayloadStationConfiguration>
     ) => {
-      const { station, ...props } = action.payload || {};
+      const { station, travelDurationSeconds, accessDurationSeconds } =
+        action.payload || {};
       if (station) {
-        state.stationConfigurations[station] = { ...props };
+        if (!state.stationConfigurations[station]) {
+          state.stationConfigurations[station] = {
+            travelDurationSeconds: 600,
+            accessDurationSeconds: 120,
+          };
+        }
+        if (travelDurationSeconds) {
+          state.stationConfigurations[
+            station
+          ].travelDurationSeconds = travelDurationSeconds;
+        }
+        if (accessDurationSeconds) {
+          state.stationConfigurations[
+            station
+          ].accessDurationSeconds = accessDurationSeconds;
+        }
       }
     },
   },

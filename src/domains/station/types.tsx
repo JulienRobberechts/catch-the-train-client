@@ -12,10 +12,16 @@ export interface StationConfiguration {
   accessDurationSeconds: number;
 }
 
-export interface PayloadStationConfiguration {
+export interface StationConfigurationWithStation {
   station: string;
   travelDurationSeconds: number;
   accessDurationSeconds: number;
+}
+
+export interface PayloadStationConfiguration {
+  station: string;
+  travelDurationSeconds: number;
+  accessDurationSeconds?: number;
 }
 
 export interface UserConfiguration {
