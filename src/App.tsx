@@ -14,7 +14,8 @@ import {
   SettingsPage,
   StartPage,
   SelectJourneyPage,
-  SelectDurationPage,
+  SelectTravelDurationPage,
+  SelectAccessDurationPage,
   SelectPreferencePage,
 } from "./components/pages";
 import AppTitle from "./components/appBar/appTitle";
@@ -40,8 +41,11 @@ function App() {
                 <AppTitle title="Choix du train" />
                 <SelectJourneyPage />
               </Route>
-              <Route path="/select-duration">
-                <SelectDurationPage />
+              <Route path="/select-travel-duration">
+                <SelectTravelDurationPage />
+              </Route>{" "}
+              <Route path="/select-access-duration">
+                <SelectAccessDurationPage />
               </Route>
               <Route path="/preferences">
                 <AppTitle title="Préférences" />

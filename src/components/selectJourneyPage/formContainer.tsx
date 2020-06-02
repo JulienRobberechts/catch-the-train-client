@@ -38,7 +38,7 @@ const saveAndNavigate = (
   );
   dispatch(setCurrentJourney({ ...journey, missions }));
   saveJourney(journey);
-  pushMethod("/select-duration");
+  pushMethod("/select-travel-duration");
 };
 
 const onSwitchStationValues = (

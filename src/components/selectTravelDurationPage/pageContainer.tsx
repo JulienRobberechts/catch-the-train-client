@@ -23,7 +23,7 @@ const saveAndNavigate = (
     })
   );
 
-  pushMethod("/preferences");
+  pushMethod("/select-access-duration");
 };
 
 const getStationPosition = (stationSlug: string | undefined): MapPosition => {
