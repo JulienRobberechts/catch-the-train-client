@@ -1,11 +1,9 @@
-import React, { Dispatch } from "react";
+import React, { useMemo, Dispatch, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import { Button } from "semantic-ui-react";
+import { MapPosition } from "../../domains/map/geoTypes";
 
-import { FixedAppTitleHeightRem } from "../appBar/appTitle";
 import { setStationConfiguration } from "../../domains/station/slice";
 import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheStation/selectors";
 import { getStationBySlug } from "../../domains/journey/service";
@@ -17,7 +15,7 @@ const saveAndNavigate = (
   dispatch: Dispatch<any>,
   pushMethod: (path: string) => void,
   travelDurationSeconds: number
-) => () => {
+) => {
   dispatch(
     setStationConfiguration({
       station,
@@ -28,6 +26,17 @@ const saveAndNavigate = (
   pushMethod("/preferences");
 };
 
+const getStationPosition = (stationSlug: string | undefined): MapPosition => {
+  switch (stationSlug) {
+    case "st+germain+en+laye":
+      return [2.094677, 48.898316];
+    case "auber":
+      return [2.3297068164482293, 48.87260817994105];
+    default:
+      return [2.094677, 48.898316];
+  }
+};
+
 const SelectDurationPage = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
@@ -36,37 +45,36 @@ const SelectDurationPage = () => {
     stationConfiguration?.travelDurationSeconds || 600;
 
   const currentJourney = useSelector(selectCurrentJourney);
-  const departureName = getStationBySlug(currentJourney?.departure)?.name;
+  const stationSlug = currentJourney?.departure;
+  const stationName = getStationBySlug(currentJourney?.departure)?.name;
+
+  const stationPosition = useMemo(() => getStationPosition(stationSlug), [
+    stationSlug,
+  ]);
+
+  const onValidate = useCallback(
+    (duration) => {
+      if (stationSlug) {
+        console.log("saveAndNavigate", duration);
+        saveAndNavigate(stationSlug, dispatch, push, duration);
+      }
+    },
+    [dispatch, push, stationSlug]
+  );
 
   return (
     <>
       <Helmet>
         <title>Trajet</title>
       </Helmet>
-      <ContentLayout>
-        <div>
-          <div>gare de {departureName}</div>
-          <Button
-            onClick={saveAndNavigate(
-              "auber",
-              dispatch,
-              push,
-              initialTravelDurationSeconds
-            )}
-          >
-            Valider
-          </Button>
-          <ResizeContainer onValidation={() => console.log("onValidation")} />
-        </div>
-      </ContentLayout>
+      <ResizeContainer
+        stationName={stationName}
+        initialDuration={initialTravelDurationSeconds}
+        initialStationPosition={stationPosition}
+        onValidate={onValidate}
+      />
     </>
   );
 };
-
-const ContentLayout = styled.div`
-  min-height: calc(100vh - ${FixedAppTitleHeightRem}rem);
-  display: flex;
-  justify-content: center;
-`;
 
 export default SelectDurationPage;

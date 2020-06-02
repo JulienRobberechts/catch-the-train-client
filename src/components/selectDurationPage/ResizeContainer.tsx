@@ -2,9 +2,8 @@ import React from "react";
 import { SizeMe, SizeMeProps } from "react-sizeme";
 import GeoContainer from "./GeoContainer";
 import { MapPosition, MapExactSize } from "../../domains/map/geoTypes";
-import TopPanel from "./TopPanel";
-
-const stationPosition: MapPosition = [2.094677, 48.898316];
+import ActionPanel from "./TopPanel";
+import AppTitle, { FixedAppTitleHeightRem } from "../appBar/appTitle";
 
 function convertRemToPixels(rem: number) {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -21,16 +20,25 @@ const getMapExactSizePx = (
 });
 
 interface Props {
-  onValidation: (duration: number) => void;
+  stationName: string | undefined;
+  initialDuration: number;
+  initialStationPosition: MapPosition;
+  onValidate: (duration: number) => void;
 }
 
-const ResizeContainer: React.FC<Props> = () => {
-  const topPanelHeightRem = 8.75;
-  const topPanelHeightPx = convertRemToPixels(topPanelHeightRem);
+const ResizeContainer: React.FC<Props> = ({
+  stationName,
+  initialDuration,
+  initialStationPosition,
+  onValidate,
+}) => {
+  const topPanelHeightRem = 7;
+  const heightExceptMapInPx = convertRemToPixels(
+    FixedAppTitleHeightRem + topPanelHeightRem
+  );
 
   const backgroundColor = "#252149";
-  const defaultDuration = 600;
-  const [duration, setDuration] = React.useState<number>(defaultDuration);
+  const [duration, setDuration] = React.useState<number>(initialDuration);
   const [durationHighlighted, setDurationHighlighted] = React.useState<boolean>(
     false
   );
@@ -55,18 +63,20 @@ const ResizeContainer: React.FC<Props> = () => {
     <SizeMe monitorHeight>
       {({ size: sizePx }) => (
         <div style={{ height: "100vh", backgroundColor: backgroundColor }}>
-          <TopPanel
+          <AppTitle title={"Temps de trajet - " + stationName} />
+          <GeoContainer
+            backgroundColor={backgroundColor}
+            initialStationPosition={initialStationPosition}
+            onRouteDurationChanged={onRouteDurationChanged}
+            mapExactSize={getMapExactSizePx(sizePx, heightExceptMapInPx)}
+          />
+          <ActionPanel
             duration={duration}
-            height={topPanelHeightPx}
+            heightRem={topPanelHeightRem}
             backgroundColor={backgroundColor}
             highlighted={durationHighlighted}
             onDurationChangedByUser={onDurationChangedByUser}
-          />
-          <GeoContainer
-            backgroundColor={backgroundColor}
-            initialStationPosition={stationPosition}
-            onRouteDurationChanged={onRouteDurationChanged}
-            mapExactSize={getMapExactSizePx(sizePx, topPanelHeightPx)}
+            onValidate={onValidate}
           />
         </div>
       )}

@@ -41,7 +41,6 @@ function App() {
                 <SelectJourneyPage />
               </Route>
               <Route path="/select-duration">
-                <AppTitle title="Temps de trajet" />
                 <SelectDurationPage />
               </Route>
               <Route path="/preferences">

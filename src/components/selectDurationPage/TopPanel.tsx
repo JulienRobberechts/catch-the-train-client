@@ -4,46 +4,42 @@ import TimeSelection from "./TimeSelection";
 
 interface Props {
   duration: number;
-  height: number;
+  heightRem: number;
   backgroundColor: string;
   highlighted: boolean;
   onDurationChangedByUser: (duration: number) => void;
+  onValidate: (duration: number) => void;
 }
 
 const TopPanel: React.FC<Props> = ({
   duration,
   highlighted,
-  onDurationChangedByUser,
-  height,
+  heightRem,
   backgroundColor,
+  onDurationChangedByUser,
+  onValidate,
 }) => {
   // console.log("duration :>> ", duration);
   return (
-    <Container height={height} backgroundColor={backgroundColor}>
+    <Container heightRem={heightRem} backgroundColor={backgroundColor}>
       <PanelLayout>
-        <Title>Temps de trajet</Title>
         <TimeSelection
           duration={duration}
           highlighted={highlighted}
           onDurationChangedByUser={onDurationChangedByUser}
         />
-        <Button>Valider</Button>
+        <Button onClick={() => onValidate(duration)}>Valider</Button>
       </PanelLayout>
     </Container>
   );
 };
 
-const Container = styled.div<{ height: number; backgroundColor: string }>`
+const Container = styled.div<{ heightRem: number; backgroundColor: string }>`
   margin: 0;
   background: black;
   color: white;
-  height: ${(props) => props.height}px;
+  height: ${(props) => props.heightRem}rem;
   background-color: ${(props) => props.backgroundColor};
-`;
-
-const Title = styled.div`
-  margin: 0.1rem;
-  font-size: 1.4rem;
 `;
 
 const PanelLayout = styled.div`
