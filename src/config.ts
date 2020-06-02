@@ -10,6 +10,7 @@ export interface AppConfig {
   CLIENT_URL: string;
   MOCK_TIME: boolean;
   DISABLE_TIME_UPDATE: boolean;
+  MAPBOX_ACCESS_TOKEN?: string;
 }
 
 const config: AppConfig = {
@@ -22,6 +23,7 @@ const config: AppConfig = {
   CLIENT_URL: window.location.href,
   MOCK_TIME: process.env.REACT_APP_MOCK_TIME === "true",
   DISABLE_TIME_UPDATE: process.env.REACT_APP_DISABLE_TIME_UPDATE === "true",
+  MAPBOX_ACCESS_TOKEN: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
 };
 
 export default config;
