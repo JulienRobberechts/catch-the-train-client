@@ -13,17 +13,10 @@ import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheS
 import { selectCurrentJourney } from "../../domains/journey/selectors";
 
 export interface PreferencesFormikValues {
-  travelDurationSeconds?: number;
   accessDurationSeconds?: number;
 }
 
 const validationSchema = yup.object({
-  travelDurationSeconds: yup
-    .number()
-    .typeError("Le temps de trajet doit être un nombre de secondes")
-    .required("Le temps de trajet est indispensable")
-    .min(0, "Le temps de trajet doit être positif")
-    .max(1800, "Le temps de trajet doit être inférieur à 30 minutes"),
   accessDurationSeconds: yup
     .number()
     .typeError("Le temps d'accès au quai doit être un nombre de secondes")
@@ -37,10 +30,8 @@ const saveAndNavigateToNextTrain = (
   dispatch: Dispatch<any>,
   pushMethod: (path: string) => void
 ) => (data: PreferencesFormikValues) => {
-  // todo: check when not a number
-  const travelDurationSeconds = Number(data?.travelDurationSeconds);
   const accessDurationSeconds = Number(data?.accessDurationSeconds);
-  const config = { travelDurationSeconds, accessDurationSeconds };
+  const config = { travelDurationSeconds: undefined, accessDurationSeconds };
   saveSingleStationConfiguration(station, config);
 
   dispatch(
@@ -72,10 +63,8 @@ const SelectionPage = () => {
     );
   }
 
-  const { travelDurationSeconds, accessDurationSeconds = 120 } =
-    currentStationPreferences || {};
+  const { accessDurationSeconds = 120 } = currentStationPreferences || {};
   const initialStationPreferences = {
-    travelDurationSeconds,
     accessDurationSeconds,
   };
 

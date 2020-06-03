@@ -20,7 +20,7 @@ export interface StationConfigurationWithStation {
 
 export interface PayloadStationConfiguration {
   station: string;
-  travelDurationSeconds: number;
+  travelDurationSeconds?: number;
   accessDurationSeconds?: number;
 }
 

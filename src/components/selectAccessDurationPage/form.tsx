@@ -27,32 +27,6 @@ const StationPreferenceForm: React.FC<Props> = ({ station }) => {
             <TitleImportant>'{stationName}'</TitleImportant>
           </Title>
           <SectionTitle>
-            Temps de trajet pour se rendre à la gare (en secondes)
-          </SectionTitle>
-          <SectionContent>
-            <FieldContainer>
-              <InputField
-                name="travelDurationSeconds"
-                type="number"
-                size="small"
-                placeholder="600"
-              />
-            </FieldContainer>
-            <Note>
-              Soit{" "}
-              <HighlightText>
-                <TimeSpan
-                  timeSpan={moment.duration({
-                    seconds: values.travelDurationSeconds,
-                  })}
-                  displaySeconds
-                />
-              </HighlightText>{" "}
-              pour aller de votre lieu actuel (maisons, bureau) à votre entrée
-              habituelle de la gare.
-            </Note>
-          </SectionContent>
-          <SectionTitle>
             Temps dans la gare pour atteindre le quai (en secondes)
           </SectionTitle>
           <SectionContent>
