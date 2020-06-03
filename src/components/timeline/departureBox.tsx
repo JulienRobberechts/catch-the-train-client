@@ -10,7 +10,10 @@ interface Props {
   departureDuration: moment.Duration;
 }
 
-const DepartureBox : React.FC<Props>= ({ departureTime, departureDuration }) => {
+const DepartureBox: React.FC<Props> = ({
+  departureTime,
+  departureDuration,
+}) => {
   return (
     <Box>
       <Row1>

@@ -10,7 +10,7 @@ interface Props {
   largeSpace: boolean;
 }
 
-const TravelBox : React.FC<Props>= ({ travelDuration, largeSpace }) => {
+const TravelBox: React.FC<Props> = ({ travelDuration, largeSpace }) => {
   return (
     <>
       <CaretParent>

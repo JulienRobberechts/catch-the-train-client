@@ -14,7 +14,7 @@ interface Props {
   error: any;
 }
 
-const ErrorPanel : React.FC<Props>= ({ error }) => {
+const ErrorPanel: React.FC<Props> = ({ error }) => {
   const { message1, message2, icon, colorKey } = getUiError(error);
   const messageColor = colors.dark.text[colorKey];
 

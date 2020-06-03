@@ -10,7 +10,7 @@ interface Props {
   nowTime: moment.Moment;
 }
 
-const NowBox : React.FC<Props>= ({ nowTime }) => {
+const NowBox: React.FC<Props> = ({ nowTime }) => {
   return (
     <Box>
       <Row1>

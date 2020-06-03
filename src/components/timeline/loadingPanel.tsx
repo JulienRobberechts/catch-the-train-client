@@ -10,10 +10,10 @@ const override = css`
 `;
 
 interface Props {
-  departureName: string|undefined;  
+  departureName: string | undefined;
 }
 
-const LoadingPanel : React.FC<Props>= ({ departureName }) => {
+const LoadingPanel: React.FC<Props> = ({ departureName }) => {
   return (
     <LoadingSection>
       <LoadingText1>recherche des prochains départs...</LoadingText1>

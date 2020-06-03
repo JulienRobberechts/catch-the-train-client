@@ -21,7 +21,7 @@ interface Props {
   accessDuration: moment.Duration;
 }
 
-const TimelineVertical : React.FC<Props>= ({
+const TimelineVertical: React.FC<Props> = ({
   nowTime,
   departureTime,
   departureDuration,
@@ -132,21 +132,21 @@ const IconCaretContainer = styled.span`
 `;
 
 const DelayBoxLayout = styled.div`
-  flex-basis: ${(props:{percentage:number}) => props.percentage}%;
+  flex-basis: ${(props: { percentage: number }) => props.percentage}%;
   > * {
     height: 100%;
   }
 `;
 
 const WaitingBoxLayout = styled.div`
-  flex-basis: ${(props:{percentage:number}) => props.percentage}%;
+  flex-basis: ${(props: { percentage: number }) => props.percentage}%;
   > * {
     height: 100%;
   }
 `;
 
 const TravelBoxLayout = styled.div`
-  flex-basis: ${(props:{percentage:number}) => props.percentage}%;
+  flex-basis: ${(props: { percentage: number }) => props.percentage}%;
   > * {
     height: 100%;
   }

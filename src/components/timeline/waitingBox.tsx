@@ -10,7 +10,7 @@ interface Props {
   largeSpace: boolean;
 }
 
-const WaitingBox : React.FC<Props>= ({ accessDuration, largeSpace }) => {
+const WaitingBox: React.FC<Props> = ({ accessDuration, largeSpace }) => {
   return (
     <>
       <CaretParent>
