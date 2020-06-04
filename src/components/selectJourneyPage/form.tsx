@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import stations from "../../data/ratp/rers/A/stations.json";
+import stations from "../../data/ratp/rers/A/stations";
 import { Header, Icon } from "semantic-ui-react";
 import { AppButton, ButtonContainerOne } from "../design-system/controls";
 import { DropdownField, DropdownFieldStyle } from "../design-system/controls";

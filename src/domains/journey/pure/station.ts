@@ -1,6 +1,10 @@
+import { Coordinates } from "viewport-mercator-project";
+
 interface Station {
-  name: string;
   slug: string;
+  name: string;
+  altName?: string;
+  pos?: Coordinates;
 }
 
 const getStation = (

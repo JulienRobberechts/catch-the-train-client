@@ -1,6 +1,10 @@
+import { Coordinates } from "viewport-mercator-project";
+
 export interface StationDefinition {
-  name: string;
   slug: string;
+  name: string;
+  altName?: string;
+  pos?: Coordinates;
 }
 
 export interface MissionStationDefinition {

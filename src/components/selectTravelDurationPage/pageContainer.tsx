@@ -26,15 +26,12 @@ const saveAndNavigate = (
   pushMethod("/select-access-duration");
 };
 
-const getStationPosition = (stationSlug: string | undefined): MapPosition => {
-  switch (stationSlug) {
-    case "st+germain+en+laye":
-      return [2.094677, 48.898316];
-    case "auber":
-      return [2.3297068164482293, 48.87260817994105];
-    default:
-      return [2.094677, 48.898316];
-  }
+const getStationPosition = (
+  stationSlug: string | undefined
+): MapPosition | null => {
+  const station = getStationBySlug(stationSlug);
+  if (!station) return null;
+  return station.pos ?? null;
 };
 
 const SelectDurationPage = () => {
@@ -67,12 +64,16 @@ const SelectDurationPage = () => {
       <Helmet>
         <title>Trajet</title>
       </Helmet>
-      <ResizeContainer
-        stationName={stationName}
-        initialDuration={initialTravelDurationSeconds}
-        initialStationPosition={stationPosition}
-        onValidate={onValidate}
-      />
+      {stationPosition ? (
+        <ResizeContainer
+          stationName={stationName}
+          initialDuration={initialTravelDurationSeconds}
+          initialStationPosition={stationPosition}
+          onValidate={onValidate}
+        />
+      ) : (
+        <div>La position de la gare n'est pas disponible</div>
+      )}
     </>
   );
 };

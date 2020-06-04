@@ -1,5 +1,5 @@
 import missions from "../../data/ratp/rers/A/missions.json";
-import stations from "../../data/ratp/rers/A/stations.json";
+import stations from "../../data/ratp/rers/A/stations";
 import { MissionStationDefinition } from "../../data/ratp/rers/A/types";
 
 export function importMissionsCodes() {
