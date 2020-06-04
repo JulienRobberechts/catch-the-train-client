@@ -5,6 +5,7 @@ import config from "../../config";
 const access_token = config.MAPBOX_ACCESS_TOKEN;
 const language = "fr";
 
+// TODO: To move to an adapter
 const getDirection = async (
   userOfficialPosition: MapPosition | undefined,
   stationPosition: MapPosition | undefined
