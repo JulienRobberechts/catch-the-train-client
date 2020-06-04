@@ -16,7 +16,7 @@ export function importMissionsSchedules(
 ): MissionsSchedule[] {
   const missionsSchedules = missionCodes.map((missionCode) => ({
     mission: missionCode,
-    ...require(`../../data/ratp/rers/A/stations-${missionCode}.json`),
+    ...require(`../../data/ratp/rers/A/by-mission/stations-${missionCode}.json`),
   }));
   return missionsSchedules;
 }
