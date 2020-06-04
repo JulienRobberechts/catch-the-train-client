@@ -9,6 +9,7 @@ import { selectCurrentStationConfiguration } from "../../domains/timeTableToTheS
 import { getStationBySlug } from "../../domains/journey/service";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
 import ResizeContainer from "./ResizeContainer";
+import { saveTravelDuration } from "../../adapters/travelDuration";
 
 const saveAndNavigate = (
   station: string,
@@ -22,7 +23,7 @@ const saveAndNavigate = (
       travelDurationSeconds: travelDurationSeconds,
     })
   );
-
+  saveTravelDuration(station, travelDurationSeconds);
   pushMethod("/select-access-duration");
 };
 

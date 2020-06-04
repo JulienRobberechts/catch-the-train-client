@@ -5,7 +5,9 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import StationPreferenceForm from "./form";
 
-import { saveSingleStationConfiguration } from "../../adapters/stationPreferences";
+import { saveAccessDuration } from "../../adapters/accessDuration";
+import { saveTravelDuration } from "../../adapters/travelDuration";
+
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { setStationConfiguration } from "../../domains/station/slice";
@@ -40,13 +42,14 @@ const saveAndNavigateToNextTrain = (
   // todo: check when not a number
   const travelDurationSeconds = Number(data?.travelDurationSeconds);
   const accessDurationSeconds = Number(data?.accessDurationSeconds);
-  const config = { travelDurationSeconds, accessDurationSeconds };
-  saveSingleStationConfiguration(station, config);
+  saveAccessDuration(station, accessDurationSeconds);
+  saveTravelDuration(station, travelDurationSeconds);
 
   dispatch(
     setStationConfiguration({
       station,
-      ...config,
+      travelDurationSeconds,
+      accessDurationSeconds,
     })
   );
 
