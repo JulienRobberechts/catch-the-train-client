@@ -185,7 +185,7 @@ Wait (some times) that the DNS propagate your changes. Then test...
 ### Test the cache
 
 - open the developer tool on Firefox or Chrome
-- Go to (https://catch-the-train.dev-app.space/start)[https://catch-the-train.dev-app.space/start]
+- Go to [https://catch-the-train.dev-app.space/start](https://catch-the-train.dev-app.space/start)
 - You should see the page
 - on tab 'Network'
   - click on the index document (File /)
