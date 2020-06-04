@@ -11,7 +11,7 @@ import { setCurrentJourney } from "../../domains/journey/slice";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
 import { getMissions } from "../../domains/journey/service";
 import { StationDefinition } from "../../data/ratp/rers/A/types";
-import { UserJourney } from "../../domains/journey/types";
+import { FullJourney } from "../../domains/journey/types";
 
 export interface ReactSelectOption {
   label: string;
@@ -27,17 +27,19 @@ const saveAndNavigate = (
   dispatch: Dispatch<any>,
   pushMethod: (path: string) => void
 ) => (data: JourneyFormikValues) => {
-  const journey: UserJourney = {
+  const departure = data?.departure?.value!;
+  const destination = data?.destination?.value!;
+  const missions = getMissions(departure, destination).join(",");
+  const journey: FullJourney = {
     network: "rers",
     line: "A",
-    departure: data?.departure?.value!,
-    destination: data?.destination?.value!,
+    departure,
+    destination,
+    missions,
   };
-  const missions = getMissions(journey.departure, journey.destination).join(
-    ","
-  );
-  dispatch(setCurrentJourney({ ...journey, missions }));
-  saveJourney(journey);
+
+  dispatch(setCurrentJourney(journey));
+  saveJourney({ ...journey, missions });
   pushMethod("/select-travel-duration");
 };
 
@@ -56,7 +58,7 @@ const stationToOption = (station: StationDefinition) => ({
 });
 
 const journeyToOptions = (
-  journey: UserJourney | undefined
+  journey: FullJourney | undefined
 ): JourneyFormikValues => {
   if (!journey) {
     return {

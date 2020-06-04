@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import config from "../config";
-import { RatpJourney } from "../domains/journey/types";
+import { FullJourney } from "../domains/journey/types";
 
 /** function that returns an axios call promise */
 export function getTimeTablePromise({
@@ -9,7 +9,7 @@ export function getTimeTablePromise({
   line,
   departure,
   missions,
-}: RatpJourney) {
+}: FullJourney) {
   const url =
     config.SERVER_ROOT_URL + `/next-trains/${network}/${line}/${departure}?`;
   const params = {

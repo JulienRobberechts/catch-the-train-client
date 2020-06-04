@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { loadJourney } from "../../adapters/journey";
-import { ReduxStateJourney, FullJourney } from "./types";
+import { FullJourney } from "./types";
 
-export const initialState: ReduxStateJourney = {
+export const initialState: FullJourney = {
   ...loadJourney(),
 };
 

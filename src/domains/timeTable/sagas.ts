@@ -5,17 +5,11 @@ import { requestStart, requestSuccess, requestError } from "./slice";
 import handleError from "../errors";
 import ErrorCodes from "../errors/errorCodes";
 import ClientError from "../errors/clientError";
-import { Journey } from "../journey/types";
+import { FullJourney } from "../journey/types";
 
-export function* getTimeTableEffectSaga(action: PayloadAction<Journey>) {
+export function* getTimeTableEffectSaga(action: PayloadAction<FullJourney>) {
   try {
-    const { network, line, departure, missions } = action.payload;
-    const result = yield call(getTimeTablePromise, {
-      network,
-      line,
-      departure,
-      missions,
-    });
+    const result = yield call(getTimeTablePromise, action.payload);
 
     const departures = result?.data?.departures;
     if (departures && departures.length === 0) {

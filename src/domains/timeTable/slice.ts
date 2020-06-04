@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ReduxStateTimeTable, RawDeparture } from "./types";
-import { Journey } from "../journey/types";
+import { FullJourney } from "../journey/types";
 export const initialState: ReduxStateTimeTable = {};
 
 export const slice = createSlice({
@@ -10,7 +10,7 @@ export const slice = createSlice({
     reset: (state) => {
       Object.assign(state, initialState);
     },
-    requestStart: (state, _action: PayloadAction<Journey>) => {
+    requestStart: (state, _action: PayloadAction<FullJourney>) => {
       state.loading = true;
       state.error = null;
       // we still can have data during the loading
