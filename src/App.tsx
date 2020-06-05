@@ -45,6 +45,7 @@ function App() {
                 <SelectTravelDurationPage />
               </Route>{" "}
               <Route path="/select-access-duration">
+                <AppTitle title="Temps d'accès au quai" />
                 <SelectAccessDurationPage />
               </Route>
               <Route path="/preferences">
