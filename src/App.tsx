@@ -21,6 +21,7 @@ import {
 import AppTitle from "./components/appBar/appTitle";
 import { colors } from "./design/colors";
 import store from "./store";
+import ApplicationCover from "./components/applicationCover";
 
 function App() {
   return (
@@ -55,6 +56,9 @@ function App() {
               <Route path="/next-train">
                 <AppTitle title="Prochains trains" />
                 <CatchTrainRoutes />
+              </Route>
+              <Route path="/cover">
+                <ApplicationCover />
               </Route>
               <Redirect to="/start" />
             </Switch>
