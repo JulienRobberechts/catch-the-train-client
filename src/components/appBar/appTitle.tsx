@@ -28,26 +28,27 @@ const AppTitle: React.FC<Props> = ({ title }) => {
   );
 };
 
-const Title = styled.div`
-  color: ${() => colors.dark.text.original};
-  font-size: 1.2rem;
-  margin: 1rem 1rem;
-  text-transform: uppercase;
-`;
-
 const Panel = styled.div`
   color: ${() => colors.dark.text.normal};
   font-weight: bold;
   padding: 0.25rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 4rem;
 `;
 
+const Title = styled.div`
+  color: ${() => colors.dark.text.original};
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  margin: 0.7rem;
+  text-transform: uppercase;
+  text-align: center;
+`;
+
 const SettingsIconContainer = styled.div`
-  margin-right: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 0.1rem;
+  margin: 0.7rem;
+
   svg {
     width: 1.3rem;
     height: 1.3rem;

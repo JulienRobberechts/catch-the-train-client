@@ -43,6 +43,7 @@ const LogoTextLeTrain = styled.div`
   font-family: "serif";
   font-size: 1.4rem;
   color: #ddd;
+  white-space: nowrap;
 `;
 
 const LogoIconContainer = styled.div`
