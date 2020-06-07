@@ -50,7 +50,7 @@ const SettingsPage = () => {
         <AppButtonLink
           type="button"
           disabled={true}
-          to="/rers/A/st+germain+en+laye?missions=QIKI,NELY"
+          to="/rers/A/st+germain+en+laye/auber"
         >
           Prochains départs
         </AppButtonLink>

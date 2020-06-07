@@ -15,18 +15,11 @@ export const slice = createSlice({
       Object.assign(state, initialState);
     },
     setCurrentJourney: (state, action: PayloadAction<FullJourney>) => {
-      const {
-        network,
-        line,
-        departure,
-        destination,
-        missions,
-      } = action.payload;
+      const { network, line, departure, destination } = action.payload;
       state.network = network;
       state.line = line;
       state.departure = departure;
       state.destination = destination;
-      state.missions = missions;
     },
   },
 });

@@ -7,16 +7,17 @@ import reducer, {
 import { selectRequestStatus, selectAllDepartures } from "./selectors";
 import { selectCurrentJourney } from "../journey/selectors";
 import { ReduxStateTimeTable } from "./types";
+import { FullJourney } from "../journey/types";
 
 type RootState = {
   timeTable: ReduxStateTimeTable;
 };
 
-const sampleRequestRerAChatelet = {
+const sampleRequestRerAChatelet: FullJourney = {
   network: "rers",
   line: "a",
-  station: "chatelet+les+halles",
-  missions: ["ZEBU"],
+  departure: "chatelet+les+halles",
+  destination: "auber",
 };
 
 const sampleDepartures = [{ trainCode: "T1" }, { trainCode: "T2" }];

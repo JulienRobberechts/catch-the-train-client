@@ -5,19 +5,20 @@ import {
   selectCurrentStationConfiguration,
 } from "./selectors";
 import { RootState } from "../../redux-store/types";
+import { RawDeparture } from "../timeTable/types";
+import { FullJourney } from "../journey/types";
+import { StationConfigurationMap, UserConfiguration } from "../station/types";
 
-const sampleDepartures = [
+const sampleDepartures: RawDeparture[] = [
   {
     trainCode: "0824",
     departureTime: "2020-03-10T08:24:00.000Z",
-    mission: "UPAC",
     displayAttributes: "08:24",
     displayDestination: "Cergy-Le-Haut",
   },
   {
     trainCode: "0829",
     departureTime: "2020-03-10T08:29:00.000Z",
-    mission: "UPAC",
     displayAttributes: "08:29",
     displayDestination: "Cergy-Le-Haut",
   },
@@ -30,15 +31,15 @@ describe("slice timeTable", () => {
   };
   describe("initial state", () => {
     it("'selectEnhancedTimeTable' should return falsy", () => {
-      expect(selectEnhancedTimeTable(initialRootState)).toEqual({ });
+      expect(selectEnhancedTimeTable(initialRootState)).toEqual({});
     });
   });
   describe("after initialization", () => {
-    const sampleUserConfiguration = {
+    const sampleUserConfiguration: UserConfiguration = {
       onTimeMarginDelaySeconds: 22,
       timezone: "+04:00",
     };
-    const sampleStationConfigurations = {
+    const sampleStationConfigurations: StationConfigurationMap = {
       "chatelet+les+halles": {
         travelDurationSeconds: 555,
         accessDurationSeconds: 77,
@@ -48,12 +49,11 @@ describe("slice timeTable", () => {
         accessDurationSeconds: 30,
       },
     };
-    const samplejourneyRerAChatelet = {
+    const samplejourneyRerAChatelet: FullJourney = {
       network: "rers",
       line: "a",
       departure: "chatelet+les+halles",
       destination: "auber",
-      missions: "ZEBU",
     };
 
     const rootState: RootState = {
@@ -114,7 +114,9 @@ describe("slice timeTable", () => {
         rootState
       );
       expect(actualCurrentStationConfiguration).toBeTruthy();
-      expect(actualCurrentStationConfiguration?.travelDurationSeconds).toBe(555);
+      expect(actualCurrentStationConfiguration?.travelDurationSeconds).toBe(
+        555
+      );
       expect(actualCurrentStationConfiguration?.accessDurationSeconds).toBe(77);
     });
   });

@@ -1,31 +1,7 @@
 import each from "jest-each";
-import { getMissions, getMissionsSchedules, getStationBySlug } from "./service";
+import { getStationBySlug } from "./service";
 
 describe("journey services", () => {
-  describe("getMissionsSchedules", () => {
-    test("should get Missions Schedules", () => {
-      const missionsSchedules = getMissionsSchedules();
-      expect(missionsSchedules).toMatchSnapshot();
-    });
-  });
-
-  describe("getMissions", () => {
-    each([
-      ["cergy+prefecture", "houilles", ["NANI", "QYAN", "NATO", "QYLT"]],
-      [
-        "chatelet+les+halles",
-        "sucy+bonneuil",
-        ["NANI", "NOTE", "NATO", "NEGE", "NELY", "NEMO"],
-      ],
-    ]).test(
-      "should get missions from '%s' to '%s'",
-      (departure, arrival, expectedMissions) => {
-        const actualMissions = getMissions(departure, arrival);
-        expect(actualMissions.sort()).toEqual(expectedMissions.sort());
-      }
-    );
-  });
-
   describe("getStationBySlug", () => {
     each([
       ["neuville+universite", "Neuville Universite"],

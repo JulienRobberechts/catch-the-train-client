@@ -1,18 +1,17 @@
 import getMatchingDeparture from "./getMatchingDeparture";
 import each from "jest-each";
+import { RawDeparture } from "../types";
 
-const allDepartures = [
+const allDepartures: RawDeparture[] = [
   {
     trainCode: "0924",
     departureTime: "2020-03-10T09:24:00+01:00",
-    mission: "UPAC",
     displayAttributes: "09:24",
     displayDestination: "Cergy-Le-Haut",
   },
   {
     trainCode: "0929",
     departureTime: "2020-03-10T09:29:00+01:00",
-    mission: "UPAC",
     displayAttributes: "09:29",
     displayDestination: "Cergy-Le-Haut",
   },

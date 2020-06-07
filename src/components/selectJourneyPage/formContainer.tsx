@@ -9,7 +9,6 @@ import { getStationBySlug } from "../../domains/journey/service";
 import { saveJourney } from "../../adapters/journey";
 import { setCurrentJourney } from "../../domains/journey/slice";
 import { selectCurrentJourney } from "../../domains/journey/selectors";
-import { getMissions } from "../../domains/journey/service";
 import { StationDefinition } from "../../data/ratp/rers/A/types";
 import { FullJourney } from "../../domains/journey/types";
 
@@ -29,17 +28,15 @@ const saveAndNavigate = (
 ) => (data: JourneyFormikValues) => {
   const departure = data?.departure?.value!;
   const destination = data?.destination?.value!;
-  const missions = getMissions(departure, destination).join(",");
   const journey: FullJourney = {
     network: "rers",
     line: "A",
     departure,
     destination,
-    missions,
   };
 
   dispatch(setCurrentJourney(journey));
-  saveJourney({ ...journey, missions });
+  saveJourney(journey);
   pushMethod("/select-travel-duration");
 };
 

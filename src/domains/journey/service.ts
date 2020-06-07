@@ -1,29 +1,5 @@
-import {
-  calculateMissionsForJourney,
-  formatMissionsSchedules,
-} from "./pure/missionSchedule";
 import { getStation } from "./pure/station";
-import {
-  importMissionsCodes,
-  importMissionsSchedules,
-  importStations,
-} from "./dataAccess";
-
-export function getMissionsSchedules() {
-  const missionsCodes = importMissionsCodes();
-  const missionsSchedules = importMissionsSchedules(missionsCodes);
-  return formatMissionsSchedules(missionsSchedules);
-}
-
-export function getMissions(departureStation: string, arrivalStation: string) {
-  const missionsSchedules = getMissionsSchedules();
-  const missions = calculateMissionsForJourney(
-    missionsSchedules,
-    departureStation,
-    arrivalStation
-  );
-  return missions;
-}
+import { importStations } from "./dataAccess";
 
 export function getStationBySlug(stationSlug: string | undefined) {
   const allStation = importStations();

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const DropdownReactSelectField: React.FC<Props> = ({ name, ...props }) => {
-  if (!name) console.warn("mission name on DropdownReactSelectField");
+  if (!name) console.warn("no name on DropdownReactSelectField");
   // eslint-disable-next-line no-unused-vars
   const [field, , helpers] = useField(name);
   return (

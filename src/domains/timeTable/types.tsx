@@ -9,7 +9,6 @@ export interface RawDeparture {
   departureTime?: string;
   platform?: string;
   isDeparture?: boolean;
-  mission?: string;
   displayAttributes?: string;
   displayDestination?: string;
 }

@@ -1,12 +1,12 @@
+import { FullJourney } from "./types";
 import reducer, { initialState, setCurrentJourney } from "./slice";
 import { selectCurrentJourney } from "./selectors";
 
-const sampleJourneyRerAChatelet = {
+const sampleJourneyRerAChatelet: FullJourney = {
   network: "rers",
   line: "a",
   departure: "chatelet+les+halles",
   destination: "chatelet+les+halles",
-  missions: ["ZEBU"],
 };
 
 describe("slice journey", () => {

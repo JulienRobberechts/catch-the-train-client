@@ -3,5 +3,4 @@ export interface FullJourney {
   line: string;
   departure: string;
   destination: string;
-  missions: string;
 }

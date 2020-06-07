@@ -13,9 +13,5 @@ export function getTimeTablePromise({
   const url =
     config.SERVER_ROOT_URL +
     `/next-trains/${network}/${line}/${departure}/${destination}`;
-  // const params = {
-  //   missions: missions ? missions : undefined,
-  // };
-  // console.log("CALL API getTimeTable", url, params);
   return axios.get(url);
 }

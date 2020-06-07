@@ -7,6 +7,8 @@ export interface StationDefinition {
   pos?: Coordinates;
 }
 
-export interface MissionStationDefinition {
+export interface LineDefinition {
+  network: string;
+  line: string;
   stations: StationDefinition[];
 }
