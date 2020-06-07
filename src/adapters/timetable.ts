@@ -8,13 +8,14 @@ export function getTimeTablePromise({
   network,
   line,
   departure,
-  missions,
+  destination,
 }: FullJourney) {
   const url =
-    config.SERVER_ROOT_URL + `/next-trains/${network}/${line}/${departure}?`;
-  const params = {
-    missions: missions ? missions : undefined,
-  };
+    config.SERVER_ROOT_URL +
+    `/next-trains/${network}/${line}/${departure}/${destination}`;
+  // const params = {
+  //   missions: missions ? missions : undefined,
+  // };
   // console.log("CALL API getTimeTable", url, params);
-  return axios.get(url, { params });
+  return axios.get(url);
 }
