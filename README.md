@@ -16,7 +16,7 @@ The application Catch the train in production: [https://catch-the-train.dev-app.
 
 [![application 'Attraper le train'](doc/images/attraper%20le%20train-gif-1.gif)](https://catch-the-train.dev-app.space)
 
-This application only works on RER A in France for now. (more train lines will be added in future versions).
+This application only works on RER A in Paris France for now. (more train lines will be added in future versions).
 
 ![RER A line'](doc/images/plan_ligne_rera.png)
 
