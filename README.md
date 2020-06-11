@@ -15,6 +15,8 @@ You can rely on the application to update the schedule and calculate the right t
 
 This application only works on RER A in France for now. (some update will extend station soon to other RER and trains).
 
+[![application 'Attraper le train'](doc/images/attraper%20le%20train-gif-1.gif)](https://catch-the-train.dev-app.space)
+
 ## Setup for Development
 
 ### Install
