@@ -1,12 +1,12 @@
-# Catch the train Client
+# Catch the train (Front End)
+
+[![application 'Attraper le train'](doc/images/attraper%20le%20train-1.png)](https://catch-the-train.dev-app.space)
 
 This project is the react frontend of the 'Catch the train' web application. The backend project is also on github: [https://github.com/JulienRobberechts/catch-the-train-server](https://github.com/JulienRobberechts/catch-the-train-server).
 
 The application Catch the train in production: [https://catch-the-train.dev-app.space](https://catch-the-train.dev-app.space) (if deployed)
 
 [![build](https://github.com/JulienRobberechts/catch-the-train-client/workflows/build/badge.svg)](https://github.com/JulienRobberechts/catch-the-train-client/actions?query=workflow%3Abuild) [![deploy](https://github.com/JulienRobberechts/catch-the-train-client/workflows/deploy/badge.svg)](https://github.com/JulienRobberechts/catch-the-train-client/actions?query=workflow%3Adeploy)
-
-![application 'Attraper le train'](doc/images/attraper%20le%20train-1.png)
 
 ## Presentation
 
