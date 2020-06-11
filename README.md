@@ -10,7 +10,7 @@ The application Catch the train in production: [https://catch-the-train.dev-app.
 
 ## Presentation
 
-This web application is useful when you want to see the next schedule for your train and leave you place at the right time to get your train on time.
+This web application is useful when you want to see the next scheduled departures for your train and leave your place at the right time to make your train on time.
 You can rely on the application to update the schedule and calculate the right time to leave.
 
 This application only works on RER A in France for now. (some update will extend station soon to other RER and trains).
