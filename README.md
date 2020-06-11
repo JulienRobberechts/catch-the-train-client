@@ -8,12 +8,13 @@ The application Catch the train in production: [https://catch-the-train.dev-app.
 
 [![build](https://github.com/JulienRobberechts/catch-the-train-client/workflows/build/badge.svg)](https://github.com/JulienRobberechts/catch-the-train-client/actions?query=workflow%3Abuild) [![deploy](https://github.com/JulienRobberechts/catch-the-train-client/workflows/deploy/badge.svg)](https://github.com/JulienRobberechts/catch-the-train-client/actions?query=workflow%3Adeploy)
 
-## Presentation
+## How many times did you get to the station only to miss the train by 1 minute? Never again with this handy application!
 
-This web application is useful when you want to see the next scheduled departures for your train and leave your place at the right time to catch your train on time.
-You can rely on the application to update the schedule and calculate the right time to leave.
+### It will help you catch your train by indicating the best time to set off, based on the duration of your journey to the station and the live departure board. You can even plan time for a coffee!
 
-This application only works on RER A in France for now. (some update will extend station soon to other RER and trains).
+### "rien ne sert de courir il faut partir à point"
+
+This application only works on RER A in France for now. (more train lines will be added in future versions).
 
 [![application 'Attraper le train'](doc/images/attraper%20le%20train-gif-1.gif)](https://catch-the-train.dev-app.space)
 
