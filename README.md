@@ -14,9 +14,11 @@ The application Catch the train in production: [https://catch-the-train.dev-app.
 
 ### "rien ne sert de courir il faut partir à point"
 
+[![application 'Attraper le train'](doc/images/attraper%20le%20train-gif-1.gif)](https://catch-the-train.dev-app.space)
+
 This application only works on RER A in France for now. (more train lines will be added in future versions).
 
-[![application 'Attraper le train'](doc/images/attraper%20le%20train-gif-1.gif)](https://catch-the-train.dev-app.space)
+![RER A line'](doc/images/plan_ligne_rera.png)
 
 ## Setup for Development
 
