@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import JourneyBreadcrumb from "./journeyBreadcrumb";
 import TimeTable from "../timeTable";
-import PageRefresher from "./pageRefresher";
+import useCatchTrainPageRefresher from "./useCatchTrainPageRefresher";
 import config from "../../config";
 import { colors } from "../../design/colors";
 import { Link } from "react-router-dom";
@@ -16,12 +16,12 @@ interface Props {
 }
 
 const CatchPage: React.FC<Props> = ({ stationName }) => {
+  useCatchTrainPageRefresher(refreshInterval);
   return (
     <>
       <Helmet>
         <title>Prochain trains - {stationName ?? "..."}</title>
       </Helmet>
-      <PageRefresher refreshInterval={refreshInterval} />
       <MainSection>
         <StationHeader>
           <JourneyBreadcrumb />

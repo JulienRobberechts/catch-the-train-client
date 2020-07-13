@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTime } from "../../domains/toTheStation/slice";
 import { selectNow } from "../../domains/toTheStation/selectors";
 import config from "../../config";
 
-interface Props {
-  refreshInterval: number;
-}
-
-// to transform into hooks
-const PageRefresher: React.FC<Props> = ({ refreshInterval }) => {
+const useCatchTrainPageRefresher = (refreshInterval: number) => {
   // update the time every 1s
   const dispatch = useDispatch();
   const lastTime = useSelector(selectNow);
@@ -25,8 +20,6 @@ const PageRefresher: React.FC<Props> = ({ refreshInterval }) => {
     }, refreshInterval);
     return () => clearInterval(interval);
   }, [dispatch, lastTime, refreshInterval]);
-
-  return <></>;
 };
 
-export default PageRefresher;
+export default useCatchTrainPageRefresher;
