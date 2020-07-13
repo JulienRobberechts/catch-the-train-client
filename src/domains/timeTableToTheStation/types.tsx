@@ -1,5 +1,6 @@
 import moment from "moment";
 import DelayStatus from "../toTheStation/pure/delayStatus";
+import { RawDeparture } from "../timeTable/types";
 
 export interface EnhanceTimeTable {
   currentDeparture?: {
@@ -17,11 +18,12 @@ export interface EnhanceTimeTable {
 export interface EnhancedDeparture {
   departureIndex: number;
   trainCode: string;
-  
-  departureTime:  moment.Moment;
-  departureDuration:  moment.Duration;
+  departure: RawDeparture;
 
-  delayDuration:  moment.Duration;
-  delayStatus:  DelayStatus;
+  departureTime: moment.Moment;
+  departureDuration: moment.Duration;
+
+  delayDuration: moment.Duration;
+  delayStatus: DelayStatus;
   onTimeMarginDelaySeconds: number;
 }

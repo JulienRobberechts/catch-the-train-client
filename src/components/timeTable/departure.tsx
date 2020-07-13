@@ -5,6 +5,7 @@ import { fontColorForDelayStatus } from "../delayDesign";
 import moment from "moment";
 import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 import { Walk } from "../../design/icons";
+import { RawDeparture } from "../../domains/timeTable/types";
 // import { colors } from "../../design/colors";
 
 interface Props {
@@ -12,7 +13,9 @@ interface Props {
   departureTime: moment.Moment;
   departureDuration: moment.Duration;
   onSelect: () => void;
+  delayDuration: moment.Duration;
   delayStatus: DelayStatus;
+  departure: RawDeparture;
 }
 
 function Departure({
@@ -20,16 +23,18 @@ function Departure({
   departureTime,
   departureDuration,
   onSelect,
+  delayDuration,
   delayStatus,
+  departure,
 }: Props) {
-  const actionMessagePrefix = "Vous avez ";
-  const actionMessageFun = " pour prendre un café avant de partir";
-
-  // TODO: to get from the store
-  const delayDuration = moment.duration({ seconds: 3.5 * 60 });
-
+  const { prefix, fullMessage, funSuffix } = getActionMessage(
+    delayDuration,
+    delayStatus
+  );
   const durationLarge = departureDuration.as("minutes") < 30;
-  const direction = "Marne la Vallée Chessy";
+
+  // TODO: to get form the store
+  const direction = departure.displayDestination;
 
   return (
     <Train selected={selected} onClick={onSelect}>
@@ -51,11 +56,17 @@ function Departure({
           </IconBox>
           <MessageBox>
             <ActionMessage>
-              {actionMessagePrefix}
-              <MessageBoxDuration>
-                <TimeSpan timeSpan={delayDuration} displaySeconds={false} />
-              </MessageBoxDuration>
-              <div>{actionMessageFun}</div>
+              {fullMessage ? (
+                fullMessage
+              ) : (
+                <>
+                  {prefix}
+                  <MessageBoxDuration>
+                    <TimeSpan timeSpan={delayDuration} displaySeconds={false} />
+                  </MessageBoxDuration>
+                  <div>{funSuffix}</div>
+                </>
+              )}
             </ActionMessage>
           </MessageBox>
         </HorizontalLayout>
@@ -70,6 +81,40 @@ function Departure({
   );
 }
 
+const getActionMessage = (
+  delayDuration: moment.Duration,
+  delayStatus: DelayStatus
+) => {
+  if (delayStatus === "early") {
+    const delayDurationAsMinute = delayDuration.as("minutes");
+    if (delayDurationAsMinute < 4) {
+      return {
+        prefix: "Vous avez ",
+        funSuffix: " pour prendre un café avant de partir",
+      };
+    }
+    return {
+      prefix: "Vous avez encore ",
+      funSuffix: " pour manger un morceau avant de partir",
+    };
+  }
+
+  if (delayStatus === "late") {
+    return {
+      fullMessage: "Il va falloir courir pour attraper le train !",
+    };
+  }
+
+  if (delayStatus === "on-time") {
+    return {
+      fullMessage: "C'est le bon moment pour partir !",
+    };
+  }
+
+  return {
+    fullMessage: "...",
+  };
+};
 const IconContainer = styled.span<{ delayStatus: DelayStatus }>`
   margin-right: 0rem;
   padding-top: 0rem;

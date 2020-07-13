@@ -10,6 +10,12 @@ Object {
     Object {
       "delayDuration": "-PT2S",
       "delayStatus": "on-time",
+      "departure": Object {
+        "departureTime": "2020-03-10T08:24:00.000Z",
+        "displayAttributes": "08:24",
+        "displayDestination": "Cergy-Le-Haut",
+        "trainCode": "0824",
+      },
       "departureDuration": "PT10M30S",
       "departureIndex": 0,
       "departureTime": "2020-03-10T08:24:00.000Z",
@@ -19,6 +25,12 @@ Object {
     Object {
       "delayDuration": "PT4M58S",
       "delayStatus": "early",
+      "departure": Object {
+        "departureTime": "2020-03-10T08:29:00.000Z",
+        "displayAttributes": "08:29",
+        "displayDestination": "Cergy-Le-Haut",
+        "trainCode": "0829",
+      },
       "departureDuration": "PT15M30S",
       "departureIndex": 1,
       "departureTime": "2020-03-10T08:29:00.000Z",

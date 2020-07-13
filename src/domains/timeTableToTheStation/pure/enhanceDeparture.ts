@@ -10,7 +10,7 @@ export function enhanceDeparture(
   onTimeMarginDelaySeconds: number,
   travelDuration: moment.Duration,
   accessDuration: moment.Duration
-):EnhancedDeparture {
+): EnhancedDeparture {
   const departureTime = moment.parseZone(departure.departureTime);
 
   const trainCode = departure.trainCode;
@@ -27,12 +27,13 @@ export function enhanceDeparture(
   return {
     departureIndex,
     trainCode,
+    departure,
 
     departureTime,
     departureDuration,
 
     delayDuration,
     delayStatus,
-    onTimeMarginDelaySeconds
+    onTimeMarginDelaySeconds,
   };
 }
