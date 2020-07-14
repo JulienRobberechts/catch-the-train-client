@@ -22,7 +22,11 @@ export function enhanceDeparture(
     accessDuration,
   });
 
-  const delayStatus = getDelayStatus(delayDuration, onTimeMarginDelaySeconds);
+  const delayStatus = getDelayStatus(
+    departureDuration,
+    travelDuration,
+    accessDuration
+  );
 
   return {
     departureIndex,
