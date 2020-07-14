@@ -32,7 +32,8 @@ function Departure({
     fullMessage,
     funSuffix,
     displaySeconds = false,
-  } = getActionMessage(delayDuration, delayStatus);
+    color,
+  } = getUiBasedOnDelayStatus(delayDuration, delayStatus);
   console.log("displaySeconds :>> ", displaySeconds);
 
   const { displayDestination, platform } = departure;
@@ -56,7 +57,7 @@ function Departure({
             </TimeStyle>
           </TimeBox>
           <IconBox>
-            <IconContainer delayStatus={delayStatus}>
+            <IconContainer color={color}>
               <Walk />
             </IconContainer>
           </IconBox>
@@ -96,10 +97,12 @@ function Departure({
   );
 }
 
-const getActionMessage = (
+const getUiBasedOnDelayStatus = (
   delayDuration: moment.Duration,
   delayStatus: DelayStatus
 ) => {
+  const color = fontColorForDelayStatus(delayStatus);
+
   if (delayStatus === "early") {
     const delayDurationAsMinute = delayDuration.as("minutes");
     if (delayDurationAsMinute < 3) {
@@ -107,12 +110,14 @@ const getActionMessage = (
         prefix: "Vous avez moins de ",
         funSuffix: " ... pour prendre un café et partir",
         displaySeconds: true,
+        color,
       };
     }
     if (delayDurationAsMinute < 10) {
       return {
         prefix: "Vous avez ",
         funSuffix: " ... pour vous préparer avant de partir",
+        color,
       };
     }
 
@@ -120,37 +125,42 @@ const getActionMessage = (
       return {
         prefix: "Vous avez plus de ",
         funSuffix: " ... pour vous amuser avant de partir",
+        color,
       };
     }
 
     return {
       prefix: "Vous avez encore ",
       funSuffix: " ... pour manger un morceau avant de partir",
+      color,
     };
   }
 
   if (delayStatus === "late") {
     return {
       fullMessage: "Il va falloir courir pour attraper le train !",
+      color,
     };
   }
 
   if (delayStatus === "on-time") {
     return {
       fullMessage: "C'est le bon moment pour partir !",
+      color,
     };
   }
 
   return {
     fullMessage: "...",
+    color,
   };
 };
 
-const IconContainer = styled.span<{ delayStatus: DelayStatus }>`
+const IconContainer = styled.span<{ color: string }>`
   padding-top: 0.2rem;
   svg {
     width: 3.2rem;
-    fill: ${(props) => fontColorForDelayStatus(props.delayStatus)};
+    fill: ${(props) => props.color};
   }
 `;
 
