@@ -27,8 +27,6 @@ function getDelayStatus(
 
   const speed = (durationForRunning / availableDuration) * walkNominalSpeed;
 
-  // console.log("speed :>> ", { speed, availableTime });
-
   // 4.6 km/h
   if (speed < walkNominalSpeed) {
     return DelayStatus.OnTime;

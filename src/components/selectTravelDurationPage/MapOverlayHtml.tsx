@@ -14,8 +14,6 @@ const redrawOverlayHTML = (
   if (!position) return;
 
   const [cx, cy] = project(position);
-  // console.log("cx :>> ", cx);
-  // console.log("cy :>> ", cy);
 
   return (
     <AbsoluteDiv left={cx} top={cy}>

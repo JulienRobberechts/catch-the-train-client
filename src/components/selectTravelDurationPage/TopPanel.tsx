@@ -19,7 +19,6 @@ const TopPanel: React.FC<Props> = ({
   onDurationChangedByUser,
   onValidate,
 }) => {
-  // console.log("duration :>> ", duration);
   return (
     <Container heightRem={heightRem} backgroundColor={backgroundColor}>
       <PanelLayout>
