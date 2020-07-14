@@ -33,8 +33,7 @@ function Departure({
     funSuffix,
     displaySeconds = false,
     color,
-  } = getUiBasedOnDelayStatus(delayDuration, delayStatus);
-  console.log("displaySeconds :>> ", displaySeconds);
+  } = getUiBasedOnDelayStatus(delayStatus, delayDuration);
 
   const { displayDestination, platform } = departure;
 
@@ -98,11 +97,11 @@ function Departure({
 }
 
 const getUiBasedOnDelayStatus = (
-  delayDuration: moment.Duration,
-  delayStatus: DelayStatus
+  delayStatus: DelayStatus,
+  delayDuration: moment.Duration
 ) => {
   const color = getColorForDelayStatus(delayStatus);
-  const fullMessage = getFullMessageForDelayStatus(delayStatus);
+  const fullMessage = getFullMessageForDelayStatus(delayStatus, delayDuration);
   if (fullMessage) {
     return { fullMessage, color };
   }
@@ -121,6 +120,14 @@ const getUiBasedOnDelayStatus = (
       return {
         prefix: "Vous avez ",
         funSuffix: " ... pour vous préparer avant de partir",
+        color,
+      };
+    }
+
+    if (delayDurationAsMinute < 20) {
+      return {
+        prefix: "Vous avez ",
+        funSuffix: " ... pour vous maquiller avant de partir",
         color,
       };
     }
@@ -146,10 +153,13 @@ const getUiBasedOnDelayStatus = (
   };
 };
 
-const getFullMessageForDelayStatus = (delayStatus: DelayStatus) => {
+const getFullMessageForDelayStatus = (
+  delayStatus: DelayStatus,
+  delayDuration: moment.Duration
+) => {
   switch (delayStatus) {
     case DelayStatus.TooEarly:
-      return "Vous pouvez faire une sieste";
+      return getTooEarlyFullMessage(delayDuration);
     case DelayStatus.OnTime:
       return "C'est le bon moment pour partir";
     case DelayStatus.LateWalkFast:
@@ -159,12 +169,32 @@ const getFullMessageForDelayStatus = (delayStatus: DelayStatus) => {
     case DelayStatus.LateRun:
       return "Il va falloir courir pour attraper ce train";
     case DelayStatus.LateRunFast:
-      return "Il va falloir courir VITE pour attraper ce train";
+      return "Il faudrait courir VITE pour attraper ce train";
     case DelayStatus.TooLate:
-      return "Ca semble impossible d'attraper ce train";
+      return "Même superman aurait du mal à attraper ce train";
     default:
       return null;
   }
+};
+
+const getTooEarlyFullMessage = (delayDuration: moment.Duration) => {
+  const min = delayDuration.asMinutes();
+  if (min < 45) {
+    return "Vous avez le temps de faire une sieste";
+  }
+  if (min < 60) {
+    return "Vous avez le temps de faire un gâteau pour vos amis";
+  }
+  if (min < 105) {
+    return "Vous avez le temps de refaire le monde";
+  }
+  if (min < 140) {
+    return "Vous avez le temps de faire un match de foot";
+  }
+  if (min < 180) {
+    return "Vous avez le temps de faire un pot-au-feu pour 4 personnes";
+  }
+  return "Vous êtes large";
 };
 
 const IconContainer = styled.span<{ color: string }>`
