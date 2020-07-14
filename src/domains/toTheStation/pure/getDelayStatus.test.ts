@@ -6,9 +6,9 @@ import DelayStatus from "./delayStatus";
 describe("toTheStation", () => {
   describe("getDelayStatus", () => {
     each([
-      ["-01:00:00", 20, DelayStatus.Late],
-      ["-00:02:00", 20, DelayStatus.Late],
-      ["-00:00:25", 20, DelayStatus.Late],
+      ["-01:00:00", 20, DelayStatus.LateRun],
+      ["-00:02:00", 20, DelayStatus.LateRun],
+      ["-00:00:25", 20, DelayStatus.LateRun],
       ["-00:00:20", 20, DelayStatus.OnTime],
       ["-00:00:05", 20, DelayStatus.OnTime],
       ["00:00:00", 20, DelayStatus.OnTime],
@@ -16,7 +16,7 @@ describe("toTheStation", () => {
       ["00:00:20", 20, DelayStatus.OnTime],
       ["00:00:30", 20, DelayStatus.Early],
       ["00:02:00", 20, DelayStatus.Early],
-      ["-00:03:00", 120, DelayStatus.Late],
+      ["-00:03:00", 120, DelayStatus.LateRun],
       ["-00:01:30", 120, DelayStatus.OnTime],
       ["-00:00:15", 120, DelayStatus.OnTime],
       ["00:00:00", 120, DelayStatus.OnTime],
@@ -35,7 +35,7 @@ describe("toTheStation", () => {
       }
     );
     test("should identify an invalid delay", () => {
-      const delayDuration = moment.duration(NaN, 'minutes');
+      const delayDuration = moment.duration(NaN, "minutes");
       const onTimeMarginDelaySeconds = 20;
 
       // @ts-ignore - to check error

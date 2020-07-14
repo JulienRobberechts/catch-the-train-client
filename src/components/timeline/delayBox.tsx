@@ -4,7 +4,7 @@ import moment from "moment";
 import { TimeSpan } from "../time";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import { fontColorForDelayStatus } from "../delayDesign";
+import { getColorForDelayStatus } from "../delayDesign";
 import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 
 import { Break } from "../../design/icons";
@@ -15,7 +15,11 @@ interface Props {
   largeSpace: boolean;
 }
 
-const DelayBox : React.FC<Props> = ({ delayDuration, delayStatus, largeSpace }) => {
+const DelayBox: React.FC<Props> = ({
+  delayDuration,
+  delayStatus,
+  largeSpace,
+}) => {
   const delayStatusText = textForDelayStatus(delayStatus);
 
   const showWaitIcon = largeSpace && delayStatus === DelayStatus.Early;
@@ -38,22 +42,21 @@ const DelayBox : React.FC<Props> = ({ delayDuration, delayStatus, largeSpace }) 
   );
 };
 
-const textForDelayStatus = (delayStatus:DelayStatus) => {
+const textForDelayStatus = (delayStatus: DelayStatus) => {
   switch (delayStatus) {
     case DelayStatus.Early:
       return "en avance";
     case DelayStatus.OnTime:
       return "à l'heure";
-    case DelayStatus.Late:
-      return "en retard";
     default:
-      return "...";
+      return "en retard";
   }
 };
 
 const Box = styled.div`
   background: ${() => colors.dark.background};
-  color: ${(props: {delayStatus: DelayStatus}) => fontColorForDelayStatus(props.delayStatus)};
+  color: ${(props: { delayStatus: DelayStatus }) =>
+    getColorForDelayStatus(props.delayStatus)};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -89,7 +92,8 @@ const IconContainer = styled.span`
   svg {
     width: 2.4rem;
     height: 3.6rem;
-    fill: ${(props: {delayStatus: DelayStatus}) => fontColorForDelayStatus(props.delayStatus)};
+    fill: ${(props: { delayStatus: DelayStatus }) =>
+      getColorForDelayStatus(props.delayStatus)};
   }
 `;
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Time, TimeSpan } from "../time";
-import { fontColorForDelayStatus } from "../delayDesign";
+import { getColorForDelayStatus } from "../delayDesign";
 import moment from "moment";
 import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
 import { Walk } from "../../design/icons";
@@ -101,7 +101,11 @@ const getUiBasedOnDelayStatus = (
   delayDuration: moment.Duration,
   delayStatus: DelayStatus
 ) => {
-  const color = fontColorForDelayStatus(delayStatus);
+  const color = getColorForDelayStatus(delayStatus);
+  const fullMessage = getFullMessageForDelayStatus(delayStatus);
+  if (fullMessage) {
+    return { fullMessage, color };
+  }
 
   if (delayStatus === "early") {
     const delayDurationAsMinute = delayDuration.as("minutes");
@@ -136,24 +140,31 @@ const getUiBasedOnDelayStatus = (
     };
   }
 
-  if (delayStatus === "late") {
-    return {
-      fullMessage: "Il va falloir courir pour attraper le train !",
-      color,
-    };
-  }
-
-  if (delayStatus === "on-time") {
-    return {
-      fullMessage: "C'est le bon moment pour partir !",
-      color,
-    };
-  }
-
   return {
     fullMessage: "...",
     color,
   };
+};
+
+const getFullMessageForDelayStatus = (delayStatus: DelayStatus) => {
+  switch (delayStatus) {
+    case DelayStatus.TooEarly:
+      return "Vous pouvez faire une sieste";
+    case DelayStatus.OnTime:
+      return "C'est le bon moment pour partir";
+    case DelayStatus.LateWalkFast:
+      return "En partant maintenant et en marchant VITE vous pouvez prendre ce train";
+    case DelayStatus.LateWalkVeryFast:
+      return "En partant maintenant et en marchant TRÈS VITE vous pouvez prendre ce train";
+    case DelayStatus.LateRun:
+      return "Il va falloir courir pour attraper ce train";
+    case DelayStatus.LateRunFast:
+      return "Il va falloir courir VITE pour attraper ce train";
+    case DelayStatus.TooLate:
+      return "Ca semble impossible d'attraper ce train";
+    default:
+      return null;
+  }
 };
 
 const IconContainer = styled.span<{ color: string }>`

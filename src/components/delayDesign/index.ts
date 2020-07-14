@@ -1,15 +1,26 @@
 import DelayStatus from "../../domains/toTheStation/pure/delayStatus";
-import { colors } from "../../design/colors";
 
-const fontColorForDelayStatus = (delayStatus: DelayStatus) => {
+const getColorForDelayStatus = (delayStatus: DelayStatus) => {
   switch (delayStatus) {
+    case DelayStatus.TooEarly:
+      return "#186a3b";
     case DelayStatus.Early:
-      return colors.dark.text.original;
-    case DelayStatus.Late:
-      return colors.dark.text.warning;
+      return "#239b56";
+    case DelayStatus.OnTime:
+      return "#28b463";
+    case DelayStatus.LateWalkFast:
+      return "#f8c471";
+    case DelayStatus.LateWalkVeryFast:
+      return "#f39c12";
+    case DelayStatus.LateRun:
+      return "#ec7063";
+    case DelayStatus.LateRunFast:
+      return "#cb4335";
+    case DelayStatus.TooLate:
+      return "#922b21";
     default:
-      return colors.dark.text.highlight;
+      return "#5b5a59";
   }
 };
 
-export { fontColorForDelayStatus };
+export { getColorForDelayStatus };
