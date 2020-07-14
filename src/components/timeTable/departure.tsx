@@ -27,11 +27,13 @@ function Departure({
   delayStatus,
   departure,
 }: Props) {
-  const { prefix, fullMessage, funSuffix } = getActionMessage(
-    delayDuration,
-    delayStatus
-  );
-  const durationLarge = departureDuration.as("minutes") < 30;
+  const {
+    prefix,
+    fullMessage,
+    funSuffix,
+    displaySeconds = false,
+  } = getActionMessage(delayDuration, delayStatus);
+  console.log("displaySeconds :>> ", displaySeconds);
 
   const { displayDestination, platform } = departure;
 
@@ -40,9 +42,12 @@ function Departure({
       <VerticalLayout>
         <HorizontalLayout>
           <DurationBox>
-            <DurationStyle large={durationLarge}>
+            <DurationStyle>
               <DurationPrefixStyle>dans </DurationPrefixStyle>
-              <TimeSpan timeSpan={departureDuration} displaySeconds={false} />
+              <TimeSpan
+                timeSpan={departureDuration}
+                displaySeconds={!!displaySeconds}
+              />
             </DurationStyle>
           </DurationBox>
           <TimeBox>
@@ -65,7 +70,7 @@ function Departure({
                   <MessageBoxDuration>
                     <TimeSpan timeSpan={delayDuration} displaySeconds={false} />
                   </MessageBoxDuration>
-                  <div>{funSuffix}</div>
+                  <ActionMessageFunSuffix>{funSuffix}</ActionMessageFunSuffix>
                 </>
               )}
             </ActionMessage>
@@ -79,7 +84,7 @@ function Departure({
           {platform && (
             <div>
               <FieldName>voie </FieldName>
-              <FieldValue>{platform}</FieldValue>
+              <FieldValuePlatform>{platform}</FieldValuePlatform>
             </div>
           )}
           <div>
@@ -97,15 +102,30 @@ const getActionMessage = (
 ) => {
   if (delayStatus === "early") {
     const delayDurationAsMinute = delayDuration.as("minutes");
-    if (delayDurationAsMinute < 4) {
+    if (delayDurationAsMinute < 3) {
       return {
-        prefix: "Vous avez ",
-        funSuffix: " pour prendre un café avant de partir",
+        prefix: "Vous avez moins de ",
+        funSuffix: " ... pour prendre un café et partir",
+        displaySeconds: true,
       };
     }
+    if (delayDurationAsMinute < 10) {
+      return {
+        prefix: "Vous avez ",
+        funSuffix: " ... pour vous préparer avant de partir",
+      };
+    }
+
+    if (delayDurationAsMinute > 30) {
+      return {
+        prefix: "Vous avez plus de ",
+        funSuffix: " ... pour vous amuser avant de partir",
+      };
+    }
+
     return {
       prefix: "Vous avez encore ",
-      funSuffix: " pour manger un morceau avant de partir",
+      funSuffix: " ... pour manger un morceau avant de partir",
     };
   }
 
@@ -125,13 +145,11 @@ const getActionMessage = (
     fullMessage: "...",
   };
 };
-const IconContainer = styled.span<{ delayStatus: DelayStatus }>`
-  margin-right: 0rem;
-  padding-top: 0rem;
-  margin: 0;
-  svg {
-    width: 3.6rem;
 
+const IconContainer = styled.span<{ delayStatus: DelayStatus }>`
+  padding-top: 0.2rem;
+  svg {
+    width: 3.2rem;
     fill: ${(props) => fontColorForDelayStatus(props.delayStatus)};
   }
 `;
@@ -143,7 +161,7 @@ const Train = styled.div<{ selected: boolean }>`
     border-top: 1px solid;
   }
 
-  padding: 0.1rem;
+  padding: 0.2rem;
 
   cursor: pointer;
   flex-basis: 20%;
@@ -155,25 +173,6 @@ const Train = styled.div<{ selected: boolean }>`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-`;
-
-const TimeStyle = styled.span`
-  font-size: 1.3rem;
-`;
-
-const DurationStyle = styled.span<{ large: boolean }>`
-  font-size: ${(props) => (props.large ? 1.2 : 1.2)}rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-const DurationPrefixStyle = styled.div`
-  font-size: 60%;
-  vertical-align: 20%;
-  font-style: italic;
-  font-weight: 100;
-  line-height: 100%;
 `;
 
 const VerticalLayout = styled.div`
@@ -189,13 +188,35 @@ const TimeBox = styled.div`
 
   min-width: 4rem;
 `;
+
+const TimeStyle = styled.span`
+  font-size: 1rem;
+`;
+
 const DurationBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  min-width: 4rem;
+  min-width: 5rem;
+`;
+
+const DurationPrefixStyle = styled.div`
+  font-size: 60%;
+  vertical-align: 20%;
+  font-style: italic;
+  font-weight: 100;
+  line-height: 100%;
+`;
+
+const DurationStyle = styled.span`
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
 `;
 
 const IconBox = styled.div`
@@ -212,6 +233,7 @@ const MessageBox = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  line-height: 150%;
   margin: 0.3rem;
   padding: 0.3rem;
   width: 100%;
@@ -220,11 +242,15 @@ const MessageBox = styled.div`
 `;
 
 const ActionMessage = styled.div`
-  font-size: 1rem;
+  font-size: clamp(100%, 0.5rem + 1vw, 18px);
+`;
+
+const ActionMessageFunSuffix = styled.div`
+  padding: 0.2rem 0;
 `;
 const MessageBoxDuration = styled.span`
-  font-weight: 900;
-  font-size: 1.8rem;
+  font-weight: 100;
+  font-size: 140%;
 `;
 
 const BottomBox = styled.div`
@@ -246,7 +272,12 @@ const MoreLink = styled.div`
 `;
 
 const FieldValue = styled.span`
-  font-size: 100%;
+  font-size: 120%;
+  font-weight: 700;
+`;
+
+const FieldValuePlatform = styled.span`
+  font-size: 120%;
   font-weight: 700;
 `;
 

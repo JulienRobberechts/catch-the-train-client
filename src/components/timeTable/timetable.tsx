@@ -52,7 +52,6 @@ const PanelEmpty = styled(Panel)`
 const ScrollPanel = styled.div`
   flex-grow: 1;
   margin: 0.1rem;
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
