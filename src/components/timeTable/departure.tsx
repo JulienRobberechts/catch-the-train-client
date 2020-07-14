@@ -33,18 +33,19 @@ function Departure({
   );
   const durationLarge = departureDuration.as("minutes") < 30;
 
-  // TODO: to get form the store
-  const direction = departure.displayDestination;
+  const { displayDestination, platform } = departure;
 
   return (
     <Train selected={selected} onClick={onSelect}>
       <VerticalLayout>
         <HorizontalLayout>
-          <TimeBox>
+          <DurationBox>
             <DurationStyle large={durationLarge}>
               <DurationPrefixStyle>dans </DurationPrefixStyle>
               <TimeSpan timeSpan={departureDuration} displaySeconds={false} />
             </DurationStyle>
+          </DurationBox>
+          <TimeBox>
             <TimeStyle>
               <Time time={departureTime} />
             </TimeStyle>
@@ -70,12 +71,21 @@ function Departure({
             </ActionMessage>
           </MessageBox>
         </HorizontalLayout>
-        <DirectionBox>
+        <BottomBox>
           <div>
-            <DirectionField>Direction: </DirectionField>
-            <DirectionValue>{direction}</DirectionValue>
+            <FieldName>direction </FieldName>
+            <FieldValue>{displayDestination}</FieldValue>
           </div>
-        </DirectionBox>
+          {platform && (
+            <div>
+              <FieldName>voie </FieldName>
+              <FieldValue>{platform}</FieldValue>
+            </div>
+          )}
+          <div>
+            <MoreLink>détails</MoreLink>
+          </div>
+        </BottomBox>
       </VerticalLayout>
     </Train>
   );
@@ -121,7 +131,7 @@ const IconContainer = styled.span<{ delayStatus: DelayStatus }>`
   margin: 0;
   svg {
     width: 3.6rem;
-    height: 5.4rem;
+
     fill: ${(props) => fontColorForDelayStatus(props.delayStatus)};
   }
 `;
@@ -133,7 +143,7 @@ const Train = styled.div<{ selected: boolean }>`
     border-top: 1px solid;
   }
 
-  padding: 0.4rem;
+  padding: 0.1rem;
 
   cursor: pointer;
   flex-basis: 20%;
@@ -152,13 +162,18 @@ const TimeStyle = styled.span`
 `;
 
 const DurationStyle = styled.span<{ large: boolean }>`
-  font-size: ${(props) => (props.large ? 1.4 : 0.9)}rem;
+  font-size: ${(props) => (props.large ? 1.2 : 1.2)}rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
-const DurationPrefixStyle = styled.span`
+const DurationPrefixStyle = styled.div`
   font-size: 60%;
   vertical-align: 20%;
   font-style: italic;
   font-weight: 100;
+  line-height: 100%;
 `;
 
 const VerticalLayout = styled.div`
@@ -172,7 +187,15 @@ const TimeBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  min-width: 6rem;
+  min-width: 4rem;
+`;
+const DurationBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 4rem;
 `;
 
 const IconBox = styled.div`
@@ -188,6 +211,12 @@ const MessageBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  margin: 0.3rem;
+  padding: 0.3rem;
+  width: 100%;
+
+  border-radius: 0.2rem;
 `;
 
 const ActionMessage = styled.div`
@@ -198,19 +227,25 @@ const MessageBoxDuration = styled.span`
   font-size: 1.8rem;
 `;
 
-const DirectionBox = styled.div`
+const BottomBox = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   font-size: 0.9rem;
+  padding: 0 0.5rem;
 `;
 
-const DirectionField = styled.span`
+const FieldName = styled.span`
   font-size: 100%;
   font-style: italic;
   font-weight: 100;
 `;
 
-const DirectionValue = styled.span`
+const MoreLink = styled.div`
+  font-size: 100%;
+  font-weight: 100;
+`;
+
+const FieldValue = styled.span`
   font-size: 100%;
   font-weight: 700;
 `;
