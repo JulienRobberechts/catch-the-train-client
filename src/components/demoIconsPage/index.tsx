@@ -31,6 +31,26 @@ import {
   WalkingWithDog,
   Work,
 } from "../../design/icons";
+import {
+  Alcohol,
+  Baggage,
+  Fisher,
+  Golf2,
+  Gymnast,
+  Jump2,
+  Run6,
+  Run7,
+  Scooter,
+  Skateboard,
+  Sleep,
+  StandUp,
+  Think,
+  Wait1,
+  Walk5,
+  Walk6,
+  Walk7,
+  Walk8,
+} from "../../design/icons";
 
 const DemoIconsPage: React.FC = () => {
   return (
@@ -50,10 +70,25 @@ const DemoIconsPage: React.FC = () => {
           <Reader2Left /> 20-30 min
         </IconContainer>
         <IconContainer>
+          <Alcohol />
+          >20min
+        </IconContainer>
+        <IconContainer>
+          <Fisher />
+          >20min
+        </IconContainer>
+        <IconContainer>
+          <Golf2 />
+          >20min
+        </IconContainer>
+        <IconContainer>
           <Chill />> 30 min
         </IconContainer>
         <IconContainer>
           <Golf />> 30 min
+        </IconContainer>
+        <IconContainer>
+          <Sleep />> 30 min
         </IconContainer>
         <IconContainer>
           <Plant />> 1h
@@ -83,113 +118,139 @@ const DemoIconsPage: React.FC = () => {
       <Panel color="#28b463">
         <IconContainer>
           <Man />
-          Now
         </IconContainer>
         <IconContainer>
           <Push />
-          Now
         </IconContainer>
         <IconContainer>
           <Jump />
-          now
         </IconContainer>
       </Panel>
       Walk Slowly
       <Panel color="#28b463">
         <IconContainer>
           <Walk3 />
-          Walk very Slowly
         </IconContainer>
         <IconContainer>
           <Trip />
-          Walk Slowly
         </IconContainer>
         <IconContainer>
           <Walk2 />
-          Walk Slowly
         </IconContainer>
         <IconContainer>
           <WalkingWithDog />
-          Walk Slowly
         </IconContainer>
         <IconContainer>
           <Girl />
-          Walk Slowly
         </IconContainer>
         <IconContainer>
           <Walk4 />
-          Walk
         </IconContainer>
         <IconContainer>
           <WalkingNow />
-          Walk
+        </IconContainer>
+        <IconContainer>
+          <Baggage />
+        </IconContainer>
+        <IconContainer>
+          <Walk5 />
+        </IconContainer>
+        <IconContainer>
+          <Walk6 />
+        </IconContainer>
+        <IconContainer>
+          <Walk7 />
         </IconContainer>
       </Panel>
       Walk Fast
       <Panel color="#f8c471">
         <IconContainer>
           <Run3 />
-          Walk fast
         </IconContainer>
-
         <IconContainer>
           <School />
-          Walk Fast
+        </IconContainer>
+        <IconContainer>
+          <Walk8 />
         </IconContainer>
       </Panel>
       Walk Very Fast
       <Panel color="#f39c12">
         <IconContainer>
           <Run3 />
-          Walk fast
         </IconContainer>
-
         <IconContainer>
           <School />
-          Walk Fast
+        </IconContainer>{" "}
+        <IconContainer>
+          <Jump2 />
         </IconContainer>
       </Panel>
       Run
       <Panel color="#ec7063">
         <IconContainer>
           <Run3 />
-          Walk fast
         </IconContainer>
         <IconContainer>
           <Run />
-          Run
         </IconContainer>
-
         <IconContainer>
           <Run5 />
-          Run
+        </IconContainer>{" "}
+        <IconContainer>
+          <Run7 />
+        </IconContainer>{" "}
+        <IconContainer>
+          <Jump2 />
         </IconContainer>
       </Panel>
       Run fast
       <Panel color="#cb4335">
         <IconContainer>
-          <RunFast /> Run fast
+          <RunFast />
         </IconContainer>
         <IconContainer>
-          <Run2 /> Run fast
+          <Run2 />
         </IconContainer>{" "}
         <IconContainer>
           <Run4 />
-          Run fast
+        </IconContainer>
+        <IconContainer>
+          <Run6 />
+        </IconContainer>
+        <IconContainer>
+          <Scooter />
+        </IconContainer>
+        <IconContainer>
+          <Skateboard />
         </IconContainer>
       </Panel>
       Impossible
       <Panel color="#922b21">
         <IconContainer>
           <Cape />
-          Impossible
         </IconContainer>
       </Panel>
       Schedule unknown
       <Panel color="#5b5a59">
         <IconContainer>
           <Careless />
-          schedule unknown
+        </IconContainer>
+        <IconContainer>
+          <Think />
+        </IconContainer>
+      </Panel>
+      Others?
+      <Panel color="#5b5a59">
+        <IconContainer>
+          <StandUp />
+        </IconContainer>
+
+        <IconContainer>
+          <Wait1 />
+        </IconContainer>
+        <IconContainer>
+          <Gymnast />
         </IconContainer>
       </Panel>
     </Demo>
