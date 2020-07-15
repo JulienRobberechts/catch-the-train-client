@@ -17,6 +17,7 @@ import {
   SelectTravelDurationPage,
   SelectAccessDurationPage,
   SelectPreferencePage,
+  DemoIconsPage,
 } from "./components/pages";
 import AppTitle from "./components/appBar/appTitle";
 import { colors } from "./design/colors";
@@ -59,6 +60,9 @@ function App() {
               </Route>
               <Route path="/cover">
                 <ApplicationCover />
+              </Route>
+              <Route path="/demo">
+                <DemoIconsPage />
               </Route>
               <Redirect to="/start" />
             </Switch>
