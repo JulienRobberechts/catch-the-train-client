@@ -14,7 +14,8 @@ import {
   Push,
   Read,
   Reader,
-  Reader2,
+  Reader2Right,
+  Reader2Left,
   Run,
   RunFast,
   Run2,
@@ -43,7 +44,10 @@ const DemoIconsPage: React.FC = () => {
           <Reader /> 20-30 min
         </IconContainer>
         <IconContainer>
-          <Reader2 /> 20-30 min
+          <Reader2Right /> 20-30 min
+        </IconContainer>
+        <IconContainer>
+          <Reader2Left /> 20-30 min
         </IconContainer>
         <IconContainer>
           <Chill />> 30 min
@@ -72,7 +76,7 @@ const DemoIconsPage: React.FC = () => {
           <Reader /> 20-30 min
         </IconContainer>
         <IconContainer>
-          <Reader2 /> 20-30 min
+          <Reader2Right /> 20-30 min
         </IconContainer>
       </Panel>
       Now
@@ -148,13 +152,14 @@ const DemoIconsPage: React.FC = () => {
       Run
       <Panel color="#ec7063">
         <IconContainer>
+          <Run3 />
+          Walk fast
+        </IconContainer>
+        <IconContainer>
           <Run />
           Run
         </IconContainer>
-        <IconContainer>
-          <Run4 />
-          Run
-        </IconContainer>
+
         <IconContainer>
           <Run5 />
           Run
@@ -167,6 +172,10 @@ const DemoIconsPage: React.FC = () => {
         </IconContainer>
         <IconContainer>
           <Run2 /> Run fast
+        </IconContainer>{" "}
+        <IconContainer>
+          <Run4 />
+          Run fast
         </IconContainer>
       </Panel>
       Impossible
@@ -181,90 +190,6 @@ const DemoIconsPage: React.FC = () => {
         <IconContainer>
           <Careless />
           schedule unknown
-        </IconContainer>
-      </Panel>
-      Tous:
-      <Panel color="#5b5a59">
-        <IconContainer>
-          <Cape />
-        </IconContainer>
-        <IconContainer>
-          <Careless />
-        </IconContainer>
-        <IconContainer>
-          <Chill />
-        </IconContainer>
-        <IconContainer>
-          <Girl />
-        </IconContainer>
-        <IconContainer>
-          <Golf />
-        </IconContainer>
-        <IconContainer>
-          <Jump />
-        </IconContainer>
-        <IconContainer>
-          <Lean />
-        </IconContainer>
-        <IconContainer>
-          <Man />
-        </IconContainer>
-        <IconContainer>
-          <Plant />
-        </IconContainer>
-        <IconContainer>
-          <Push />
-        </IconContainer>
-        <IconContainer>
-          <Read />
-        </IconContainer>
-        <IconContainer>
-          <Reader />
-        </IconContainer>
-        <IconContainer>
-          <Reader2 />
-        </IconContainer>
-        <IconContainer>
-          <Run />
-        </IconContainer>
-        <IconContainer>
-          <RunFast />
-        </IconContainer>
-        <IconContainer>
-          <Run2 />
-        </IconContainer>
-        <IconContainer>
-          <Run3 />
-        </IconContainer>
-        <IconContainer>
-          <Run4 />
-        </IconContainer>
-        <IconContainer>
-          <Run5 />
-        </IconContainer>
-        <IconContainer>
-          <School />
-        </IconContainer>
-        <IconContainer>
-          <Trip />
-        </IconContainer>
-        <IconContainer>
-          <Walk2 />
-        </IconContainer>
-        <IconContainer>
-          <Walk3 />
-        </IconContainer>
-        <IconContainer>
-          <Walk4 />
-        </IconContainer>
-        <IconContainer>
-          <WalkingNow />
-        </IconContainer>
-        <IconContainer>
-          <WalkingWithDog />
-        </IconContainer>
-        <IconContainer>
-          <Work />
         </IconContainer>
       </Panel>
     </Demo>
