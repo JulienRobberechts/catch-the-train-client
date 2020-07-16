@@ -25,7 +25,7 @@ const JourneyBreadcrumb = () => {
   return (
     <Panel>
       <span>
-        {networkName} {lineName} - {departureName} > {destinationName}
+        {networkName} {lineName} - {departureName} &gt; {destinationName}
       </span>
     </Panel>
   );

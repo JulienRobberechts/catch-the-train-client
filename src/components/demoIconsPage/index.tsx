@@ -71,27 +71,31 @@ const DemoIconsPage: React.FC = () => {
         </IconContainer>
         <IconContainer>
           <Alcohol />
-          >20min
+          +20min
         </IconContainer>
         <IconContainer>
           <Fisher />
-          >20min
+          +20min
         </IconContainer>
         <IconContainer>
           <Golf2 />
-          >20min
+          +20min
         </IconContainer>
         <IconContainer>
-          <Chill />> 30 min
+          <Chill />
+          +30 min
         </IconContainer>
         <IconContainer>
-          <Golf />> 30 min
+          <Golf />
+          +30 min
         </IconContainer>
         <IconContainer>
-          <Sleep />> 30 min
+          <Sleep />
+          +30 min
         </IconContainer>
         <IconContainer>
-          <Plant />> 1h
+          <Plant />
+          +1h
         </IconContainer>
       </Panel>
       Early
