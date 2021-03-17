@@ -40,7 +40,7 @@
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.1",
     "typescript": "^3.9.6",
-    "yup": "^0.29.1"
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
