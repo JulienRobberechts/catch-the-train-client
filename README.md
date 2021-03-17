@@ -49,7 +49,7 @@ You can create an .env.development.local file at the root to override the .env v
 ```env
 PORT=3025
 REACT_APP_SERVER_ROOT_URL=http://localhost:3034
-REACT_APP_MOCK_TIME=true
+REACT_APP_MOCK_TIME=false
 REACT_APP_DISABLE_TIME_UPDATE=true
 REACT_APP_MAPBOX_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXX
 ```
