@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { colors } from "../../../design/colors";
@@ -7,7 +7,7 @@ const AppButton = ({ appColor = colors.dark.text.original, ...props }) => {
   return (
     <StyledSemanticButton
       inverted
-      appColor={appColor}
+      appcolor={appColor}
       color="orange"
       {...props}
     />
@@ -38,13 +38,13 @@ const StyledSemanticButton = styled(Button)`
   &.ui.inverted.orange.buttons .button:focus,
   &.ui.inverted.orange.buttons .button:hover {
     color: ${() => colors.dark.background};
-    background-color: ${(props) => props.appColor};
+    background-color: ${(props) => props.appcolor};
     box-shadow: none !important;
   }
   &.ui.inverted.orange.button {
     background-color: transparent;
-    box-shadow: 0 0 0 2px ${(props) => props.appColor} inset !important;
-    color: ${(props) => props.appColor};
+    box-shadow: 0 0 0 2px ${(props) => props.appcolor} inset !important;
+    color: ${(props) => props.appcolor};
   }
 `;
 

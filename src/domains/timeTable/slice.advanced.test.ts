@@ -1,5 +1,4 @@
 import reducer, {
-  initialState,
   requestStart,
   requestError,
   requestSuccess,

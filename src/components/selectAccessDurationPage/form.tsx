@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../design/colors";
-import { Form as SemanticForm, Header, Icon } from "semantic-ui-react";
+import { Header, Icon } from "semantic-ui-react";
 import { AppButton, ButtonContainerOne } from "../design-system/controls";
 import { InputField } from "../design-system/controls";
 import { Form, useFormikContext } from "formik";
@@ -19,8 +19,8 @@ const StationPreferenceForm: React.FC<Props> = ({ station }) => {
   const { values, isValid } = formContext;
   const stationName = getStationBySlug(station)?.name;
   return (
-    <StyledForm>
-      <SemanticForm>
+    <StyledFormikForm>
+      <div>
         <FormInnerLayout>
           <Title>
             <TitleNormal>Gare de</TitleNormal>{" "}
@@ -62,8 +62,8 @@ const StationPreferenceForm: React.FC<Props> = ({ station }) => {
             </AppButton>
           </ButtonContainerOne>
         </FormInnerLayout>
-      </SemanticForm>
-    </StyledForm>
+      </div>
+    </StyledFormikForm>
   );
 };
 
@@ -71,7 +71,7 @@ const HighlightText = styled.span`
   color: ${() => colors.dark.text.highlight};
 `;
 
-const StyledForm = styled(Form)`
+const StyledFormikForm = styled(Form)`
   flex-basis: 500px;
 `;
 

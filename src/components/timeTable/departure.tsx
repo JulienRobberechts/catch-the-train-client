@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Time, TimeSpan } from "../time";
 import { getColorForDelayStatus } from "../delayDesign";

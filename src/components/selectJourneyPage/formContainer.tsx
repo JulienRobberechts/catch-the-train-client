@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";

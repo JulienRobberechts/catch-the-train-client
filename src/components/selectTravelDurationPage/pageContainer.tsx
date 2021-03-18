@@ -1,4 +1,4 @@
-import React, { useMemo, Dispatch, useCallback } from "react";
+import { useMemo, Dispatch, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
