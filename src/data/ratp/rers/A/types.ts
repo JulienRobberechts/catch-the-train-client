@@ -1,10 +1,10 @@
-import { Coordinates } from "viewport-mercator-project";
+import { MapPosition } from "../../../../domains/map/geoTypes";
 
 export interface StationDefinition {
   slug: string;
   name: string;
   altName?: string;
-  pos?: Coordinates;
+  pos?: MapPosition;
 }
 
 export interface LineDefinition {

@@ -1,10 +1,10 @@
-import { Coordinates } from "viewport-mercator-project";
+import { MapPosition } from "../../map/geoTypes";
 
 interface Station {
   slug: string;
   name: string;
   altName?: string;
-  pos?: Coordinates;
+  pos?: MapPosition;
 }
 
 const getStation = (

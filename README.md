@@ -57,3 +57,7 @@ REACT_APP_MAPBOX_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXX
 ### Deployment
 
 [Instructions for the deployment of the front-end on AWS S3 + TLS + CDN](./doc/deploy.md)
+
+### Links other projects
+
+https://www.horaires-de-trains.fr/prochains-departs-Saint_Germain_En_Laye.html

@@ -1,6 +1,4 @@
-import { Coordinates } from "viewport-mercator-project";
-
-export interface MapPosition extends Coordinates {}
+export type MapPosition = [number, number];
 
 export interface UserPosition {
   Last?: MapPosition;

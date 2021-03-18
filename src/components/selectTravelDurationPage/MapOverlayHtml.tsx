@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { HTMLOverlay, HTMLRedrawOptions } from "react-map-gl";
+import { HTMLOverlay } from "react-map-gl";
 import { MapPosition } from "../../domains/map/geoTypes";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const redrawOverlayHTML = (
   children: React.ReactNode,
   position: MapPosition | undefined
-) => ({ project }: HTMLRedrawOptions) => {
+) => ({ project }: any) => {
   if (!position) return;
 
   const [cx, cy] = project(position);

@@ -9,8 +9,8 @@ import {
 
 const getViewBoundsFromViewport = (viewport: ViewportProps): ViewBounds => {
   return {
-    zoom: viewport.zoom,
-    center: [viewport.longitude, viewport.latitude],
+    zoom: viewport.zoom || 17,
+    center: [viewport.longitude || 0, viewport.latitude || 0],
   };
 };
 
@@ -44,7 +44,7 @@ const Map: React.FC<Props> = ({
       maxZoom={20}
       mapboxApiAccessToken={config.MAPBOX_ACCESS_TOKEN}
       mapStyle="mapbox://styles/mapbox/dark-v10"
-      onViewportChange={(viewport) => {
+      onViewportChange={(viewport : ViewportProps) => {
         const newViewBounds = getViewBoundsFromViewport(viewport);
         onViewBoundsChange(newViewBounds);
       }}

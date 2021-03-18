@@ -1,13 +1,47 @@
 import { WebMercatorViewport } from "react-map-gl";
-import { WebMercatorViewportOptions, Padding } from "viewport-mercator-project";
 import {
   MapPosition,
   MapExactSize,
   ViewBounds,
 } from "../../domains/map/geoTypes";
 
-function convertRemToPixels(rem: number) {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+type DukePadding = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+const DefaultPadding : DukePadding = {
+  top: 40,
+  bottom: 40,
+  left: 40,
+  right: 40,
+};
+
+type WebMercatorViewportOptions = {
+  // Map state
+  width: number;
+  height: number;
+  latitude?: number;
+  longitude?: number;
+  zoom?: number;
+  pitch?: number;
+  bearing?: number;
+  altitude?: number;
+  nearZMultiplier?: number;
+  farZMultiplier?: number;
+};
+
+
+function convertRemToPixels(rem: number) : DukePadding {
+   const margin = rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+   return {
+    top: margin,
+    bottom: margin,
+    left: margin,
+    right: margin,
+  }
 }
 const defaultBoundsPaddingRem = 7;
 const defaultBoundsPaddingPx = convertRemToPixels(defaultBoundsPaddingRem);
@@ -42,7 +76,7 @@ const adjustViewport = (
   viewport: WebMercatorViewportOptions,
   position1: MapPosition,
   position2: MapPosition,
-  padding: Padding = 40
+  padding: DukePadding = DefaultPadding
 ) => {
   const bounds: [MapPosition, MapPosition] = [position1, position2];
   const vp = new WebMercatorViewport(viewport);
