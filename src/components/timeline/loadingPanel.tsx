@@ -1,14 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../design/colors";
-import CircleLoader from "react-spinners/CircleLoader";
-import { css } from "@emotion/core";
-
-const override = css`
-  display: block;
-  margin: 2rem auto;
-`;
-
 interface Props {
   departureName: string | undefined;
 }
@@ -17,11 +8,6 @@ const LoadingPanel: React.FC<Props> = ({ departureName }) => {
   return (
     <LoadingSection>
       <LoadingText1>recherche des prochains départs...</LoadingText1>
-      <CircleLoader
-        css={override}
-        size={"7rem"}
-        color={colors.dark.text.highlight}
-      />
       {departureName && (
         <LoadingText2>
           en gare de '<StationName>{departureName}</StationName>'
