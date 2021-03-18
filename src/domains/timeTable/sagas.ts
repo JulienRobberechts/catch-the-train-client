@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { put, call, takeLatest } from "redux-saga/effects";
-import { getTimeTablePromise } from "../../adapters/timetable";
+import { getTimeTablePromise, TimeTableResponse } from "../../adapters/timetable";
 import { requestStart, requestSuccess, requestError } from "./slice";
 import handleError from "../errors";
 import ErrorCodes from "../errors/errorCodes";
@@ -9,7 +9,7 @@ import { FullJourney } from "../journey/types";
 
 export function* getTimeTableEffectSaga(action: PayloadAction<FullJourney>) {
   try {
-    const result = yield call(getTimeTablePromise, action.payload);
+    const result: TimeTableResponse = yield call(getTimeTablePromise, action.payload);
 
     const departures = result?.data?.departures;
     if (departures && departures.length === 0) {

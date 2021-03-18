@@ -13,7 +13,7 @@ import CatchPage from "./page";
 const CatchPageContainer = () => {
   const dispatch = useDispatch();
   const journey = useSelector(selectCurrentJourney);
-  const { train } = useParams();
+  const { train } = useParams<{train:string}>();
 
   useEffect(() => {
     if (journey) {

@@ -3,7 +3,7 @@ import { UserPosition } from "../../domains/map/geoTypes";
 
 const getCurrentPositionAsync = async (
   options: PositionOptions = {}
-): Promise<Position> => {
+): Promise<GeolocationPosition> => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, options);
   });
