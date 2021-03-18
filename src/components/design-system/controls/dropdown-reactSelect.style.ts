@@ -1,6 +1,6 @@
 import { Styles } from "react-select";
 
-interface StylesWithActive extends Styles {
+interface StylesWithActive extends Styles<{[":active"]: any}, false> {
   [":active"]: any;
 }
 
